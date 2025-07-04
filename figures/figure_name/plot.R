@@ -1,10 +1,8 @@
-source("packages.R")
+source(here::here("packages.R"))
 
-path <- file.path("figures", "figure_name")
-
-data <- read.csv(file.path(path, "data.csv"))
+data <- read.csv("data.csv")
 
 ggplot(data, aes(x = x, y = y)) +
   geom_line()
 
-ggsave(file.path(path, "plot.pdf"))
+ggsave("plot.pdf")
