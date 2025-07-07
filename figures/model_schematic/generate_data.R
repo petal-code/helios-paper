@@ -108,7 +108,7 @@ plot_leisure_visits <- table(number_leisure_places) |>
   data.frame() |>
   ggplot(aes(x = number_leisure_places, y = Freq)) +
   geom_col(col = "black", fill = "white") +
-  labs(x = "Number of leisure places attended in a week", y = "Count")
+  labs(x = "Leisure venues attended per week", y = "Count")
 
 events_list <- create_events(
   variables_list = variables_list,
@@ -138,6 +138,8 @@ processes_list <- create_processes(
 
 plot_age + plot_households + plot_schools + plot_workplaces + plot_leisure_visits +
   plot_layout(ncol = 3, nrow = 3)
+
+ggsave("model-schematic.pdf", h = 7, w = 8)
 
 individual::simulation_loop(
   variables = variables_list,
