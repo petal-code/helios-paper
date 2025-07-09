@@ -19,12 +19,11 @@ parameter_lists <- tidyr::crossing(
   coverage = 0.5,
   riskiness = "setting_specific_riskiness",
   efficacy = 0.8,
-  iteration = 1:5
+  iteration = 1:5,
+  scenario = "epidemic",
 ) |>
-  mutate(
-    scenario = "epidemic",
-    id = row_number()
-  ) |>
+  mutate(id = row_number()) |>
   purrr::pmap(expand_parameters)
+
 
 parameter_lists
