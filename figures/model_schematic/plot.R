@@ -136,11 +136,6 @@ processes_list <- create_processes(
   renderer = renderer
 )
 
-plot_age + plot_households + plot_schools + plot_workplaces + plot_leisure_visits +
-  plot_layout(ncol = 3, nrow = 3)
-
-ggsave("model-schematic.pdf", h = 7, w = 8)
-
 individual::simulation_loop(
   variables = variables_list,
   events = unlist(events_list),
@@ -150,7 +145,7 @@ individual::simulation_loop(
 
 states <- renderer$to_dataframe()
 
-states |>
+plot_epidemic <- states |>
   tidyr::pivot_longer(
     cols = ends_with("count"),
     names_to = "compartment",
@@ -166,3 +161,14 @@ states |>
     values = c("royalblue3", "firebrick3", "darkorchid3", "orange2")
   ) +
   labs(x = "Time-step", y = "Count", col = "Compartment")
+
+plot_age +
+  plot_households +
+  plot_schools +
+  plot_workplaces +
+  plot_leisure_visits +
+  plot_epidemic +
+  plot_annotation(tag_levels = "A") +
+  plot_layout(ncol = 3, nrow = 2, tag_level = "keep")
+
+ggsave("plot.pdf", h = 7, w = 8)
