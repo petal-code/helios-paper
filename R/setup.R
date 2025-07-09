@@ -48,6 +48,7 @@ expand_parameters <- function(
     param <- set_riskiness(param)
   }
 
+  param$scenario <- scenario
   param$iteration <- iteration
   param$id <- id
   return(param)
