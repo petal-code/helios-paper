@@ -5,7 +5,8 @@ time_to_peak <- function(df) {
     group_by(across(all_of(id_cols))) |>
     slice_max(order_by = Proportion, n = 1, with_ties = FALSE) |>
     select(timestep, all_of(id_cols)) |>
-    rename(time_to_peak = timestep)
+    rename(time_to_peak = timestep) |>
+    ungroup()
 }
 
 epidemic_final_size <- function(df) {
@@ -15,7 +16,8 @@ epidemic_final_size <- function(df) {
     group_by(across(all_of(id_cols))) |>
     slice_max(order_by = timestep, n = 1, with_ties = FALSE) |>
     select(Proportion, all_of(id_cols)) |>
-    rename(final_size = Proportion)
+    rename(final_size = Proportion) |>
+    ungroup()
 }
 
 peak_incidence <- function(df) {
