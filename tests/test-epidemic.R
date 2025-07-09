@@ -1,4 +1,4 @@
-library("")
+source(here::here("packages.R"))
 
 download.file(
   url = "https://raw.githubusercontent.com/mrc-ide/helios/main/vignettes/Blueprint_Report2_July24_files/exemplar_simulations.rds",
