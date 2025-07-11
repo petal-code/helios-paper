@@ -71,9 +71,11 @@ household_sizes <- purrr::map_vec(
 
 plot_households <- table(household_sizes) |>
   data.frame() |>
-  ggplot(aes(x = household_sizes, y = Freq)) +
+  mutate(prop = Freq / sum(Freq)) |>
+  ggplot(aes(x = household_sizes, y = prop)) +
   geom_col(col = "black", fill = "white") +
-  labs(x = "Household size", y = "Count")
+  scale_y_continuous(labels = scales::percent_format()) +
+  labs(x = "Household size", y = "")
 
 household_df <- purrr::map_df(households, function(x) {
   indices <- variables_list$household$get_index_of(values = x)$to_vector()
@@ -120,8 +122,6 @@ events_list <- create_events(
 timesteps <- round(parameters_list$simulation_time / parameters_list$dt)
 
 renderer <- individual::Render$new(timesteps)
-
-variables_list <- create_variables(parameters_list)
 parameters_list <- variables_list$parameters_list
 variables_list <- variables_list$variables_list
 events_list <- create_events(
