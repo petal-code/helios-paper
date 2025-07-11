@@ -3,11 +3,11 @@ source(here::here("packages.R"))
 theme_set(theme_minimal())
 
 parameters_list <- get_parameters(list(
-  human_population = 10000,
-  number_initial_S = 9000,
-  number_initial_E = 500,
-  number_initial_I = 400,
-  number_initial_R = 100,
+  human_population = 200000,
+  number_initial_S = 190000,
+  number_initial_E = 5000,
+  number_initial_I = 4000,
+  number_initial_R = 1000,
   simulation_time = 100,
   seed = 1
 ))
@@ -24,11 +24,18 @@ age_class_counts <- purrr::map_vec(
 
 plot_age <- data.frame(age_classes, age_class_counts) |>
   mutate(
-    age_classes = forcats::fct_relevel(age_classes, "child", "adult", "elderly")
+    age_classes = forcats::fct_relevel(
+      age_classes,
+      "child",
+      "adult",
+      "elderly"
+    ),
+    prop = age_class_counts / sum(age_class_counts),
   ) |>
-  ggplot(aes(x = age_classes, y = age_class_counts)) +
+  ggplot(aes(x = age_classes, y = prop)) +
   geom_col(col = "black", fill = "white") +
-  labs(x = "Age class", y = "Count")
+  scale_y_continuous(labels = scales::percent_format()) +
+  labs(x = "Age class", y = "")
 
 schools <- variables_list$school$get_categories()
 schools <- schools[schools != "0"]
@@ -38,15 +45,10 @@ school_sizes <- purrr::map_vec(
 )
 
 plot_schools <- data.frame(school_sizes) |>
-  ggplot(aes(x = school_sizes, y = 0)) +
-  geom_boxplot(alpha = 0.5) +
-  geom_point() +
-  labs(x = "School size", y = "") +
-  theme(
-    axis.text.y = element_blank(),
-    axis.ticks.y = element_blank(),
-    axis.title.y = element_blank()
-  )
+  ggplot(aes(x = school_sizes)) +
+  geom_histogram(col = "black", fill = "white") +
+  scale_x_log10() +
+  labs(x = "School size (log scale)", y = "")
 
 workplaces <- variables_list$workplace$get_categories()
 workplaces <- workplaces[workplaces != "0"]
