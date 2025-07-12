@@ -87,6 +87,7 @@ household_df <- purrr::map_df(households, function(x) {
   indices <- variables_list$household$get_index_of(values = x)$to_vector()
   if (length(indices > 0))
     data.frame("individual" = indices, "household" = as.numeric(x))
+  }
 })
 
 age_classes <- variables_list$age_class$get_categories()
