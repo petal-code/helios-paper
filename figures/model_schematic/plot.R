@@ -12,8 +12,9 @@ parameters_list <- get_parameters(list(
   seed = 1
 ))
 
-variables_list <- create_variables(parameters_list)
-variables_list <- variables_list$variables_list
+variables_list_full <- create_variables(parameters_list)
+variables_list <- variables_list_full$variables_list
+parameters_list <- variables_list_full$parameters_list
 disease_states <- variables_list$disease_state$get_categories()
 
 age_classes <- variables_list$age_class$get_categories()
@@ -25,11 +26,12 @@ age_class_counts <- purrr::map_vec(
 
 plot_age <- data.frame(age_classes, age_class_counts) |>
   mutate(
+    age_classes = stringr::str_to_title(age_classes),
     age_classes = forcats::fct_relevel(
       age_classes,
-      "child",
-      "adult",
-      "elderly"
+      "Child",
+      "Adult",
+      "Elderly"
     ),
     prop = age_class_counts / sum(age_class_counts),
   ) |>
@@ -38,32 +40,28 @@ plot_age <- data.frame(age_classes, age_class_counts) |>
   scale_y_continuous(labels = scales::percent_format()) +
   labs(x = "Age class", y = "")
 
-schools <- variables_list$school$get_categories()
-schools <- schools[schools != "0"]
-
-school_sizes <- purrr::map_vec(
-  schools,
-  function(x) variables_list$school$get_size_of(values = x)
-)
-
-plot_schools <- data.frame(school_sizes) |>
+plot_schools <- data.frame(
+  "school_sizes" = parameters_list$setting_sizes$school
+) |>
   ggplot(aes(x = school_sizes)) +
-  geom_histogram(aes(y = stat(count / sum(count))), col = "black", fill = "white") +
+  geom_histogram(
+    aes(y = stat(count / sum(count))),
+    col = "black",
+    fill = "white"
+  ) +
   scale_x_log10() +
   scale_y_continuous(labels = scales::percent_format()) +
   labs(x = "School size (log scale)", y = "")
 
-workplaces <- variables_list$workplace$get_categories()
-workplaces <- workplaces[workplaces != "0"]
-
-workplace_sizes <- purrr::map_vec(
-  workplaces,
-  function(x) variables_list$workplace$get_size_of(values = x)
-)
-
-plot_workplaces <- data.frame(workplace_sizes) |>
+plot_workplaces <- data.frame(
+  "workplace_sizes" = parameters_list$setting_sizes$workplace
+) |>
   ggplot(aes(x = workplace_sizes)) +
-  geom_histogram(aes(y = stat(count / sum(count))), col = "black", fill = "white") +
+  geom_histogram(
+    aes(y = stat(count / sum(count))),
+    col = "black",
+    fill = "white"
+  ) +
   scale_x_log10() +
   scale_y_continuous(labels = scales::percent_format()) +
   labs(x = "Workplace size (log scale)", y = "")
@@ -75,7 +73,9 @@ household_sizes <- purrr::map_vec(
   function(x) variables_list$household$get_size_of(values = x)
 )
 
-plot_households <- table(household_sizes) |>
+plot_households <- table(
+  "household_sizes" = parameters_list$setting_sizes$household
+) |>
   data.frame() |>
   mutate(prop = Freq / sum(Freq)) |>
   ggplot(aes(x = household_sizes, y = prop)) +
@@ -122,18 +122,23 @@ plot_leisure_visits <- table(number_leisure_places) |>
   geom_col(col = "black", fill = "white") +
   labs(x = "Leisure venues attended per week", y = "Count")
 
-events_list <- create_events(
-  variables_list = variables_list,
-  parameters_list = parameters_list
-)
+plot_leisure <- data.frame(
+  "leisure_sizes" = parameters_list$setting_sizes$leisure
+) |>
+  ggplot(aes(x = leisure_sizes)) +
+  geom_histogram(
+    aes(y = stat(count / sum(count))),
+    col = "black",
+    fill = "white"
+  ) +
+  scale_y_continuous(labels = scales::percent_format()) +
+  labs(x = "Leisure venue size", y = "")
 
 timesteps <- round(parameters_list$simulation_time / parameters_list$dt)
 
 renderer <- individual::Render$new(timesteps)
 
-variables_list <- create_variables(parameters_list)
-parameters_list <- variables_list$parameters_list
-variables_list <- variables_list$variables_list
+parameters_list <- variables_list_full$parameters_list
 
 events_list <- create_events(
   variables_list = variables_list,
@@ -167,20 +172,22 @@ plot_epidemic <- states |>
     names_pattern = "(.*)_count"
   ) |>
   mutate(
-    compartment = forcats::fct_relevel(compartment, "S", "E", "I", "R")
+    compartment = forcats::fct_relevel(compartment, "S", "E", "I", "R"),
+    prop = value / parameters_list$human_population
   ) |>
-  ggplot(aes(x = timestep, y = value, col = compartment)) +
+  ggplot(aes(x = timestep, y = prop, col = compartment)) +
   geom_line() +
+  scale_y_continuous(labels = scales::percent_format()) +
   scale_color_manual(
     values = c("royalblue3", "firebrick3", "darkorchid3", "orange2")
   ) +
-  labs(x = "Time-step", y = "Count", col = "")
+  labs(x = "Time-step", y = "", col = "")
 
 plot_age +
   plot_households +
   plot_schools +
   plot_workplaces +
-  plot_leisure_visits +
+  plot_leisure +
   plot_epidemic +
   plot_annotation(tag_levels = "A") +
   plot_layout(ncol = 2, nrow = 3, tag_level = "keep")
