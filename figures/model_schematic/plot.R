@@ -17,6 +17,7 @@ variables_list <- variables_list$variables_list
 disease_states <- variables_list$disease_state$get_categories()
 
 age_classes <- variables_list$age_class$get_categories()
+
 age_class_counts <- purrr::map_vec(
   age_classes,
   function(x) variables_list$age_class$get_size_of(values = x)
@@ -39,6 +40,7 @@ plot_age <- data.frame(age_classes, age_class_counts) |>
 
 schools <- variables_list$school$get_categories()
 schools <- schools[schools != "0"]
+
 school_sizes <- purrr::map_vec(
   schools,
   function(x) variables_list$school$get_size_of(values = x)
@@ -46,12 +48,14 @@ school_sizes <- purrr::map_vec(
 
 plot_schools <- data.frame(school_sizes) |>
   ggplot(aes(x = school_sizes)) +
-  geom_histogram(col = "black", fill = "white") +
+  geom_histogram(aes(y = stat(count / sum(count))), col = "black", fill = "white") +
   scale_x_log10() +
+  scale_y_continuous(labels = scales::percent_format()) +
   labs(x = "School size (log scale)", y = "")
 
 workplaces <- variables_list$workplace$get_categories()
 workplaces <- workplaces[workplaces != "0"]
+
 workplace_sizes <- purrr::map_vec(
   workplaces,
   function(x) variables_list$workplace$get_size_of(values = x)
@@ -59,11 +63,13 @@ workplace_sizes <- purrr::map_vec(
 
 plot_workplaces <- data.frame(workplace_sizes) |>
   ggplot(aes(x = workplace_sizes)) +
-  geom_histogram(col = "black", fill = "white") +
+  geom_histogram(aes(y = stat(count / sum(count))), col = "black", fill = "white") +
   scale_x_log10() +
-  labs(x = "Workplace size (log scale)", y = "Count")
+  scale_y_continuous(labels = scales::percent_format()) +
+  labs(x = "Workplace size (log scale)", y = "")
 
 households <- variables_list$household$get_categories()
+
 household_sizes <- purrr::map_vec(
   households,
   function(x) variables_list$household$get_size_of(values = x)
@@ -84,6 +90,7 @@ household_df <- purrr::map_df(households, function(x) {
 })
 
 age_classes <- variables_list$age_class$get_categories()
+
 age_df <- purrr::map_df(age_classes, function(x) {
   indices <- variables_list$age_class$get_index_of(values = x)$to_vector()
   if (length(indices > 0)) data.frame("individual" = indices, "age_class" = x)
@@ -106,6 +113,7 @@ household_df |>
   gt::gt()
 
 leisure_places <- variables_list$leisure$get_values()
+
 number_leisure_places <- sapply(leisure_places, function(x) sum(x > 0))
 
 plot_leisure_visits <- table(number_leisure_places) |>
@@ -122,12 +130,16 @@ events_list <- create_events(
 timesteps <- round(parameters_list$simulation_time / parameters_list$dt)
 
 renderer <- individual::Render$new(timesteps)
+
+variables_list <- create_variables(parameters_list)
 parameters_list <- variables_list$parameters_list
 variables_list <- variables_list$variables_list
+
 events_list <- create_events(
   variables_list = variables_list,
   parameters_list = parameters_list
 )
+
 timesteps <- round(parameters_list$simulation_time / parameters_list$dt)
 renderer <- individual::Render$new(timesteps)
 
