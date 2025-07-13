@@ -9,6 +9,12 @@ download.file(
 sims <- readRDS("example_simulations.rds")
 str(sims)
 
-time_to_peak(sims)
-epidemic_final_size(sims)
-peak_incidence(sims)
+id_cols <- c("Setting", "Intervention")
+
+sims |>
+  group_by(across(all_of(id_cols))) |>
+  group_modify(~ tibble(
+    time_to_peak = time_to_peak(.x),
+    final_size = epidemic_final_size(.x),
+    peak_incidence = peak_incidence(.x)
+  ))
