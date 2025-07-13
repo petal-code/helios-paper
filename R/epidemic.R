@@ -8,9 +8,9 @@ time_to_peak <- function(df) {
 
 epidemic_final_size <- function(df) {
   df |>
-    filter(State == "Recovered") |>
-    slice_max(order_by = timestep, n = 1, with_ties = FALSE) |>
-    rename(final_size = Proportion) |>
+    filter(State %in% c("Exposed", "Infected", "Recovered")) |>
+    slice_max(order_by = timestep, n = 1, with_ties = TRUE) |>
+    summarise(final_size = sum(Proportion)) |>
     pull(final_size)
 }
 

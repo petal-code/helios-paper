@@ -13,8 +13,10 @@ id_cols <- c("Setting", "Intervention")
 
 sims |>
   group_by(across(all_of(id_cols))) |>
-  group_modify(~ tibble(
-    time_to_peak = time_to_peak(.x),
-    final_size = epidemic_final_size(.x),
-    peak_incidence = peak_incidence(.x)
-  ))
+  group_modify(
+    ~ tibble(
+      time_to_peak = time_to_peak(.x),
+      final_size = epidemic_final_size(.x),
+      peak_incidence = peak_incidence(.x)
+    )
+  )
