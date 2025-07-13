@@ -1,4 +1,9 @@
-annual_incidence <- function(df, start_time, end_time, timesteps_per_year) {
+annual_incidence <- function(
+  df,
+  start_time = min(df$timestep),
+  end_time = max(df$timestep),
+  timesteps_per_year = 365
+) {
   df |>
     filter(State == "Infected") |>
     arrange(timestep) |>
