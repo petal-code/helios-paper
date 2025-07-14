@@ -184,13 +184,19 @@ plot_epidemic <- states |>
   ) +
   labs(x = "Time-step", y = "", col = "")
 
+design <- "
+  12
+  34
+  56
+"
+
 plot_age +
   plot_households +
   plot_schools +
   plot_workplaces +
   plot_leisure +
-  plot_epidemic +
+  plot_leisure_visits +
   plot_annotation(tag_levels = "A") +
-  plot_layout(ncol = 2, nrow = 3, tag_level = "keep")
+  plot_layout(design = design, tag_level = "keep")
 
-ggsave("plot.pdf", h = 7, w = 8)
+ggsave("plot.pdf", h = 5.5, w = 7)
