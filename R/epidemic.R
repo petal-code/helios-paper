@@ -1,25 +1,25 @@
-time_to_peak <- function(df) {
+timestep_to_peak <- function(df) {
   df |>
-    filter(State == "Infected") |>
-    slice_max(order_by = Proportion, n = 1, with_ties = FALSE) |>
+    filter(state == "I") |>
+    slice_max(order_by = proportion, n = 1, with_ties = FALSE) |>
     rename(time_to_peak = timestep) |>
     pull(time_to_peak)
 }
 
 epidemic_final_size <- function(df) {
   df |>
-    filter(State %in% c("Exposed", "Infected", "Recovered")) |>
+    filter(state %in% c("E", "I", "R")) |>
     slice_max(order_by = timestep, n = 1, with_ties = TRUE) |>
-    summarise(final_size = sum(Proportion)) |>
+    summarise(final_size = sum(proportion)) |>
     pull(final_size)
 }
 
 peak_incidence <- function(df) {
   df |>
-    filter(State == "Infected") |>
+    filter(state == "I") |>
     arrange(timestep) |>
     mutate(
-      incidence = Proportion - lag(Proportion, default = 0)
+      incidence = proportion - lag(proportion, default = 0)
     ) |>
     summarise(peak_incidence = max(incidence, na.rm = TRUE)) |>
     pull(peak_incidence)

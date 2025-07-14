@@ -7,7 +7,21 @@ download.file(
 )
 
 sims <- readRDS("example_simulations.rds")
-str(sims)
+
+sims <- sims |>
+  rename(
+    proportion = Proportion,
+    state = State
+  ) |>
+  mutate(
+    state = forcats::fct_recode(
+      state,
+      "S" = "Susceptible",
+      "E" = "Exposed",
+      "I" = "Infected",
+      "R" = "Recovered",
+    )
+  )
 
 id_cols <- c("Setting", "Intervention")
 
@@ -15,7 +29,7 @@ sims |>
   group_by(across(all_of(id_cols))) |>
   group_modify(
     ~ tibble(
-      time_to_peak = time_to_peak(.x),
+      timestep_to_peak = timestep_to_peak(.x),
       final_size = epidemic_final_size(.x),
       peak_incidence = peak_incidence(.x)
     )
