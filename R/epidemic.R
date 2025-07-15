@@ -1,0 +1,26 @@
+timestep_to_peak <- function(df) {
+  df |>
+    filter(state == "I") |>
+    slice_max(order_by = proportion, n = 1, with_ties = FALSE) |>
+    rename(time_to_peak = timestep) |>
+    pull(time_to_peak)
+}
+
+epidemic_final_size <- function(df) {
+  df |>
+    filter(state %in% c("E", "I", "R")) |>
+    slice_max(order_by = timestep, n = 1, with_ties = TRUE) |>
+    summarise(final_size = sum(proportion)) |>
+    pull(final_size)
+}
+
+peak_incidence <- function(df) {
+  df |>
+    filter(state == "I") |>
+    arrange(timestep) |>
+    mutate(
+      incidence = proportion - lag(proportion, default = 0)
+    ) |>
+    summarise(peak_incidence = max(incidence, na.rm = TRUE)) |>
+    pull(peak_incidence)
+}
