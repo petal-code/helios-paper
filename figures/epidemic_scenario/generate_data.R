@@ -4,7 +4,7 @@ source(here::here("packages.R"))
 config <- list(
   simulation_time_days = 365,
   timestep_uvc_on = 1,
-  human_population = 10000,
+  human_population = 50000,
   setting_size = list(
     size_per_individual_workplace = 10,
     size_per_individual_school = 3.33,
@@ -13,17 +13,21 @@ config <- list(
   )
 )
 
+# Generate all parameter lists for this figure
 parameter_lists <- tidyr::crossing(
-  archetype = c("flu"),
+  archetype = c("flu", "sars_cov_2"),
   coverage_type = c("random", "targeted_riskiness"),
-  coverage = 0.5,
+  coverage = seq(0.2, 0.8, by = 0.2),
   riskiness = "setting_specific_riskiness",
-  efficacy = 0.8,
+  efficacy = seq(0.2, 0.8, by = 0.2),
   iteration = 1:5,
   scenario = "epidemic",
 ) |>
   mutate(id = row_number()) |>
   purrr::pmap(expand_parameters)
+
+# Total number of simulations to run
+length(parameter_lists)
 
 x <- helios::run_simulation(parameter_lists[[1]])
 x
