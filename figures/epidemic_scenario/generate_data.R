@@ -2,7 +2,7 @@ source(here::here("packages.R"))
 
 # Shared parameters between scenarios
 config <- list(
-  simulation_time_days = 365,
+  simulation_time_days = 4 * 365,
   timestep_uvc_on = 1,
   human_population = 50000,
   setting_size = list(
