@@ -2,7 +2,7 @@ source(here::here("packages.R"))
 
 # Shared parameters between scenarios
 config <- list(
-  years_to_simulate = 1,
+  simulation_time_days = 365,
   timestep_uvc_on = 1,
   human_population = 10000,
   setting_size = list(
@@ -25,5 +25,5 @@ parameter_lists <- tidyr::crossing(
   mutate(id = row_number()) |>
   purrr::pmap(expand_parameters)
 
-
-parameter_lists
+x <- helios::run_simulation(parameter_lists[[1]])
+x
