@@ -1,8 +1,8 @@
 annual_incidence <- function(
   df,
-  start_time = min(df$timestep),
-  end_time = max(df$timestep),
-  timesteps_per_year = 365
+  start_timestep = min(df$timestep),
+  end_timestep = max(df$timestep),
+  dt = 1
 ) {
   df |>
     filter(State == "Infected") |>
@@ -14,7 +14,7 @@ annual_incidence <- function(
     ) |>
     summarise(
       incidence = sum(pmax(incidence, 0), na.rm = TRUE),
-      time = (end_time - start_time + 1) / timesteps_per_year,
+      time = (end_timestep - start_timestep + 1) * dt / 365,
       rate = incidence / time
     ) |>
     pull(rate)
