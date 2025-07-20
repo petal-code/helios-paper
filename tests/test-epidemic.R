@@ -29,7 +29,7 @@ sims |>
   group_by(across(all_of(id_cols))) |>
   group_modify(
     ~ tibble(
-      timestep_to_peak = timestep_to_peak(.x),
+      time_to_peak = timestep_to_peak(.x),
       final_size = epidemic_final_size(.x),
       peak_incidence = peak_incidence(.x)
     )

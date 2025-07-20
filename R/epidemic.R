@@ -1,8 +1,8 @@
-timestep_to_peak <- function(df) {
+time_to_peak <- function(df, dt = 1) {
   df |>
     filter(state == "I") |>
     slice_max(order_by = proportion, n = 1, with_ties = FALSE) |>
-    rename(time_to_peak = timestep) |>
+    rename(time_to_peak = dt * timestep) |>
     pull(time_to_peak)
 }
 
