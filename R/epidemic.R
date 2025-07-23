@@ -16,10 +16,10 @@ epidemic_final_size <- function(df) {
 
 peak_incidence <- function(df) {
   df |>
-    filter(state == "I") |>
+    filter(state == "S") |>
     arrange(timestep) |>
     mutate(
-      incidence = proportion - lag(proportion, default = 0)
+      incidence = lag(proportion, default = 0) - proportion
     ) |>
     summarise(peak_incidence = max(incidence, na.rm = TRUE)) |>
     pull(peak_incidence)
