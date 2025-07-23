@@ -5,9 +5,9 @@ annual_incidence <- function(
   dt = 1
 ) {
   df |>
-    filter(State == "Infected") |>
+    filter(state == "I") |>
     arrange(timestep) |>
-    mutate(incidence = Proportion - lag(Proportion, default = 0)) |>
+    mutate(incidence = proportion - lag(proportion, default = 0)) |>
     filter(
       timestep >= start_time,
       timestep <= end_time
