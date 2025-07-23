@@ -2,7 +2,7 @@ time_to_peak_infections <- function(df, dt) {
   df |>
     filter(state == "I") |>
     slice_max(order_by = proportion, n = 1, with_ties = FALSE) |>
-    rename(time_to_peak = dt * timestep) |>
+    mutate(time_to_peak = dt * timestep) |>
     pull(time_to_peak)
 }
 
@@ -14,13 +14,19 @@ epidemic_final_size <- function(df) {
     pull(final_size)
 }
 
-peak_incidence <- function(df) {
+peak_daily_incidence <- function(df, dt) {
   df |>
     filter(state == "S") |>
     arrange(timestep) |>
     mutate(
-      incidence = lag(proportion, default = 0) - proportion
+      incidence = lag(proportion, default = 0) - proportion,
+      day = floor((timestep - min(timestep)) * dt)
     ) |>
-    summarise(peak_incidence = max(incidence, na.rm = TRUE)) |>
-    pull(peak_incidence)
+    group_by(day) |>
+    summarise(
+      daily_incidence = sum(incidence, na.rm = TRUE),
+      .groups = "drop"
+    ) |>
+    summarise(peak = max(daily_incidence, na.rm = TRUE)) |>
+    pull(peak)
 }
