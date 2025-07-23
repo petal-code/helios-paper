@@ -1,5 +1,10 @@
 init_counts <- function(N, prop_E = 0.005) {
   E <- floor(N * prop_E)
+  if (E == 0) {
+    cli::cli_warn(
+      "Initialising with no exposed individuals. This is unlikely to be desirable"
+    )
+  }
   S <- N - E
   list(
     number_initial_S = S,
