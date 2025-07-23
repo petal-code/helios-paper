@@ -1,4 +1,4 @@
-time_to_peak <- function(df, dt = 1) {
+time_to_peak_infections <- function(df, dt) {
   df |>
     filter(state == "I") |>
     slice_max(order_by = proportion, n = 1, with_ties = FALSE) |>
