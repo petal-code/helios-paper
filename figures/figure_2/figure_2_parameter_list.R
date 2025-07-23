@@ -23,7 +23,7 @@ initial_I_flu <- round(0.012 * human_population)
 initial_R_flu <- human_population - initial_S_flu - initial_E_flu - initial_I_flu
 
 simulations_to_run <- rbind(
-  # Panel A: Annualized Incidence across UV-C Efficacy values (Line Graph)
+  # Panel A: Annualized infection Incidence across UV-C Efficacy values (Line Graph)
   expand.grid(
     archetype = archetypes,
     coverage = 0.5,
@@ -35,10 +35,10 @@ simulations_to_run <- rbind(
     stringsAsFactors = FALSE
   ),
   
-  # Panel B: % Reduction in Annualized Disease Incidence across UV-C Coverage values
+  # Panel B: % Reduction in Annualized infection Incidence across UV-C Coverage values
   expand.grid(
     archetype = archetypes,
-    coverage = c(0, 0.3, 0.5, 0.7),
+    coverage = c(0, 0.2, 0.4, 0.6, 0.8),
     efficacy = 0.5,
     coverage_type = "random",
     iteration = iterations,
@@ -47,7 +47,7 @@ simulations_to_run <- rbind(
     stringsAsFactors = FALSE
   ),
   
-  # Panel C: Heatmap, UVC Coverage x UVC Efficacy 
+  # Panel C: Heatmap, UVC Coverage x UVC Efficacy , % reduction in annualized infection incidence
   expand.grid(
     archetype = archetypes,
     coverage = c(0, 0.2, 0.4, 0.6, 0.8, 1.0),
@@ -63,7 +63,7 @@ simulations_to_run <- rbind(
   expand.grid(
     archetype = archetypes,
     coverage = c(0, 0.2, 0.4, 0.6, 0.8),
-    efficacy = c(0.3, 0.7),  
+    efficacy = c(0.3, 0.5, 0.7),  
     coverage_type = "random",
     iteration = iterations,
     panel = "panel_D",
@@ -71,18 +71,10 @@ simulations_to_run <- rbind(
     stringsAsFactors = FALSE
   ),
   
-  # Panel E: Plotting Active Infection and Annualized Disease Incidence
-  expand.grid(
-    archetype = archetypes,
-    coverage = c(0, 0.3, 0.5, 0.7),
-    efficacy = c(0, 0.3, 0.5, 0.7),
-    coverage_type = "random",
-    iteration = iterations,
-    panel = "panel_E",
-    riskiness = riskiness,
-    stringsAsFactors = FALSE
+  # Panel E: 
+  
   )
-)
+
 
 simulations_to_run <- simulations_to_run %>%
   mutate(scenario = "endemic") %>%
