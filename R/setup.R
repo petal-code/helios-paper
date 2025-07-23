@@ -23,9 +23,11 @@ expand_parameters <- function(
   efficacy,
   iteration,
   scenario,
-  id
+  id,
+  config
 ) {
   overrides <- rlang::inject(list(
+    dt = config$dt,
     human_population = config$human_population,
     simulation_time = config$simulation_time_days,
     !!!(config$setting_size),

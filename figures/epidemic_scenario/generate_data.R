@@ -2,6 +2,7 @@ source(here::here("packages.R"))
 
 # Shared parameters between scenarios
 config <- list(
+  dt = 0.5,
   simulation_time_days = 4 * 365,
   timestep_uvc_on = 1,
   human_population = 50000,
@@ -24,7 +25,7 @@ parameter_lists <- tidyr::crossing(
   scenario = "epidemic",
 ) |>
   mutate(id = row_number()) |>
-  purrr::pmap(expand_parameters)
+  purrr::pmap(expand_parameters, config = config)
 
 # Total number of simulations to run
 length(parameter_lists)
