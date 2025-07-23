@@ -18,7 +18,7 @@ config <- list(
 parameter_lists <- tidyr::crossing(
   archetype = c("flu", "sars_cov_2"),
   coverage_type = c("random", "targeted_riskiness"),
-  coverage = seq(0.2, 0.8, by = 0.2),
+  coverage = seq(0, 1, by = 0.2),
   riskiness = "setting_specific_riskiness",
   efficacy = seq(0.2, 0.8, by = 0.2),
   iteration = 1:3,
