@@ -8,7 +8,7 @@ human_population <- 50000
 duration_of_immunity <- 365  
 external_infection_probability <- 1 / human_population
 archetypes <- c("flu", "sars_cov_2")
-riskiness <- c("setting_specific_riskiness")
+riskiness <- "setting_specific_riskiness"
 
 # Initial conditions for SARS-CoV-2:
 initial_S_SC2 <- round(0.4 * human_population)
@@ -69,17 +69,16 @@ simulations_to_run <- rbind(
     panel = "panel_D",
     riskiness = riskiness,
     stringsAsFactors = FALSE
-  ),
-  
-  # Panel E: 
-  
+  )
+
   )
 
 
 simulations_to_run <- simulations_to_run %>%
   mutate(scenario = "endemic") %>%
   arrange(archetype, panel, coverage_type, coverage, efficacy, iteration) %>%
-  mutate(ID = 1:nrow(simulations_to_run))
+  mutate(ID = 1:nrow(simulations_to_run)) %>% 
+  mutate(seed = 1000 + ID) #added unique seed for each simulation
 
 
 parameter_lists <- list()
@@ -99,7 +98,8 @@ for (i in 1:nrow(simulations_to_run)) {
         endemic_or_epidemic = "endemic",
         duration_immune = duration_of_immunity,
         prob_inf_external = external_infection_probability,
-        simulation_time = simulation_time_days
+        simulation_time = simulation_time_days,
+        seed = simulations_to_run$seed[i]
       )
     )
     
@@ -117,9 +117,8 @@ for (i in 1:nrow(simulations_to_run)) {
         endemic_or_epidemic = "endemic",
         duration_immune = duration_of_immunity,
         prob_inf_external = external_infection_probability,
-        
-        
-        simulation_time = simulation_time_days
+        simulation_time = simulation_time_days,
+        seed = simulations_to_run$seed[i]
       )
     )
   } 
