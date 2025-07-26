@@ -24,7 +24,10 @@ parameter_lists <- tidyr::crossing(
   iteration = 1:3,
   scenario = "epidemic",
 ) |>
-  mutate(id = row_number()) |>
+  mutate(
+    id = row_number(),
+    seed = 1000 + id
+  ) |>
   purrr::pmap(expand_parameters, config = config)
 
 # Total number of simulations to run

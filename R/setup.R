@@ -24,6 +24,7 @@ expand_parameters <- function(
   iteration,
   scenario,
   id,
+  seed,
   config
 ) {
   overrides <- rlang::inject(list(
@@ -58,6 +59,7 @@ expand_parameters <- function(
   param$scenario <- scenario
   param$iteration <- iteration
   param$id <- id
+  param$seed <- seed
   return(param)
 }
 
