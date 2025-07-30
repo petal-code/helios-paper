@@ -48,20 +48,23 @@ run_parallel_simulations <- function(
 
 results <- run_parallel_simulations(parameter_lists)
 
-results_df <- do.call(rbind, lapply(results, function(x) {
-  data.frame(
-    sim_id = x$sim_id,
-    simulation_id = x$simulation_id,
-    archetype = x$archetype,
-    coverage = x$coverage,
-    efficacy = x$efficacy,
-    coverage_type = x$coverage_type,
-    iteration = x$iteration,
-    annualized_incidence = x$annualized_incidence,
-    mean_prevalence = x$mean_prevalence,
-    stringsAsFactors = FALSE
-  )
-}))
+results_df <- do.call(
+  rbind,
+  lapply(results, function(x) {
+    data.frame(
+      sim_id = x$sim_id,
+      simulation_id = x$simulation_id,
+      archetype = x$archetype,
+      coverage = x$coverage,
+      efficacy = x$efficacy,
+      coverage_type = x$coverage_type,
+      iteration = x$iteration,
+      annualized_incidence = x$annualized_incidence,
+      mean_prevalence = x$mean_prevalence,
+      stringsAsFactors = FALSE
+    )
+  })
+)
 
 
 saveRDS(results_df, "endemic_simulation_summary.rds")
