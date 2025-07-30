@@ -21,7 +21,7 @@ initial_R_SC2 <- human_population -
 
 # Initial conditions for Flu:
 initial_S_flu <- round(0.67 * human_population)
-initial_E_flu <- round(0.006 * human_population)  
+initial_E_flu <- round(0.006 * human_population)
 initial_I_flu <- round(0.012 * human_population)
 initial_R_flu <- human_population - initial_S_flu - initial_E_flu - initial_I_flu
 
