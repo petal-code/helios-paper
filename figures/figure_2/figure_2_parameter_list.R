@@ -68,7 +68,7 @@ simulations_to_run <- rbind(
   expand.grid(
     archetype = archetypes,
     coverage = c(0, 0.2, 0.4, 0.6, 0.8),
-    efficacy = c(0.3, 0.5, 0.7),  
+    efficacy = c(0.3, 0.5, 0.7),
     coverage_type = "random",
     iteration = iterations,
     panel = "panel_D",
