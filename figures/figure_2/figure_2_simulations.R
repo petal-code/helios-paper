@@ -15,7 +15,6 @@ run_parallel_simulations <- function(
     library(individual)
     library(helios)
   })
-  
   run_single_simulation <- function(i) {
     parameters <- parameter_lists[[i]]
     
