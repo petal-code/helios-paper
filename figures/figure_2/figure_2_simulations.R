@@ -20,7 +20,6 @@ run_parallel_simulations <- function(
     parameters <- parameter_lists[[i]]
     
     result <- run_simulation(parameters)
-    
     #Annualized Disease Incidence
     total_new_infections <- sum(result$E_new, na.rm = TRUE)
     observation_period_years <- (nrow(result) * parameters$dt) / 365
