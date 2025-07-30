@@ -29,7 +29,6 @@ run_parallel_simulations <- function(
     #Active Infection Prevalence
     active_infections <- result$E_count + result$I_count
     mean_prevalence <- mean(active_infections)
-    
     return(list(
       sim_id = i,
       simulation_id = parameters$simulation_id,
