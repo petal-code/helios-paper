@@ -96,7 +96,6 @@ for (i in 1:nrow(simulations_to_run)) {
         number_initial_E = initial_E_SC2,
         number_initial_I = initial_I_SC2,
         number_initial_R = initial_R_SC2,
-        
         endemic_or_epidemic = "endemic",
         duration_immune = duration_of_immunity,
         prob_inf_external = external_infection_probability,
