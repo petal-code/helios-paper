@@ -63,7 +63,6 @@ simulations_to_run <- rbind(
     riskiness = riskiness,
     stringsAsFactors = FALSE
   ),
-  
   # Panel D: Active Infection Prevalence by UV-C Coverage (Line plot)
   expand.grid(
     archetype = archetypes,
