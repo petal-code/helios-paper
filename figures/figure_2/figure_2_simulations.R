@@ -10,7 +10,6 @@ run_parallel_simulations <- function(
 ) {
   cl <- makeCluster(cores)
   clusterExport(cl, varlist = c("parameter_lists"), envir = environment())
-  
   clusterEvalQ(cl, {
     library(individual)
     library(helios)
