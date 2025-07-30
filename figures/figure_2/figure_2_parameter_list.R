@@ -23,7 +23,10 @@ initial_R_SC2 <- human_population -
 initial_S_flu <- round(0.67 * human_population)
 initial_E_flu <- round(0.006 * human_population)
 initial_I_flu <- round(0.012 * human_population)
-initial_R_flu <- human_population - initial_S_flu - initial_E_flu - initial_I_flu
+initial_R_flu <- human_population -
+  initial_S_flu -
+  initial_E_flu -
+  initial_I_flu
 
 simulations_to_run <- rbind(
   # Panel A: Annualized infection Incidence across UV-C Efficacy values (Line Graph)
