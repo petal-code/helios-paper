@@ -74,8 +74,7 @@ simulations_to_run <- rbind(
     riskiness = riskiness,
     stringsAsFactors = FALSE
   )
-
-  )
+)
 
 
 simulations_to_run <- simulations_to_run %>%
