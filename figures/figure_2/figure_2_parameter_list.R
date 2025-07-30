@@ -40,7 +40,6 @@ simulations_to_run <- rbind(
     riskiness = riskiness,
     stringsAsFactors = FALSE
   ),
-  
   # Panel B: % Reduction in Annualized infection Incidence across UV-C Coverage values
   expand.grid(
     archetype = archetypes,
