@@ -52,7 +52,6 @@ simulations_to_run <- rbind(
     riskiness = riskiness,
     stringsAsFactors = FALSE
   ),
-  
   # Panel C: Heatmap, UVC Coverage x UVC Efficacy , % reduction in annualized infection incidence
   expand.grid(
     archetype = archetypes,
