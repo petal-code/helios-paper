@@ -23,7 +23,6 @@ run_parallel_simulations <- function(
     annualized_incidence <- total_new_infections /
       (parameters$human_population * observation_period_years)
     mean_incidence <- mean(result$I_count) / parameters$human_population
-    
     #Active Infection Prevalence
     active_infections <- result$E_count + result$I_count
     mean_prevalence <- mean(active_infections)
