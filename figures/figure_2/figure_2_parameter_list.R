@@ -122,13 +122,59 @@ for (i in 1:nrow(simulations_to_run)) {
       )
     )
   }
-  
-  parameter_lists[[i]]$simulation_id <- simulations_to_run$ID[i]
-  parameter_lists[[i]]$iteration_number <- simulations_to_run$iteration[i]
-  parameter_lists[[i]]$panel <- simulations_to_run$panel[i]
-  parameter_lists[[i]]$coverage <- simulations_to_run$coverage[i]
-  parameter_lists[[i]]$efficacy <- simulations_to_run$efficacy[i]
-  parameter_lists[[i]]$coverage_type <- simulations_to_run$coverage_type[i]
+}
+
+# UVC Parameters
+if (simulations_to_run$coverage[i] > 0) {
+  parameter_lists[[i]] <- parameter_lists[[i]] %>%
+    set_uvc(
+      setting = "joint",
+      coverage = simulations_to_run$coverage[i],
+      coverage_target = "square_footage",
+      coverage_type = simulations_to_run$coverage_type[i],
+      efficacy = simulations_to_run$efficacy[i],
+      timestep = 0
+    )
+}
+
+if (simulations_to_run$riskiness[i] == "setting_specific_riskiness") {
+  parameter_lists[[i]] <- parameter_lists[[i]] %>%
+    set_setting_specific_riskiness(
+      setting = "school",
+      mean = 0,
+      sd = 0.3544,
+      min = 1 / sqrt(4.75),
+      max = sqrt(4.75)
+    ) %>%
+    set_setting_specific_riskiness(
+      setting = "workplace",
+      mean = 0,
+      sd = 0.5072,
+      min = 1 / sqrt(6.35),
+      max = sqrt(6.35)
+    ) %>%
+    set_setting_specific_riskiness(
+      setting = "household",
+      mean = 0,
+      sd = 0.0871,
+      min = 1 / sqrt(2.5),
+      max = sqrt(2.5)
+    ) %>%
+    set_setting_specific_riskiness(
+      setting = "leisure",
+      mean = 0,
+      sd = 0.4278,
+      min = 1 / sqrt(5.5),
+      max = sqrt(5.5)
+    )
+}
+
+parameter_lists[[i]]$simulation_id <- simulations_to_run$ID[i]
+parameter_lists[[i]]$iteration_number <- simulations_to_run$iteration[i]
+parameter_lists[[i]]$panel <- simulations_to_run$panel[i]
+parameter_lists[[i]]$coverage <- simulations_to_run$coverage[i]
+parameter_lists[[i]]$efficacy <- simulations_to_run$efficacy[i]
+parameter_lists[[i]]$coverage_type <- simulations_to_run$coverage_type[i]
 
 
 saveRDS(parameter_lists, "figure_2_parameter_list.rds")
