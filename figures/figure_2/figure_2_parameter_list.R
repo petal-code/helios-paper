@@ -86,7 +86,6 @@ simulations_to_run <- simulations_to_run %>%
 parameter_lists <- list()
 
 for (i in 1:nrow(simulations_to_run)) {
-  
   if (simulations_to_run$archetype[i] == "sars_cov_2") {
     parameter_lists[[i]] <- get_parameters(
       archetype = simulations_to_run$archetype[i],
