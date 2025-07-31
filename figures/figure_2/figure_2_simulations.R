@@ -39,8 +39,12 @@ run_parallel_simulations <- function(
       full_results = result
     ))
   }
-  
-  simulation_results <- parLapply(cl, 1:length(parameter_lists), run_single_simulation)
+
+  simulation_results <- parLapply(
+    cl,
+    1:length(parameter_lists),
+    run_single_simulation
+  )
   stopCluster(cl)
   return(simulation_results)
 }
