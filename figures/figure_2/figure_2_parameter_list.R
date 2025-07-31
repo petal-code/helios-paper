@@ -76,7 +76,7 @@ simulations_to_run <- rbind(
 )
 
 
-simulations_to_run <- simulations_to_run %>%
+simulations_to_run <- simulations_to_run %>% mutate( scenario = "endemic", ID = 1:n(), seed = 1000 + ID) %>% arrange(archetype, panel, coverage_type, coverage, efficacy, iteration) ``` 
   mutate(scenario = "endemic") %>%
   arrange(archetype, panel, coverage_type, coverage, efficacy, iteration) %>%
   mutate(ID = 1:nrow(simulations_to_run)) %>%
