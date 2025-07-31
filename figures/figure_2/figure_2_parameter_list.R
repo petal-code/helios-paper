@@ -103,7 +103,6 @@ for (i in 1:nrow(simulations_to_run)) {
         seed = simulations_to_run$seed[i]
       )
     )
-    
   } else if (simulations_to_run$archetype[i] == "flu") {
     parameter_lists[[i]] <- get_parameters(
       archetype = simulations_to_run$archetype[i],
