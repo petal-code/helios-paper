@@ -20,7 +20,8 @@ run_parallel_simulations <- function(
     #Annualized Disease Incidence
     total_new_infections <- sum(result$E_new, na.rm = TRUE)
     observation_period_years <- (nrow(result) * parameters$dt) / 365
-    annualized_incidence <- total_new_infections / (parameters$human_population * observation_period_years)
+    annualized_incidence <- total_new_infections /
+      (parameters$human_population * observation_period_years)
     mean_incidence <- mean(result$I_count) / parameters$human_population
     
     #Active Infection Prevalence
