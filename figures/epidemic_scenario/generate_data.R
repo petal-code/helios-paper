@@ -33,6 +33,7 @@ parameter_lists <- tidyr::crossing(
 # Total number of simulations to run
 length(parameter_lists)
 
-tictoc::tic()
-x <- helios::run_simulation(parameter_lists[[1]])
-tictoc::toc()
+saveRDS(
+  parameter_lists,
+  here::here("figures", "epidemic_scenario", "parameter_lists.rds")
+)
