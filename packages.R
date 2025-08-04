@@ -8,6 +8,7 @@ suppressPackageStartupMessages({
   library(ggplot2)
   library(purrr)
   library(patchwork)
+  library(magrittr)
   library(cli)
   purrr::walk(list.files("R", full.names = TRUE), source)
 })
