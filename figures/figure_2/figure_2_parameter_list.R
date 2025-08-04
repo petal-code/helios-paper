@@ -170,5 +170,5 @@ parameter_lists[[i]]$efficacy <- simulations_to_run$efficacy[i]
 parameter_lists[[i]]$coverage_type <- simulations_to_run$coverage_type[i]
 
 
-saveRDS(parameter_lists, "figure_2_parameter_list.rds")
-saveRDS(simulations_to_run, "parameter_combinations.rds")
+saveRDS(parameter_lists, "figures/figure_2/figure_2_parameter_list.rds")
+saveRDS(simulations_to_run, "figures/figure_2/parameter_combinations.rds")
