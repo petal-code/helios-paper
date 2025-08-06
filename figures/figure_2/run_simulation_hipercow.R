@@ -1,7 +1,11 @@
-run_simulation_hipercow <- function(parameters, file_save = FALSE, directory = NULL) {
+run_simulation_hipercow <- function(
+    parameters, 
+    file_save = FALSE, 
+    directory = NULL
+    ) {
   
-  # Load in the helios package:
-  #library(helios)
+  # TODO: Possibly add check that terminates function call if directory = NULL (prevent mass of
+  # output files being saved in an unspecified directory)
   
   # Run the simulation:
   s <- helios::run_simulation(parameters_list = parameters)
@@ -16,15 +20,13 @@ run_simulation_hipercow <- function(parameters, file_save = FALSE, directory = N
   s$efficacy <- parameters$efficacy
   s$disease_status <- parameters$endemic_or_epidemic
   
-  # Create an output list:
+  # Store parameter list and simulated outputs in a single list for returning:
   output <- list()
-  
-  # Append the simulation output and the parameter list to the output:
   output$parameters <- parameters
   output$simulation <- s
   
   # TODO: Decide on how we want to save these files and amend this:
-  # Save the output as a .rds if file_save switched on:
+  # Save the outputs in the specified directory:
   if(file_save) {
     saveRDS(object = output,
             file = paste0(directory,
@@ -39,7 +41,6 @@ run_simulation_hipercow <- function(parameters, file_save = FALSE, directory = N
     )
   }
   
-  # Return the outputs
   return(output)
   
 }
