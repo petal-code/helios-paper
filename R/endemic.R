@@ -9,9 +9,9 @@ annual_incidence <- function(
   value <- rlang::enquo(type)
 
   df |>
-    filter(state == "I") |>
+    filter(state == "S") |>
     arrange(timestep) |>
-    mutate(incidence = !!value - lag(!!value, default = 0)) |>
+    mutate(incidence = lag(!!value, default = 0) - !!value) |>
     filter(
       timestep >= start_time,
       timestep <= end_time
