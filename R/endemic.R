@@ -22,11 +22,11 @@ annual_incidence <- function(
       rate = incidence / time
     ) |>
     pull(rate)
-  
+
   # For proportions we optionally multiply by per to give a rate for a given population size
   if (type == "proportion") {
     rate <- rate * per
   }
-  
+
   return(rate)
 }
