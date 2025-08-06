@@ -4,7 +4,7 @@ annual_incidence <- function(
   end_timestep = max(df$timestep),
   dt = 1,
   type = "proportion",
-  per = NULL,
+  per = NULL
 ) {
   type <- rlang::arg_match(type, c("proportion", "count"))
 
@@ -23,14 +23,14 @@ annual_incidence <- function(
     ) |>
     pull(rate)
 
-  if (type == "proportion" & !is.null(per)) {
+  if (type == "proportion" && !is.null(per)) {
     rate <- rate * per
-  } else if (type == "count" & !is.null(per)) {
+  } else if (type == "count" && !is.null(per)) {
     population <- df |>
       filter(timestep == max(timestep)) |>
       summarise(population = sum(count)) |>
       pull(population)
-    
+
     rate <- rate * per / population
   }
 
