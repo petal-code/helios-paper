@@ -6,7 +6,7 @@ download.file(
   mode = "wb" # important for binary files
 )
 
-sims <- readRDS("example_simulations.rds")
+sims <- readRDS(here::here("tests", "example_simulations.rds"))
 
 sims <- sims |>
   rename(
