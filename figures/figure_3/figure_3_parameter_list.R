@@ -54,20 +54,9 @@ simulations_to_run_fig3 <- rbind(
     stringsAsFactors = FALSE
   ),
   
-  # Panel C: Bar Plot comparing low targeted vs high random coverage
-  expand.grid(
-    archetype = c("sars_cov_2", "flu"),
-    coverage = c(0.3, 0.4, 0.5, 0.6, 0.7),
-    efficacy = c(0.3, 0.5, 0.7),
-    coverage_type = c("random", "targeted_riskiness"),
-    iteration = iterations,
-    panel = "panel_C",
-    riskiness = "setting_specific_riskiness",
-    stringsAsFactors = FALSE
-  ),
   
-  # Panel D: Heat map comparing the difference between random and targeted across coverage and efficacy
-  # Plots the additional % reduction from targeting (targeted_reduction - random_reduction)
+  # Panel C: Heat map comparing the difference between random and targeted across coverage and efficacy
+  # Plots the additional % reduction from targeting (targeted_reduction - random_reduction), and plots absolute
   expand.grid(
     archetype = c("sars_cov_2", "flu"),
     coverage = c(0.2, 0.4, 0.6, 0.8),
@@ -75,6 +64,21 @@ simulations_to_run_fig3 <- rbind(
     coverage_type = c("random", "targeted_riskiness"),
     iteration = iterations,
     panel = "panel_D",
+    riskiness = "setting_specific_riskiness",
+    stringsAsFactors = FALSE
+  ),
+  
+  #Panel D: Absolute and relative difference in reduction in annualized disease incidence 
+  #Side by Side heat maps, coverage x efficacy plotting the 
+  
+  # In Text: Run simulations to identify the threshold/crossover point between targeted and random
+  expand.grid(
+    archetype = c("sars_cov_2", "flu"),
+    coverage = c(0.3, 0.4, 0.5, 0.6, 0.7),
+    efficacy = c(0.3, 0.5, 0.7),
+    coverage_type = c("random", "targeted_riskiness"),
+    iteration = iterations,
+    panel = "panel_C",
     riskiness = "setting_specific_riskiness",
     stringsAsFactors = FALSE
   )
