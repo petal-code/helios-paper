@@ -1,11 +1,5 @@
 source(here::here("packages.R"))
 
-download.file(
-  url = "https://raw.githubusercontent.com/mrc-ide/helios/main/vignettes/Blueprint_Report2_July24_files/exemplar_simulations.rds",
-  destfile = "example_simulations.rds",
-  mode = "wb" # important for binary files
-)
-
 sims <- readRDS(here::here("tests", "example_simulations.rds"))
 
 sims <- sims |>
@@ -29,8 +23,6 @@ sims |>
   group_by(across(all_of(id_cols))) |>
   group_modify(
     ~ tibble(
-      time_to_peak_infections = time_to_peak_infections(.x, dt = 0.5),
-      final_size = epidemic_final_size(.x),
-      peak_daily_incidence = peak_daily_incidence(.x, dt = 0.5)
+      annual_incidence = annual_incidence(.x),
     )
   )
