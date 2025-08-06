@@ -6,15 +6,14 @@ annual_incidence <- function(
   type = "proportion"
 ) {
   type <- rlang::arg_match(type, c("proportion", "count"))
-  value <- rlang::enquo(type)
 
   df |>
     filter(state == "S") |>
     arrange(timestep) |>
-    mutate(incidence = lag(!!value, default = 0) - !!value) |>
+    mutate(incidence = lag(.data[[type]], default = 0) - .data[[type]]) |>
     filter(
-      timestep >= start_time,
-      timestep <= end_time
+      timestep >= start_timestep,
+      timestep <= end_timestep
     ) |>
     summarise(
       incidence = sum(pmax(incidence, 0), na.rm = TRUE),
