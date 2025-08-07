@@ -62,7 +62,7 @@ task_id <- hipercow::task_create_expr(
   expr = parallel::clusterApply(
     NULL,
     parameter_lists,
-    function(p)
+    function(p) {
       run_simulation_hipercow(
         p,
         file_save = TRUE,
