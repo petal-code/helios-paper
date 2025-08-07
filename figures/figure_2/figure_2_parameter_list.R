@@ -79,17 +79,17 @@ simulations_to_run <- rbind(
 simulations_to_run <- simulations_to_run |>
   mutate(
     scenario = "endemic",
-    ID = 1:n(), 
+    ID = 1:n(),
     seed = 1000 + ID
-    ) |>
+  ) |>
   arrange(
-    archetype, 
-    panel, 
+    archetype,
+    panel,
     coverage_type,
-    coverage, 
-    efficacy, 
+    coverage,
+    efficacy,
     iteration
-    )
+  )
 
 
 parameter_lists <- list()
@@ -175,7 +175,7 @@ if (simulations_to_run$riskiness[i] == "setting_specific_riskiness") {
     )
 }
 
-for(i in 1:length(parameter_lists)) {
+for (i in 1:length(parameter_lists)) {
   parameter_lists[[i]]$simulation_id <- simulations_to_run$ID[i]
   parameter_lists[[i]]$iteration_number <- simulations_to_run$iteration[i]
   parameter_lists[[i]]$panel <- simulations_to_run$panel[i]
@@ -185,4 +185,7 @@ for(i in 1:length(parameter_lists)) {
 }
 
 saveRDS(parameter_lists, "figures/figure_2/figure_2_parameter_list.rds")
-saveRDS(simulations_to_run, "figures/figure_2/figure_2_parameter_combinations.rds")
+saveRDS(
+  simulations_to_run,
+  "figures/figure_2/figure_2_parameter_combinations.rds"
+)
