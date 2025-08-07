@@ -53,7 +53,7 @@ hipercow::hipercow_environment_create(
     "parallel",
     "EnvStats"
   ),
-  sources = "./figures/figure_2/run_simulation_hipercow.R"
+  sources = "./R/run.R"
 )
 
 # Run the simulations using the hipercow function task_create_expr()
