@@ -5,20 +5,20 @@
 #+++ INTRO +++#
 ##'
 ##' This script performs the following actions to run helios simulations on the cluster:
-##' 
+##'
 ##' 1. Loads the figure 2 parameter lists (as generated using figure_2_parameter_list.R)
-##' 
+##'
 ##' 2. Configures hipercow to run tasks on the cluster
-##' 
+##'
 ##' 3. Provisions the cluster with the requisite packages and function(s)
-##' 
+##'
 ##' 4. Runs an instance of run_simulation_hipercow() for each entry in the parameter lists on a single
 ##'    32 node core.
-##'    
+##'
 ##' 5. Stores the outputs in the helios-paper/figures/figure_2/figure_2_simulations directory
-##' 
+##'
 ##' Note, to run this script the user must set the working directory to ./helios-paper
-##' 
+##'
 
 # Load in the requisite packages:
 library(hipercow)
@@ -44,13 +44,17 @@ hipercow::hipercow_configuration()
 hipercow::hipercow_provision()
 
 # Create the environment for hipercow
-hipercow::hipercow_environment_create(packages = c("individual",
-                                                   "helios",
-                                                   "tidyverse",
-                                                   "dqrng",
-                                                   "parallel",
-                                                   "EnvStats"),
-                                      sources = "./figures/figure_2/run_simulation_hipercow.R")
+hipercow::hipercow_environment_create(
+  packages = c(
+    "individual",
+    "helios",
+    "tidyverse",
+    "dqrng",
+    "parallel",
+    "EnvStats"
+  ),
+  sources = "./figures/figure_2/run_simulation_hipercow.R"
+)
 
 # Run the simulations using the hipercow function task_create_expr()
 # https://mrc-ide.github.io/hipercow/reference/task_create_expr.html
@@ -58,10 +62,12 @@ task_id <- hipercow::task_create_expr(
   expr = parallel::clusterApply(
     NULL,
     parameter_lists,
-    function(p) run_simulation_hipercow(
-      p, 
-      file_save = TRUE, 
-      directory = "figures/figure_2/figure_2_simulations/")
+    function(p)
+      run_simulation_hipercow(
+        p,
+        file_save = TRUE,
+        directory = "figures/figure_2/figure_2_simulations/"
+      )
   ),
   parallel = hipercow::hipercow_parallel("parallel"),
   resources = hipercow::hipercow_resources(cores = 32)
@@ -69,9 +75,9 @@ task_id <- hipercow::task_create_expr(
 
 # Track the status of the submitted task(s):
 x <- sapply(
-  task_id, 
+  task_id,
   hipercow::task_status
-  )
+)
 table(x)
 
 # Save/load the task_id as required:
