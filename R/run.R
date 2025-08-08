@@ -1,7 +1,7 @@
 run_simulation_hipercow <- function(
-    parameters,
-    file_save = FALSE,
-    directory = NULL
+  parameters,
+  file_save = FALSE,
+  directory = NULL
 ) {
   
   # Terminate operation if no directory provided:
