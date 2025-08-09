@@ -35,7 +35,7 @@ parameter_lists <- readRDS("figures/epidemic_scenario/parameter_lists.rds")
 hipercow::hipercow_init(driver = 'dide-windows')
 
 # Configure hipercow for dide-windows:
-hipercow_configure(driver = "dide-windows")
+hypercow::hipercow_configure(driver = "dide-windows")
 
 # Check the configuration:
 hipercow::hipercow_configuration()
