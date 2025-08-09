@@ -1,0 +1,94 @@
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+#+++++ Figure 2 Hipercow Script  +++++#
+#+++++++++++++++++++++++++++++++++++++#
+
+#+++ INTRO +++#
+##'
+##' This script performs the following actions to run helios simulations on the cluster:
+##'
+##' 1. Loads the figure 2 parameter lists (as generated using figure_2_parameter_list.R)
+##'
+##' 2. Configures hipercow to run tasks on the cluster
+##'
+##' 3. Provisions the cluster with the requisite packages and function(s)
+##'
+##' 4. Runs an instance of run_simulation_hipercow() for each entry in the parameter lists on a single
+##'    32 node core.
+##'
+##' 5. Stores the outputs in the helios-paper/figures/figure_2/figure_2_simulations directory
+##'
+##' Note, to run this script the user must set the working directory to ./helios-paper
+##'
+
+# Load in the requisite packages:
+library(hipercow)
+library(tidyverse)
+library(individual)
+library(parallel)
+
+# Load in the figure 2 parameter lists to run simulations for:
+parameter_lists <- readRDS("figures/figure_2/figure2_parameter_list.rds")
+
+## Prepare for cluster use
+## see https://mrc-ide.github.io/hipercow/
+hipercow::hipercow_init(driver = 'dide-windows')
+
+# Configure hipercow for dide-windows:
+hipercow_configure(driver = "dide-windows")
+
+# Check the configuration:
+hipercow::hipercow_configuration()
+
+## Provision packages required on the cluster (hipercow looks for provision.R by default)
+## see https://mrc-ide.github.io/hipercow/articles/packages.html
+hipercow::hipercow_provision()
+
+# Create the environment for hipercow
+hipercow::hipercow_environment_create(
+  packages = c(
+    "individual",
+    "helios",
+    "tidyverse",
+    "dqrng",
+    "parallel",
+    "EnvStats"
+  ),
+  sources = "./R/run.R"
+)
+
+# Run the simulations using the hipercow function task_create_expr()
+# https://mrc-ide.github.io/hipercow/reference/task_create_expr.html
+task_id <- hipercow::task_create_expr(
+  expr = parallel::clusterApply(
+    NULL,
+    parameter_lists,
+    function(p) {
+      run_simulation_hipercow(
+        p,
+        file_save = TRUE,
+        directory = "figures/figure_2/figure_2_simulations/"
+      )
+    }
+  ),
+  parallel = hipercow::hipercow_parallel("parallel"),
+  resources = hipercow::hipercow_resources(cores = 32)
+)
+
+# Track the status of the submitted task(s):
+x <- sapply(
+  task_id,
+  hipercow::task_status
+)
+table(x)
+
+# Save/load the task_id as required:
+saveRDS(object = task_id, file = "./figures/figure_2/simulation_task_id.rds")
+task_id <- readRDS(file = "./figures/figure_2/simulation_task_id.rds")
+
+# View the job logs:
+hipercow::task_log_show(task_id)
+
+# View the job result:
+#outputs <- hipercow::task_result(task_id)
+
+#--------------------------------------------------------------------------------------------------#
