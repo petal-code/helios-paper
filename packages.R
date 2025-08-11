@@ -10,5 +10,7 @@ suppressPackageStartupMessages({
   library(patchwork)
   library(magrittr)
   library(cli)
+  library(hipercow)
+  library(parallel)
   purrr::walk(list.files("R", full.names = TRUE), source)
 })
