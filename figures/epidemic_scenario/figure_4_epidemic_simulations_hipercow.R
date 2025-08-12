@@ -27,7 +27,7 @@ hipercow::hipercow_environment_create(
   sources = "./R/run.R"
 )
 
-# TODO: "Better again, create large objects from your 'sources' argument to your environment, and 
+# TODO: "Better again, create large objects from your 'sources' argument to your environment, and
 # then advertise this using the 'globals' argument (see the hipercow::environments vignette)"
 # Increase the memory allowed for the parameter lists:
 options(hipercow.max_size_local = 5000000)
