@@ -12,13 +12,8 @@ run_simulation_hipercow <- function(
   s <- helios::run_simulation(parameters_list = parameters)
 
   # Append the simulation identifier to the simulation outputs:
-  s$ID <- parameters$simulation_id
-  s$iteration <- parameters$iteration_number
-  s$panel <- parameters$panel
-  s$archetype <- parameters$archetype
-  s$coverage_type <- parameters$coverage_type
-  s$coverage <- parameters$coverage
-  s$efficacy <- parameters$efficacy
+  s$id <- parameters$id
+  s$iteration <- parameters$iteration
   s$disease_status <- parameters$endemic_or_epidemic
 
   # Store parameter list and simulated outputs in a single list for returning:
@@ -26,6 +21,9 @@ run_simulation_hipercow <- function(
   output$parameters <- parameters
   output$simulation <- s
 
+  # Get the date/time stamp:
+  time_stamp <- format(Sys.time(), "%Y%m%d_%H%M")
+  
   # TODO: Generalise the saveRDS call for use across figures
   # Save the outputs in the specified directory:
   if (file_save) {
@@ -33,12 +31,14 @@ run_simulation_hipercow <- function(
       object = output,
       file = paste0(
         directory,
-        "Simulation_ID_",
+        "simulation_id_",
         parameters$id,
         "_iteration_",
         parameters$iteration,
         "_scenario_",
         parameters$scenario,
+        "_",
+        time_stamp,
         "_output.rds"
       )
     )
