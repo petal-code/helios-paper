@@ -15,7 +15,7 @@ config <- list(
 )
 
 # Generate all parameter lists for this figure
-parameter_lists <- tidyr::crossing(
+simulation_settings <- tidyr::crossing(
   archetype = c("flu", "sars_cov_2"),
   coverage_type = c("random", "targeted_riskiness"),
   coverage = seq(0, 1, by = 0.2),
@@ -28,8 +28,9 @@ parameter_lists <- tidyr::crossing(
   mutate(
     id = row_number(),
     seed = 1000 + id
-  ) |>
-  purrr::pmap(expand_parameters, config = config)
+  )
+
+parameter_lists <- purrr::pmap(simulation_settings, expand_parameters, config = config)
 
 # Total number of simulations to run
 length(parameter_lists)
