@@ -23,7 +23,6 @@ run_simulation_hipercow <- function(
 
   # Get the date/time stamp:
   time_stamp <- format(Sys.time(), "%Y%m%d_%H%M")
-  
   # TODO: Generalise the saveRDS call for use across figures
   # Save the outputs in the specified directory:
   if (file_save) {
