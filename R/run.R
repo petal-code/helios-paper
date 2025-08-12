@@ -14,7 +14,7 @@ run_simulation_hipercow <- function(
   # Append the simulation identifier to the simulation outputs:
   s$id <- parameters$id
   s$iteration <- parameters$iteration
-  s$disease_status <- parameters$endemic_or_epidemic
+  s$scenario <- parameters$scenario
 
   # Store parameter list and simulated outputs in a single list for returning:
   output <- list()
