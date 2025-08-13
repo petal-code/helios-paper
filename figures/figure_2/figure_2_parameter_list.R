@@ -7,7 +7,6 @@ simulation_time_days <- (365 * years_to_simulate)
 human_population <- 50000
 duration_of_immunity <- 365
 external_infection_probability <- 1 / human_population
-archetypes <- c("flu", "sars_cov_2")
 riskiness <- "setting_specific_riskiness"
 
 # Initial conditions for SARS-CoV-2:
@@ -29,7 +28,7 @@ initial_R_flu <- human_population -
   initial_I_flu
 
 simulations_to_run <- rbind(
-  # Panel A: Annualized infection Incidence across UV-C Efficacy values (Line Graph)
+  # Panel A&E: SC2 & Flu Annualized infection Incidence across UV-C Efficacy values (Line Graph)
   expand.grid(
     archetype = archetypes,
     coverage = 0.5,
@@ -40,7 +39,9 @@ simulations_to_run <- rbind(
     riskiness = riskiness,
     stringsAsFactors = FALSE
   ),
-  # Panel B: % Reduction in Annualized infection Incidence across UV-C Coverage values
+
+  # Panel B&F: SC2 and Flu % Reduction in Annualized infection Incidence across UV-C Coverage values
+
   expand.grid(
     archetype = archetypes,
     coverage = c(0, 0.2, 0.4, 0.6, 0.8),
@@ -51,7 +52,9 @@ simulations_to_run <- rbind(
     riskiness = riskiness,
     stringsAsFactors = FALSE
   ),
-  # Panel C: Heatmap, UVC Coverage x UVC Efficacy , % reduction in annualized infection incidence
+  
+  # Panel C&G: SC2 & Flu Heatmap, UVC Coverage x UVC Efficacy , % reduction in annualized infection incidence
+
   expand.grid(
     archetype = archetypes,
     coverage = c(0, 0.2, 0.4, 0.6, 0.8, 1.0),
@@ -62,7 +65,9 @@ simulations_to_run <- rbind(
     riskiness = riskiness,
     stringsAsFactors = FALSE
   ),
-  # Panel D: Active Infection Prevalence by UV-C Coverage (Line plot)
+  
+  # Panel D&H: SC2 $ Flu Active Infection Prevalence by UV-C Coverage (Line plot)
+
   expand.grid(
     archetype = archetypes,
     coverage = c(0, 0.2, 0.4, 0.6, 0.8),
@@ -74,7 +79,6 @@ simulations_to_run <- rbind(
     stringsAsFactors = FALSE
   )
 )
-
 
 simulations_to_run <- simulations_to_run |>
   mutate(
