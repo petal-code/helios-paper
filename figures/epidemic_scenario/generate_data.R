@@ -30,7 +30,11 @@ simulation_settings <- tidyr::crossing(
     seed = 1000 + id
   )
 
-parameter_lists <- purrr::pmap(simulation_settings, expand_parameters, config = config)
+parameter_lists <- purrr::pmap(
+  simulation_settings,
+  expand_parameters,
+  config = config
+)
 
 # Total number of simulations to run
 length(parameter_lists)
