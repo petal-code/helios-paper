@@ -42,17 +42,18 @@ results_long <- results |>
   )
 
 update_labels <- function(df) {
-  df |> mutate(
-    coverage_type = case_when(
-      coverage_type == "random" ~ "Random",
-      coverage_type == "targeted_riskiness" ~ "Targeted",
-    ),
-    metric_label = case_when(
-      metric == "epidemic_final_size" ~ "Final size",
-      metric == "time_to_peak_infections" ~ "Time to peak infections",
-      metric == "peak_daily_incidence" ~ "Peak daily incidence"
+  df |>
+    mutate(
+      coverage_type = case_when(
+        coverage_type == "random" ~ "Random",
+        coverage_type == "targeted_riskiness" ~ "Targeted",
+      ),
+      metric_label = case_when(
+        metric == "epidemic_final_size" ~ "Final size",
+        metric == "time_to_peak_infections" ~ "Time to peak infections",
+        metric == "peak_daily_incidence" ~ "Peak daily incidence"
+      )
     )
-  )
 }
 
 ggplot(results_long, aes(x = id, y = value)) +
@@ -90,7 +91,9 @@ plot_metric <- function(metric) {
       ),
       position = position_dodge(width = 0.1),
     ) +
-    ggh4x::facet_nested(coverage_label + coverage_type ~ efficacy_label + efficacy) +
+    ggh4x::facet_nested(
+      coverage_label + coverage_type ~ efficacy_label + efficacy
+    ) +
     labs(
       title = metric,
       x = "Coverage",
@@ -103,7 +106,11 @@ final_size_pointrange <- plot_metric("Final size") +
   scale_y_continuous(labels = scales::percent)
 
 ggsave(
-  filename = file.path("figures", "epidemic_scenario", "final_size_pointrange.png"),
+  filename = file.path(
+    "figures",
+    "epidemic_scenario",
+    "final_size_pointrange.png"
+  ),
   plot = final_size_pointrange,
   width = 7,
   height = 5,
@@ -113,7 +120,11 @@ ggsave(
 peak_incidence_pointrange <- plot_metric("Peak daily incidence")
 
 ggsave(
-  filename = file.path("figures", "epidemic_scenario", "peak_incidence_pointrange.png"),
+  filename = file.path(
+    "figures",
+    "epidemic_scenario",
+    "peak_incidence_pointrange.png"
+  ),
   plot = peak_incidence_pointrange,
   width = 7,
   height = 5,
@@ -123,7 +134,11 @@ ggsave(
 time_to_peak_pointrange <- plot_metric("Time to peak infections")
 
 ggsave(
-  filename = file.path("figures", "epidemic_scenario", "time_to_peak_pointrange.png"),
+  filename = file.path(
+    "figures",
+    "epidemic_scenario",
+    "time_to_peak_pointrange.png"
+  ),
   plot = time_to_peak_pointrange,
   width = 7,
   height = 5,
