@@ -35,3 +35,26 @@ ggplot(results_long, aes(x = id, y = value)) +
   geom_point() +
   facet_wrap(~metric, scales = "free") +
   theme_minimal()
+
+results_summary <- results_long |>
+  group_by(coverage_type, coverage, efficacy, metric) |>
+  summarise(
+    mean_value = mean(value, na.rm = TRUE),
+    sd_value = sd(value, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+ggplot(results_summary, aes(x = coverage, y = efficacy)) +
+  geom_tile(aes(fill = mean_value)) +
+  facet_wrap(. ~ metric, scales = "free") +
+  theme_minimal()
+
+results_summary |>
+  filter(metric == "epidemic_final_size") |>
+  ggplot(aes(x = coverage)) +
+  geom_pointrange(
+    aes(y = mean_value, ymin = mean_value - sd_value, ymax = mean_value + sd_value),
+    position = position_dodge(width = 0.1)
+  ) +
+  facet_grid(coverage_type ~ efficacy) +
+  labs(title = "Final size")
