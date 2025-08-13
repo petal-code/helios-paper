@@ -2,7 +2,7 @@ library(parallel)
 library(individual)
 library(helios)
 
-parameter_lists <- readRDS("figure_2_parameter_list.rds")
+parameter_lists <- readRDS("figures/figure_2/figure_2_parameter_list.rds")
 
 run_parallel_simulations <- function(
   parameter_lists,
@@ -70,5 +70,5 @@ results_df <- do.call(
 )
 
 
-saveRDS(results_df, "endemic_simulation_summary.rds")
-saveRDS(results, "endemic_simulation_full_results.rds")
+saveRDS(results_df, "figures/figure_2/endemic_simulation_summary.rds")
+saveRDS(results, "figures_figure_2/endemic_simulation_full_results.rds")

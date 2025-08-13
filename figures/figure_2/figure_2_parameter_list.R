@@ -80,7 +80,20 @@ simulations_to_run <- rbind(
   )
 )
 
-simulations_to_run <- simulations_to_run %>% mutate( scenario = "endemic", ID = 1:n(), seed = 1000 + ID) %>% arrange(archetype, panel, coverage_type, coverage, efficacy, iteration)  
+simulations_to_run <- simulations_to_run |>
+  mutate(
+    scenario = "endemic",
+    ID = 1:n(),
+    seed = 1000 + ID
+  ) |>
+  arrange(
+    archetype,
+    panel,
+    coverage_type,
+    coverage,
+    efficacy,
+    iteration
+  )
 
 
 parameter_lists <- list()
@@ -166,13 +179,17 @@ if (simulations_to_run$riskiness[i] == "setting_specific_riskiness") {
     )
 }
 
-parameter_lists[[i]]$simulation_id <- simulations_to_run$ID[i]
-parameter_lists[[i]]$iteration_number <- simulations_to_run$iteration[i]
-parameter_lists[[i]]$panel <- simulations_to_run$panel[i]
-parameter_lists[[i]]$coverage <- simulations_to_run$coverage[i]
-parameter_lists[[i]]$efficacy <- simulations_to_run$efficacy[i]
-parameter_lists[[i]]$coverage_type <- simulations_to_run$coverage_type[i]
+for (i in 1:length(parameter_lists)) {
+  parameter_lists[[i]]$simulation_id <- simulations_to_run$ID[i]
+  parameter_lists[[i]]$iteration_number <- simulations_to_run$iteration[i]
+  parameter_lists[[i]]$panel <- simulations_to_run$panel[i]
+  parameter_lists[[i]]$coverage <- simulations_to_run$coverage[i]
+  parameter_lists[[i]]$efficacy <- simulations_to_run$efficacy[i]
+  parameter_lists[[i]]$coverage_type <- simulations_to_run$coverage_type[i]
+}
 
-
-saveRDS(parameter_lists, "figure_2_parameter_list.rds")
-saveRDS(simulations_to_run, "parameter_combinations.rds")
+saveRDS(parameter_lists, "figures/figure_2/figure_2_parameter_list.rds")
+saveRDS(
+  simulations_to_run,
+  "figures/figure_2/figure_2_parameter_combinations.rds"
+)
