@@ -41,6 +41,20 @@ results_long <- results |>
     values_to = "value"
   )
 
+update_labels <- function(df) {
+  df |> mutate(
+    coverage_type = case_when(
+      coverage_type == "random" ~ "Random",
+      coverage_type == "targeted_riskiness" ~ "Targeted",
+    ),
+    metric_label = case_when(
+      metric == "epidemic_final_size" ~ "Final size",
+      metric == "time_to_peak_infections" ~ "Time to peak infections",
+      metric == "peak_daily_incidence" ~ "Peak daily incidence"
+    )
+  )
+}
+
 ggplot(results_long, aes(x = id, y = value)) +
   geom_point() +
   facet_wrap(~metric, scales = "free") +
@@ -52,23 +66,66 @@ results_summary <- results_long |>
     mean_value = mean(value, na.rm = TRUE),
     sd_value = sd(value, na.rm = TRUE),
     .groups = "drop"
-  )
+  ) |>
+  update_labels()
 
 ggplot(results_summary, aes(x = coverage, y = efficacy)) +
   geom_tile(aes(fill = mean_value)) +
-  facet_wrap(. ~ metric, scales = "free") +
+  facet_wrap(. ~ metric_label, scales = "free") +
   theme_minimal()
 
-results_summary |>
-  filter(metric == "epidemic_final_size") |>
-  ggplot(aes(x = coverage)) +
-  geom_pointrange(
-    aes(
-      y = mean_value,
-      ymin = mean_value - sd_value,
-      ymax = mean_value + sd_value
-    ),
-    position = position_dodge(width = 0.1)
-  ) +
-  facet_grid(coverage_type ~ efficacy) +
-  labs(title = "Final size")
+plot_metric <- function(metric) {
+  results_summary |>
+    mutate(
+      coverage_label = "Coverage strategy",
+      efficacy_label = "Efficacy"
+    ) |>
+    filter(metric_label == .env$metric) |>
+    ggplot(aes(x = factor(coverage))) +
+    geom_pointrange(
+      aes(
+        y = mean_value,
+        ymin = mean_value - sd_value,
+        ymax = mean_value + sd_value
+      ),
+      position = position_dodge(width = 0.1),
+    ) +
+    ggh4x::facet_nested(coverage_label + coverage_type ~ efficacy_label + efficacy) +
+    labs(
+      title = metric,
+      x = "Coverage",
+      y = metric
+    ) +
+    theme_minimal()
+}
+
+final_size_pointrange <- plot_metric("Final size") +
+  scale_y_continuous(labels = scales::percent)
+
+ggsave(
+  filename = file.path("figures", "epidemic_scenario", "final_size_pointrange.png"),
+  plot = final_size_pointrange,
+  width = 7,
+  height = 5,
+  bg = "white"
+)
+
+peak_incidence_pointrange <- plot_metric("Peak daily incidence")
+
+ggsave(
+  filename = file.path("figures", "epidemic_scenario", "peak_incidence_pointrange.png"),
+  plot = peak_incidence_pointrange,
+  width = 7,
+  height = 5,
+  bg = "white"
+)
+
+time_to_peak_pointrange <- plot_metric("Time to peak infections")
+
+ggsave(
+  filename = file.path("figures", "epidemic_scenario", "time_to_peak_pointrange.png"),
+  plot = time_to_peak_pointrange,
+  width = 7,
+  height = 5,
+  bg = "white"
+)
