@@ -12,9 +12,10 @@ run_simulation_hipercow <- function(
   s <- helios::run_simulation(parameters_list = parameters)
   
   # Append the simulation identifier to the simulation outputs:
+  s$figure <- parameters$figure
+  s$scenario <- parameters$scenario
   s$id <- parameters$id
   s$iteration <- parameters$iteration
-  s$scenario <- parameters$scenario
   
   # Store parameter list and simulated outputs in a single list for returning:
   output <- list()
@@ -23,20 +24,22 @@ run_simulation_hipercow <- function(
   
   # Get the date/time stamp:
   time_stamp <- format(Sys.time(), "%Y%m%d_%H%M")
-  # TODO: Generalise the saveRDS call for use across figures
+
   # Save the outputs in the specified directory:
   if (file_save) {
     saveRDS(
       object = output,
       file = paste0(
         directory,
-        "simulation_id_",
+        "figure_",
+        parameters$figure,
+        "_scenario_",
+        parameters$scenario,
+        "_id_",
         parameters$id,
         "_iteration_",
         parameters$iteration,
         "_scenario_",
-        parameters$scenario,
-        "_",
         time_stamp,
         "_output.rds"
       )

@@ -4,11 +4,11 @@
 
 source(here::here("packages.R"))
 
-parameter_lists <- readRDS("figures/epidemic_scenario/parameter_lists.rds")
+parameter_lists <- readRDS("figures/epidemic_scenario/parameter_lists_test.rds")
 
 # Prepare for cluster use (see https://mrc-ide.github.io/hipercow/)
 hipercow::hipercow_init(driver = 'dide-windows')
-hypercow::hipercow_configure(driver = "dide-windows")
+hipercow::hipercow_configure(driver = "dide-windows")
 
 # Provision packages required on the cluster (hipercow looks for provision.R by default)
 # see https://mrc-ide.github.io/hipercow/articles/packages.html

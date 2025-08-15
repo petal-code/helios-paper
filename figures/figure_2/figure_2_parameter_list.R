@@ -96,7 +96,6 @@ simulations_to_run <- simulations_to_run |>
     iteration
   )
 
-
 parameter_lists <- list()
 
 for (i in 1:nrow(simulations_to_run)) {
@@ -178,13 +177,22 @@ for (i in 1:nrow(simulations_to_run)) {
         max = sqrt(5.5)
       )
   }
-  
 }
 
+# Add figure column and re-order dataframe to have identifier columns at the start:
+simulations_to_run <- simulations_to_run |>
+  dplyr::mutate(
+    figure = 2
+  ) |>
+  select(
+    ID, figure, scenario, iteration, panel, everything()
+  )
 
 for (i in 1:length(parameter_lists)) {
-  parameter_lists[[i]]$simulation_id <- simulations_to_run$ID[i]
-  parameter_lists[[i]]$iteration_number <- simulations_to_run$iteration[i]
+  parameter_lists[[i]]$figure <- simulations_to_run$figure[i]
+  parameter_lists[[i]]$scenario <- simulations_to_run$scenario[i]
+  parameter_lists[[i]]$id <- simulations_to_run$ID[i]
+  parameter_lists[[i]]$iteration <- simulations_to_run$iteration[i]
   parameter_lists[[i]]$panel <- simulations_to_run$panel[i]
   parameter_lists[[i]]$archetype_label <- simulations_to_run$archetype[i]
   parameter_lists[[i]]$coverage <- simulations_to_run$coverage[i]
@@ -193,7 +201,4 @@ for (i in 1:length(parameter_lists)) {
 }
 
 saveRDS(parameter_lists, "figures/figure_2/figure_2_parameter_list.rds")
-saveRDS(
-  simulations_to_run,
-  "figures/figure_2/figure_2_parameter_combinations.rds"
-)
+saveRDS(simulations_to_run, "figures/figure_2/figure_2_parameter_combinations.rds")

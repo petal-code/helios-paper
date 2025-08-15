@@ -2,42 +2,13 @@
 #+++++ Figure 2 Hipercow Script  +++++#
 #+++++++++++++++++++++++++++++++++++++#
 
-#+++ INTRO +++#
-##'
-##' This script performs the following actions to run helios simulations on the cluster:
-##'
-##' 1. Loads the figure 2 parameter lists (as generated using figure_2_parameter_list.R)
-##'
-##' 2. Configures hipercow to run tasks on the cluster
-##'
-##' 3. Provisions the cluster with the requisite packages and function(s)
-##'
-##' 4. Runs an instance of run_simulation_hipercow() for each entry in the parameter lists on a single
-##'    32 node core.
-##'
-##' 5. Stores the outputs in the helios-paper/figures/figure_2/figure_2_simulations directory
-##'
-##' Note, to run this script the user must set the working directory to ./helios-paper
-##'
+source(here::here("packages.R"))
 
-# Load in the requisite packages:
-library(hipercow)
-library(tidyverse)
-library(individual)
-library(parallel)
+parameter_lists <- readRDS("figures/figure_2/figure_2_parameter_list.rds")
 
-# Load in the figure 2 parameter lists to run simulations for:
-parameter_lists <- readRDS("figures/figure_2/figure2_parameter_list.rds")
-
-## Prepare for cluster use
-## see https://mrc-ide.github.io/hipercow/
+# Prepare for cluster use (see https://mrc-ide.github.io/hipercow/)
 hipercow::hipercow_init(driver = 'dide-windows')
-
-# Configure hipercow for dide-windows:
-hipercow_configure(driver = "dide-windows")
-
-# Check the configuration:
-hipercow::hipercow_configuration()
+hipercow::hipercow_configure(driver = "dide-windows")
 
 ## Provision packages required on the cluster (hipercow looks for provision.R by default)
 ## see https://mrc-ide.github.io/hipercow/articles/packages.html
@@ -55,6 +26,11 @@ hipercow::hipercow_environment_create(
   ),
   sources = "./R/run.R"
 )
+
+# TODO: "Better again, create large objects from your 'sources' argument to your environment, and
+# then advertise this using the 'globals' argument (see the hipercow::environments vignette)"
+# Increase the memory allowed for the parameter lists:
+options(hipercow.max_size_local = 10000000)
 
 # Run the simulations using the hipercow function task_create_expr()
 # https://mrc-ide.github.io/hipercow/reference/task_create_expr.html

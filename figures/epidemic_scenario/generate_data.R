@@ -21,8 +21,9 @@ parameter_lists <- tidyr::crossing(
   coverage = seq(0, 1, by = 0.2),
   riskiness = "setting_specific_riskiness",
   efficacy = seq(0.2, 0.8, by = 0.2),
+  figure = 4,
   iteration = 1:3,
-  scenario = "epidemic",
+  scenario = "epidemic"
 ) |>
   mutate(
     id = row_number(),
