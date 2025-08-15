@@ -68,6 +68,7 @@ task_id <- hipercow::task_create_expr(
         file_save = TRUE,
         directory = "figures/figure_2/figure_2_simulations/"
       )
+    }
   ),
   parallel = hipercow::hipercow_parallel("parallel"),
   resources = hipercow::hipercow_resources(cores = 32)

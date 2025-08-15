@@ -3,8 +3,6 @@ run_simulation_hipercow <- function(
   file_save = FALSE,
   directory = NULL
 ) {
-  # TODO: Possibly add check that terminates function call if directory = NULL (prevent mass of
-  # output files being saved in an unspecified directory)
 
   # Run the simulation:
   s <- helios::run_simulation(parameters_list = parameters)
