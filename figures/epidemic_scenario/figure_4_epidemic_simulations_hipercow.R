@@ -4,7 +4,7 @@
 
 source(here::here("packages.R"))
 
-parameter_lists <- readRDS("figures/epidemic_scenario/parameter_lists_test.rds")
+parameter_lists <- readRDS("figures/epidemic_scenario/figure_4_parameter_lists.rds")
 
 # Prepare for cluster use (see https://mrc-ide.github.io/hipercow/)
 hipercow::hipercow_init(driver = 'dide-windows')

@@ -36,5 +36,5 @@ length(parameter_lists)
 
 saveRDS(
   parameter_lists,
-  here::here("figures", "epidemic_scenario", "parameter_lists.rds")
+  here::here("figures", "epidemic_scenario", "figure_4_parameter_lists.rds")
 )
