@@ -8,9 +8,9 @@ parameter_lists <- readRDS("figures/figure_2/figure_2_parameter_list.rds")
 
 group_index <- c(rep(1:10, each = 60), rep(11, 10))
 sub_parameter_lists <- split(
-  x = parameter_lists, 
+  x = parameter_lists,
   f = group_index
-  )
+)
 
 #++++++++++++ BODGE SOME LIST SPLITTING ++++++++++++++++++++++++++++++++++#
 
@@ -43,7 +43,7 @@ options(hipercow.max_size_local = 10000000)
 # Run the simulations using the hipercow function task_create_expr()
 # https://mrc-ide.github.io/hipercow/reference/task_create_expr.html
 task_ids <- list()
-for(i in 1:length(sub_parameter_lists)) {
+for (i in 1:length(sub_parameter_lists)) {
   task_ids[[i]] <- hipercow::task_create_expr(
     expr = parallel::clusterApply(
       NULL,

@@ -1,7 +1,7 @@
 source(here::here("packages.R"))
 
 #Core Parameters
-archetypes <- c("flu", "sars_cov_2") 
+archetypes <- c("flu", "sars_cov_2")
 iterations <- 1:5
 years_to_simulate <- 20
 simulation_time_days <- (365 * years_to_simulate)
@@ -40,9 +40,9 @@ simulations_to_run <- rbind(
     riskiness = riskiness,
     stringsAsFactors = FALSE
   ),
-  
+
   # Panel B&F: SC2 and Flu % Reduction in Annualized infection Incidence across UV-C Coverage values
-  
+
   expand.grid(
     archetype = archetypes,
     coverage = c(0, 0.2, 0.4, 0.6, 0.8),
@@ -53,9 +53,9 @@ simulations_to_run <- rbind(
     riskiness = riskiness,
     stringsAsFactors = FALSE
   ),
-  
+
   # Panel C&G: SC2 & Flu Heatmap, UVC Coverage x UVC Efficacy , % reduction in annualized infection incidence
-  
+
   expand.grid(
     archetype = archetypes,
     coverage = c(0, 0.2, 0.4, 0.6, 0.8, 1.0),
@@ -66,9 +66,9 @@ simulations_to_run <- rbind(
     riskiness = riskiness,
     stringsAsFactors = FALSE
   ),
-  
+
   # Panel D&H: SC2 $ Flu Active Infection Prevalence by UV-C Coverage (Line plot)
-  
+
   expand.grid(
     archetype = archetypes,
     coverage = c(0, 0.2, 0.4, 0.6, 0.8),
@@ -144,7 +144,7 @@ for (i in 1:nrow(simulations_to_run)) {
         timestep = 0
       )
   }
-  
+
   #Riskiness Settings
   if (simulations_to_run$riskiness[i] == "setting_specific_riskiness") {
     parameter_lists[[i]] <- parameter_lists[[i]] %>%
@@ -185,7 +185,12 @@ simulations_to_run <- simulations_to_run |>
     figure = 2
   ) |>
   select(
-    ID, figure, scenario, iteration, panel, everything()
+    ID,
+    figure,
+    scenario,
+    iteration,
+    panel,
+    everything()
   )
 
 for (i in 1:length(parameter_lists)) {
@@ -201,4 +206,7 @@ for (i in 1:length(parameter_lists)) {
 }
 
 saveRDS(parameter_lists, "figures/figure_2/figure_2_parameter_list.rds")
-saveRDS(simulations_to_run, "figures/figure_2/figure_2_parameter_combinations.rds")
+saveRDS(
+  simulations_to_run,
+  "figures/figure_2/figure_2_parameter_combinations.rds"
+)
