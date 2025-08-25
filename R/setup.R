@@ -22,6 +22,7 @@ expand_parameters <- function(
   riskiness,
   efficacy,
   iteration,
+  figure,
   scenario,
   id,
   seed,
@@ -56,6 +57,7 @@ expand_parameters <- function(
     param <- set_riskiness(param)
   }
 
+  param$figure <- figure
   param$scenario <- scenario
   param$iteration <- iteration
   param$id <- id
