@@ -1,103 +1,110 @@
 source(here::here("packages.R"))
-
-#Core Parameters 
+#Figure 3: Targeted vs Random
+# Core Parameters
+archetypes <- c("flu", "sars_cov_2")
 iterations <- 1:5
 years_to_simulate <- 20
 simulation_time_days <- (365 * years_to_simulate)
 human_population <- 50000
-duration_of_immunity <- 365  
+duration_of_immunity <- 365
 external_infection_probability <- 1 / human_population
-archetypes <- c("sars_cov_2", "flu")
-iterations <- 1:10  
-riskiness <- "setting_specific_riskiness" 
+riskiness <- "setting_specific_riskiness"
+
 
 # Initial conditions for SARS-CoV-2:
 initial_S_SC2 <- round(0.4 * human_population)
 initial_E_SC2 <- round(0.01 * human_population)
 initial_I_SC2 <- round(0.02 * human_population)
-initial_R_SC2 <- human_population - initial_S_SC2 - initial_E_SC2 - initial_I_SC2
+initial_R_SC2 <- human_population -
+  initial_S_SC2 -
+  initial_E_SC2 -
+  initial_I_SC2
 
 # Initial conditions for Flu:
 initial_S_flu <- round(0.67 * human_population)
-initial_E_flu <- round(0.006 * human_population)  
+initial_E_flu <- round(0.006 * human_population)
 initial_I_flu <- round(0.012 * human_population)
-initial_R_flu <- human_population - initial_S_flu - initial_E_flu - initial_I_flu
+initial_R_flu <- human_population -
+  initial_S_flu -
+  initial_E_flu -
+  initial_I_flu
 
-# Figure 3: Random vs Targeted UVC Installation Comparison
-
-simulations_to_run_fig3 <- rbind(
-  
-  # Panel A: Effects of Efficacy of Benefits of Targeting 
-  # Line Plot,x-axis = efficacy, y = % reduction in annualized disease incidence 
-  
+# Figure 3 panels (A–F), joint UVC, random vs targeted_riskiness
+simulations_to_run <- rbind(
+  # Panel A: Benefits of Targeting Across Efficacy Levels (fixed coverage = 0.5), annualized disease incidence
   expand.grid(
-    archetype = c("sars_cov_2", "flu"),
-    coverage = 0.5, 
-    efficacy = c(0, 0.2, 0.4, 0.6, 0.8),
+    archetype = archetypes,
+    coverage = 0.5,
+    efficacy = seq(0.1, 0.9, 0.1),
     coverage_type = c("random", "targeted_riskiness"),
     iteration = iterations,
-    panel = "panel_3A",
-    riskiness = "setting_specific_riskiness",
+    panel = "panel_A",
+    riskiness = riskiness,
     stringsAsFactors = FALSE
   ),
   
-  # Panel B: Compares random vs targeted at various coverage levels  
+  # Panel B: Benefits of Targeted Coverage Across Coverage Levels (fixed efficacy = 0.5), annualized disease incidence
+  # Panel F: % Active Infection Prevalence Reduction across coverage
   
   expand.grid(
-    archetype = c("sars_cov_2", "flu"),
-    coverage = seq(0.1, 0.9, 0.1), 
-    efficacy = 0.5, 
+    archetype = archetypes,
+    coverage = seq(0.1, 0.9, 0.1),
+    efficacy = 0.5,
     coverage_type = c("random", "targeted_riskiness"),
     iteration = iterations,
     panel = "panel_B",
-    riskiness = "setting_specific_riskiness",
+    riskiness = riskiness,
     stringsAsFactors = FALSE
   ),
   
-  
-  # Panel C: Heat map comparing the difference between random and targeted across coverage and efficacy
-  # Plots the additional % reduction from targeting (targeted_reduction - random_reduction), and plots absolute
+  # Panel C,D: Coverage x Efficacy Heatmaps plotting relative and absolute annualized disease incidence Δ(targeted − random)  
+  # 2 heatmaps for SC2 and 2 heatmaps for Flu 
   expand.grid(
-    archetype = c("sars_cov_2", "flu"),
+    archetype = archetypes,
     coverage = c(0.2, 0.4, 0.6, 0.8),
     efficacy = c(0.2, 0.4, 0.6, 0.8),
     coverage_type = c("random", "targeted_riskiness"),
     iteration = iterations,
-    panel = "panel_D",
-    riskiness = "setting_specific_riskiness",
+    panel = "panel_C",
+    riskiness = riskiness,
     stringsAsFactors = FALSE
   ),
   
-  #Panel D: Absolute and relative difference in reduction in annualized disease incidence 
-  #Side by Side heat maps, coverage x efficacy plotting the 
-  
-  # In Text: Run simulations to identify the threshold/crossover point between targeted and random
+  #Panel E: Active Infection Prevalence for Low, Middle, High Efficacy
   expand.grid(
-    archetype = c("sars_cov_2", "flu"),
-    coverage = c(0.3, 0.4, 0.5, 0.6, 0.7),
-    efficacy = c(0.3, 0.5, 0.7),
+    archetype     = archetypes,
+    coverage      = c(0.3, 0.4, 0.5, 0.6, 0.7),
+    efficacy      = c(0.3, 0.5, 0.7),
     coverage_type = c("random", "targeted_riskiness"),
-    iteration = iterations,
-    panel = "panel_C",
-    riskiness = "setting_specific_riskiness",
+    iteration     = iterations,
+    panel         = "panel_E",
+    riskiness     = riskiness,
     stringsAsFactors = FALSE
   )
+  
 )
 
-simulations_to_run_fig3 <- simulations_to_run_fig3 %>%
-  mutate(scenario = "endemic") %>%
-  arrange(archetype, panel, coverage_type, coverage, efficacy, iteration) %>%
-  mutate(ID = 1:nrow(simulations_to_run_fig3)) %>%
-  mutate(seed = 1000 + ID) 
+simulations_to_run <- simulations_to_run |>
+  dplyr::mutate(
+    scenario = "endemic",
+    ID = 1:n(),
+    seed = 1000 + ID
+  ) |>
+  dplyr::arrange(
+    archetype,
+    panel,
+    coverage_type,
+    coverage,
+    efficacy,
+    iteration
+  )
 
-parameter_lists_fig3 <- list()
+parameter_lists <- list()
 
-for (i in 1:nrow(simulations_to_run_fig3)) {
-  
-  # Base parameters by archetype
-  if (simulations_to_run_fig3$archetype[i] == "sars_cov_2") {
-    parameter_lists_fig3[[i]] <- get_parameters(
-      archetype = simulations_to_run_fig3$archetype[i],
+for (i in 1:nrow(simulations_to_run)) {
+  if (simulations_to_run$archetype[i] == "sars_cov_2") {
+    parameter_lists[[i]] <- get_parameters(
+      archetype = simulations_to_run$archetype[i],
       overrides = list(
         human_population = human_population,
         number_initial_S = initial_S_SC2,
@@ -108,13 +115,12 @@ for (i in 1:nrow(simulations_to_run_fig3)) {
         duration_immune = duration_of_immunity,
         prob_inf_external = external_infection_probability,
         simulation_time = simulation_time_days,
-        seed = simulations_to_run_fig3$seed[i] 
+        seed = simulations_to_run$seed[i]
       )
     )
-    
-  } else if (simulations_to_run_fig3$archetype[i] == "flu") {
-    parameter_lists_fig3[[i]] <- get_parameters(
-      archetype = simulations_to_run_fig3$archetype[i],
+  } else if (simulations_to_run$archetype[i] == "flu") {
+    parameter_lists[[i]] <- get_parameters(
+      archetype = simulations_to_run$archetype[i],
       overrides = list(
         human_population = human_population,
         number_initial_S = initial_S_flu,
@@ -125,61 +131,85 @@ for (i in 1:nrow(simulations_to_run_fig3)) {
         duration_immune = duration_of_immunity,
         prob_inf_external = external_infection_probability,
         simulation_time = simulation_time_days,
-        seed = simulations_to_run_fig3$seed[i] 
+        seed = simulations_to_run$seed[i]
       )
     )
   }
   
-
-  if (simulations_to_run_fig3$coverage[i] > 0) {
-    parameter_lists_fig3[[i]] <- parameter_lists_fig3[[i]] %>%
+  # UVC Parameters 
+  if (simulations_to_run$coverage[i] > 0) {
+    parameter_lists[[i]] <- parameter_lists[[i]] %>%
       set_uvc(
         setting = "joint",
-        coverage = simulations_to_run_fig3$coverage[i],
+        coverage = simulations_to_run$coverage[i],
         coverage_target = "square_footage",
-        coverage_type = simulations_to_run_fig3$coverage_type[i],
-        efficacy = simulations_to_run_fig3$efficacy[i],
-        timestep = 0
+        coverage_type = simulations_to_run$coverage_type[i],
+        efficacy = simulations_to_run$efficacy[i],
+        timestep = uvc_timestep  # turn on during the run (e.g., year 12)
       )
   }
   
-  parameter_lists_fig3[[i]] <- parameter_lists_fig3[[i]] %>%
-    set_setting_specific_riskiness(
-      setting = "school",
-      mean = 0, 
-      sd = 0.3544,
-      min = 1 / sqrt(4.75),
-      max = sqrt(4.75)
-    ) %>%
-    set_setting_specific_riskiness(
-      setting = "workplace", 
-      mean = 0,
-      sd = 0.5072,
-      min = 1 / sqrt(6.35), 
-      max = sqrt(6.35)
-    ) %>%
-    set_setting_specific_riskiness(
-      setting = "household",
-      mean = 0, 
-      sd = 0.0871,
-      min = 1 / sqrt(2.5),
-      max = sqrt(2.5)
-    ) %>%
-    set_setting_specific_riskiness(
-      setting = "leisure",
-      mean = 0,
-      sd = 0.4278,
-      min = 1 / sqrt(5.5), 
-      max = sqrt(5.5)
-    )
-  
-  parameter_lists_fig3[[i]]$simulation_id <- simulations_to_run_fig3$ID[i]
-  parameter_lists_fig3[[i]]$iteration_number <- simulations_to_run_fig3$iteration[i]
-  parameter_lists_fig3[[i]]$panel <- simulations_to_run_fig3$panel[i]
-  parameter_lists_fig3[[i]]$coverage <- simulations_to_run_fig3$coverage[i]
-  parameter_lists_fig3[[i]]$efficacy <- simulations_to_run_fig3$efficacy[i]
-  parameter_lists_fig3[[i]]$coverage_type <- simulations_to_run_fig3$coverage_type[i]
+  # Riskiness Settings 
+  if (simulations_to_run$riskiness[i] == "setting_specific_riskiness") {
+    parameter_lists[[i]] <- parameter_lists[[i]] %>%
+      set_setting_specific_riskiness(
+        setting = "school",
+        mean = 0,
+        sd = 0.3544,
+        min = 1 / sqrt(4.75),
+        max = sqrt(4.75)
+      ) %>%
+      set_setting_specific_riskiness(
+        setting = "workplace",
+        mean = 0,
+        sd = 0.5072,
+        min = 1 / sqrt(6.35),
+        max = sqrt(6.35)
+      ) %>%
+      set_setting_specific_riskiness(
+        setting = "household",
+        mean = 0,
+        sd = 0.0871,
+        min = 1 / sqrt(2.5),
+        max = sqrt(2.5)
+      ) %>%
+      set_setting_specific_riskiness(
+        setting = "leisure",
+        mean = 0,
+        sd = 0.4278,
+        min = 1 / sqrt(5.5),
+        max = sqrt(5.5)
+      )
+  }
 }
 
-saveRDS(parameter_lists_fig3, "figure_3_parameter_list.rds")
-saveRDS(simulations_to_run_fig3, "figure_3_parameter_combinations.rds")
+simulations_to_run <- simulations_to_run |>
+  dplyr::mutate(
+    figure = 3,
+  ) |>
+  select(
+    ID,
+    figure,
+    scenario,
+    iteration,
+    panel,
+    everything()
+  )
+
+for (i in 1:length(parameter_lists)) {
+  parameter_lists[[i]]$figure <- simulations_to_run$figure[i]
+  parameter_lists[[i]]$scenario <- simulations_to_run$scenario[i]
+  parameter_lists[[i]]$id <- simulations_to_run$ID[i]
+  parameter_lists[[i]]$iteration <- simulations_to_run$iteration[i]
+  parameter_lists[[i]]$panel <- simulations_to_run$panel[i]
+  parameter_lists[[i]]$archetype_label <- simulations_to_run$archetype[i]
+  parameter_lists[[i]]$coverage <- simulations_to_run$coverage[i]
+  parameter_lists[[i]]$efficacy <- simulations_to_run$efficacy[i]
+  parameter_lists[[i]]$coverage_type <- simulations_to_run$coverage_type[i]
+}
+
+saveRDS(parameter_lists, "figures/figure_3/figure_3_parameter_list.rds")
+saveRDS(
+  simulations_to_run,
+  "figures/figure_3/figure_3_parameter_combinations.rds"
+)
