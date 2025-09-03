@@ -131,8 +131,8 @@ for (i in 1:nrow(simulations_to_run)) {
       )
     )
   }
-  
-  # UVC Parameters 
+
+  # UVC Parameters
   if (simulations_to_run$coverage[i] > 0) {
     parameter_lists[[i]] <- parameter_lists[[i]] %>%
       set_uvc(
@@ -141,7 +141,7 @@ for (i in 1:nrow(simulations_to_run)) {
         coverage_target = "square_footage",
         coverage_type = simulations_to_run$coverage_type[i],
         efficacy = simulations_to_run$efficacy[i],
-        timestep = uvc_timestep  # turn on during the run (e.g., year 12)
+        timestep = uvc_timestep # turn on during the run (e.g., year 12)
       )
   }
 
