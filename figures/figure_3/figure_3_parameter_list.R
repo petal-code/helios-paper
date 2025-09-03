@@ -45,7 +45,6 @@ simulations_to_run <- rbind(
   
   # Panel B: Benefits of Targeted Coverage Across Coverage Levels (fixed efficacy = 0.5), annualized disease incidence
   # Panel F: % Active Infection Prevalence Reduction across coverage
-  
   expand.grid(
     archetype = archetypes,
     coverage = seq(0.1, 0.9, 0.1),
