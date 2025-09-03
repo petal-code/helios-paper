@@ -42,7 +42,6 @@ simulations_to_run <- rbind(
     riskiness = riskiness,
     stringsAsFactors = FALSE
   ),
-  
   # Panel B: Benefits of Targeted Coverage Across Coverage Levels (fixed efficacy = 0.5), annualized disease incidence
   # Panel F: % Active Infection Prevalence Reduction across coverage
   expand.grid(
