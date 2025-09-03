@@ -74,9 +74,9 @@ simulations_to_run <- rbind(
     coverage      = c(0.3, 0.4, 0.5, 0.6, 0.7),
     efficacy      = c(0.3, 0.5, 0.7),
     coverage_type = c("random", "targeted_riskiness"),
-    iteration     = iterations,
-    panel         = "panel_E",
-    riskiness     = riskiness,
+    iteration = iterations,
+    panel = "panel_E",
+    riskiness = riskiness,
     stringsAsFactors = FALSE
   )
   
