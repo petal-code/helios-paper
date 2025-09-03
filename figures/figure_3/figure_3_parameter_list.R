@@ -67,19 +67,17 @@ simulations_to_run <- rbind(
     riskiness = riskiness,
     stringsAsFactors = FALSE
   ),
-  
   #Panel E: Active Infection Prevalence for Low, Middle, High Efficacy
   expand.grid(
-    archetype     = archetypes,
-    coverage      = c(0.3, 0.4, 0.5, 0.6, 0.7),
-    efficacy      = c(0.3, 0.5, 0.7),
+    archetype = archetypes,
+    coverage = c(0.3, 0.4, 0.5, 0.6, 0.7),
+    efficacy = c(0.3, 0.5, 0.7),
     coverage_type = c("random", "targeted_riskiness"),
     iteration = iterations,
     panel = "panel_E",
     riskiness = riskiness,
     stringsAsFactors = FALSE
   )
-  
 )
 
 simulations_to_run <- simulations_to_run |>
