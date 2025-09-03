@@ -5,8 +5,8 @@ library(helios)
 parameter_lists <- readRDS("figure_3_parameter_list.rds")
 
 run_parallel_simulations <- function(
-    parameter_lists,
-    cores = detectCores() - 1
+  parameter_lists,
+  cores = detectCores() - 1
 ) {
   cl <- makeCluster(cores)
   clusterExport(cl, varlist = c("parameter_lists"), envir = environment())
@@ -14,7 +14,6 @@ run_parallel_simulations <- function(
     library(individual)
     library(helios)
   })
-  
   run_single_simulation <- function(i) {
     parameters <- parameter_lists[[i]]
     result <- run_simulation(parameters)
@@ -47,7 +46,6 @@ run_parallel_simulations <- function(
     run_single_simulation
   )
   stopCluster(cl)
-  
   return(simulation_results)
 }
 

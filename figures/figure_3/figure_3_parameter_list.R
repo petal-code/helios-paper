@@ -144,8 +144,8 @@ for (i in 1:nrow(simulations_to_run)) {
         timestep = uvc_timestep  # turn on during the run (e.g., year 12)
       )
   }
-  
-  # Riskiness Settings 
+
+  # Riskiness Settings
   if (simulations_to_run$riskiness[i] == "setting_specific_riskiness") {
     parameter_lists[[i]] <- parameter_lists[[i]] %>%
       set_setting_specific_riskiness(
