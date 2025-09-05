@@ -42,10 +42,8 @@ simulations_to_run <- rbind(
     riskiness = riskiness,
     stringsAsFactors = FALSE
   ),
-  
   # Panel B: Benefits of Targeted Coverage Across Coverage Levels (fixed efficacy = 0.5), annualized disease incidence
   # Panel F: % Active Infection Prevalence Reduction across coverage
-  
   expand.grid(
     archetype = archetypes,
     coverage = seq(0.1, 0.9, 0.1),
@@ -69,19 +67,17 @@ simulations_to_run <- rbind(
     riskiness = riskiness,
     stringsAsFactors = FALSE
   ),
-  
   #Panel E: Active Infection Prevalence for Low, Middle, High Efficacy
   expand.grid(
-    archetype     = archetypes,
-    coverage      = c(0.3, 0.4, 0.5, 0.6, 0.7),
-    efficacy      = c(0.3, 0.5, 0.7),
+    archetype = archetypes,
+    coverage = c(0.3, 0.4, 0.5, 0.6, 0.7),
+    efficacy = c(0.3, 0.5, 0.7),
     coverage_type = c("random", "targeted_riskiness"),
-    iteration     = iterations,
-    panel         = "panel_E",
-    riskiness     = riskiness,
+    iteration = iterations,
+    panel = "panel_E",
+    riskiness = riskiness,
     stringsAsFactors = FALSE
   )
-  
 )
 
 simulations_to_run <- simulations_to_run |>
@@ -135,8 +131,8 @@ for (i in 1:nrow(simulations_to_run)) {
       )
     )
   }
-  
-  # UVC Parameters 
+
+  # UVC Parameters
   if (simulations_to_run$coverage[i] > 0) {
     parameter_lists[[i]] <- parameter_lists[[i]] %>%
       set_uvc(
@@ -145,11 +141,11 @@ for (i in 1:nrow(simulations_to_run)) {
         coverage_target = "square_footage",
         coverage_type = simulations_to_run$coverage_type[i],
         efficacy = simulations_to_run$efficacy[i],
-        timestep = uvc_timestep  # turn on during the run (e.g., year 12)
+        timestep = uvc_timestep # turn on during the run (e.g., year 12)
       )
   }
-  
-  # Riskiness Settings 
+
+  # Riskiness Settings
   if (simulations_to_run$riskiness[i] == "setting_specific_riskiness") {
     parameter_lists[[i]] <- parameter_lists[[i]] %>%
       set_setting_specific_riskiness(
