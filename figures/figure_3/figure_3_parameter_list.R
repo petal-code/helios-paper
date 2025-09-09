@@ -144,6 +144,7 @@ for (i in 1:nrow(simulations_to_run)) {
         coverage_target = "square_footage",
         coverage_type = simulations_to_run$coverage_type[i],
         efficacy = simulations_to_run$efficacy[i],
+        timestep = 365*15
       )
   }
 
