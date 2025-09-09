@@ -29,53 +29,56 @@ initial_R_flu <- human_population -
   initial_E_flu -
   initial_I_flu
 
-# Figure 3 panels (A–F), joint UVC, random vs targeted_riskiness
 simulations_to_run <- rbind(
-  # Panel A: Benefits of Targeting Across Efficacy Levels (fixed coverage = 0.5), annualized disease incidence
+  # Panel A: Absolute reduction in annualized incidence vs baseline
+  # % reduction plotted for random vs targeted
+  # Panel E: Absolute reduction in prevalence vs baseline (reuses these runs)
   expand.grid(
-    archetype = archetypes,
-    coverage = 0.5,
-    efficacy = seq(0.1, 0.9, 0.1),
+    archetype     = archetypes,
+    coverage      = seq(0.1, 0.9, 0.1),   # fine coverage sweep
+    efficacy      = c(0.3, 0.5, 0.8),     # Low / Medium / High efficacy
     coverage_type = c("random", "targeted_riskiness"),
-    iteration = iterations,
-    panel = "panel_A",
-    riskiness = riskiness,
-    stringsAsFactors = FALSE
-  ),
-  # Panel B: Benefits of Targeted Coverage Across Coverage Levels (fixed efficacy = 0.5), annualized disease incidence
-  # Panel F: % Active Infection Prevalence Reduction across coverage
-  expand.grid(
-    archetype = archetypes,
-    coverage = seq(0.1, 0.9, 0.1),
-    efficacy = 0.5,
-    coverage_type = c("random", "targeted_riskiness"),
-    iteration = iterations,
-    panel = "panel_B",
-    riskiness = riskiness,
+    iteration     = iterations,
+    panel         = "panel_A",
+    riskiness     = riskiness,
     stringsAsFactors = FALSE
   ),
   
-  # Panel C,D: Coverage x Efficacy Heatmaps plotting relative and absolute annualized disease incidence Δ(targeted − random)  
-  # 2 heatmaps for SC2 and 2 heatmaps for Flu 
+  # Panel B: Relative extra impact in annualized incidence
+  # Panel F: Relative extra impact in prevalence (reuses these runs)
   expand.grid(
-    archetype = archetypes,
-    coverage = c(0.2, 0.4, 0.6, 0.8),
-    efficacy = c(0.2, 0.4, 0.6, 0.8),
+    archetype     = archetypes,
+    coverage      = seq(0.1, 0.9, 0.1),
+    efficacy      = c(0.3, 0.5, 0.8),
     coverage_type = c("random", "targeted_riskiness"),
-    iteration = iterations,
-    panel = "panel_C",
-    riskiness = riskiness,
+    iteration     = iterations,
+    panel         = "panel_B",
+    riskiness     = riskiness,
     stringsAsFactors = FALSE
   ),
-  #Panel E: Active Infection Prevalence for Low, Middle, High Efficacy
+  
+  # Panel C: Heatmap of absolute impact (incidence, targeted − random)
   expand.grid(
-    archetype = archetypes,
-    coverage = c(0.3, 0.4, 0.5, 0.6, 0.7),
-    efficacy = c(0.3, 0.5, 0.7),
+    archetype     = archetypes,
+    coverage      = c(0.2, 0.4, 0.6, 0.8),
+    efficacy      = c(0.2, 0.4, 0.6, 0.8),
     coverage_type = c("random", "targeted_riskiness"),
-    iteration = iterations,
-    panel = "panel_E",
-    riskiness = riskiness,
+    iteration     = iterations,
+    panel         = "panel_C",
+    riskiness     = riskiness,
+    stringsAsFactors = FALSE
+  ),
+  
+  # Panel D: Heat map of relative extra impact (incidence)
+  #  same coverage × efficacy grid as Panel C
+  expand.grid(
+    archetype     = archetypes,
+    coverage      = c(0.2, 0.4, 0.6, 0.8),
+    efficacy      = c(0.2, 0.4, 0.6, 0.8),
+    coverage_type = c("random", "targeted_riskiness"),
+    iteration     = iterations,
+    panel         = "panel_D",
+    riskiness     = riskiness,
     stringsAsFactors = FALSE
   )
 )
@@ -141,7 +144,6 @@ for (i in 1:nrow(simulations_to_run)) {
         coverage_target = "square_footage",
         coverage_type = simulations_to_run$coverage_type[i],
         efficacy = simulations_to_run$efficacy[i],
-        timestep = uvc_timestep # turn on during the run (e.g., year 12)
       )
   }
 
