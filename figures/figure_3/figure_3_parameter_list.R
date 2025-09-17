@@ -34,51 +34,51 @@ simulations_to_run <- rbind(
   # % reduction plotted for random vs targeted
   # Panel E: Absolute reduction in prevalence vs baseline (reuses these runs)
   expand.grid(
-    archetype     = archetypes,
-    coverage      = seq(0.1, 0.9, 0.1),   # fine coverage sweep
-    efficacy      = c(0.3, 0.5, 0.8),     # Low / Medium / High efficacy
+    archetype = archetypes,
+    coverage = seq(0.1, 0.9, 0.1), # fine coverage sweep
+    efficacy = c(0.3, 0.5, 0.8), # Low / Medium / High efficacy
     coverage_type = c("random", "targeted_riskiness"),
-    iteration     = iterations,
-    panel         = "panel_A",
-    riskiness     = riskiness,
+    iteration = iterations,
+    panel = "panel_A",
+    riskiness = riskiness,
     stringsAsFactors = FALSE
   ),
-  
+
   # Panel B: Relative extra impact in annualized incidence
   # Panel F: Relative extra impact in prevalence (reuses these runs)
   expand.grid(
-    archetype     = archetypes,
-    coverage      = seq(0.1, 0.9, 0.1),
-    efficacy      = c(0.3, 0.5, 0.8),
+    archetype = archetypes,
+    coverage = seq(0.1, 0.9, 0.1),
+    efficacy = c(0.3, 0.5, 0.8),
     coverage_type = c("random", "targeted_riskiness"),
-    iteration     = iterations,
-    panel         = "panel_B",
-    riskiness     = riskiness,
+    iteration = iterations,
+    panel = "panel_B",
+    riskiness = riskiness,
     stringsAsFactors = FALSE
   ),
-  
+
   # Panel C: Heatmap of absolute impact (incidence, targeted − random)
   expand.grid(
-    archetype     = archetypes,
-    coverage      = c(0.2, 0.4, 0.6, 0.8),
-    efficacy      = c(0.2, 0.4, 0.6, 0.8),
+    archetype = archetypes,
+    coverage = c(0.2, 0.4, 0.6, 0.8),
+    efficacy = c(0.2, 0.4, 0.6, 0.8),
     coverage_type = c("random", "targeted_riskiness"),
-    iteration     = iterations,
-    panel         = "panel_C",
-    riskiness     = riskiness,
+    iteration = iterations,
+    panel = "panel_C",
+    riskiness = riskiness,
     stringsAsFactors = FALSE
   ),
-  
+
   # Panel D: Heat map of relative extra impact (incidence)
   #  same coverage × efficacy grid as Panel C
   expand.grid(
-    archetype     = archetypes,
-    coverage      = c(0.2, 0.4, 0.6, 0.8),
-    efficacy      = c(0.2, 0.4, 0.6, 0.8),
+    archetype = archetypes,
+    coverage = c(0.2, 0.4, 0.6, 0.8),
+    efficacy = c(0.2, 0.4, 0.6, 0.8),
     coverage_type = c("random", "targeted_riskiness"),
-    iteration     = iterations,
-    panel         = "panel_D",
-    riskiness     = riskiness,
+    iteration = iterations,
+    panel = "panel_D",
+    riskiness = riskiness,
     stringsAsFactors = FALSE
   )
 )
@@ -144,7 +144,7 @@ for (i in 1:nrow(simulations_to_run)) {
         coverage_target = "square_footage",
         coverage_type = simulations_to_run$coverage_type[i],
         efficacy = simulations_to_run$efficacy[i],
-        timestep = 365*15
+        timestep = 365 * 15
       )
   }
 
