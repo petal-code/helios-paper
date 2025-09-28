@@ -52,17 +52,18 @@ update_labels <- function(df) {
         metric == "epidemic_final_size" ~ "Final size",
         metric == "time_to_peak_infections" ~ "Time to peak infections",
         metric == "peak_daily_incidence" ~ "Peak daily incidence"
-      )
+      ),
+      archetype_label = case_when(
+        archetype == "flu" ~ "Influenza",
+        archetype == "sars_cov_2" ~ "SARS-CoV-2"
+      ),
+      coverage_label = "Coverage strategy",
+      efficacy_label = "Efficacy"
     )
 }
 
-ggplot(results_long, aes(x = id, y = value)) +
-  geom_point() +
-  facet_wrap(~metric, scales = "free") +
-  theme_minimal()
-
 results_summary <- results_long |>
-  group_by(coverage_type, coverage, efficacy, metric) |>
+  group_by(coverage_type, coverage, archetype, efficacy, metric) |>
   summarise(
     mean_value = mean(value, na.rm = TRUE),
     sd_value = sd(value, na.rm = TRUE),
@@ -70,18 +71,12 @@ results_summary <- results_long |>
   ) |>
   update_labels()
 
-ggplot(results_summary, aes(x = coverage, y = efficacy)) +
-  geom_tile(aes(fill = mean_value)) +
-  facet_wrap(. ~ metric_label, scales = "free") +
-  theme_minimal()
-
-plot_metric <- function(metric) {
+pointrange_plot_metric <- function(metric, archetype) {
   results_summary |>
-    mutate(
-      coverage_label = "Coverage strategy",
-      efficacy_label = "Efficacy"
+    filter(
+      metric_label == .env$metric,
+      archetype_label == .env$archetype
     ) |>
-    filter(metric_label == .env$metric) |>
     ggplot(aes(x = factor(coverage))) +
     geom_pointrange(
       aes(
@@ -95,52 +90,102 @@ plot_metric <- function(metric) {
       coverage_label + coverage_type ~ efficacy_label + efficacy
     ) +
     labs(
-      title = metric,
+      title = paste0(archetype, ": ", metric),
       x = "Coverage",
       y = metric
     ) +
     theme_minimal()
 }
 
-final_size_pointrange <- plot_metric("Final size") +
+heatmap_plot_metric <- function(metric, archetype, palette) {
+  results_summary |>
+    filter(
+      metric_label == .env$metric,
+      archetype_label == .env$archetype
+    ) |>
+    ggplot(aes(x = factor(coverage), y = factor(efficacy))) +
+    geom_tile(aes(fill = mean_value)) +
+    facet_wrap(~coverage_type) +
+    labs(
+      title = paste0(archetype, ": ", metric),
+      x = "Coverage",
+      y = "Efficacy",
+      fill = metric
+    ) +
+    ggplot2::scale_fill_viridis_c(option = palette) +
+    theme_minimal() +
+    theme(
+      legend.position = "bottom",
+      panel.grid.minor = element_blank(),
+      panel.grid.major = element_blank()
+    )
+}
+
+# N.B.: Time to peak is questionable as metric: include in appendix?
+
+final_size_flu_pointrange <- pointrange_plot_metric("Final size", "Influenza") +
   scale_y_continuous(labels = scales::percent)
 
-ggsave(
-  filename = file.path(
-    "figures",
-    "epidemic_scenario",
-    "final_size_pointrange.png"
-  ),
-  plot = final_size_pointrange,
-  width = 7,
-  height = 5,
-  bg = "white"
+peak_incidence_flu_pointrange <- pointrange_plot_metric(
+  "Peak daily incidence",
+  "Influenza"
 )
 
-peak_incidence_pointrange <- plot_metric("Peak daily incidence")
+final_size_flu_heatmap <- heatmap_plot_metric("Final size", "Influenza", "mako")
 
-ggsave(
-  filename = file.path(
-    "figures",
-    "epidemic_scenario",
-    "peak_incidence_pointrange.png"
-  ),
-  plot = peak_incidence_pointrange,
-  width = 7,
-  height = 5,
-  bg = "white"
+peak_incidence_flu_heatmap <- heatmap_plot_metric(
+  "Peak daily incidence",
+  "Influenza",
+  "rocket"
 )
 
-time_to_peak_pointrange <- plot_metric("Time to peak infections")
+flu_plot <- (final_size_flu_pointrange +
+  peak_incidence_flu_pointrange +
+  final_size_flu_heatmap +
+  peak_incidence_flu_heatmap)
 
 ggsave(
-  filename = file.path(
-    "figures",
-    "epidemic_scenario",
-    "time_to_peak_pointrange.png"
-  ),
-  plot = time_to_peak_pointrange,
-  width = 7,
-  height = 5,
-  bg = "white"
+  filename = here::here("figures", "epidemic_scenario", "flu.png"),
+  plot = flu_plot,
+  width = 9,
+  height = 8,
+  units = "in",
+  dpi = 300
+)
+
+final_size_covid_pointrange <- pointrange_plot_metric(
+  "Final size",
+  "SARS-CoV-2"
+) +
+  scale_y_continuous(labels = scales::percent)
+
+peak_incidence_covid_pointrange <- pointrange_plot_metric(
+  "Peak daily incidence",
+  "SARS-CoV-2"
+)
+
+final_size_covid_heatmap <- heatmap_plot_metric(
+  "Final size",
+  "SARS-CoV-2",
+  "mako"
+)
+
+peak_incidence_covid_heatmap <- heatmap_plot_metric(
+  "Peak daily incidence",
+  "SARS-CoV-2",
+  "rocket"
+)
+
+covid_plot <- (final_size_covid_pointrange +
+  peak_incidence_covid_pointrange +
+  final_size_covid_heatmap +
+  peak_incidence_covid_heatmap)
+
+ggsave(
+  filename = here::here("figures", "epidemic_scenario", "covid.png"),
+  plot = covid_plot,
+  width = 9,
+  height = 8,
+  units = "in",
+  dpi = 300
 )
