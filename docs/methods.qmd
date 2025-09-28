@@ -1,0 +1,47 @@
+---
+title: "Methods section"
+format: html
+bibliography: references.bib
+---
+
+```{r}
+number_of_simulations <- 10
+```
+
+## Data sources
+
+Household sizes and age composition were sampled with replacement from a 2010 San Francisco synthetic population produced by RTI International.
+School enrollment sizes were derived from U.S. National Center for Education Statistics 2019–2020 data.
+Workplace sizes were sampled from a truncated offset power law distribution based on @ferguson2005strategies.
+
+## Modelling framework
+
+We built an individual-based SEIR model.
+Individuals belong to fixed households and one of three age groups (children, adults, and elderly).
+
+The force of infection experienced by an individual $i$ at time $t$ can be decomposed as a sum of location $j$ and setting $s$ specific contributions $\lambda_i(t) = \sum_{j, s} \lambda_{i, j, s}(t)$.
+We modelled
+$$
+\lambda_{i, j, s}(t) = \frac{\beta_{j, s} I_{j, s}(t)}{N_{j, s}},
+$$
+where $\beta_{j, s} = \gamma_{j, s} \beta_s$ is a transmisibility parameter, $I_{j, s}(t)$ is the number of infectious individuals, and $N_{j, s}$ is the total number of individuals.
+The parameter $\beta_s$ is the setting-average transmissibility and $\gamma_{j, s}$ captures within-setting heterogeneity arising from ventilation and occupancy.
+
+Between settings we fixed transmission rate $\beta_s$ ratios to 3:3:3:3:1.
+Then we scaled their sum to match target effective reproduction numbers for given pathogen archetypes.
+The pathogen archetypes approximate influenza and SARS-CoV-2 using values calibrated with the `finalsize` R package to reproduce the required epidemic final sizes.
+
+Air quality interventions (AQIs) were assumed to reduce location-specific force of infection multiplicatively.
+For efficacy $E_{j, s}$ then $\lambda^{\text{AQI}}_{i, j, s}(t) = (1 - E_{j, s}) \times \lambda_{i, j, s}(t)$.
+
+## Wells-Riley and within-room dynamics
+
+We combined an ODE for airborne concentration with the Wells–Riley formula.
+
+## Simulation study
+
+We simulated endemic and epidemic scenarios for each pathogen archetype under multiple AQI strategies: no AQI, random allocation at varying coverage, and targeted allocation to highest-risk locations within each setting.
+For each scenario we ran `r number_of_simulations` simulations.
+Under endemic scenarios we computed disease burden as annualised disease incidence and average infection prevalence, and under epidemic scenarios we computed the epidemic final size and peak infection incidence.
+
+
