@@ -1,47 +1,83 @@
 ---
 title: "Methods section"
-format: html
 bibliography: references.bib
+format: docx
 ---
 
 ```{r}
 number_of_simulations <- 10
 ```
 
-## Data sources
+## Overview
 
-Household sizes and age composition were sampled with replacement from a 2010 San Francisco synthetic population produced by RTI International.
-School enrollment sizes were derived from U.S. National Center for Education Statistics 2019–2020 data.
-Workplace sizes were sampled from a truncated offset power law distribution based on @ferguson2005strategies.
+We developed an individual-based susceptible-exposed-infectious-recovered (SEIR) transmission model to assess the impact of indoor air quality interventions on airborne pathogen transmission.
+The model simulates disease spread across a synthetic population distributed among households, schools, workplaces, leisure venues, and community settings.
 
-## Modelling framework
+## Population structure and data sources
 
-We built an individual-based SEIR model.
-Individuals belong to fixed households and one of three age groups (children, adults, and elderly).
+We simulated a population of individuals stratified into three age groups: children, adults, and elderly.
+Household sizes and age composition were sampled from a 2010 San Francisco synthetic population produced by RTI International.
+School enrollment sizes were sampled from U.S. National Center for Education Statistics 2019–2020 data.
+Workplace sizes were sampled from a truncated offset power law distribution [@ferguson2005strategies].
+Leisure venue capacities were sampled from a negative binomial distribution, and weekly visit frequencies were sampled from a Poisson distribution.
 
-The force of infection experienced by an individual $i$ at time $t$ can be decomposed as a sum of location $j$ and setting $s$ specific contributions $\lambda_i(t) = \sum_{j, s} \lambda_{i, j, s}(t)$.
-We modelled
+## Transmission dynamics
+
+The force of infection (FOI) experienced by an individual $i$ at time $t$ was decomposed across locations $j$ and settings $s$ as
+$$
+\lambda_i(t) = \sum_{j, s} \lambda_{i, j, s}(t).
+$$
+We modelled the location- and setting- specific FOI as
 $$
 \lambda_{i, j, s}(t) = \frac{\beta_{j, s} I_{j, s}(t)}{N_{j, s}},
 $$
-where $\beta_{j, s} = \gamma_{j, s} \beta_s$ is a transmisibility parameter, $I_{j, s}(t)$ is the number of infectious individuals, and $N_{j, s}$ is the total number of individuals.
-The parameter $\beta_s$ is the setting-average transmissibility and $\gamma_{j, s}$ captures within-setting heterogeneity arising from ventilation and occupancy.
+where $I_{j, s}(t)$ is the number of infectious individuals in location $j$ of setting $s$, $N_{j, s}$ is the total occupancy, and $\beta_{j, s} = \gamma_{j, s} \beta_s$ is a transmissibility parameter.
+The term $\beta_s$ represents a setting-average transmissibility, while $\gamma_{j, s} \sim \text{Lognormal}(0, \sigma_s)$ captures within-setting heterogeneity in transmission risk arising from variation in ventilation rates and occupancy density.
 
-Between settings we fixed transmission rate $\beta_s$ ratios to 3:3:3:3:1.
-Then we scaled their sum to match target effective reproduction numbers for given pathogen archetypes.
-The pathogen archetypes approximate influenza and SARS-CoV-2 using values calibrated with the `finalsize` R package to reproduce the required epidemic final sizes.
+We set between-setting transmission rate ratios to
+$$
+\beta_{\text{household}}:\beta_{\text{school}}:\beta_{\text{workplace}}:\beta_{\text{leisure}}:\beta_{\text{community}} = 3:3:3:3:1
+$$
+based on empirical data on transmission location.
+The sum of $\beta_s$ values were scaled to achieve target effective reproduction numbers for specific pathogen archetypes.
 
-Air quality interventions (AQIs) were assumed to reduce location-specific force of infection multiplicatively.
-For efficacy $E_{j, s}$ then $\lambda^{\text{AQI}}_{i, j, s}(t) = (1 - E_{j, s}) \times \lambda_{i, j, s}(t)$.
+## Within-setting heterogeneity
 
-## Wells-Riley and within-room dynamics
+To parameterize within-setting variation $\sigma_s$, we modeled airborne pathogen concentration $C(t)$ using an ordinary differential equation
+$$
+\nu \frac{\text{d}C(t)}{\text{d}t} =  - QC(t) - k_D \nu C(t) + I \pi,
+$$
+where $\nu$ is room volume, $Q$ is air flow rate, $k_D = 0.64 \text{h}^{-1}$ is a pathogen decay constant, and $\pi = 27$ virions per person per hour is the emission rate.
+We assumed room volume $\nu = N D_s H$ where $H = 2.5 \text{m}$ and $D_s$ represents setting-specific occupancy density (persons per $100 \text{m}^2$): $D_{\text{household}} = 5$, $D_{\text{school}} = 30$, $D_{\text{workplace}} = 10$, $D_{\text{leisure}} = 50$.
 
-We combined an ODE for airborne concentration with the Wells–Riley formula.
+The Wells-Riley equation gives individual infection probability after time $t$ in concentration $C$ as
+$$
+P(t) = 1 - \exp\left(-rBCt\right),
+$$
+with breathing rate $B = 0.45 \text{m}^3 \text{h}^{-1}$ and infection probability per virion $r = 1.37 \times 10^{-2}$.
+We calculated upper and lower bounds of infection probability using setting-specific ranges of air changes per hour, and assuming individuals spend 12 hours in households, 8 hours in schools/workplaces, 2.5 hours at leisure venues, and 1.5 hours in community settings.
+A lognormal distribution was fitted to the upper and lower infection probabilities bounds to determine $\sigma_s$.
+
+## Pathogen archetypes
+
+We simulated two pathogen archetypes approximating influenza ($R_0 \approx 1.5$) and SARS-CoV-2 ($R_0 \approx 2.5$).
+Setting-specific transmissibility parameters were calibrated using the `finalsize` R package to reproduce epidemic final sizes corresponding to each $R_0$.
+Latent and infectious periods were set to approximate each pathogen's natural history.
+
+## Air quality interventions
+
+Air quality interventions (AQIs) were assumed to reduce the location-specific FOI multiplicatively by efficacy $E_{j, s}$ according to
+$$
+\lambda^{\text{AQI}}_{i, j, s}(t) = (1 - E_{j, s}) \times \lambda_{i, j, s}(t).
+$$
+We evaluated intervention strategies varying by efficacy, coverage level, and allocation strategy (random vs. targeted to highest-risk locations within each setting type).
 
 ## Simulation study
 
-We simulated endemic and epidemic scenarios for each pathogen archetype under multiple AQI strategies: no AQI, random allocation at varying coverage, and targeted allocation to highest-risk locations within each setting.
-For each scenario we ran `r number_of_simulations` simulations.
-Under endemic scenarios we computed disease burden as annualised disease incidence and average infection prevalence, and under epidemic scenarios we computed the epidemic final size and peak infection incidence.
+We simulated both endemic and epidemic scenarios for each pathogen archetype under multiple AQI strategies: no AQI (baseline), random allocation at varying coverage levels, and targeted allocation to highest-risk locations within each setting.
+Each scenario was replicated `r number_of_simulations` times.
 
+For endemic scenarios, we computed annualized disease incidence and average infection prevalence.
+For epidemic scenarios, we computed epidemic final size and peak infection incidence.
 
+All simulations were implemented using the open-source `helios` R package built on the `individual` framework, with parallel computing performed using the `hipercow` package on Imperial College London's high-performance computing cluster.
