@@ -2,155 +2,282 @@ library(dplyr)
 library(purrr)
 library(tibble)
 library(tidyr)
+library(ggplot2)
+library(viridis)
+library(cowplot)
 
 
-dir_sim <- "/Users/geethaj/helios-paper/figures/figure_2/figure_2_simulations_20250815_2114"
-files <- list.files(dir_sim, pattern = "\\.rds$", full.names = TRUE)
+dir_sim <- "/Users/geethaj/documents/helios_files/figure_2_simulations_20092025"
 
-read_one <- function(fp) {
-  x <- readRDS(fp)
-  if (is.list(x) && !is.null(x$simulation)) {
-    out <- x$simulation
-    meta <- as_tibble(x[names(x) != "simulation"])
-    out <- bind_cols(out, meta[rep(1, nrow(out)), , drop = FALSE])
-  } else {
-    out <- x
-  }
-  out$filename <- basename(fp)
-  out
+files <- list.files(
+  path = dir_sim, 
+  pattern = "\\.rds$",
+  full.names = TRUE
+)
+
+
+read_simulation <- function(filepath) {
+  simulation_file <- readRDS(filepath)
+  dt <- simulation_file$parameters$dt
+  pop_size <- 50000
+  
+  simulation_file$simulation %>%
+    mutate(
+      days = timestep * dt,
+      year = floor(days / 365),
+      filename = basename(filepath),
+      archetype = simulation_file$parameters$archetype_label,
+      coverage  = simulation_file$parameters$coverage,
+      efficacy  = simulation_file$parameters$efficacy,
+      active_infected = E_count + I_count,
+      prevalence = active_infected / pop_size
+    ) %>%
+    group_by(year, filename, archetype, coverage, efficacy) %>%
+    summarise(
+      total_infections = sum(E_new, na.rm = TRUE),
+      annualized_incidence_rate = total_infections / pop_size,
+      mean_active_infected = mean(active_infected, na.rm = TRUE),
+      mean_prevalence = mean(prevalence, na.rm = TRUE),
+      .groups = "drop"
+    )
 }
 
-all_sims <- map_dfr(files, read_one, .id = "sim_id")
 
-param_lists <- readRDS("/Users/geethaj/helios-paper/figures/figure_2/figure_2_parameter_list.rds")
+all_sims <- purrr::map_dfr(files, read_simulation)
 
-param_df <- map_dfr(
-  param_lists,
-  ~ tibble(
-    simulation_id    = .x$simulation_id,
-    archetype_label  = .x$archetype_label,
-    panel            = .x$panel,
-    coverage         = .x$coverage,
-    efficacy         = .x$efficacy,
-    coverage_type    = .x$coverage_type,
-    iteration_number = .x$iteration_number
-  )
-) %>%
-  mutate(sim_id = as.character(simulation_id))
+# Baseline (years 6–8) vs Post (years 18–20)
 
-all_sims_labeled <- all_sims %>%
-  left_join(param_df, by = "sim_id")
-
-dt_val <- 0.5   # 0.5 days per timestep
-burn_in <- 5 * 365   # 5 years in days
-
-all_sims_burned <- all_sims_labeled %>%
-  filter(timestep * dt_val > burn_in)
-
-by_run <- all_sims_burned %>%
-  group_by(sim_id, archetype_label, panel, coverage, efficacy, iteration_number) %>%
+metrics <- all_sims %>%
+  mutate(window = case_when(
+    year %in% 6:8   ~ "baseline",
+    year %in% 18:20 ~ "post"
+  )) %>%
+  filter(!is.na(window)) %>%
+  group_by(filename, archetype, coverage, efficacy, window) %>%
   summarise(
-    steps = n(),
-    total_incidence = sum(E_new, na.rm = TRUE),
-    mean_prevalence_I  = mean(I_count) / 50000,              # I/N
-    mean_prevalence_EI = mean(E_count + I_count) / 50000,    # (E+I)/N
+    mean_incidence_rate   = mean(annualized_incidence_rate, na.rm = TRUE),
+    mean_active_infected  = mean(mean_active_infected, na.rm = TRUE),
+    mean_prevalence       = mean(mean_prevalence, na.rm = TRUE),
     .groups = "drop"
+  )
+
+
+reductions <- metrics %>%
+  pivot_wider(
+    names_from = window,
+    values_from = c(mean_incidence_rate, mean_active_infected, mean_prevalence)
   ) %>%
   mutate(
-    days = steps * dt_val,
-    inc_absolute_per_year = (total_incidence / days) * 365
+    incidence_reduction       = 1 - mean_incidence_rate_post / mean_incidence_rate_baseline,
+    active_infected_reduction = 1 - mean_active_infected_post / mean_active_infected_baseline,
+    prevalence_reduction      = 1 - mean_prevalence_post / mean_prevalence_baseline
   )
 
-by_group <- by_run %>%
-  group_by(archetype_label, panel, coverage, efficacy) %>%
+#Summarize Reductions
+reductions_summary <- reductions %>%
+  group_by(archetype, coverage, efficacy) %>%
   summarise(
-    mean_inc = mean(inc_absolute_per_year, na.rm = TRUE),
-    lo_inc   = quantile(inc_absolute_per_year, 0.25, na.rm = TRUE),
-    hi_inc   = quantile(inc_absolute_per_year, 0.75, na.rm = TRUE),
-    mean_prev_I  = mean(mean_prevalence_I, na.rm = TRUE),
-    mean_prev_EI = mean(mean_prevalence_EI, na.rm = TRUE),
+    mean_incidence_reduction = mean(incidence_reduction, na.rm = TRUE),
+    lo_incidence = quantile(incidence_reduction, 0.25, na.rm = TRUE),
+    hi_incidence = quantile(incidence_reduction, 0.75, na.rm = TRUE),
+    
+    mean_active_reduction = mean(active_infected_reduction, na.rm = TRUE),
+    lo_active = quantile(active_infected_reduction, 0.25, na.rm = TRUE),
+    hi_active = quantile(active_infected_reduction, 0.75, na.rm = TRUE),
+    
+    mean_prevalence_reduction = mean(prevalence_reduction, na.rm = TRUE),
+    lo_prev = quantile(prevalence_reduction, 0.25, na.rm = TRUE),
+    hi_prev = quantile(prevalence_reduction, 0.75, na.rm = TRUE),
     .groups = "drop"
   )
 
-glimpse(by_run)
-glimpse(by_group)
 
+# Panel A: % Reduction in incidence
+cols <- viridis::mako(3, begin = 0.3, end = 0.9)
 
-#Get Summary Statistics
+target_efficacies <- c(0.4, 0.6, 0.8)
 
+plot_data <- reductions_summary %>% 
+  filter(efficacy %in% target_efficacies, archetype == "sars_cov_2")
 
-#Panel A-D: SC2
-
-#Panel A: Annualized disease Incidence across UV-C Efficacy values (Line Graph)
-panel_a_plot <- by_group %>%
-  filter(panel == "panel_A", coverage == 0.5) %>%
-  ggplot(aes(x = efficacy, y = mean_inc, color = archetype_label, group = archetype_label)) +
-  geom_line(linewidth = 1) +
-  geom_point(size = 2) +
-  geom_ribbon(aes(ymin = lo_inc, ymax = hi_inc, fill = archetype_label),
-              alpha = 0.2, color = NA) +
-  facet_wrap(~archetype_label, scales = "free_y") +
+panelA <- ggplot(plot_data, 
+       aes(x = coverage, y = mean_incidence_reduction,
+           color = factor(efficacy), group = efficacy)) + 
+  geom_line(size  = 1) +
+  geom_point() +
+  geom_errorbar(aes(ymin = lo_incidence, ymax = hi_incidence),
+                width = 0.02, alpha = 0.5) +
+  facet_wrap(~ archetype, ncol = 2) +
   labs(
-    title = "Panel A: Annual Incidence by UV-C Efficacy",
-    subtitle = "Coverage fixed at 50%",
-    x = "UV-C Efficacy",
-    y = "Annual Incidence (infections/year)",
-    color = "Pathogen",
-    fill = "Pathogen"
-  ) +
-  theme_minimal()
-
-print(panel_a_plot)
-
-#Panel B: % Reduction in Annualized disease Incidence across UV-C Coverage value
-panel_b_plot <- by_group %>%
-  filter(panel == "panel_B", efficacy == 0.5) %>%
-  ggplot(aes(x = coverage, y = mean_inc, color = archetype_label, group = archetype_label)) +
-  geom_line(linewidth = 1) +
-  geom_point(size = 2) +
-  geom_ribbon(aes(ymin = lo_inc, ymax = hi_inc, fill = archetype_label),
-              alpha = 0.2, color = NA) +
-  facet_wrap(~archetype_label, scales = "free_y") +
-  labs(
-    title = "Panel B: Annual Incidence by UV-C Coverage",
-    subtitle = "Efficacy fixed at 50%",
+    title = "Reduction in Annualized Disease Incidence",
+    subtitle = "By UV-C Coverage",
     x = "UV-C Coverage",
-    y = "Annual Incidence (infections/year)",
-    color = "Pathogen",
-    fill = "Pathogen"
+    y = "% Reduction in Annualized Disease Incidence",
+    colour = "Efficacy"
   ) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+  scale_x_continuous(breaks = c(0.2, 0.4, 0.6, 0.8, 1.0),
+                     limits = c(0.2, 1.0)) +
+  scale_color_manual(values = cols)  +
   theme_minimal()
 
-print(panel_b_plot)
 
-#Panel C: Heatmap, UVC Coverage x UVC Efficacy , % reduction in annualized disease incidence
+# Panel B: Active Infection (post period only)
+cols <- viridis::mako(3, begin = 0.3, end = 0.9)
 
-panel_c_plot <- by_group %>%
-  filter(panel == "panel_C") %>%
-  ggplot(aes(x = coverage, y = efficacy, fill = mean_inc)) +
-  geom_tile(color = "white") +
-  facet_wrap(~archetype_label) +
-  scale_x_continuous(breaks = seq(0, 1.0, 0.2), labels = scales::percent_format(accuracy = 1)) +
-  scale_y_continuous(breaks = seq(0, 1.0, 0.2), labels = scales::percent_format(accuracy = 1)) +
-  scale_fill_viridis_c(option = "plasma", name = "Annual incidence") +
+post_active <- metrics %>%
+  filter(window == "post", archetype == "sars_cov_2") %>%
+  group_by(archetype, coverage, efficacy) %>%
+  summarise(
+    mean_active_infected = mean(mean_active_infected, na.rm = TRUE),
+    lo = quantile(mean_active_infected, 0.25, na.rm = TRUE),
+    hi = quantile(mean_active_infected, 0.75, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+plot_data <- post_active %>% 
+  filter(efficacy %in% target_efficacies)
+
+panelB <- ggplot(plot_data,
+       aes(x = coverage, y = mean_active_infected,
+           colour = factor(efficacy), group = efficacy)) +
+  geom_line(size = 1) +
+  geom_point() +
+  geom_errorbar(aes(ymin = lo, ymax = hi), width = 0.02, alpha = 0.5) +
+  facet_wrap(~ archetype, ncol = 2) +
   labs(
-    title = "Panel C: Heatmap of Annual Incidence",
-    x = "Coverage",
-    y = "Efficacy"
+    title = "Active Infection Prevalence (Post UV-C)",
+    x = "UV-C Coverage",
+    y = "Average Number of Active Infections",
+    colour = "Efficacy"
   ) +
+  scale_x_continuous(breaks = c(0.2, 0.4, 0.6, 0.8, 1.0),
+                     limits = c(0.2, 1.0)) +
+  scale_color_manual(values = cols)  +
   theme_minimal()
 
-print(panel_c_plot)
+#Panel C: Heatmaps
+target_vals <- c(0.2, 0.4, 0.6, 0.8, 1.0)
 
-#Panel D:Active Infection Prevalence by UV-C Coverage (Line plot)
+heat_data <- reductions_summary %>%
+  filter(coverage %in% target_vals,
+         efficacy %in% target_vals, archetype == "sars_cov_2")
 
-#Panel E-H: Flu
+panelC <- ggplot(heat_data, aes(x = factor(coverage),
+                      y = factor(efficacy),
+                      fill = mean_incidence_reduction)) +
+  geom_tile(color = "white") +
+  facet_wrap(~ archetype, ncol = 2) +
+  viridis::scale_fill_viridis(
+    option = "mako",
+    direction = -1,
+    labels = scales::percent_format(accuracy = 1)
+  ) +
+  labs(
+    title = "Reduction in Annualized Disease Incidence",
+    x = "UV-C Coverage",
+    y = "UV-C Efficacy",
+    fill = "% Reduction"
+  ) +
+  theme_minimal() +
+  theme(panel.grid = element_blank())
 
-#Panel E: Annualized infection Incidence across UV-C Efficacy values (Line Graph)
+#Combined SC2 Plots
+combined_sc2_plot <- plot_grid(panelA, panelB, panelC, nrow = 1, labels = c("A", "B", "C"))
+combined_sc2_plot
 
-#Panel F: % Reduction in Annualized infection Incidence across UV-C Coverage value
 
-#Panel G: Heatmap, UVC Coverage x UVC Efficacy , % reduction in annualized disease incidence
+#Panel D: Flu 
+cols <- viridis::magma(3, begin = 0.3, end = 0.9)
 
-#Panel H: Active Infection Prevalence by UV-C Coverage (Line plot)
+target_efficacies <- c(0.4, 0.6, 0.8)
 
+plot_data <- reductions_summary %>% 
+  filter(efficacy %in% target_efficacies, archetype == "flu")
+
+panelD <- ggplot(plot_data, 
+       aes(x = coverage, y = mean_incidence_reduction,
+           color = factor(efficacy), group = efficacy)) + 
+  geom_line(size  = 1) +
+  geom_point() +
+  geom_errorbar(aes(ymin = lo_incidence, ymax = hi_incidence),
+                width = 0.02, alpha = 0.5) +
+  facet_wrap(~ archetype, ncol = 2) +
+  labs(
+    title = "Reduction in Annualized Disease Incidence",
+    x = "UV-C Coverage",
+    y = "% Reduction in Annualized Disease Incidence",
+    colour = "Efficacy"
+  ) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+  scale_x_continuous(breaks = c(0.2, 0.4, 0.6, 0.8, 1.0),
+                     limits = c(0.2, 1.0)) +
+  scale_color_manual(values = cols)  +
+  theme_minimal()
+
+# Panel E: Flu Active Infections (post period only)
+cols <- viridis::magma(3, begin = 0.3, end = 0.9)
+
+post_active <- metrics %>%
+  filter(window == "post", archetype == "flu") %>%
+  group_by(archetype, coverage, efficacy) %>%
+  summarise(
+    mean_active_infected = mean(mean_active_infected, na.rm = TRUE),
+    lo = quantile(mean_active_infected, 0.25, na.rm = TRUE),
+    hi = quantile(mean_active_infected, 0.75, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+plot_data <- post_active %>% 
+  filter(efficacy %in% target_efficacies)
+
+panelE <- ggplot(plot_data,
+       aes(x = coverage, y = mean_active_infected,
+           colour = factor(efficacy), group = efficacy)) +
+  geom_line(size = 1) +
+  geom_point() +
+  geom_errorbar(aes(ymin = lo, ymax = hi), width = 0.02, alpha = 0.5) +
+  facet_wrap(~ archetype, ncol = 2) +
+  labs(
+    title = "Active Infections (After UV-C turned on)",
+    x = "UV-C Coverage",
+    y = "Average Number of Active Infections",
+    colour = "Efficacy"
+  ) +
+  scale_x_continuous(breaks = c(0.2, 0.4, 0.6, 0.8, 1.0),
+                     limits = c(0.2, 1.0)) +
+  scale_color_manual(values = cols)  +
+  theme_minimal()
+
+#Panel F: Flu Heatmap
+target_vals <- c(0.2, 0.4, 0.6, 0.8, 1.0)
+
+heat_data <- reductions_summary %>%
+  filter(coverage %in% target_vals,
+         efficacy %in% target_vals, archetype == "flu")
+
+panelF <- ggplot(heat_data, aes(x = factor(coverage),
+                      y = factor(efficacy),
+                      fill = mean_incidence_reduction)) +
+  geom_tile(color = "white") +
+  facet_wrap(~ archetype, ncol = 2) +
+  viridis::scale_fill_viridis(
+    option = "magma",
+    direction = -1,
+    labels = scales::percent_format(accuracy = 1)
+  ) +
+  labs(
+    title = "Reduction in Annualized Disease Incidence",
+    x = "UV-C Coverage",
+    y = "UV-C Efficacy",
+    fill = "% Reduction"
+  ) +
+  theme_minimal() +
+  theme(panel.grid = element_blank())
+
+#Combined flu Plots
+combined_flu_plot <- plot_grid(panelD, panelE, panelF, nrow = 1, labels = c("D", "E", "F"))
+combined_flu_plot
+
+complete_combined_plot <- plot_grid(combined_sc2_plot, combined_flu_plot, nrow = 2)
+complete_combined_plot
