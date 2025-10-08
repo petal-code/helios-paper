@@ -91,6 +91,12 @@ reductions_summary <- reductions %>%
     .groups = "drop"
   )
 
+#Adjust to report percent instead of proportion
+x_percent_scale <- scale_x_continuous(
+  labels = scales::percent_format(accuracy = 1),
+  limits = c(0.2, 1.0),
+  breaks = c(0.2, 0.4, 0.6, 0.8, 1.0)
+)
 
 # Panel A: % Reduction in incidence
 cols <- viridis::mako(3, begin = 0.3, end = 0.9)
@@ -102,22 +108,18 @@ plot_data <- reductions_summary %>%
 
 panelA <- ggplot(plot_data, 
        aes(x = coverage, y = mean_incidence_reduction,
-           color = factor(efficacy), group = efficacy)) + 
+           color = factor(efficacy, labels = scales::percent(target_efficacies, accuracy = 1)), group = efficacy)) + 
   geom_line(size  = 1) +
   geom_point() +
   geom_errorbar(aes(ymin = lo_incidence, ymax = hi_incidence),
                 width = 0.02, alpha = 0.5) +
-  facet_wrap(~ archetype, ncol = 2) +
   labs(
-    title = "Reduction in Annualized Disease Incidence",
-    subtitle = "By UV-C Coverage",
     x = "UV-C Coverage",
-    y = "% Reduction in Annualized Disease Incidence",
+    y = "% Reduction in Annualized \n  Disease Incidence",
     colour = "Efficacy"
   ) +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-  scale_x_continuous(breaks = c(0.2, 0.4, 0.6, 0.8, 1.0),
-                     limits = c(0.2, 1.0)) +
+  x_percent_scale +
   scale_color_manual(values = cols)  +
   theme_minimal()
 
@@ -140,19 +142,16 @@ plot_data <- post_active %>%
 
 panelB <- ggplot(plot_data,
        aes(x = coverage, y = mean_active_infected,
-           colour = factor(efficacy), group = efficacy)) +
+           color = factor(efficacy, labels = scales::percent(target_efficacies, accuracy = 1)), group = efficacy)) +
   geom_line(size = 1) +
   geom_point() +
   geom_errorbar(aes(ymin = lo, ymax = hi), width = 0.02, alpha = 0.5) +
-  facet_wrap(~ archetype, ncol = 2) +
   labs(
-    title = "Active Infection Prevalence (Post UV-C)",
     x = "UV-C Coverage",
-    y = "Average Number of Active Infections",
+    y = "Average Number of \n Active Infections",
     colour = "Efficacy"
   ) +
-  scale_x_continuous(breaks = c(0.2, 0.4, 0.6, 0.8, 1.0),
-                     limits = c(0.2, 1.0)) +
+  x_percent_scale +
   scale_color_manual(values = cols)  +
   theme_minimal()
 
@@ -163,24 +162,25 @@ heat_data <- reductions_summary %>%
   filter(coverage %in% target_vals,
          efficacy %in% target_vals, archetype == "sars_cov_2")
 
-panelC <- ggplot(heat_data, aes(x = factor(coverage),
-                      y = factor(efficacy),
-                      fill = mean_incidence_reduction)) +
+panelC <- ggplot(heat_data, aes(
+  x = factor(coverage, labels = scales::percent(c(0.2, 0.4, 0.6, 0.8, 1.0))),
+  y = factor(efficacy, labels = scales::percent(c(0.2, 0.4, 0.6, 0.8, 1.0))),
+  fill = mean_incidence_reduction)) +
   geom_tile(color = "white") +
-  facet_wrap(~ archetype, ncol = 2) +
   viridis::scale_fill_viridis(
     option = "mako",
     direction = -1,
+    breaks = seq(0, 1, 0.2),
     labels = scales::percent_format(accuracy = 1)
   ) +
   labs(
-    title = "Reduction in Annualized Disease Incidence",
     x = "UV-C Coverage",
     y = "UV-C Efficacy",
-    fill = "% Reduction"
+    fill = "% Reduction in \n Annualized Disease \n Incidence"
   ) +
   theme_minimal() +
   theme(panel.grid = element_blank())
+
 
 #Combined SC2 Plots
 combined_sc2_plot <- plot_grid(panelA, panelB, panelC, nrow = 1, labels = c("A", "B", "C"))
@@ -197,21 +197,18 @@ plot_data <- reductions_summary %>%
 
 panelD <- ggplot(plot_data, 
        aes(x = coverage, y = mean_incidence_reduction,
-           color = factor(efficacy), group = efficacy)) + 
+           color = factor(efficacy, labels = scales::percent(target_efficacies, accuracy = 1)), group = efficacy)) + 
   geom_line(size  = 1) +
   geom_point() +
   geom_errorbar(aes(ymin = lo_incidence, ymax = hi_incidence),
                 width = 0.02, alpha = 0.5) +
-  facet_wrap(~ archetype, ncol = 2) +
   labs(
-    title = "Reduction in Annualized Disease Incidence",
     x = "UV-C Coverage",
-    y = "% Reduction in Annualized Disease Incidence",
+    y = "% Reduction in  Annualized \n   Disease Incidence",
     colour = "Efficacy"
   ) +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-  scale_x_continuous(breaks = c(0.2, 0.4, 0.6, 0.8, 1.0),
-                     limits = c(0.2, 1.0)) +
+  x_percent_scale +
   scale_color_manual(values = cols)  +
   theme_minimal()
 
@@ -223,8 +220,8 @@ post_active <- metrics %>%
   group_by(archetype, coverage, efficacy) %>%
   summarise(
     mean_active_infected = mean(mean_active_infected, na.rm = TRUE),
-    lo = quantile(mean_active_infected, 0.25, na.rm = TRUE),
-    hi = quantile(mean_active_infected, 0.75, na.rm = TRUE),
+    lo = quantile(mean_active_infected, 0.05, na.rm = TRUE),
+    hi = quantile(mean_active_infected, 0.95, na.rm = TRUE),
     .groups = "drop"
   )
 
@@ -233,19 +230,16 @@ plot_data <- post_active %>%
 
 panelE <- ggplot(plot_data,
        aes(x = coverage, y = mean_active_infected,
-           colour = factor(efficacy), group = efficacy)) +
+           color = factor(efficacy, labels = scales::percent(target_efficacies, accuracy = 1)), group = efficacy)) +
   geom_line(size = 1) +
   geom_point() +
   geom_errorbar(aes(ymin = lo, ymax = hi), width = 0.02, alpha = 0.5) +
-  facet_wrap(~ archetype, ncol = 2) +
   labs(
-    title = "Active Infections (After UV-C turned on)",
     x = "UV-C Coverage",
     y = "Average Number of Active Infections",
     colour = "Efficacy"
   ) +
-  scale_x_continuous(breaks = c(0.2, 0.4, 0.6, 0.8, 1.0),
-                     limits = c(0.2, 1.0)) +
+  x_percent_scale +
   scale_color_manual(values = cols)  +
   theme_minimal()
 
@@ -256,21 +250,20 @@ heat_data <- reductions_summary %>%
   filter(coverage %in% target_vals,
          efficacy %in% target_vals, archetype == "flu")
 
-panelF <- ggplot(heat_data, aes(x = factor(coverage),
-                      y = factor(efficacy),
+panelF <- ggplot(heat_data, aes(x = factor(coverage, labels = scales::percent(c(0.2, 0.4, 0.6, 0.8, 1.0))),
+                                 y = factor(efficacy, labels = scales::percent(c(0.2, 0.4, 0.6, 0.8, 1.0))),,
                       fill = mean_incidence_reduction)) +
   geom_tile(color = "white") +
-  facet_wrap(~ archetype, ncol = 2) +
   viridis::scale_fill_viridis(
     option = "magma",
     direction = -1,
+    breaks = seq(0, 1, 0.2),
     labels = scales::percent_format(accuracy = 1)
   ) +
   labs(
-    title = "Reduction in Annualized Disease Incidence",
     x = "UV-C Coverage",
     y = "UV-C Efficacy",
-    fill = "% Reduction"
+    fill = "% Reduction in \n Annualized Disease \n Incidence"
   ) +
   theme_minimal() +
   theme(panel.grid = element_blank())
