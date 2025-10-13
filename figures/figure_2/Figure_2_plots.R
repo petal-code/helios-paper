@@ -124,16 +124,16 @@ panelA <- ggplot(plot_data,
   theme_minimal()
 
 
-# Panel B: Active Infection (post period only)
+# Panel B: Active Infection Prevalence (post period only)
 cols <- viridis::mako(3, begin = 0.3, end = 0.9)
 
 post_active <- metrics %>%
   filter(window == "post", archetype == "sars_cov_2") %>%
   group_by(archetype, coverage, efficacy) %>%
   summarise(
-    mean_active_infected = mean(mean_active_infected, na.rm = TRUE),
-    lo = quantile(mean_active_infected, 0.25, na.rm = TRUE),
-    hi = quantile(mean_active_infected, 0.75, na.rm = TRUE),
+    mean_prevalence = mean(mean_prevalence, na.rm = TRUE),
+    lo = quantile(mean_prevalence, 0.05, na.rm = TRUE),
+    hi = quantile(mean_prevalence, 0.95, na.rm = TRUE),
     .groups = "drop"
   )
 
@@ -141,14 +141,14 @@ plot_data <- post_active %>%
   filter(efficacy %in% target_efficacies)
 
 panelB <- ggplot(plot_data,
-       aes(x = coverage, y = mean_active_infected,
+       aes(x = coverage, y = mean_prevalence,
            color = factor(efficacy, labels = scales::percent(target_efficacies, accuracy = 1)), group = efficacy)) +
   geom_line(size = 1) +
   geom_point() +
   geom_errorbar(aes(ymin = lo, ymax = hi), width = 0.02, alpha = 0.5) +
   labs(
     x = "UV-C Coverage",
-    y = "Average Number of \n Active Infections",
+    y = "Active Infection Prevalence",
     colour = "Efficacy"
   ) +
   x_percent_scale +
@@ -219,9 +219,9 @@ post_active <- metrics %>%
   filter(window == "post", archetype == "flu") %>%
   group_by(archetype, coverage, efficacy) %>%
   summarise(
-    mean_active_infected = mean(mean_active_infected, na.rm = TRUE),
-    lo = quantile(mean_active_infected, 0.05, na.rm = TRUE),
-    hi = quantile(mean_active_infected, 0.95, na.rm = TRUE),
+    mean_active_infected = mean(mean_prevalence, na.rm = TRUE),
+    lo = quantile(mean_prevalence, 0.05, na.rm = TRUE),
+    hi = quantile(mean_prevalence, 0.95, na.rm = TRUE),
     .groups = "drop"
   )
 
@@ -236,7 +236,7 @@ panelE <- ggplot(plot_data,
   geom_errorbar(aes(ymin = lo, ymax = hi), width = 0.02, alpha = 0.5) +
   labs(
     x = "UV-C Coverage",
-    y = "Average Number of Active Infections",
+    y = "Active Infection Prevalence",
     colour = "Efficacy"
   ) +
   x_percent_scale +
