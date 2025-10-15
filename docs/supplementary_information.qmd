@@ -1,0 +1,11 @@
+---
+title: "Supplementary Information"
+bibliography: references.bib
+format: docx
+---
+
+## Introduction
+
+We developed an individual-based susceptible-exposed-infectious-recovered (SEIR) model to simulate the effect(s) of interventions that modify air quality on the transmission of an airborne pathogen. The model simulates a human population structured by both age group and their social mixing patterns across multiple locations within household, school, workplace, leisure venue and community settings.
+
+## Model Structure

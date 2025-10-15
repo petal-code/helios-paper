@@ -1,3 +1,50 @@
+assign_simulations <- function(
+    n_simulations, 
+    n_nodes, 
+    distribute_evenly = TRUE
+) {
+  
+  # Ensure inputs are positive
+  if(n_nodes <= 0 | n_simulations <= 0) {
+    stop(
+      "n_nodes and n_simulations must be positive"
+    )
+  }
+  # Ensure inputs are positive
+  if(length(n_nodes) != 1 | length(n_simulations) != 1) {
+    stop(
+      "n_nodes and n_simulations must of length 1"
+    )
+  }
+  # Ensure inputs are positive
+  if(n_nodes %% 1 != 0 | n_simulations %% 1 != 0) {
+    stop(
+      "n_nodes and n_simulations must be integer values"
+    )
+  }
+  
+  # Determine number of simulations per node
+  base <- floor(n_simulations / n_nodes)
+  remainder <- n_simulations %% n_nodes
+  
+  # Create vector containing the number of simulations to be run on each of the n_nodes. If
+  # distribute_evenly = FALSE, all remaining simulations will be added to the final node (which
+  # I think should keep their numerical/id order intact). If distribute_evenly = TRUE, the remainder
+  # are divided across the n_nodes as evenly as possible.
+  sims_per_node <- rep(base, n_nodes)
+  if(remainder > 0) {
+    if(distribute_evenly == FALSE) {
+      sims_per_node[n_nodes] <- sims_per_node[n_nodes] + remainder
+    } else if(distribute_evenly == TRUE) {
+      sims_per_node[1:remainder] <- sims_per_node[1:remainder] + 1
+    }
+  } 
+  
+  # Expand the sims_per_node into a vector containing, for each simulation, the node it will be
+  # run on:
+  simulation_group_index <- rep(1:n_nodes, times = sims_per_node)
+}
+
 run_simulation_hipercow <- function(
   parameters,
   file_save = FALSE,
