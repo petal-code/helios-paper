@@ -117,8 +117,8 @@ panel_b <- panel_b_data %>%
   geom_col(fill = "#08519C", width = 0.6) +
   labs(
     x = "Coverage",
-    y = "Targeted / Random Reduction Ratio",
-    title = "Panel B: Relative Impact of Targeted vs Random"
+    y = "Targeted / Random Reduction Ratio"
+    #title = "Panel B: Relative Impact of Targeted vs Random"
   ) +
   theme_minimal(base_size = 13) +
   theme(
@@ -172,8 +172,8 @@ panel_d <- panel_d_data %>%
   geom_col(fill = "#a12424", width = 0.6) +
   labs(
     x = "Coverage",
-    y = "Targeted / Random Reduction Ratio",
-    title = "Panel B: Relative Impact of Targeted vs Random"
+    y = "Targeted / Random Reduction Ratio"
+    #title = "Panel d: Relative Impact of Targeted vs Random"
   ) +
   theme_minimal(base_size = 13) +
   theme(
