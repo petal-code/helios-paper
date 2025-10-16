@@ -68,6 +68,8 @@ results_summary <- results_long |>
   group_by(coverage_type, coverage, archetype, efficacy, metric) |>
   summarise(
     mean_value = mean(value, na.rm = TRUE),
+    max_value = max(value, na.rm = TRUE),
+    min_value = min(value, na.rm = TRUE),
     sd_value = sd(value, na.rm = TRUE),
     .groups = "drop"
   ) |>
@@ -82,11 +84,12 @@ pointrange_plot_metric <- function(metric, archetype) {
     )
   
   ggplot(df, aes(x = factor(coverage), col = as.factor(efficacy))) +
+    geom_line(aes(y = mean_value, group = as.factor(efficacy))) +
     geom_pointrange(
       aes(
         y = mean_value,
-        ymin = mean_value - sd_value,
-        ymax = mean_value + sd_value
+        ymin = min_value,
+        ymax = max_value
       ),
       position = position_dodge(width = 0.1),
     ) +
