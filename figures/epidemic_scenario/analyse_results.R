@@ -16,7 +16,11 @@ get_results <- function(sim) {
       df,
       dt = sim$parameters$dt
     ),
-    "peak_daily_incidence" = peak_daily_incidence(df, dt = sim$parameters$dt, per = 1000),
+    "peak_daily_incidence" = peak_daily_incidence(
+      df,
+      dt = sim$parameters$dt,
+      per = 1000
+    ),
     "id" = sim$parameters$id
   )
   return(results)
@@ -53,7 +57,8 @@ update_labels <- function(df) {
       metric_label = case_when(
         metric == "epidemic_final_size" ~ "Final % of\nPopulation Infected",
         metric == "time_to_peak_infections" ~ "Time to peak infections",
-        metric == "peak_daily_incidence" ~ "Peak Daily Incidence\nper 1,000 Population"
+        metric == "peak_daily_incidence" ~
+          "Peak Daily Incidence\nper 1,000 Population"
       ),
       archetype_label = case_when(
         archetype == "flu" ~ "Influenza",
@@ -82,7 +87,7 @@ pointrange_plot_metric <- function(metric, archetype) {
       archetype_label == .env$archetype,
       efficacy > 0.2
     )
-  
+
   ggplot(df, aes(x = factor(coverage), col = as.factor(efficacy))) +
     geom_line(aes(y = mean_value, group = as.factor(efficacy))) +
     geom_pointrange(
@@ -113,7 +118,7 @@ heatmap_plot_metric <- function(metric, archetype) {
       metric == .env$metric,
       archetype_label == .env$archetype
     )
-  
+
   ggplot(df, aes(x = factor(coverage), y = factor(efficacy))) +
     geom_tile(aes(fill = mean_value)) +
     ggh4x::facet_nested(
@@ -139,7 +144,10 @@ covid_col2 <- c("#83d8b4", "#3BB585", "#1d5d43")
 flu_col1 <- c("#CD86EA", "#651983", "#3F1052")
 flu_col2 <- c("#E68996", "#D93052", "#9D374C")
 
-final_size_flu_pointrange <- pointrange_plot_metric("epidemic_final_size", "Influenza") +
+final_size_flu_pointrange <- pointrange_plot_metric(
+  "epidemic_final_size",
+  "Influenza"
+) +
   scale_y_continuous(labels = scales::percent) +
   scale_colour_manual(values = flu_col1)
 
@@ -149,7 +157,10 @@ peak_incidence_flu_pointrange <- pointrange_plot_metric(
 ) +
   scale_colour_manual(values = flu_col2)
 
-final_size_flu_heatmap <- heatmap_plot_metric("epidemic_final_size", "Influenza") +
+final_size_flu_heatmap <- heatmap_plot_metric(
+  "epidemic_final_size",
+  "Influenza"
+) +
   ggplot2::scale_fill_viridis_c(option = "magma", labels = scales::percent)
 
 peak_incidence_flu_heatmap <- heatmap_plot_metric(
@@ -197,4 +208,9 @@ ggsave(
   height = 10,
   units = "in",
   dpi = 300
+)
+
+write_csv(
+  results_summary,
+  here::here("figures", "epidemic_scenario", "results_summary.csv")
 )

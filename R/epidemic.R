@@ -29,10 +29,10 @@ peak_daily_incidence <- function(df, dt, per) {
     ) |>
     summarise(peak = max(daily_incidence, na.rm = TRUE)) |>
     pull(peak)
-  
+
   if (!is.null(per)) {
     peak <- peak * per
   }
-  
+
   return(peak)
 }
