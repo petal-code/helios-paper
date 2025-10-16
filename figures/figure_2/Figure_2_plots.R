@@ -30,7 +30,7 @@ read_simulation <- function(filepath) {
       coverage  = simulation_file$parameters$coverage,
       efficacy  = simulation_file$parameters$efficacy,
       active_infected = E_count + I_count,
-      prevalence = active_infected / pop_size
+      prevalence = (active_infected / pop_size)*100
     ) %>%
     group_by(year, filename, archetype, coverage, efficacy) %>%
     summarise(
@@ -49,7 +49,7 @@ all_sims <- purrr::map_dfr(files, read_simulation)
 
 metrics <- all_sims %>%
   mutate(window = case_when(
-    year %in% 6:8   ~ "baseline",
+    year %in% 5:7   ~ "baseline",
     year %in% 18:20 ~ "post"
   )) %>%
   filter(!is.na(window)) %>%
@@ -76,18 +76,18 @@ reductions <- metrics %>%
 #Summarize Reductions
 reductions_summary <- reductions %>%
   group_by(archetype, coverage, efficacy) %>%
-  summarise(
+  summarise (
     mean_incidence_reduction = mean(incidence_reduction, na.rm = TRUE),
-    lo_incidence = quantile(incidence_reduction, 0.25, na.rm = TRUE),
-    hi_incidence = quantile(incidence_reduction, 0.75, na.rm = TRUE),
+    low_incidence = min(incidence_reduction, na.rm = TRUE),
+    hi_incidence = max(incidence_reduction, na.rm = TRUE),
     
     mean_active_reduction = mean(active_infected_reduction, na.rm = TRUE),
-    lo_active = quantile(active_infected_reduction, 0.25, na.rm = TRUE),
-    hi_active = quantile(active_infected_reduction, 0.75, na.rm = TRUE),
+    low_active = min(active_infected_reduction, na.rm = TRUE),
+    hi_active = max(active_infected_reduction, na.rm = TRUE),
     
     mean_prevalence_reduction = mean(prevalence_reduction, na.rm = TRUE),
-    lo_prev = quantile(prevalence_reduction, 0.25, na.rm = TRUE),
-    hi_prev = quantile(prevalence_reduction, 0.75, na.rm = TRUE),
+    low_prev = min(prevalence_reduction, na.rm = TRUE),
+    hi_prev = max(prevalence_reduction, na.rm = TRUE),
     .groups = "drop"
   )
 
@@ -98,20 +98,22 @@ x_percent_scale <- scale_x_continuous(
   breaks = c(0.2, 0.4, 0.6, 0.8, 1.0)
 )
 
+target_coverage_intervals <- c(0.2, 0.4, 0.6, 0.8, 1.0)
 # Panel A: % Reduction in incidence
-cols <- viridis::mako(3, begin = 0.3, end = 0.9)
+cols <- c("#5083DB", "#395D9C", "#253B65")
 
 target_efficacies <- c(0.4, 0.6, 0.8)
 
 plot_data <- reductions_summary %>% 
-  filter(efficacy %in% target_efficacies, archetype == "sars_cov_2")
+  filter(efficacy %in% target_efficacies, archetype == "sars_cov_2") %>% 
+  filter(coverage %in% target_coverage_intervals)
 
 panelA <- ggplot(plot_data, 
-       aes(x = coverage, y = mean_incidence_reduction,
-           color = factor(efficacy, labels = scales::percent(target_efficacies, accuracy = 1)), group = efficacy)) + 
+                 aes(x = coverage, y = mean_incidence_reduction,
+                     color = factor(efficacy, labels = scales::percent(target_efficacies, accuracy = 1)), group = efficacy)) + 
   geom_line(size  = 1) +
   geom_point() +
-  geom_errorbar(aes(ymin = lo_incidence, ymax = hi_incidence),
+  geom_errorbar(aes(ymin = low_incidence, ymax = hi_incidence),
                 width = 0.02, alpha = 0.5) +
   labs(
     x = "UV-C Coverage",
@@ -125,27 +127,29 @@ panelA <- ggplot(plot_data,
 
 
 # Panel B: Active Infection Prevalence (post period only)
-cols <- viridis::mako(3, begin = 0.3, end = 0.9)
+cols <- c("#83d8b4", "#3BB585", "#1d5d43")
 
 post_active <- metrics %>%
   filter(window == "post", archetype == "sars_cov_2") %>%
   group_by(archetype, coverage, efficacy) %>%
   summarise(
-    mean_prevalence = mean(mean_prevalence, na.rm = TRUE),
-    lo = quantile(mean_prevalence, 0.05, na.rm = TRUE),
-    hi = quantile(mean_prevalence, 0.95, na.rm = TRUE),
+    mean_active_infected = mean(mean_prevalence, na.rm = TRUE),
+    low = min(mean_prevalence, na.rm = TRUE),
+    hi = max(mean_prevalence, na.rm = TRUE),
     .groups = "drop"
   )
 
-plot_data <- post_active %>% 
-  filter(efficacy %in% target_efficacies)
+plot_data_b <- post_active %>% 
+  filter(efficacy %in% target_efficacies) %>% 
+  filter(coverage %in% target_coverage_intervals)
 
-panelB <- ggplot(plot_data,
-       aes(x = coverage, y = mean_prevalence,
-           color = factor(efficacy, labels = scales::percent(target_efficacies, accuracy = 1)), group = efficacy)) +
+panelB <- ggplot(plot_data_b,
+                 aes(x = coverage, y = mean_active_infected,
+                     color = factor(efficacy, labels = scales::percent(target_efficacies, accuracy = 1)), group = efficacy)) +
   geom_line(size = 1) +
   geom_point() +
-  geom_errorbar(aes(ymin = lo, ymax = hi), width = 0.02, alpha = 0.5) +
+  scale_y_continuous (labels = scales::percent_format(scale = 1)) + 
+  geom_errorbar(aes(ymin = low, ymax = hi), width = 0.02, alpha = 0.5) +
   labs(
     x = "UV-C Coverage",
     y = "Active Infection Prevalence",
@@ -154,7 +158,6 @@ panelB <- ggplot(plot_data,
   x_percent_scale +
   scale_color_manual(values = cols)  +
   theme_minimal()
-
 #Panel C: Heatmaps
 target_vals <- c(0.2, 0.4, 0.6, 0.8, 1.0)
 
@@ -188,19 +191,20 @@ combined_sc2_plot
 
 
 #Panel D: Flu 
-cols <- viridis::magma(3, begin = 0.3, end = 0.9)
+cols <- c("#CD86EA", "#651983", "#3F1052")
 
 target_efficacies <- c(0.4, 0.6, 0.8)
 
 plot_data <- reductions_summary %>% 
-  filter(efficacy %in% target_efficacies, archetype == "flu")
+  filter(efficacy %in% target_efficacies, archetype == "flu") %>% 
+  filter(coverage %in% target_coverage_intervals)
 
 panelD <- ggplot(plot_data, 
-       aes(x = coverage, y = mean_incidence_reduction,
-           color = factor(efficacy, labels = scales::percent(target_efficacies, accuracy = 1)), group = efficacy)) + 
+                 aes(x = coverage, y = mean_incidence_reduction,
+                     color = factor(efficacy, labels = scales::percent(target_efficacies, accuracy = 1)), group = efficacy)) + 
   geom_line(size  = 1) +
   geom_point() +
-  geom_errorbar(aes(ymin = lo_incidence, ymax = hi_incidence),
+  geom_errorbar(aes(ymin = low_incidence, ymax = hi_incidence),
                 width = 0.02, alpha = 0.5) +
   labs(
     x = "UV-C Coverage",
@@ -213,27 +217,29 @@ panelD <- ggplot(plot_data,
   theme_minimal()
 
 # Panel E: Flu Active Infections (post period only)
-cols <- viridis::magma(3, begin = 0.3, end = 0.9)
+cols <- c("#E68996", "#D93052", "#9D374C")
 
 post_active <- metrics %>%
   filter(window == "post", archetype == "flu") %>%
   group_by(archetype, coverage, efficacy) %>%
   summarise(
     mean_active_infected = mean(mean_prevalence, na.rm = TRUE),
-    lo = quantile(mean_prevalence, 0.05, na.rm = TRUE),
-    hi = quantile(mean_prevalence, 0.95, na.rm = TRUE),
+    low = min(mean_prevalence, na.rm = TRUE),
+    hi = max(mean_prevalence, na.rm = TRUE),
     .groups = "drop"
   )
 
 plot_data <- post_active %>% 
-  filter(efficacy %in% target_efficacies)
+  filter(efficacy %in% target_efficacies) %>% 
+  filter(coverage %in% target_coverage_intervals)
 
 panelE <- ggplot(plot_data,
-       aes(x = coverage, y = mean_active_infected,
-           color = factor(efficacy, labels = scales::percent(target_efficacies, accuracy = 1)), group = efficacy)) +
+                 aes(x = coverage, y = mean_active_infected,
+                     color = factor(efficacy, labels = scales::percent(target_efficacies, accuracy = 1)), group = efficacy)) +
   geom_line(size = 1) +
   geom_point() +
-  geom_errorbar(aes(ymin = lo, ymax = hi), width = 0.02, alpha = 0.5) +
+  scale_y_continuous (labels = scales::percent_format(scale = 1)) + 
+  geom_errorbar(aes(ymin = low, ymax = hi), width = 0.02, alpha = 0.5) +
   labs(
     x = "UV-C Coverage",
     y = "Active Infection Prevalence",
@@ -251,8 +257,8 @@ heat_data <- reductions_summary %>%
          efficacy %in% target_vals, archetype == "flu")
 
 panelF <- ggplot(heat_data, aes(x = factor(coverage, labels = scales::percent(c(0.2, 0.4, 0.6, 0.8, 1.0))),
-                                 y = factor(efficacy, labels = scales::percent(c(0.2, 0.4, 0.6, 0.8, 1.0))),,
-                      fill = mean_incidence_reduction)) +
+                                y = factor(efficacy, labels = scales::percent(c(0.2, 0.4, 0.6, 0.8, 1.0))),,
+                                fill = mean_incidence_reduction)) +
   geom_tile(color = "white") +
   viridis::scale_fill_viridis(
     option = "magma",
