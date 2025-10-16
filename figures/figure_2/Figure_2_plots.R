@@ -120,7 +120,7 @@ panelA <- ggplot(plot_data,
     y = "% Reduction in Annualized \n  Disease Incidence",
     colour = "Efficacy"
   ) +
-  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1), limits = c(0, 1)) +
   x_percent_scale +
   scale_color_manual(values = cols)  +
   theme_minimal()
@@ -148,7 +148,7 @@ panelB <- ggplot(plot_data_b,
                      color = factor(efficacy, labels = scales::percent(target_efficacies, accuracy = 1)), group = efficacy)) +
   geom_line(size = 1) +
   geom_point() +
-  scale_y_continuous (labels = scales::percent_format(scale = 1)) + 
+  scale_y_continuous (labels = scales::percent_format(scale = 1),  limits = c(0, NA)) + 
   geom_errorbar(aes(ymin = low, ymax = hi), width = 0.02, alpha = 0.5) +
   labs(
     x = "UV-C Coverage",
@@ -211,7 +211,7 @@ panelD <- ggplot(plot_data,
     y = "% Reduction in  Annualized \n   Disease Incidence",
     colour = "Efficacy"
   ) +
-  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1),  limits = c(0, NA)) +
   x_percent_scale +
   scale_color_manual(values = cols)  +
   theme_minimal()
@@ -238,7 +238,7 @@ panelE <- ggplot(plot_data,
                      color = factor(efficacy, labels = scales::percent(target_efficacies, accuracy = 1)), group = efficacy)) +
   geom_line(size = 1) +
   geom_point() +
-  scale_y_continuous (labels = scales::percent_format(scale = 1)) + 
+  scale_y_continuous (labels = scales::percent_format(scale = 1),  limits = c(0, 1.5)) + 
   geom_errorbar(aes(ymin = low, ymax = hi), width = 0.02, alpha = 0.5) +
   labs(
     x = "UV-C Coverage",
