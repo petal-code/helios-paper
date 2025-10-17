@@ -1,0 +1,14 @@
+---
+title: "Figure 4 results"
+format: docx
+---
+
+Goal: 400 words.
+
+```{r}
+results_summary <- readr::read_csv(
+  here::here("figures", "epidemic_scenario", "results_summary.csv")
+)
+
+results_summary
+```

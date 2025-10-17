@@ -210,7 +210,7 @@ ggsave(
   dpi = 300
 )
 
-write_csv(
+readr::write_csv(
   results_summary,
   here::here("figures", "epidemic_scenario", "results_summary.csv")
 )
