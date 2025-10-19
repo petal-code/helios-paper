@@ -98,11 +98,11 @@ By contrast, for COVID-19 archetype disease burden remained even at the highest 
 
 Paragraph about how efficacy and coverage trade-off to achieve a particular reduction in disease burden...
 
-For the random coverage strategy, reductions disease burden are typically approximately linear with increasing coverage.
+For the random coverage strategy, reductions disease burden were typically approximately linear with increasing coverage.
 Exceptions include diminishing marginal returns achieved for the influenza archetype for high efficacy levels, where the epidemic is close to full suppression.
 
 The targeted deployment strategies achieved higher reductions in disease burden at lower coverage levels than the random strategy.
-For for the influenza archetype, at medium efficacy the peak daily incidence for the random strategy at 60% coverage (`r signif(flu_random_6$mean_value, 3)`) was achieved by the targeted strategy at only 40% coverage (`r signif(flu_targeted_4$mean_value, 3)`).
+For the influenza archetype, at medium efficacy the peak daily incidence for the random strategy at 60% coverage (`r signif(flu_random_6$mean_value, 3)`) was achieved by the targeted strategy at only 40% coverage (`r signif(flu_targeted_4$mean_value, 3)`).
 Similarly, the peak daily incidence for the random strategy at 40% coverage (`r signif(flu_random_4$mean_value, 3)`) was achieved by the targeted strategy at 20% coverage (`r signif(flu_targeted_2$mean_value, 3)`).
 Taking a targeted approach allowed a 20% reduction in coverage required to achieve a given result.
 
