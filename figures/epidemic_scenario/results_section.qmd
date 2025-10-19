@@ -1,14 +1,110 @@
 ---
 title: "Figure 4 results"
-format: docx
+format: html
 ---
 
 Goal: 400 words.
 
 ```{r}
+library(tidyverse)
+
 results_summary <- readr::read_csv(
   here::here("figures", "epidemic_scenario", "results_summary.csv")
-)
+) |>
+  mutate(
+    coverage = signif(coverage, 2),
+    efficacy = signif(efficacy, 2)
+  )
 
-results_summary
+no_intervention <- results_summary |>
+  filter(coverage == 0 | efficacy == 0) |>
+  group_by(archetype, metric) |>
+  summarise(
+    mean_value = mean(mean_value),
+    max_value = max(max_value),
+    min_value = min(min_value)
+  )
+
+no_intervention_flu <- no_intervention |>
+  filter(archetype == "flu")
+
+no_intervention_covid <- no_intervention |>
+  filter(archetype == "sars_cov_2")
+
+flu_random_4 <- results_summary |>
+  filter(
+    archetype == "flu",
+    metric == "peak_daily_incidence",
+    efficacy == 0.6,
+    coverage_type == "Random",
+    coverage == 0.4
+  )
+
+flu_random_6 <- results_summary |>
+  filter(
+    archetype == "flu",
+    metric == "peak_daily_incidence",
+    efficacy == 0.6,
+    coverage_type == "Random",
+    coverage == 0.6
+  )
+
+flu_targeted_2 <- results_summary |>
+  filter(
+    archetype == "flu",
+    metric == "peak_daily_incidence",
+    efficacy == 0.6,
+    coverage_type == "Targeted",
+    coverage == 0.2
+  )
+
+flu_targeted_4 <- results_summary |>
+  filter(
+    archetype == "flu",
+    metric == "peak_daily_incidence",
+    efficacy == 0.6,
+    coverage_type == "Targeted",
+    coverage == 0.4
+  )
 ```
+
+## Notes
+
+* Increasing coverage and increasing efficacy both contribute to reduced disease burden across all scenarios
+* Peak incidence reduction seems to be around linear in coverage for the random strategy
+* Targeted approaches achieve higher reductions at lower coverage levels
+* Rate of reduction in disease burden seems to be higher for influenza archetype over COVID-19 archetype
+* For the influenza archetype, at high efficacy and coverage levels, the targeted and random strategy both achieved full disease suppression
+* Want to make some kind of statements about how efficacy and coverage trade-off
+* To achieve an X% reduction in a particular metric required...
+  * For both influenza and COVID-19 setting
+* COVID-19 archetype is harder to control than the influenza archetype
+* How to show 0% efficacy / coverage scenario? Quite useful to have a reference point for "no intervention"
+* Shall we call the efficacy scenarios "low, medium, and high" in the text? And maybe in the figure caption?
+* Are we logging the proportion of transmission which occurs in different locations?
+
+## Writing
+
+Next we evaluated the impact of air quality interventions on disease burden across two archetypal epidemic scenarios approximating influenza and COVID-19.
+We varied intervention efficacy and population coverage, and considered both random and targeted deployment strategies.
+
+Under no interventions, the influenza archetype resulted in a peak incidence of `r signif(filter(no_intervention_flu, metric == "peak_daily_incidence")$mean_value, 3)` and a final epidemic size of `r 100 * signif(filter(no_intervention_flu, metric == "epidemic_final_size")$mean_value, 3)`%, and the COVID-19 archetype resulted in a peak incidence of `r signif(filter(no_intervention_covid, metric == "peak_daily_incidence")$mean_value, 3)` and a final epidemic size of `r 100 * signif(filter(no_intervention_covid, metric == "epidemic_final_size")$mean_value, 3)`%.
+
+For both archetypes, increasing either intervention efficacy or population coverage led to reductions in disease burden across all metrics considered.
+The rate of reduction in final epidemic size and peak incidence was higher for the influenza archetype than the COVID-19 archetype.
+
+At high efficacy and coverage levels, both deployment strategies achieved full disease suppression in the influenza archetype.
+By contrast, for COVID-19 archetype disease burden remained even at the highest efficacy and coverage levels we considered.
+
+Paragraph about how efficacy and coverage trade-off to achieve a particular reduction in disease burden...
+
+For the random coverage strategy, reductions disease burden are typically approximately linear with increasing coverage.
+Exceptions include diminishing marginal returns achieved for the influenza archetype for high efficacy levels, where the epidemic is close to full suppression.
+
+The targeted deployment strategies achieved higher reductions in disease burden at lower coverage levels than the random strategy.
+For for the influenza archetype, at medium efficacy the peak daily incidence for the random strategy at 60% coverage (`r signif(flu_random_6$mean_value, 3)`) was achieved by the targeted strategy at only 40% coverage (`r signif(flu_targeted_4$mean_value, 3)`).
+Similarly, the peak daily incidence for the random strategy at 40% coverage (`r signif(flu_random_4$mean_value, 3)`) was achieved by the targeted strategy at 20% coverage (`r signif(flu_targeted_2$mean_value, 3)`).
+Taking a targeted approach allowed a 20% reduction in coverage required to achieve a given result.
+
+The benefits of targeted deployment were more pronounced in the intermediate coverage scenarios.
+For full coverage, both strategies converge to the same level of disease burden reduction.
