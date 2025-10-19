@@ -199,7 +199,8 @@ row2 <- peak_incidence_covid_pointrange + peak_incidence_covid_heatmap
 row3 <- final_size_flu_pointrange + final_size_flu_heatmap
 row4 <- peak_incidence_flu_pointrange + peak_incidence_flu_heatmap
 
-plot <- row1 / row2 / row3 / row4
+plot <- row1 / row2 / row3 / row4 +
+  plot_annotation(tag_levels = "A")
 
 ggsave(
   filename = here::here("figures", "epidemic_scenario", "figure4.png"),
