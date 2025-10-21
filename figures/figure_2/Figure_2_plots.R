@@ -50,7 +50,7 @@ all_sims <- purrr::map_dfr(files, read_simulation)
 metrics <- all_sims %>%
   mutate(window = case_when(
     year %in% 5:7   ~ "baseline",
-    year %in% 18:20 ~ "post"
+    year %in% 15:17 ~ "post"
   )) %>%
   filter(!is.na(window)) %>%
   group_by(filename, archetype, coverage, efficacy, window) %>%
@@ -195,11 +195,11 @@ cols <- c("#CD86EA", "#651983", "#3F1052")
 
 target_efficacies <- c(0.4, 0.6, 0.8)
 
-plot_data <- reductions_summary %>% 
+plot_data_d <- reductions_summary %>% 
   filter(efficacy %in% target_efficacies, archetype == "flu") %>% 
   filter(coverage %in% target_coverage_intervals)
 
-panelD <- ggplot(plot_data, 
+panelD <- ggplot(plot_data_d, 
                  aes(x = coverage, y = mean_incidence_reduction,
                      color = factor(efficacy, labels = scales::percent(target_efficacies, accuracy = 1)), group = efficacy)) + 
   geom_line(size  = 1) +
