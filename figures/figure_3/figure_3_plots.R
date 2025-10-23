@@ -73,8 +73,106 @@ reductions <- metrics %>%
       mean_prevalence_baseline
   )
 
-#Panel A: % reduction in annualized incidence - SC2
-panel_a <- reductions %>%
+
+#Panel A: Random vs Targeting
+
+# Figure 2.2 — Random vs riskiness-targeted location selection
+
+library(helios)
+library(ggplot2)
+library(dplyr)
+
+theme_set(theme_bw())
+
+# palette used in the report
+#blueprint_colours <- colorRampPalette(c("#00AFFF", "#03113E"))(4)
+
+# Parameters to generate location riskiness across setting types
+scaling_factor <- 5
+parameter_list <- get_parameters(
+  archetype = "flu",
+  overrides = list(
+    seed = 42,
+    human_population = 400000 / scaling_factor,
+    number_initial_S = 240000 / scaling_factor,
+    number_initial_E = 160000 / scaling_factor,
+    number_initial_I = 0,
+    number_initial_R = 0,
+    simulation_time = 150
+  )
+) |>
+  set_setting_specific_riskiness(
+    setting = "school", mean = 0, sd = 0.3544,
+    min = 1 / sqrt(4.75), max = sqrt(4.75)
+  ) |>
+  set_setting_specific_riskiness(
+    setting = "workplace", mean = 0, sd = 0.5072,
+    min = 1 / sqrt(6.35), max = sqrt(6.35)
+  ) |>
+  set_setting_specific_riskiness(
+    setting = "household", mean = 0, sd = 0.0871,
+    min = 1 / sqrt(2.5), max = sqrt(2.5)
+  ) |>
+  set_setting_specific_riskiness(
+    setting = "leisure", mean = 0, sd = 0.4278,
+    min = 1 / sqrt(5.5), max = sqrt(5.5)
+  )
+
+vars <- create_variables(parameter_list)
+parameters <- vars$parameters_list
+variables  <- vars$variables_list
+
+# Helper to extract vectors for plotting from a parameters list
+extract_df <- function(p_list, v_list, label) {
+  sw <- generate_far_uvc_switches(parameters_list = p_list, variables_list = v_list)
+  data.frame(
+    setting_type = c(rep("school",   length(sw$school_specific_riskiness)),
+                     rep("leisure",  length(sw$leisure_specific_riskiness)),
+                     rep("workplace",length(sw$workplace_specific_riskiness))),
+    riskiness = c(sw$school_specific_riskiness,
+                  sw$leisure_specific_riskiness,
+                  sw$workplace_specific_riskiness),
+    uvc = c(sw$uvc_school, sw$uvc_leisure, sw$uvc_workplace),
+    type = label
+  )
+}
+
+# Random targeting at 50% square footage
+p_rand <- set_uvc(
+  parameters_list = parameters, setting = "joint",
+  coverage = 0.5, coverage_target = "square_footage",
+  coverage_type = "random", efficacy = 0.8, timestep = 1
+)
+
+# Riskiness-targeted at 50% square footage
+p_targ <- set_uvc(
+  parameters_list = parameters, setting = "joint",
+  coverage = 0.5, coverage_target = "square_footage",
+  coverage_type = "targeted_riskiness", efficacy = 0.8, timestep = 1
+)
+
+df <- bind_rows(
+  extract_df(p_rand, variables, "Random Targeting of Far UVC"),
+  extract_df(p_targ, variables, "Targeting Far UVC Based on Riskiness")
+) |>
+  arrange(desc(riskiness)) |>
+  mutate(rank = row_number(),
+         installed = ifelse(uvc == 1, "Yes", "No"))
+
+ggplot(df, aes(x = rank, y = riskiness, fill = installed, colour = installed)) +
+  geom_bar(stat = "identity") +
+  facet_wrap(~ type) +
+  scale_colour_manual(values = c("No" = "grey50", "Yes" = "#03113E")) +
+  scale_fill_manual(values   = c("No" = "grey80", "Yes" = "#03113E")) +
+  labs(x = "Rank Order of Riskiness",
+       y = "Relative riskiness",
+       fill = "Far UVC Installed?",
+       colour = "Far UVC Installed?") +
+  theme(legend.position = "bottom")
+
+
+#Panel B: % reduction in annualized incidence - SC2
+panel_b <- reductions %>%
   filter(archetype == "sars_cov_2", efficacy == 0.6) %>%  # optional pathogen filter
   ggplot(aes(x = factor(coverage),
              y = pct_reduction_incidence,
@@ -96,7 +194,7 @@ panel_a <- reductions %>%
     panel.grid.minor = element_blank()
   )
 
-panel_a
+panel_b
 
 # Panel B: Relative Extra Impact of Targeted vs Random - SC2
 #plot b/a, 
