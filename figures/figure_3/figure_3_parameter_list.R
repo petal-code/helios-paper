@@ -2,10 +2,10 @@ source(here::here("packages.R"))
 #Figure 3: Targeted vs Random
 # Core Parameters
 archetypes <- c("flu", "sars_cov_2")
-iterations <- 1:5
+iterations <- 1:15
 years_to_simulate <- 20
 simulation_time_days <- (365 * years_to_simulate)
-human_population <- 50000
+human_population <- 100000
 duration_of_immunity <- 365
 external_infection_probability <- 1 / human_population
 riskiness <- "setting_specific_riskiness"
@@ -30,57 +30,15 @@ initial_R_flu <- human_population -
   initial_I_flu
 
 simulations_to_run <- rbind(
-  # Panel A: Absolute reduction in annualized incidence vs baseline
-  # % reduction plotted for random vs targeted
-  # Panel E: Absolute reduction in prevalence vs baseline (reuses these runs)
   expand.grid(
     archetype = archetypes,
-    coverage = seq(0.1, 0.9, 0.1), # fine coverage sweep
-    efficacy = c(0.3, 0.5, 0.8), # Low / Medium / High efficacy
+    coverage = seq(0.2, 0.8, 0.2),
+    efficacy = seq(0.2, 0.8, 0.2), # Low / Medium / High efficacy
     coverage_type = c("random", "targeted_riskiness"),
     iteration = iterations,
-    panel = "panel_A",
     riskiness = riskiness,
     stringsAsFactors = FALSE
   ),
-
-  # Panel B: Relative extra impact in annualized incidence
-  # Panel F: Relative extra impact in prevalence (reuses these runs)
-  expand.grid(
-    archetype = archetypes,
-    coverage = seq(0.1, 0.9, 0.1),
-    efficacy = c(0.3, 0.5, 0.8),
-    coverage_type = c("random", "targeted_riskiness"),
-    iteration = iterations,
-    panel = "panel_B",
-    riskiness = riskiness,
-    stringsAsFactors = FALSE
-  ),
-
-  # Panel C: Heatmap of absolute impact (incidence, targeted − random)
-  expand.grid(
-    archetype = archetypes,
-    coverage = c(0.2, 0.4, 0.6, 0.8),
-    efficacy = c(0.2, 0.4, 0.6, 0.8),
-    coverage_type = c("random", "targeted_riskiness"),
-    iteration = iterations,
-    panel = "panel_C",
-    riskiness = riskiness,
-    stringsAsFactors = FALSE
-  ),
-
-  # Panel D: Heat map of relative extra impact (incidence)
-  #  same coverage × efficacy grid as Panel C
-  expand.grid(
-    archetype = archetypes,
-    coverage = c(0.2, 0.4, 0.6, 0.8),
-    efficacy = c(0.2, 0.4, 0.6, 0.8),
-    coverage_type = c("random", "targeted_riskiness"),
-    iteration = iterations,
-    panel = "panel_D",
-    riskiness = riskiness,
-    stringsAsFactors = FALSE
-  )
 )
 
 simulations_to_run <- simulations_to_run |>
@@ -212,3 +170,6 @@ saveRDS(
   simulations_to_run,
   "figures/figure_3/figure_3_parameter_combinations.rds"
 )
+
+
+
