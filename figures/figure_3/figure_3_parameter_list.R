@@ -3,7 +3,7 @@ source(here::here("packages.R"))
 # Core Parameters
 archetypes <- c("flu", "sars_cov_2")
 iterations <- 1:15
-years_to_simulate <- 20
+years_to_simulate <- 15
 simulation_time_days <- (365 * years_to_simulate)
 human_population <- 100000
 duration_of_immunity <- 365
@@ -38,7 +38,7 @@ simulations_to_run <- rbind(
     iteration = iterations,
     riskiness = riskiness,
     stringsAsFactors = FALSE
-  ),
+  )
 )
 
 simulations_to_run <- simulations_to_run |>
@@ -49,7 +49,6 @@ simulations_to_run <- simulations_to_run |>
   ) |>
   dplyr::arrange(
     archetype,
-    panel,
     coverage_type,
     coverage,
     efficacy,
@@ -102,7 +101,7 @@ for (i in 1:nrow(simulations_to_run)) {
         coverage_target = "square_footage",
         coverage_type = simulations_to_run$coverage_type[i],
         efficacy = simulations_to_run$efficacy[i],
-        timestep = 365 * 15
+        timestep = 365 * 10 * 2 #Turn on uv-c 10 years in, multiply by 2 for 0.5 timestep
       )
   }
 
@@ -149,7 +148,6 @@ simulations_to_run <- simulations_to_run |>
     figure,
     scenario,
     iteration,
-    panel,
     everything()
   )
 
@@ -171,5 +169,7 @@ saveRDS(
   "figures/figure_3/figure_3_parameter_combinations.rds"
 )
 
+param_list <- readRDS("figures/figure_3/figure_3_parameter_list.rds")
+sim_table  <- readRDS("figures/figure_3/figure_3_parameter_combinations.rds")
 
 
