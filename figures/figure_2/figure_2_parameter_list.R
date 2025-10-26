@@ -163,7 +163,7 @@ for (i in 1:length(parameter_lists)) {
 }
 
 saveRDS(parameter_lists, "figures/figure_2/figure_2_parameter_list.rds")
-saveRDS(
-  simulations_to_run,
-  "figures/figure_2/figure_2_parameter_combinations.rds"
-)
+#saveRDS(
+#  simulations_to_run,
+#  "figures/figure_2/figure_2_parameter_combinations.rds"
+#)
