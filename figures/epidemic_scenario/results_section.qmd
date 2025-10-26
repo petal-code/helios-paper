@@ -99,22 +99,30 @@ pct_reduction_no_intervention <- function(archetype, metric, coverage_type, effi
 
 **Figure caption**:
 Analyses of the impact of air quality interventions on disease burden across two epidemic scenarios.
+(A) Final epidemic size in terms of percentage of the population infected for the SARS-CoV-2 archetype, with point-ranges showing the mean and simulated range across coverage levels for random versus targeted deployment; line and point colors denote intervention efficacy.
+(B) Heatmap of final epidemic size for SARS-CoV-2, providing sensitivtiy analysis across a wider range of values.
+(C) As for (A), but for the peak incidence measured in terms of daily infections per 1,000 population.
+(D) As for (B), but for the peak incidence.
+(E) Final epidemic size for the influenza archetype.
+(F) Heatmap of final epidemic size for the influenza archetype.
+(G) As for (D), but for the peak incidence.
+(H) As for (F), but for the peak incidence.
 
 ```{r, echo=FALSE, out.width = '100%'}
 knitr::include_graphics("figure4.png")
 ```
 
-Next we evaluated the impact of air quality interventions on disease burden across two archetypal epidemic scenarios approximating influenza and COVID-19.
+Next we evaluated the impact of air quality interventions on disease burden across two archetypal epidemic scenarios approximating influenza and SARS-CoV-2.
 We varied intervention efficacy and population coverage, and considered random and targeted deployment strategies.
 
 Across both archetypes, higher efficacy or wider coverage led to reductions in disease burden across all metrics considered.
-Without intervention, the peak incidence of the influenza archetype was `r signif(filter(no_intervention_flu, metric == "peak_daily_incidence")$mean_value, 3)` per 1,000 with a final epidemic size of `r 100 * signif(filter(no_intervention_flu, metric == "epidemic_final_size")$mean_value, 3)`% of total population, whereas the COVID-19 archetype yielded a peak incidence of `r signif(filter(no_intervention_covid, metric == "peak_daily_incidence")$mean_value, 3)` per 1,000 and a final epidemic size of `r 100 * signif(filter(no_intervention_covid, metric == "epidemic_final_size")$mean_value, 3)`% of total population.
-The influenza archetype responded more strongly to intervention: random deployment at 40% coverage and 60% efficacy reduced the final epidemic size by `r signif(100 * pct_reduction_no_intervention("flu", "epidemic_final_size", "Random", 0.6, 0.4), 3)`%, compared with `r signif(100 * pct_reduction_no_intervention("sars_cov_2", "epidemic_final_size", "Random", 0.6, 0.4), 2)`% for the COVID-19 archetype under the same settings.
-The influenza epidemics were close to fully suppressed under a wider range of intervention settings: full coverage with 60% efficacy gave a `r signif(100 * pct_reduction_no_intervention("flu", "peak_daily_incidence", "Random", 0.6, 1), 3)`% drop in peak incidence, while achieving a `r signif(100 * pct_reduction_no_intervention("sars_cov_2", "peak_daily_incidence", "Random", 0.8, 1), 3)`% drop for COVID-19 required full coverage at 80% efficacy.
+Without intervention, the peak incidence of the influenza archetype was `r signif(filter(no_intervention_flu, metric == "peak_daily_incidence")$mean_value, 3)` per 1,000 with a final epidemic size of `r 100 * signif(filter(no_intervention_flu, metric == "epidemic_final_size")$mean_value, 3)`% of total population, whereas the SARS-CoV-2 archetype yielded a peak incidence of `r signif(filter(no_intervention_covid, metric == "peak_daily_incidence")$mean_value, 3)` per 1,000 and a final epidemic size of `r 100 * signif(filter(no_intervention_covid, metric == "epidemic_final_size")$mean_value, 3)`% of total population.
+The influenza archetype responded more strongly to intervention: random deployment at 40% coverage and 60% efficacy reduced the final epidemic size by `r signif(100 * pct_reduction_no_intervention("flu", "epidemic_final_size", "Random", 0.6, 0.4), 3)`%, compared with `r signif(100 * pct_reduction_no_intervention("sars_cov_2", "epidemic_final_size", "Random", 0.6, 0.4), 2)`% for the SARS-CoV-2 archetype under the same settings.
+The influenza epidemics were close to fully suppressed under a wider range of intervention settings: full coverage with 60% efficacy gave a `r signif(100 * pct_reduction_no_intervention("flu", "peak_daily_incidence", "Random", 0.6, 1), 3)`% drop in peak incidence, while achieving a `r signif(100 * pct_reduction_no_intervention("sars_cov_2", "peak_daily_incidence", "Random", 0.8, 1), 3)`% drop for SARS-CoV-2 required full coverage at 80% efficacy.
 
 Efficacy and coverage acted as partially interchangeable levers.
 For the influenza archetype, expanding randomly allocated coverage from 40% to 60% at 40% efficacy lowered the final epidemic size by `r signif(100 * pct_reduction("flu", "epidemic_final_size", "Random", 0.4, 0.6, 0.4, 0.4), 3)`%, matching the `r signif(100 * pct_reduction("flu", "epidemic_final_size", "Random", 0.6, 0.4, 0.4, 0.4), 3)`% from instead increasing efficacy from 40% to 60% while holding coverage at 40%.
-The same comparisons in the COVID-19 archetype delivered only `r signif(100 * pct_reduction("sars_cov_2", "epidemic_final_size", "Random", 0.4, 0.6, 0.4, 0.4), 3)`% and `r signif(100 * pct_reduction("sars_cov_2", "epidemic_final_size", "Random", 0.6, 0.4, 0.4, 0.4), 3)`% reductions, highlighting its greater resistance to control.
+The same comparisons in the SARS-CoV-2 archetype delivered only `r signif(100 * pct_reduction("sars_cov_2", "epidemic_final_size", "Random", 0.4, 0.6, 0.4, 0.4), 3)`% and `r signif(100 * pct_reduction("sars_cov_2", "epidemic_final_size", "Random", 0.6, 0.4, 0.4, 0.4), 3)`% reductions, highlighting its greater resistance to control.
 Under the randomly allocated strategy, disease burden generally declined in near-linear fashion as coverage increased.
 Under 60% efficacy in the influenza archetype, peak incidence dropped by `r signif(100 * pct_reduction_no_intervention("flu", "peak_daily_incidence", "Random", 0.6, 0.4), 3)`% at 40% coverage, `r signif(100 * pct_reduction_no_intervention("flu", "peak_daily_incidence", "Random", 0.6, 0.6), 3)`% at 60% coverage, and `r signif(100 * pct_reduction_no_intervention("flu", "peak_daily_incidence", "Random", 0.6, 0.8), 3)`% at 80% coverage.
 
@@ -122,7 +130,7 @@ The targeted deployment strategies achieved higher reductions in disease burden 
 For the influenza archetype at 60% efficacy, the random strategy required 60% coverage to reach a peak daily incidence of `r signif(flu_random_6$mean_value, 3)` per 1,000, while the targeted strategy achieved the same result with only 40% coverage, producing a peak daily incidence of `r signif(flu_targeted_4$mean_value, 3)` per 1,000.
 This pattern also held at lower coverage levels: the random strategy's result at 40% coverage -- a peak daily incidence of `r signif(flu_random_4$mean_value, 3)` per 1,000 -- matched the targeted strategy's outcome at just 20% coverage, where peak daily incidence was `r signif(flu_targeted_2$mean_value, 3)` per 1,000.
 In these cases, taking a targeted approach allowed a 20% reduction in coverage required to achieve a given result.
-Targeting delivered the largest benefits in the mid-range coverage scenarios, where, for example, 60% efficacy and 20% coverage reduced peak incidence by `r signif(100 * pct_reduction_no_intervention("sars_cov_2", "peak_daily_incidence", "Targeted", 0.6, 0.2), 2)`% for the COVID-19 archetype compared with `r signif(100 * pct_reduction_no_intervention("sars_cov_2", "peak_daily_incidence", "Random", 0.6, 0.2), 2)`% under random deployment.
+Targeting delivered the largest benefits in the mid-range coverage scenarios, where, for example, 60% efficacy and 20% coverage reduced peak incidence by `r signif(100 * pct_reduction_no_intervention("sars_cov_2", "peak_daily_incidence", "Targeted", 0.6, 0.2), 2)`% for the SARS-CoV-2 archetype compared with `r signif(100 * pct_reduction_no_intervention("sars_cov_2", "peak_daily_incidence", "Random", 0.6, 0.2), 2)`% under random deployment.
 As coverage approaches 100%, the random and targeted strategies converge.
 
 ## Notes
@@ -130,11 +138,11 @@ As coverage approaches 100%, the random and targeted strategies converge.
 * Increasing coverage and efficacy both contribute to reduced disease burden across all scenarios
 * Peak incidence reduction seems to be around linear in coverage for the random strategy
 * Targeted approaches achieve higher reductions at lower coverage levels
-* Rate of reduction in disease burden higher for influenza archetype over COVID-19 archetype
+* Rate of reduction in disease burden higher for influenza archetype over SARS-CoV-2 archetype
 * For the influenza archetype, at high efficacy and coverage levels, the targeted and random strategy both achieved full disease suppression
 * Want to make some kind of statements about how efficacy and coverage trade-off
 * To achieve an $X$% reduction in a particular metric required...
-* COVID-19 archetype is harder to control than the influenza archetype
+* SARS-CoV-2 archetype is harder to control than the influenza archetype
 * How to show 0% efficacy / coverage scenario? Useful to have a "no intervention" reference point
 * Shall we call the efficacy scenarios "low, medium, and high" in the text? And the figure caption?
 * Are we logging the proportion of transmission which occurs in different locations?
