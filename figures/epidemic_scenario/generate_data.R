@@ -41,6 +41,8 @@ length(parameter_lists)
 
 slug <- ids::adjective_animal()
 time <- format(Sys.time(), "%Y%m%d_%H%M%S")
+name1 <- paste("figure_4_simulation_settings", slug, time, sep = "-")
+name2 <- paste("figure_4_parameter_lists", slug, time, sep = "-")
 
 saveRDS(
   simulation_settings,
@@ -48,7 +50,7 @@ saveRDS(
     "figures",
     "epidemic_scenario",
     "data",
-    paste("figure_4_simulation_settings", slug, time, sep = "-")
+    paste(name1, ".rds")
   )
 )
 
@@ -58,6 +60,6 @@ saveRDS(
     "figures",
     "epidemic_scenario",
     "data",
-    paste("figure_4_parameter_lists", slug, time, sep = "-")
+    paste(name2, ".rds")
   )
 )
