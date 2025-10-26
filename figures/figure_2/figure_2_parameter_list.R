@@ -2,10 +2,10 @@ source(here::here("packages.R"))
 
 #Core Parameters
 archetypes <- c("flu", "sars_cov_2") 
-iterations <- 1:5
-years_to_simulate <- 20
+iterations <- 1:15
+years_to_simulate <- 15
 simulation_time_days <- (365 * years_to_simulate)
-human_population <- 50000
+human_population <- 100000
 duration_of_immunity <- 365
 external_infection_probability <- 1 / human_population
 riskiness <- "setting_specific_riskiness"
@@ -34,53 +34,12 @@ initial_R_flu <- human_population -
   initial_I_flu
 
 simulations_to_run <- rbind(
-  # Panel A&E: SC2 & Flu Annualized infection Incidence across UV-C Efficacy values (Line Graph)
   expand.grid(
     archetype = archetypes,
-    coverage = c(0.4, 0.6, 0.8),
-    efficacy = c(0, 0.2, 0.4, 0.6, 0.8),
+    coverage = seq(0.2, 1.0, 0.2),
+    efficacy = seq(0.2, 1.0, 0.2),
     coverage_type = "random",
     iteration = iterations,
-    panel = "panel_A",
-    riskiness = riskiness,
-    stringsAsFactors = FALSE
-  ),
-
-  # Panel B&F: SC2 and Flu % Reduction in Annualized infection Incidence across UV-C Coverage values
-
-  expand.grid(
-    archetype = archetypes,
-    coverage = c(0, 0.2, 0.4, 0.6, 0.8),
-    efficacy = c(0.4, 0.6, 0.8),
-    coverage_type = "random",
-    iteration = iterations,
-    panel = "panel_B",
-    riskiness = riskiness,
-    stringsAsFactors = FALSE
-  ),
-  
-  # Panel C&G: SC2 & Flu Heatmap, UVC Coverage x UVC Efficacy , % reduction in annualized infection incidence
-
-  expand.grid(
-    archetype = archetypes,
-    coverage = c(0, 0.2, 0.4, 0.6, 0.8, 1.0),
-    efficacy = c(0, 0.2, 0.4, 0.6, 0.8, 1.0),
-    coverage_type = "random",
-    iteration = iterations,
-    panel = "panel_C",
-    riskiness = riskiness,
-    stringsAsFactors = FALSE
-  ),
-  
-  # Panel D&H: SC2 $ Flu Active Infection Prevalence by UV-C Coverage (Line plot)
-
-  expand.grid(
-    archetype = archetypes,
-    coverage = c(0, 0.2, 0.4, 0.6, 0.8),
-    efficacy = c(0.4, 0.6, 0.8),
-    coverage_type = "random",
-    iteration = iterations,
-    panel = "panel_D",
     riskiness = riskiness,
     stringsAsFactors = FALSE
   )
@@ -94,13 +53,11 @@ simulations_to_run <- simulations_to_run |>
   ) |>
   arrange(
     archetype,
-    panel,
     coverage_type,
     coverage,
     efficacy,
     iteration
   )
-
 
 parameter_lists <- list()
 
@@ -145,10 +102,10 @@ for (i in 1:nrow(simulations_to_run)) {
         prob_inf_external = external_infection_probability,
         simulation_time = simulation_time_days,
         seed = simulations_to_run$seed[i]
-      
       )
     )
   }
+  
   # UVC Parameters
   if (simulations_to_run$coverage[i] > 0) {
     parameter_lists[[i]] <- parameter_lists[[i]] %>%
@@ -158,7 +115,7 @@ for (i in 1:nrow(simulations_to_run)) {
         coverage_target = "square_footage",
         coverage_type = simulations_to_run$coverage_type[i],
         efficacy = simulations_to_run$efficacy[i],
-        timestep = 365*17 #turn on UV-C at start of year 18 
+        timestep = 365 * 10 * 2
       )
   }
   
@@ -194,14 +151,11 @@ for (i in 1:nrow(simulations_to_run)) {
         max = sqrt(5.5)
       )
   }
-  
 }
-
 
 for (i in 1:length(parameter_lists)) {
   parameter_lists[[i]]$simulation_id <- simulations_to_run$ID[i]
   parameter_lists[[i]]$iteration_number <- simulations_to_run$iteration[i]
-  parameter_lists[[i]]$panel <- simulations_to_run$panel[i]
   parameter_lists[[i]]$archetype_label <- simulations_to_run$archetype[i]
   parameter_lists[[i]]$coverage <- simulations_to_run$coverage[i]
   parameter_lists[[i]]$efficacy <- simulations_to_run$efficacy[i]
