@@ -22,7 +22,7 @@ simulation_settings <- tidyr::crossing(
   riskiness = "setting_specific_riskiness",
   efficacy = seq(0.2, 1, by = 0.2),
   figure = 4,
-  iteration = 1:3,
+  iteration = 1:10,
   scenario = "epidemic"
 ) |>
   mutate(
