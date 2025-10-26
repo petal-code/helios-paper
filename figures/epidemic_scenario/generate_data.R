@@ -39,7 +39,25 @@ parameter_lists <- purrr::pmap(
 # Total number of simulations to run
 length(parameter_lists)
 
+slug <- ids::adjective_animal()
+time <- format(Sys.time(), "%Y%m%d_%H%M%S")
+
+saveRDS(
+  simulation_settings,
+  here::here(
+    "figures",
+    "epidemic_scenario",
+    "data",
+    paste("figure_4_simulation_settings", slug, time, sep = "-")
+  )
+)
+
 saveRDS(
   parameter_lists,
-  here::here("figures", "epidemic_scenario", "figure_4_parameter_lists.rds")
+  here::here(
+    "figures",
+    "epidemic_scenario",
+    "data",
+    paste("figure_4_parameter_lists", slug, time, sep = "-")
+  )
 )

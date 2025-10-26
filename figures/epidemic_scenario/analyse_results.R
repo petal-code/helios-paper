@@ -4,7 +4,7 @@ source(here::here("packages.R"))
 
 version <- "figure_4_epidemic_simulations"
 files <- list.files(
-  path = file.path("figures", "epidemic_scenario", version),
+  path = file.path("figures", "epidemic_scenario", "data", version),
   full.names = TRUE
 )
 
