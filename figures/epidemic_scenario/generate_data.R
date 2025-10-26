@@ -20,7 +20,7 @@ simulation_settings <- tidyr::crossing(
   coverage_type = c("random", "targeted_riskiness"),
   coverage = seq(0, 1, by = 0.2),
   riskiness = "setting_specific_riskiness",
-  efficacy = seq(0.2, 0.8, by = 0.2),
+  efficacy = seq(0.2, 1, by = 0.2),
   figure = 4,
   iteration = 1:3,
   scenario = "epidemic"
