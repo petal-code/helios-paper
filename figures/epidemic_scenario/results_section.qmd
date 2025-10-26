@@ -107,7 +107,10 @@ pct_reduction <- function(archetype, metric, coverage_type, efficacy, coverage) 
 
 ## Figure
 
-```{r, echo=FALSE, fig.cap="Caption", out.width = '100%'}
+**Figure caption**:
+Analyses of the impact of air quality interventions on disease burden across two epidemic scenarios.
+
+```{r, echo=FALSE, out.width = '100%'}
 knitr::include_graphics("figure4.png")
 ```
 
@@ -129,12 +132,12 @@ In simulations of influenza, expanding randomly allocated coverage from 40% to 6
 The same swap in the COVID-19 archetype delivered only $X$ to $Y$% reductions, highlighting its greater resistance to control.
 
 For the random coverage strategy, disease burden generally declined in near-linear fashion as coverage increased.
-Under 60% efficacy in the influenza archetype, peak incidence dropped by `r signif(100 * pct_reduction("flu", "peak_daily_incidence", "Random", 0.6, 0.4), 2)`% at 40% coverage and by `r signif(100 * pct_reduction("flu", "peak_daily_incidence", "Random", 0.6, 0.6), 2)`% at 60% coverage, before showing diminishing returns once the epidemic was close to suppression.
+Under 60% efficacy in the influenza archetype, peak incidence dropped by `r signif(100 * pct_reduction("flu", "peak_daily_incidence", "Random", 0.6, 0.4), 3)`% at 40% coverage, `r signif(100 * pct_reduction("flu", "peak_daily_incidence", "Random", 0.6, 0.6), 3)`% at 60% coverage, and `r signif(100 * pct_reduction("flu", "peak_daily_incidence", "Random", 0.6, 0.8), 3)`% at 80% coverage.
 
 The targeted deployment strategies achieved higher reductions in disease burden at lower coverage levels than the random strategy.
-For the influenza archetype, at 60% efficacy the peak daily incidence for the random strategy at 60% coverage (`r signif(flu_random_6$mean_value, 3)`) was achieved by the targeted strategy at only 40% coverage (`r signif(flu_targeted_4$mean_value, 3)`).
-Similarly, the peak daily incidence for the random strategy at 40% coverage (`r signif(flu_random_4$mean_value, 3)`) was achieved by the targeted strategy at 20% coverage (`r signif(flu_targeted_2$mean_value, 3)`).
-Taking a targeted approach allowed a 20% reduction in coverage required to achieve a given result.
+For the influenza archetype at 60% efficacy, the random strategy required 60% coverage to reach a peak daily incidence of `r signif(flu_random_6$mean_value, 3)` per 1,000, while the targeted strategy achieved the same result with only 40% coverage, producing a peak daily incidence of `r signif(flu_targeted_4$mean_value, 3)` per 1,000.
+This pattern also held at lower coverage levels: the random strategy's result at 40% coverage -- a peak daily incidence of `r signif(flu_random_4$mean_value, 3)` per 1,000 -- matched the targeted strategy's outcome at just 20% coverage, where peak daily incidence was `r signif(flu_targeted_2$mean_value, 3)` per 1,000.
+In these cases, taking a targeted approach allowed a 20% reduction in coverage required to achieve a given result.
 
 Targeting delivered the largest benefits in the mid-range coverage scenarios, where, for example, 60% efficacy and 20% coverage reduced peak incidence by `r signif(100 * pct_reduction("sars_cov_2", "peak_daily_incidence", "Targeted", 0.6, 0.2), 2)`% for the COVID-19 archetype compared with `r signif(100 * pct_reduction("sars_cov_2", "peak_daily_incidence", "Random", 0.6, 0.2), 2)`% under random deployment.
 As coverage approaches 100%, the random and targeted strategies converge.
