@@ -1,5 +1,3 @@
-# Add 100% efficacy to the simulations
-
 source(here::here("packages.R"))
 
 version <- "figure_4_epidemic_simulations"
