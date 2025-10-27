@@ -10,19 +10,16 @@ library(helios)
 
 #Panel A: Random vs Targeting
 
-theme_set(theme_bw())
-
 # Parameters to generate location riskiness across setting types
-scaling_factor <- 5
 parameter_list <- get_parameters(
   archetype = "flu",
   overrides = list(
     seed = 42,
-    human_population = 400000 / scaling_factor,
-    number_initial_S = 240000 / scaling_factor,
-    number_initial_E = 160000 / scaling_factor,
-    number_initial_I = 0,
-    number_initial_R = 0,
+    human_population = 100000,
+    number_initial_S = 67000 ,
+    number_initial_E = 6000 ,
+    number_initial_I = 1200,
+    number_initial_R = 25800,
     simulation_time = 150
   )
 ) |>
@@ -89,13 +86,15 @@ panel_a <- ggplot(df, aes(x = rank, y = riskiness, fill = installed, colour = in
   facet_wrap(~ type) +
   scale_colour_manual(values = c("No" = "grey50", "Yes" = "#03113E")) +
   scale_fill_manual(values   = c("No" = "grey80", "Yes" = "#03113E")) +
-  labs(x = "Rank Order of Riskiness",
+  labs(x = "Rank Order of Riskiness of Locations",
        y = "Relative riskiness",
        fill = "Far UVC Installed?",
        colour = "Far UVC Installed?") +
   theme(legend.position = "bottom")
 
 panel_a
+
+#targeting results
 
 dir_sim <- "/Users/geethaj/documents/helios_files/figure_3_simulations"
 files <- list.files(path = dir_sim, pattern = "\\.rds$", full.names = TRUE)
@@ -182,8 +181,8 @@ panel_b_summary <- reductions %>%
     .groups = "drop"
   ) %>%
   mutate(
-    efficacy_label = paste0("Efficacy = ", percent(efficacy, accuracy = 1)),
-    coverage_label = percent(coverage, accuracy = 1)
+    efficacy_label = paste0("Efficacy = ", scales::percent(efficacy, accuracy = 1)),
+    coverage_label = scales::percent(coverage, accuracy = 1)
   )
 
 dodge <- position_dodge(width = 0.8)
@@ -196,9 +195,9 @@ panel_b <- ggplot(panel_b_summary,
   geom_col(position = dodge, width = 0.9) +
   geom_errorbar(aes(ymin = low, ymax = hi),
                 position = dodge, width = 0.15, color = "black", linewidth = 0.6) +
-  facet_wrap(~ efficacy_label, nrow = 1) +
+  facet_wrap(~ efficacy_label, ncol = 1) +
   scale_fill_manual(
-    values = c("random" = "#6BAED6", "targeted_riskiness" = "#08519C"),
+    values = c("random" = "grey", "targeted_riskiness" = "#08519C"),
     labels = c("random" = "Random", "targeted_riskiness" = "Targeted")
   ) +
   scale_y_continuous(labels = percent_format(accuracy = 1)) +
@@ -206,7 +205,7 @@ panel_b <- ggplot(panel_b_summary,
        y = "% Reduction \n (vs baseline)",
        fill = "Deployment Type") +
   theme_minimal(base_size = 13) +
-  theme(legend.position = "top",
+  theme(legend.position = "bottom",
         panel.grid.minor = element_blank(),
         panel.grid.major.x = element_blank(),
         strip.text = element_text(face = "bold"))
@@ -228,8 +227,8 @@ panel_c_summary <- reductions_paired %>%
     .groups = "drop"
   ) %>%
   mutate(
-    coverage_label = percent(coverage, accuracy = 1),
-    efficacy_label = paste0(percent(efficacy, accuracy = 1), " Efficacy")
+    coverage_label = scales::percent(coverage, accuracy = 1),
+    efficacy_label = paste0(scales::percent(efficacy, accuracy = 1), " Efficacy")
   )
 
 panel_c <- ggplot(panel_c_summary,
@@ -249,7 +248,7 @@ panel_c <- ggplot(panel_c_summary,
     y = "Targeted / Random \n Reduction Ratio",  ) +
   theme_minimal(base_size = 13) +
   theme(
-    legend.position = "top",
+    legend.position = "bottom",
     panel.grid.minor = element_blank(),
     panel.grid.major.x = element_blank(),
     strip.text = element_text(face = "bold")
@@ -271,8 +270,8 @@ panel_d_summary <- reductions_paired %>%
     .groups = "drop"
   ) %>%
   mutate(
-    coverage_label = percent(coverage, accuracy = 1),
-    efficacy_label = paste0(percent(efficacy, accuracy = 1), " Efficacy")
+    coverage_label = scales::percent(coverage, accuracy = 1),
+    efficacy_label = paste0(scales::percent(efficacy, accuracy = 1), " Efficacy")
   )
 
 panel_d <- ggplot(panel_d_summary,
@@ -283,18 +282,18 @@ panel_d <- ggplot(panel_d_summary,
   geom_errorbar(aes(ymin = low, ymax = high),
                 position = dodge, width = 0.25, color = "black", linewidth = 0.8) +
   scale_fill_manual(
-    values = c("0.4" = "#6BAED6", "0.6" = "#2171B5", "0.8" = "#08306B"),
+    values = c("0.4" = "#A1E2CE", "0.6" = "#3ABB92", "0.8" = "#267D61"),
     labels = c("40%", "60%", "80%"),
     name = "Efficacy"
   ) +
   scale_y_continuous(labels = percent_format(accuracy = 1)) +
   labs(
     x = "Far-UVC Coverage",
-    y = "Absolute Difference in\n  % Reduction",
+    y = "Absolute Difference \n in % Reduction",
   ) +
   theme_minimal(base_size = 13) +
   theme(
-    legend.position = "top",
+    legend.position = "bottom",
     panel.grid.minor = element_blank(),
     panel.grid.major.x = element_blank(),
     strip.text = element_text(face = "bold")
@@ -316,8 +315,8 @@ panel_e_summary <- reductions %>%
     .groups = "drop"
   ) %>%
   mutate(
-    efficacy_label = paste0("Efficacy = ", percent(efficacy, accuracy = 1)),
-    coverage_label = percent(coverage, accuracy = 1)
+    efficacy_label = paste0("Efficacy = ", scales::percent(efficacy, accuracy = 1)),
+    coverage_label = scales::percent(coverage, accuracy = 1)
   )
 
 dodge <- position_dodge(width = 0.8)
@@ -330,9 +329,9 @@ panel_e <- ggplot(panel_e_summary,
   geom_col(position = dodge, width = 0.9) +
   geom_errorbar(aes(ymin = low, ymax = hi),
                 position = dodge, width = 0.15, color = "black", linewidth = 0.6) +
-  facet_wrap(~ efficacy_label, nrow = 1) +
+  facet_wrap(~ efficacy_label, ncol = 1) +
   scale_fill_manual(
-    values = c("random" = "#EC98A4", "targeted_riskiness" = "#DB3951"),
+    values = c("random" = "grey", "targeted_riskiness" = "#DB3951"),
     labels = c("random" = "Random", "targeted_riskiness" = "Targeted")
   ) +
   scale_y_continuous(labels = percent_format(accuracy = 1)) +
@@ -340,7 +339,7 @@ panel_e <- ggplot(panel_e_summary,
        y = "% Reduction \n (vs baseline)",
        fill = "Deployment Type") +
   theme_minimal(base_size = 13) +
-  theme(legend.position = "top",
+  theme(legend.position = "bottom",
         panel.grid.minor = element_blank(),
         panel.grid.major.x = element_blank(),
         strip.text = element_text(face = "bold"))
@@ -362,8 +361,8 @@ panel_f_summary <- reductions_paired %>%
     .groups = "drop"
   ) %>%
   mutate(
-    coverage_label = percent(coverage, accuracy = 1),
-    efficacy_label = paste0(percent(efficacy, accuracy = 1), " Efficacy")
+    coverage_label = scales::percent(coverage, accuracy = 1),
+    efficacy_label = paste0(scales::percent(efficacy, accuracy = 1), " Efficacy")
   )
 
 panel_f <- ggplot(panel_f_summary,
@@ -374,7 +373,7 @@ panel_f <- ggplot(panel_f_summary,
   geom_errorbar(aes(ymin = low, ymax = high),
                 position = dodge, width = 0.25, color = "black", linewidth = 0.8) +
   scale_fill_manual(
-    values = c("0.4" = "#DC2ECA", "0.6" = "#77146d", "0.8" = "#460c40"),
+    values = c("0.4" = "#E79CD2", "0.6" = "#CF3AA5", "0.8" = "#832067"),
     labels = c("40%", "60%", "80%"),
     name = "Efficacy"
   ) +
@@ -383,7 +382,7 @@ panel_f <- ggplot(panel_f_summary,
     y = "Targeted / Random \n Reduction Ratio",  ) +
   theme_minimal(base_size = 13) +
   theme(
-    legend.position = "top",
+    legend.position = "bottom",
     panel.grid.minor = element_blank(),
     panel.grid.major.x = element_blank(),
     strip.text = element_text(face = "bold")
@@ -405,8 +404,8 @@ panel_g_summary <- reductions_paired %>%
     .groups = "drop"
   ) %>%
   mutate(
-    coverage_label = percent(coverage, accuracy = 1),
-    efficacy_label = paste0(percent(efficacy, accuracy = 1), " Efficacy")
+    coverage_label = scales::percent(coverage, accuracy = 1),
+    efficacy_label = paste0(scales::percent(efficacy, accuracy = 1), " Efficacy")
   )
 
 panel_g <- ggplot(panel_g_summary,
@@ -424,11 +423,11 @@ panel_g <- ggplot(panel_g_summary,
   scale_y_continuous(labels = percent_format(accuracy = 1)) +
   labs(
     x = "Far-UVC Coverage",
-    y = "Absolute Difference in \n % Reduction",
+    y = "Absolute Difference \n in % Reduction",
   ) +
   theme_minimal(base_size = 13) +
   theme(
-    legend.position = "top",
+    legend.position = "botom",
     panel.grid.minor = element_blank(),
     panel.grid.major.x = element_blank(),
     strip.text = element_text(face = "bold")
@@ -437,14 +436,65 @@ panel_g <- ggplot(panel_g_summary,
 panel_g
 
 
-combined_sc2_plot <- plot_grid(panel_b, panel_c, panel_d, nrow = 1, labels = c("B", "C", "D"))
+
+
+# sc2 plot
+right_col <- plot_grid(
+  panel_c, 
+  panel_d, 
+  ncol = 1, 
+  labels = c("C", "D"), 
+  label_size = 14,
+  align = "v",
+  rel_heights = c(1, 1)
+)
+
+combined_sc2_plot <- plot_grid(
+  panel_b, 
+  right_col,
+  ncol = 2,
+  labels = c("B", ""),      
+  label_size = 14,
+  rel_widths = c(1, 1)     
+)
+
 combined_sc2_plot
 
-combined_flu_plot <- plot_grid(panel_e,panel_f, panel_g, nrow = 1, labels = c("E", "F", "G"))
+# flu plot
+right_col <- plot_grid(
+  panel_f, 
+  panel_g, 
+  ncol = 1, 
+  labels = c("F", "G"), 
+  label_size = 14,
+  align = "v",
+  rel_heights = c(1, 1)
+)
+
+combined_flu_plot <- plot_grid(
+  panel_e, 
+  right_col,
+  ncol = 2,
+  labels = c("E", ""),      
+  label_size = 14,
+  rel_widths = c(1, 1)     
+)
+
 combined_flu_plot
 
-complete_combined_plot <- plot_grid(panel_a, combined_sc2_plot, combined_flu_plot, nrow = 3)
-complete_combined_plot
+
+
+combined_pathogen_plot <- plot_grid(combined_sc2_plot, combined_flu_plot, nrow = 1)
+
+final_figure <- plot_grid(
+  panel_a,
+  combined_pathogen_plot,
+  ncol = 1,
+  rel_heights = c(1, 2.5),   
+  labels = c("A", "")       
+)
+
+final_figure
 
 
 
