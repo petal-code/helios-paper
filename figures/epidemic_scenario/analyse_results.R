@@ -104,6 +104,8 @@ pointrange_plot_metric <- function(metric, archetype) {
       col = "Efficacy",
       y = df$metric_label[1]
     ) +
+    scale_x_discrete(labels = scales::label_percent()) +
+    scale_color_discrete(labels = scales::label_percent()) +
     theme_minimal() +
     theme(
       legend.position = "left"
@@ -128,6 +130,8 @@ heatmap_plot_metric <- function(metric, archetype) {
       fill = df$metric_label[1]
     ) +
     theme_minimal() +
+    scale_x_discrete(labels = scales::label_percent()) +
+    scale_y_discrete(labels = scales::label_percent()) +
     theme(
       legend.position = "right",
       panel.grid.minor = element_blank(),
