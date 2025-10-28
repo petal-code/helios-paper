@@ -1,6 +1,6 @@
 source(here::here("packages.R"))
 
-version <- "figure_4_epidemic_simulations"
+version <- "epidemic_scenario_simulations_crafty_blackcrappie"
 files <- list.files(
   path = file.path("figures", "epidemic_scenario", "data", version),
   full.names = TRUE
@@ -28,6 +28,16 @@ results <- purrr::map(files, readRDS) |>
   purrr::map_dfr(get_results)
 
 # simulation_settings obtained from previous script. Possible we want to save this with the simulations
+
+simulation_settings <- readRDS(
+  here::here(
+    "figures",
+    "epidemic_scenario",
+    "data",
+    "figure_4_simulation_settings-crafty_blackcrappie-20251026_183336.rds"
+  )
+)
+
 results <- arrange(results, id) |>
   left_join(
     simulation_settings,
@@ -44,6 +54,10 @@ results_long <- results |>
     names_to = "metric",
     values_to = "value"
   )
+
+pct <- function(x) {
+  paste0(x * 100, "%")
+}
 
 update_labels <- function(df) {
   df |>
@@ -63,7 +77,15 @@ update_labels <- function(df) {
         archetype == "sars_cov_2" ~ "SARS-CoV-2"
       ),
       coverage_label = "Coverage strategy",
-      efficacy_label = "Efficacy"
+      efficacy_label = "Efficacy",
+      coverage_fct = factor(
+        pct(coverage),
+        levels = pct(sort(unique(coverage)))
+      ),
+      efficacy_fct = factor(
+        pct(efficacy),
+        levels = pct(sort(unique(efficacy)))
+      )
     )
 }
 
@@ -83,11 +105,12 @@ pointrange_plot_metric <- function(metric, archetype) {
     filter(
       metric == .env$metric,
       archetype_label == .env$archetype,
-      efficacy > 0.2
+      efficacy > 0.2,
+      efficacy < 1
     )
 
-  ggplot(df, aes(x = factor(coverage), col = as.factor(efficacy))) +
-    geom_line(aes(y = mean_value, group = as.factor(efficacy))) +
+  ggplot(df, aes(x = coverage_fct, col = efficacy_fct)) +
+    geom_line(aes(y = mean_value, group = efficacy_fct)) +
     geom_pointrange(
       aes(
         y = mean_value,
@@ -104,8 +127,6 @@ pointrange_plot_metric <- function(metric, archetype) {
       col = "Efficacy",
       y = df$metric_label[1]
     ) +
-    scale_x_discrete(labels = scales::label_percent()) +
-    scale_color_discrete(labels = scales::label_percent()) +
     theme_minimal() +
     theme(
       legend.position = "left"
@@ -119,7 +140,7 @@ heatmap_plot_metric <- function(metric, archetype) {
       archetype_label == .env$archetype
     )
 
-  ggplot(df, aes(x = factor(coverage), y = factor(efficacy))) +
+  ggplot(df, aes(x = coverage_fct, y = efficacy_fct)) +
     geom_tile(aes(fill = mean_value)) +
     ggh4x::facet_nested(
       . ~ coverage_type
@@ -130,8 +151,6 @@ heatmap_plot_metric <- function(metric, archetype) {
       fill = df$metric_label[1]
     ) +
     theme_minimal() +
-    scale_x_discrete(labels = scales::label_percent()) +
-    scale_y_discrete(labels = scales::label_percent()) +
     theme(
       legend.position = "right",
       panel.grid.minor = element_blank(),
@@ -206,8 +225,8 @@ plot <- row1 / row2 / row3 / row4 + plot_annotation(tag_levels = "A")
 ggsave(
   filename = here::here("figures", "epidemic_scenario", "figure4.png"),
   plot = plot,
-  width = 10,
-  height = 10,
+  width = 12,
+  height = 12,
   units = "in",
   dpi = 300
 )

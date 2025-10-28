@@ -50,7 +50,7 @@ saveRDS(
     "figures",
     "epidemic_scenario",
     "data",
-    paste(name1, ".rds")
+    paste0(name1, ".rds")
   )
 )
 
@@ -60,6 +60,6 @@ saveRDS(
     "figures",
     "epidemic_scenario",
     "data",
-    paste(name2, ".rds")
+    paste0(name2, ".rds")
   )
 )
