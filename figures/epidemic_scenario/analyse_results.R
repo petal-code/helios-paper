@@ -72,6 +72,13 @@ update_labels <- function(df) {
         metric == "peak_daily_incidence" ~
           "Peak Daily Incidence\nper 1,000 Population"
       ),
+      metric_reduction_label = case_when(
+        metric == "epidemic_final_size" ~
+          "% Reduction in Final %\nof Population Infected",
+        metric == "peak_daily_incidence" ~
+          "% Reduction in\nPeak Daily Incidence",
+        TRUE ~ metric_label
+      ),
       archetype_label = case_when(
         archetype == "flu" ~ "Influenza",
         archetype == "sars_cov_2" ~ "SARS-CoV-2"
@@ -99,6 +106,29 @@ results_summary <- results_long |>
     .groups = "drop"
   ) |>
   update_labels()
+
+baseline_summary <- results_summary |>
+  filter(coverage == 0) |>
+  select(
+    coverage_type,
+    archetype,
+    efficacy,
+    metric,
+    baseline_value = mean_value
+  )
+
+results_summary <- results_summary |>
+  left_join(
+    baseline_summary,
+    by = c("coverage_type", "archetype", "efficacy", "metric")
+  ) |>
+  mutate(
+    pct_reduction = dplyr::case_when(
+      is.na(baseline_value) ~ NA_real_,
+      baseline_value == 0 ~ NA_real_,
+      TRUE ~ (baseline_value - mean_value) / baseline_value
+    )
+  )
 
 pointrange_plot_metric <- function(metric, archetype) {
   df <- results_summary |>
@@ -141,14 +171,14 @@ heatmap_plot_metric <- function(metric, archetype) {
     )
 
   ggplot(df, aes(x = coverage_fct, y = efficacy_fct)) +
-    geom_tile(aes(fill = mean_value)) +
+    geom_tile(aes(fill = pct_reduction)) +
     ggh4x::facet_nested(
       . ~ coverage_type
     ) +
     labs(
       x = "Coverage",
       y = "Efficacy",
-      fill = df$metric_label[1]
+      fill = df$metric_reduction_label[1]
     ) +
     theme_minimal() +
     theme(
@@ -182,13 +212,23 @@ final_size_flu_heatmap <- heatmap_plot_metric(
   "epidemic_final_size",
   "Influenza"
 ) +
-  ggplot2::scale_fill_viridis_c(option = "magma", labels = scales::percent)
+  ggplot2::scale_fill_viridis_c(
+    option = "magma",
+    labels = scales::percent,
+    direction = -1,
+    limits = c(0, 1)
+  )
 
 peak_incidence_flu_heatmap <- heatmap_plot_metric(
   "peak_daily_incidence",
   "Influenza"
 ) +
-  ggplot2::scale_fill_viridis_c(option = "magma")
+  ggplot2::scale_fill_viridis_c(
+    option = "magma",
+    labels = scales::percent,
+    direction = -1,
+    limits = c(0, 1)
+  )
 
 final_size_covid_pointrange <- pointrange_plot_metric(
   "epidemic_final_size",
@@ -207,13 +247,23 @@ final_size_covid_heatmap <- heatmap_plot_metric(
   "epidemic_final_size",
   "SARS-CoV-2"
 ) +
-  ggplot2::scale_fill_viridis_c(option = "mako", labels = scales::percent)
+  ggplot2::scale_fill_viridis_c(
+    option = "mako",
+    labels = scales::percent,
+    direction = -1,
+    limits = c(0, 1)
+  )
 
 peak_incidence_covid_heatmap <- heatmap_plot_metric(
   "peak_daily_incidence",
   "SARS-CoV-2"
 ) +
-  ggplot2::scale_fill_viridis_c(option = "mako")
+  ggplot2::scale_fill_viridis_c(
+    option = "mako",
+    labels = scales::percent,
+    direction = -1,
+    limits = c(0, 1)
+  )
 
 row1 <- final_size_covid_pointrange + final_size_covid_heatmap
 row2 <- peak_incidence_covid_pointrange + peak_incidence_covid_heatmap
