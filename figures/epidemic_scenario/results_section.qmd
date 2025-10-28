@@ -100,7 +100,7 @@ pct_reduction_no_intervention <- function(archetype, metric, coverage_type, effi
 **Figure caption**:
 Analyses of the impact of air quality interventions on disease burden across two epidemic scenarios.
 (A) Final epidemic size in terms of percentage of the population infected for the SARS-CoV-2 archetype, with point-ranges showing the mean and simulated range across coverage levels for random versus targeted deployment; line and point colors denote intervention efficacy.
-(B) Heatmap of final epidemic size for SARS-CoV-2, providing sensitivtiy analysis across a wider range of values.
+(B) Heatmap of final epidemic size for SARS-CoV-2, providing sensitivity analysis across a wider range of values.
 (C) As for (A), but for the peak incidence measured in terms of daily infections per 1,000 population.
 (D) As for (B), but for the peak incidence.
 (E) Final epidemic size for the influenza archetype.
