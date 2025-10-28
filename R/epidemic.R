@@ -14,8 +14,8 @@ epidemic_final_size <- function(df) {
     pull(final_size)
 }
 
-peak_daily_incidence <- function(df, dt) {
-  df |>
+peak_daily_incidence <- function(df, dt, per) {
+  peak <- df |>
     filter(state == "S") |>
     arrange(timestep) |>
     mutate(
@@ -29,4 +29,10 @@ peak_daily_incidence <- function(df, dt) {
     ) |>
     summarise(peak = max(daily_incidence, na.rm = TRUE)) |>
     pull(peak)
+
+  if (!is.null(per)) {
+    peak <- peak * per
+  }
+
+  return(peak)
 }
