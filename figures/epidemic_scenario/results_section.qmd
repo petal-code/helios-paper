@@ -105,7 +105,7 @@ Analyses of the impact of air quality interventions on disease burden across two
 (D) As for (B), but for the peak incidence.
 (E) Final epidemic size for the influenza archetype.
 (F) Heatmap of final epidemic size for the influenza archetype.
-(G) As for (C), but for the peak incidence.
+(G) As for (E), but for the peak incidence.
 (H) As for (F), but for the peak incidence.
 
 ```{r, echo=FALSE, out.width = '100%'}
