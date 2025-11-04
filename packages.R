@@ -12,5 +12,12 @@ suppressPackageStartupMessages({
   library(cli)
   library(hipercow)
   library(parallel)
+  library(cowplot)
+  library(viridis)
+  library(tidyr)
+  library(scales)
+  library(tibble)
   purrr::walk(list.files("R", full.names = TRUE), source)
 })
+
+

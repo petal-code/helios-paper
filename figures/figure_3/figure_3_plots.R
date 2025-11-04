@@ -1,11 +1,4 @@
-library(dplyr)
-library(purrr)
-library(tibble)
-library(tidyr)
-library(ggplot2)
-library(viridis)
-library(cowplot)
-library(helios)
+source(here::here("packages.R"))
 
 
 #Panel A: Random vs Targeting
@@ -90,7 +83,8 @@ panel_a <- ggplot(df, aes(x = rank, y = riskiness, fill = installed, colour = in
        y = "Relative riskiness",
        fill = "Far UVC Installed?",
        colour = "Far UVC Installed?") +
-  theme(legend.position = "bottom")
+  theme(
+    legend.position = "bottom", axis.text = element_text(size = 11.5), strip.text = element_text(size = 13, face = "bold"))
 
 panel_a
 
@@ -161,12 +155,15 @@ reductions_paired <- reductions %>%
   filter(!is.na(random), !is.na(targeted_riskiness)) %>%
   mutate(
     diff_inc  = targeted_riskiness - random,
-    ratio_inc = targeted_riskiness / pmax(random, 1e-9)
+    ratio_inc = targeted_riskiness / pmax(random, 1e-9),
+    rel_extra_impact = (targeted_riskiness - random) / pmax(random, 1e-9)
   ) %>%
-  filter(ratio_inc > 0 & ratio_inc < 9)
+  filter(
+    random > 0.01,                       
+    rel_extra_impact > -50,              # trim extreme negatives
+    rel_extra_impact < 1               # trim pathological positives
+  )
 
-summary(reductions_paired$diff_inc)
-summary(reductions_paired$ratio_inc)
 
 #Panel B: % reduction in annualized incidence - SC2
 panel_b_summary <- reductions %>%
@@ -202,13 +199,14 @@ panel_b <- ggplot(panel_b_summary,
   ) +
   scale_y_continuous(labels = percent_format(accuracy = 1)) +
   labs(x = "Far-UVC Coverage",
-       y = "% Reduction \n (vs baseline)",
+       y = "% Reduction (vs baseline)",
        fill = "Deployment Type") +
   theme_minimal(base_size = 13) +
   theme(legend.position = "bottom",
+        axis.text = element_text(size = 11.5),
         panel.grid.minor = element_blank(),
         panel.grid.major.x = element_blank(),
-        strip.text = element_text(face = "bold"))
+        strip.text = element_text(face = "bold", size = 13))
 
 panel_b
 
@@ -216,14 +214,14 @@ panel_b
 # Panel C:  Relative Extra Impact of Targeted vs Random - SC2
 
 panel_c_summary <- reductions_paired %>%
-  filter(archetype =="sars_cov_2",
+  filter(archetype == "sars_cov_2",
          efficacy %in% c(0.4, 0.6, 0.8),
          coverage %in% c(0.2, 0.4, 0.6, 0.8)) %>%
   group_by(coverage, efficacy) %>%
   summarise(
-    mean_rel_impact = mean(ratio_inc, na.rm = TRUE),
-    low  = quantile(ratio_inc, 0.25, na.rm = TRUE),
-    high = quantile(ratio_inc, 0.75, na.rm = TRUE),
+    mean_rel_impact = mean(rel_extra_impact, na.rm = TRUE),
+    low  = quantile(rel_extra_impact, 0.25, na.rm = TRUE),
+    high = quantile(rel_extra_impact, 0.75, na.rm = TRUE),
     .groups = "drop"
   ) %>%
   mutate(
@@ -231,23 +229,29 @@ panel_c_summary <- reductions_paired %>%
     efficacy_label = paste0(scales::percent(efficacy, accuracy = 1), " Efficacy")
   )
 
+dodge <- position_dodge(width = 0.8)
+
 panel_c <- ggplot(panel_c_summary,
                   aes(x = factor(coverage_label),
                       y = mean_rel_impact,
                       fill = factor(efficacy))) +
   geom_col(position = dodge, width = 0.8) +
   geom_errorbar(aes(ymin = low, ymax = high),
-                position = dodge, width = 0.25, color = "black", linewidth = 0.8) +
+                position = dodge, width = 0.25,
+                color = "black", linewidth = 0.8) +
   scale_fill_manual(
     values = c("0.4" = "#92dbaa", "0.6" = "#38a85e", "0.8" = "#246b3c"),
     labels = c("40%", "60%", "80%"),
     name = "Efficacy"
   ) +
+  scale_y_continuous(breaks = seq(0, 0.8, 0.2), labels = scales::percent_format(accuracy = 1),  limits = c(0, 0.9)) +
   labs(
     x = "Far-UVC Coverage",
-    y = "Targeted / Random \n Reduction Ratio",  ) +
+    y = "Relative Extra Impact",
+  ) +
   theme_minimal(base_size = 13) +
   theme(
+    axis.text = element_text(size = 11.5),
     legend.position = "bottom",
     panel.grid.minor = element_blank(),
     panel.grid.major.x = element_blank(),
@@ -255,6 +259,7 @@ panel_c <- ggplot(panel_c_summary,
   )
 
 panel_c
+
 
 #Panel D: Absolute Differences b/w random and Targeted - SC2
 
@@ -293,6 +298,7 @@ panel_d <- ggplot(panel_d_summary,
   ) +
   theme_minimal(base_size = 13) +
   theme(
+    axis.text = element_text(size = 11.5),
     legend.position = "bottom",
     panel.grid.minor = element_blank(),
     panel.grid.major.x = element_blank(),
@@ -336,13 +342,14 @@ panel_e <- ggplot(panel_e_summary,
   ) +
   scale_y_continuous(labels = percent_format(accuracy = 1)) +
   labs(x = "Far-UVC Coverage",
-       y = "% Reduction \n (vs baseline)",
+       y = "% Reduction (vs baseline)",
        fill = "Deployment Type") +
   theme_minimal(base_size = 13) +
   theme(legend.position = "bottom",
+        axis.text = element_text(size = 11.5),
         panel.grid.minor = element_blank(),
         panel.grid.major.x = element_blank(),
-        strip.text = element_text(face = "bold"))
+        strip.text = element_text(face = "bold", size = 13))
 
 panel_e
 
@@ -350,14 +357,14 @@ panel_e
 #Panel F : Ratio of reduction - flu
 
 panel_f_summary <- reductions_paired %>%
-  filter(archetype == "flu", 
+  filter(archetype == "flu",
          efficacy %in% c(0.4, 0.6, 0.8),
          coverage %in% c(0.2, 0.4, 0.6, 0.8)) %>%
   group_by(coverage, efficacy) %>%
   summarise(
-    mean_rel_impact = mean(ratio_inc, na.rm = TRUE),
-    low  = quantile(ratio_inc, 0.25, na.rm = TRUE),
-    high = quantile(ratio_inc, 0.75, na.rm = TRUE),
+    mean_rel_impact = mean(rel_extra_impact, na.rm = TRUE),
+    low  = quantile(rel_extra_impact, 0.25, na.rm = TRUE),
+    high = quantile(rel_extra_impact, 0.75, na.rm = TRUE),
     .groups = "drop"
   ) %>%
   mutate(
@@ -365,30 +372,39 @@ panel_f_summary <- reductions_paired %>%
     efficacy_label = paste0(scales::percent(efficacy, accuracy = 1), " Efficacy")
   )
 
+dodge <- position_dodge(width = 0.8)
+
 panel_f <- ggplot(panel_f_summary,
                   aes(x = factor(coverage_label),
                       y = mean_rel_impact,
                       fill = factor(efficacy))) +
   geom_col(position = dodge, width = 0.8) +
   geom_errorbar(aes(ymin = low, ymax = high),
-                position = dodge, width = 0.25, color = "black", linewidth = 0.8) +
+                position = dodge, width = 0.25,
+                color = "black", linewidth = 0.8) +
   scale_fill_manual(
     values = c("0.4" = "#E79CD2", "0.6" = "#CF3AA5", "0.8" = "#832067"),
     labels = c("40%", "60%", "80%"),
     name = "Efficacy"
   ) +
+  scale_y_continuous(breaks = seq(0, 0.8, 0.2), labels = scales::percent_format(accuracy = 1),  limits = c(0, 0.9)) +
   labs(
     x = "Far-UVC Coverage",
-    y = "Targeted / Random \n Reduction Ratio",  ) +
+    y = "Relative Extra Impact",
+  ) +
   theme_minimal(base_size = 13) +
   theme(
     legend.position = "bottom",
+    axis.text = element_text(size = 11.5),
     panel.grid.minor = element_blank(),
     panel.grid.major.x = element_blank(),
     strip.text = element_text(face = "bold")
   )
 
 panel_f
+
+
+
 
 
 #Panel G: Absolute Difference - flu
@@ -428,6 +444,7 @@ panel_g <- ggplot(panel_g_summary,
   theme_minimal(base_size = 13) +
   theme(
     legend.position = "botom",
+    axis.text = element_text(size = 11.5),
     panel.grid.minor = element_blank(),
     panel.grid.major.x = element_blank(),
     strip.text = element_text(face = "bold")
