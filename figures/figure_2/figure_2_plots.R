@@ -10,7 +10,7 @@ library(cowplot)
 dir_sim <- "figures/figure_2/data/figure_2_simulations"
 
 files <- list.files(
-  path = dir_sim, 
+  path = dir_sim,
   pattern = "\\.rds$",
   full.names = TRUE
 )
@@ -20,17 +20,17 @@ read_simulation <- function(filepath) {
   simulation_file <- readRDS(filepath)
   dt <- simulation_file$parameters$dt
   pop_size <- 100000
-  
+
   simulation_file$simulation %>%
     mutate(
       days = timestep * dt,
       year = floor(days / 365),
       filename = basename(filepath),
       archetype = simulation_file$parameters$archetype_label,
-      coverage  = simulation_file$parameters$coverage,
-      efficacy  = simulation_file$parameters$efficacy,
+      coverage = simulation_file$parameters$coverage,
+      efficacy = simulation_file$parameters$efficacy,
       active_infected = E_count + I_count,
-      prevalence = (active_infected / pop_size)*100
+      prevalence = (active_infected / pop_size) * 100
     ) %>%
     group_by(year, filename, archetype, coverage, efficacy) %>%
     summarise(
@@ -48,16 +48,18 @@ all_sims <- purrr::map_dfr(files, read_simulation)
 # Baseline (years 6-10) vs Post (years 11-15)
 
 metrics <- all_sims %>%
-  mutate(window = case_when(
-    year %in% 6:10   ~ "baseline",
-    year %in% 11:15 ~ "post"
-  )) %>%
+  mutate(
+    window = case_when(
+      year %in% 6:10 ~ "baseline",
+      year %in% 11:15 ~ "post"
+    )
+  ) %>%
   filter(!is.na(window)) %>%
   group_by(filename, archetype, coverage, efficacy, window) %>%
   summarise(
-    mean_incidence_rate   = mean(annualized_incidence_rate, na.rm = TRUE),
-    mean_active_infected  = mean(mean_active_infected, na.rm = TRUE),
-    mean_prevalence       = mean(mean_prevalence, na.rm = TRUE),
+    mean_incidence_rate = mean(annualized_incidence_rate, na.rm = TRUE),
+    mean_active_infected = mean(mean_active_infected, na.rm = TRUE),
+    mean_prevalence = mean(mean_prevalence, na.rm = TRUE),
     .groups = "drop"
   )
 
@@ -68,23 +70,25 @@ reductions <- metrics %>%
     values_from = c(mean_incidence_rate, mean_active_infected, mean_prevalence)
   ) %>%
   mutate(
-    incidence_reduction       = 1 - mean_incidence_rate_post / mean_incidence_rate_baseline,
-    active_infected_reduction = 1 - mean_active_infected_post / mean_active_infected_baseline,
-    prevalence_reduction      = 1 - mean_prevalence_post / mean_prevalence_baseline
+    incidence_reduction = 1 -
+      mean_incidence_rate_post / mean_incidence_rate_baseline,
+    active_infected_reduction = 1 -
+      mean_active_infected_post / mean_active_infected_baseline,
+    prevalence_reduction = 1 - mean_prevalence_post / mean_prevalence_baseline
   )
 
 #Summarize Reductions
 reductions_summary <- reductions %>%
   group_by(archetype, coverage, efficacy) %>%
-  summarise (
+  summarise(
     mean_incidence_reduction = mean(incidence_reduction, na.rm = TRUE),
     low_incidence = min(incidence_reduction, na.rm = TRUE),
     hi_incidence = max(incidence_reduction, na.rm = TRUE),
-    
+
     mean_active_reduction = mean(active_infected_reduction, na.rm = TRUE),
     low_active = min(active_infected_reduction, na.rm = TRUE),
     hi_active = max(active_infected_reduction, na.rm = TRUE),
-    
+
     mean_prevalence_reduction = mean(prevalence_reduction, na.rm = TRUE),
     low_prev = min(prevalence_reduction, na.rm = TRUE),
     hi_prev = max(prevalence_reduction, na.rm = TRUE),
@@ -108,28 +112,43 @@ plot_data <- reductions_summary %>%
     efficacy = round(efficacy, 2),
     coverage = round(coverage, 2)
   ) %>%
-  filter(efficacy %in% target_efficacies,
-         coverage %in% target_coverage_intervals) %>%
-  mutate(efficacy_factor = factor(
-    efficacy,
-    levels = target_efficacies,
-    labels = scales::percent(target_efficacies, accuracy = 1)
-  ))
+  filter(
+    efficacy %in% target_efficacies,
+    coverage %in% target_coverage_intervals
+  ) %>%
+  mutate(
+    efficacy_factor = factor(
+      efficacy,
+      levels = target_efficacies,
+      labels = scales::percent(target_efficacies, accuracy = 1)
+    )
+  )
 
-panelA <- ggplot(plot_data,
-                 aes(x = coverage, y = mean_incidence_reduction,
-                     color = efficacy_factor, group = efficacy_factor)) +
+panelA <- ggplot(
+  plot_data,
+  aes(
+    x = coverage,
+    y = mean_incidence_reduction,
+    color = efficacy_factor,
+    group = efficacy_factor
+  )
+) +
   geom_line(size = 1) +
   geom_point() +
-  geom_errorbar(aes(ymin = low_incidence, ymax = hi_incidence),
-                width = 0.02, alpha = 0.5) +
+  geom_errorbar(
+    aes(ymin = low_incidence, ymax = hi_incidence),
+    width = 0.02,
+    alpha = 0.5
+  ) +
   labs(
     x = "UV-C Coverage",
     y = "% Reduction in Annualized \nDisease Incidence",
     colour = "Efficacy"
   ) +
-  scale_y_continuous(labels = scales::percent_format(accuracy = 1),
-                     limits = c(0, 1)) +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1),
+    limits = c(0, 1)
+  ) +
   x_percent_scale +
   scale_color_manual(values = cols) +
   theme_minimal()
@@ -157,26 +176,35 @@ post_active <- metrics %>%
 
 # Filter and label efficacy levels
 plot_data_b <- post_active %>%
-  filter(efficacy %in% target_efficacies,
-         coverage %in% target_b_coverage_intervals) %>%
-  mutate(efficacy_factor = factor(
-    efficacy,
-    levels = target_efficacies,
-    labels = scales::percent(target_efficacies, accuracy = 1)
-  ))
+  filter(
+    efficacy %in% target_efficacies,
+    coverage %in% target_b_coverage_intervals
+  ) %>%
+  mutate(
+    efficacy_factor = factor(
+      efficacy,
+      levels = target_efficacies,
+      labels = scales::percent(target_efficacies, accuracy = 1)
+    )
+  )
 
 # Plot
-panelB <- ggplot(plot_data_b,
-                 aes(x = coverage,
-                     y = mean_active_infected,
-                     color = efficacy_factor,
-                     group = efficacy_factor)) +
+panelB <- ggplot(
+  plot_data_b,
+  aes(
+    x = coverage,
+    y = mean_active_infected,
+    color = efficacy_factor,
+    group = efficacy_factor
+  )
+) +
   geom_line(size = 1) +
   geom_point(size = 2) +
-  geom_errorbar(aes(ymin = low, ymax = hi),
-                width = 0.02, alpha = 0.5) +
-  scale_y_continuous(labels = scales::percent_format(scale = 1),
-                     limits = c(0, NA)) +
+  geom_errorbar(aes(ymin = low, ymax = hi), width = 0.02, alpha = 0.5) +
+  scale_y_continuous(
+    labels = scales::percent_format(scale = 1),
+    limits = c(0, NA)
+  ) +
   x_percent_scale +
   scale_color_manual(values = cols) +
   labs(
@@ -197,8 +225,7 @@ heat_data <- reductions_summary %>%
     coverage = round(coverage, 2),
     efficacy = round(efficacy, 2)
   ) %>%
-  filter(coverage %in% target_vals,
-         efficacy %in% target_vals)
+  filter(coverage %in% target_vals, efficacy %in% target_vals)
 
 # Factors for plotting (bottom to top = increasing efficacy)
 heat_data <- heat_data %>%
@@ -210,15 +237,15 @@ heat_data <- heat_data %>%
     ),
     efficacy_factor = factor(
       efficacy,
-      levels = target_vals,  
+      levels = target_vals,
       labels = scales::percent(target_vals, accuracy = 1)
     )
   )
 
-panelC <- ggplot(heat_data,
-                 aes(x = coverage_factor,
-                     y = efficacy_factor,
-                     fill = mean_incidence_reduction)) +
+panelC <- ggplot(
+  heat_data,
+  aes(x = coverage_factor, y = efficacy_factor, fill = mean_incidence_reduction)
+) +
   geom_tile(color = "white") +
   viridis::scale_fill_viridis(
     option = "mako",
@@ -242,16 +269,18 @@ panelC
 
 #Combined SC2 Plots
 combined_sc2_plot <- plot_grid(
-  panelA, panelB, panelC,
+  panelA,
+  panelB,
+  panelC,
   nrow = 1,
   labels = c("A", "B", "C"),
-  rel_widths = c(1, 1, 1.25)  
+  rel_widths = c(1, 1, 1.25)
 )
 
 combined_sc2_plot
 
 
-#Panel D: Flu 
+#Panel D: Flu
 cols <- c("#CD86EA", "#651983", "#3F1052")
 
 plot_data_d <- reductions_summary %>%
@@ -260,28 +289,43 @@ plot_data_d <- reductions_summary %>%
     efficacy = round(efficacy, 2),
     coverage = round(coverage, 2)
   ) %>%
-  filter(efficacy %in% target_efficacies,
-         coverage %in% target_coverage_intervals) %>%
-  mutate(efficacy_factor = factor(
-    efficacy,
-    levels = target_efficacies,
-    labels = scales::percent(target_efficacies, accuracy = 1)
-  ))
+  filter(
+    efficacy %in% target_efficacies,
+    coverage %in% target_coverage_intervals
+  ) %>%
+  mutate(
+    efficacy_factor = factor(
+      efficacy,
+      levels = target_efficacies,
+      labels = scales::percent(target_efficacies, accuracy = 1)
+    )
+  )
 
-panelD <- ggplot(plot_data_d,
-                 aes(x = coverage, y = mean_incidence_reduction,
-                     color = efficacy_factor, group = efficacy_factor)) +
+panelD <- ggplot(
+  plot_data_d,
+  aes(
+    x = coverage,
+    y = mean_incidence_reduction,
+    color = efficacy_factor,
+    group = efficacy_factor
+  )
+) +
   geom_line(size = 1) +
   geom_point() +
-  geom_errorbar(aes(ymin = low_incidence, ymax = hi_incidence),
-                width = 0.02, alpha = 0.5) +
+  geom_errorbar(
+    aes(ymin = low_incidence, ymax = hi_incidence),
+    width = 0.02,
+    alpha = 0.5
+  ) +
   labs(
     x = "UV-C Coverage",
     y = "% Reduction in Annualized \nDisease Incidence",
     colour = "Efficacy"
   ) +
-  scale_y_continuous(labels = scales::percent_format(accuracy = 1),
-                     limits = c(0, 1)) +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1),
+    limits = c(0, 1)
+  ) +
   x_percent_scale +
   scale_color_manual(values = cols) +
   theme_minimal()
@@ -311,26 +355,35 @@ post_active <- metrics %>%
 
 # Filter and label efficacy levels
 plot_data_e <- post_active %>%
-  filter(efficacy %in% target_efficacies,
-         coverage %in% target_b_coverage_intervals) %>%
-  mutate(efficacy_factor = factor(
-    efficacy,
-    levels = target_efficacies,
-    labels = scales::percent(target_efficacies, accuracy = 1)
-  ))
+  filter(
+    efficacy %in% target_efficacies,
+    coverage %in% target_b_coverage_intervals
+  ) %>%
+  mutate(
+    efficacy_factor = factor(
+      efficacy,
+      levels = target_efficacies,
+      labels = scales::percent(target_efficacies, accuracy = 1)
+    )
+  )
 
 # Plot
-panelE <- ggplot(plot_data_e,
-                 aes(x = coverage,
-                     y = mean_active_infected,
-                     color = efficacy_factor,
-                     group = efficacy_factor)) +
+panelE <- ggplot(
+  plot_data_e,
+  aes(
+    x = coverage,
+    y = mean_active_infected,
+    color = efficacy_factor,
+    group = efficacy_factor
+  )
+) +
   geom_line(size = 1) +
   geom_point(size = 2) +
-  geom_errorbar(aes(ymin = low, ymax = hi),
-                width = 0.02, alpha = 0.5) +
-  scale_y_continuous(labels = scales::percent_format(scale = 1),
-                     limits = c(0, NA)) +
+  geom_errorbar(aes(ymin = low, ymax = hi), width = 0.02, alpha = 0.5) +
+  scale_y_continuous(
+    labels = scales::percent_format(scale = 1),
+    limits = c(0, NA)
+  ) +
   x_percent_scale +
   scale_color_manual(values = cols) +
   labs(
@@ -351,8 +404,7 @@ heat_data <- reductions_summary %>%
     coverage = round(coverage, 2),
     efficacy = round(efficacy, 2)
   ) %>%
-  filter(coverage %in% target_vals,
-         efficacy %in% target_vals)
+  filter(coverage %in% target_vals, efficacy %in% target_vals)
 
 heat_data <- heat_data %>%
   mutate(
@@ -363,15 +415,15 @@ heat_data <- heat_data %>%
     ),
     efficacy_factor = factor(
       efficacy,
-      levels = target_vals,  
+      levels = target_vals,
       labels = scales::percent(target_vals, accuracy = 1)
     )
   )
 
-panelF <- ggplot(heat_data,
-                 aes(x = coverage_factor,
-                     y = efficacy_factor,
-                     fill = mean_incidence_reduction)) +
+panelF <- ggplot(
+  heat_data,
+  aes(x = coverage_factor, y = efficacy_factor, fill = mean_incidence_reduction)
+) +
   geom_tile(color = "white") +
   viridis::scale_fill_viridis(
     option = "magma",
@@ -394,15 +446,18 @@ panelF
 
 #Combined flu Plots
 combined_flu_plot <- plot_grid(
-  panelD, panelE, panelF,
+  panelD,
+  panelE,
+  panelF,
   nrow = 1,
   labels = c("D", "E", "F"),
-  rel_widths = c(1, 1, 1.25)  
+  rel_widths = c(1, 1, 1.25)
 )
 
 
-complete_combined_plot <- plot_grid(combined_sc2_plot, combined_flu_plot, nrow = 2)
+complete_combined_plot <- plot_grid(
+  combined_sc2_plot,
+  combined_flu_plot,
+  nrow = 2
+)
 complete_combined_plot
-
-
-

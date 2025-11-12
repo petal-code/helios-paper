@@ -1,7 +1,7 @@
 source(here::here("packages.R"))
 
 #Core Parameters
-archetypes <- c("flu", "sars_cov_2") 
+archetypes <- c("flu", "sars_cov_2")
 iterations <- 1:15
 years_to_simulate <- 15
 simulation_time_days <- (365 * years_to_simulate)
@@ -11,8 +11,8 @@ external_infection_probability <- 1 / human_population
 riskiness <- "setting_specific_riskiness"
 dt <- 0.5
 size_per_individual_workplace <- 10
-size_per_individual_school    <- 3.33
-size_per_individual_leisure   <- 2
+size_per_individual_school <- 3.33
+size_per_individual_leisure <- 2
 size_per_individual_household <- 20
 
 # Initial conditions for SARS-CoV-2:
@@ -72,11 +72,11 @@ for (i in 1:nrow(simulations_to_run)) {
         number_initial_I = initial_I_SC2,
         number_initial_R = initial_R_SC2,
         endemic_or_epidemic = "endemic",
-        dt = dt,  
-        size_per_individual_workplace = size_per_individual_workplace,  
-        size_per_individual_school    = size_per_individual_school,     
-        size_per_individual_leisure   = size_per_individual_leisure,    
-        size_per_individual_household = size_per_individual_household,  
+        dt = dt,
+        size_per_individual_workplace = size_per_individual_workplace,
+        size_per_individual_school = size_per_individual_school,
+        size_per_individual_leisure = size_per_individual_leisure,
+        size_per_individual_household = size_per_individual_household,
         duration_immune = duration_of_immunity,
         prob_inf_external = external_infection_probability,
         simulation_time = simulation_time_days,
@@ -93,11 +93,11 @@ for (i in 1:nrow(simulations_to_run)) {
         number_initial_I = initial_I_flu,
         number_initial_R = initial_R_flu,
         endemic_or_epidemic = "endemic",
-        dt = dt,  
-        size_per_individual_workplace = size_per_individual_workplace,  
-        size_per_individual_school    = size_per_individual_school,     
-        size_per_individual_leisure   = size_per_individual_leisure,    
-        size_per_individual_household = size_per_individual_household,  
+        dt = dt,
+        size_per_individual_workplace = size_per_individual_workplace,
+        size_per_individual_school = size_per_individual_school,
+        size_per_individual_leisure = size_per_individual_leisure,
+        size_per_individual_household = size_per_individual_household,
         duration_immune = duration_of_immunity,
         prob_inf_external = external_infection_probability,
         simulation_time = simulation_time_days,
@@ -105,7 +105,7 @@ for (i in 1:nrow(simulations_to_run)) {
       )
     )
   }
-  
+
   # UVC Parameters
   if (simulations_to_run$coverage[i] > 0) {
     parameter_lists[[i]] <- parameter_lists[[i]] %>%
@@ -118,7 +118,7 @@ for (i in 1:nrow(simulations_to_run)) {
         timestep = 365 * 10 * 2
       )
   }
-  
+
   #Riskiness Settings
   if (simulations_to_run$riskiness[i] == "setting_specific_riskiness") {
     parameter_lists[[i]] <- parameter_lists[[i]] %>%
