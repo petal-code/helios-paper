@@ -7,7 +7,7 @@ library(viridis)
 library(cowplot)
 
 
-dir_sim <- "/Users/geethaj/Downloads/figure_2_simulations"
+dir_sim <- "figures/figure_2/data/figure_2_simulations"
 
 files <- list.files(
   path = dir_sim, 
