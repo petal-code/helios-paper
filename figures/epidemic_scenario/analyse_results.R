@@ -178,11 +178,12 @@ heatmap_plot_metric <- function(metric, archetype) {
   df <- results_summary |>
     filter(
       metric == .env$metric,
-      archetype_label == .env$archetype
+      archetype_label == .env$archetype,
+      coverage > 0
     )
 
   ggplot(df, aes(x = coverage_fct, y = efficacy_fct)) +
-    geom_tile(aes(fill = pct_reduction)) +
+    geom_tile(aes(fill = mean_pct_reduction)) +
     ggh4x::facet_nested(
       . ~ coverage_type
     ) +
