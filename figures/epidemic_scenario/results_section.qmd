@@ -112,6 +112,8 @@ Analyses of the impact of air quality interventions on disease burden across two
 knitr::include_graphics("figure4.png")
 ```
 
+## First draft
+
 Next we evaluated the impact of air quality interventions on disease burden across two archetypal epidemic scenarios approximating influenza and SARS-CoV-2.
 We varied intervention efficacy and population coverage, and considered random and targeted deployment strategies (Figure 4).
 
@@ -146,3 +148,20 @@ As coverage approaches 100%, the random and targeted strategies converge.
 * How to show 0% efficacy / coverage scenario? Useful to have a "no intervention" reference point
 * Shall we call the efficacy scenarios "low, medium, and high" in the text? And the figure caption?
 * Are we logging the proportion of transmission which occurs in different locations?
+
+## Updated draft
+
+AQI installation could also significantly impact pathogen transmission dynamics and infection incidence during future pandemic scenarios.
+Next we evaluated the impact of AQIs on infection incidence across two archetypal epidemic scenarios, again approximating influenza and SARS-CoV-2 as archetypes.
+Across both epidemic archetypes, higher efficacy or wider coverage led to reductions in infection incidence across all metrics considered.
+Without intervention, the peak incidence of the influenza archetype was 18.1 per 1,000 (range X-Y) with a final epidemic size of 61.1% of total population (range X%-Y%), whereas the SARS-CoV-2 archetype yielded a peak incidence of 40.8 per 1,000 (range X-Y) and a final epidemic size of 89.9% of total population (range X%-Y%).
+As with our results examining endemic scenarios, the impact of AQI installation was more pronounced in the influenza archetype.
+Random AQI installation at 40% coverage and 60% efficacy reduced the final epidemic size by 22.2% (range X%-Y%), compared with only 6.5% (range X%-Y%) for the SARS-CoV-2 archetype under the same settings (Figure 4A & 4E).
+
+Increasing either efficacy or coverage yielded similar increases in the impact on epidemic peak, timing and final size.
+For the influenza archetype, expanding randomly allocated coverage from 40% to 60% at 40% efficacy lowered the final epidemic size by 9.8%, approximately matching the 11.2% from instead increasing efficacy from 40% to 60% while holding coverage at 40% (Figure 4E).
+
+As with our endemic scenario results, targeted AQI strategies achieved higher reductions in infection incidence at lower coverage levels than the random strategy.
+For the influenza archetype at 60% efficacy, the random strategy required 60% coverage to reach an average peak daily incidence of 6.41 per 1,000, while the targeted strategy achieved the same result with only 40% coverage, producing an average peak daily incidence of 6.47 per 1,000 (Figure 4G).
+This pattern also held at lower coverage levels: the random strategy’s result at 40% coverage (average peak daily incidence of 10.6 per 1,000) matched the targeted strategy’s outcome at just 20% coverage, where peak daily incidence was 11.3 per 1,000 (Figure 4G).
+In these cases, taking a targeted approach allowed a 20% reduction in the coverage required to achieve a given infection incidence reduction.
