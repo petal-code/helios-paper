@@ -92,9 +92,28 @@ pct_reduction <- function(archetype, metric, coverage_type, efficacy, coverage, 
   (baseline - value) / baseline
 }
 
+# Old method
 pct_reduction_no_intervention <- function(archetype, metric, coverage_type, efficacy, coverage) {
   pct_reduction(archetype, metric, coverage_type, efficacy, coverage, efficacy_baseline = 0.2, coverage_baseline = 0)
 }
+
+flu_pct_reduction_no_intervention_4 <- results_summary |>
+  filter(
+    archetype == "flu",
+    metric == "epidemic_final_size",
+    efficacy == 0.6,
+    coverage == 0.4,
+    coverage_type == "Random"
+  )
+
+covid_pct_reduction_no_intervention_4 <- results_summary |>
+  filter(
+    archetype == "sars_cov_2",
+    metric == "epidemic_final_size",
+    efficacy == 0.6,
+    coverage == 0.4,
+    coverage_type == "Random"
+  )
 ```
 
 **Figure caption**:
@@ -156,7 +175,7 @@ Next we evaluated the impact of AQIs on infection incidence across two archetypa
 Across both epidemic archetypes, higher efficacy or wider coverage led to reductions in infection incidence across all metrics considered.
 Without intervention, the peak incidence of the influenza archetype was `r signif(filter(no_intervention_flu, metric == "peak_daily_incidence")$mean_value, 3)` per 1,000 (range `r signif(filter(no_intervention_flu, metric == "peak_daily_incidence")$min_value, 3)`-`r signif(filter(no_intervention_flu, metric == "peak_daily_incidence")$max_value, 3)`) with a final epidemic size of `r 100 * signif(filter(no_intervention_flu, metric == "epidemic_final_size")$mean_value, 3)`% of total population (range `r 100 * signif(filter(no_intervention_flu, metric == "epidemic_final_size")$min_value, 3)`%-`r 100 * signif(filter(no_intervention_flu, metric == "epidemic_final_size")$max_value, 3)`%), whereas the SARS-CoV-2 archetype yielded a peak incidence of `r signif(filter(no_intervention_covid, metric == "peak_daily_incidence")$mean_value, 3)` per 1,000 (range `r signif(filter(no_intervention_covid, metric == "peak_daily_incidence")$min_value, 3)`-`r signif(filter(no_intervention_covid, metric == "peak_daily_incidence")$max_value, 3)`) and a final epidemic size of `r 100 * signif(filter(no_intervention_covid, metric == "epidemic_final_size")$mean_value, 3)`% of total population (range `r 100 * signif(filter(no_intervention_covid, metric == "epidemic_final_size")$min_value, 3)`%-`r 100 * signif(filter(no_intervention_covid, metric == "epidemic_final_size")$max_value, 3)`%).
 As with our results examining endemic scenarios, the impact of AQI installation was more pronounced in the influenza archetype.
-Random AQI installation at 40% coverage and 60% efficacy reduced the final epidemic size by `r signif(100 * pct_reduction_no_intervention("flu", "epidemic_final_size", "Random", 0.6, 0.4), 3)`% (range X%-Y%), compared with only `r signif(100 * pct_reduction_no_intervention("sars_cov_2", "epidemic_final_size", "Random", 0.6, 0.4), 2)`% (range X%-Y%) for the SARS-CoV-2 archetype under the same settings (Figure 4A & 4E).
+Random AQI installation at 40% coverage and 60% efficacy reduced the final epidemic size by `r signif(100 * flu_pct_reduction_no_intervention_4$mean_pct_reduction, 3)`% (range X%-Y%), compared with only `r signif(100 * covid_pct_reduction_no_intervention_4$mean_pct_reduction, 2)`% (range X%-Y%) for the SARS-CoV-2 archetype under the same settings (Figure 4A & 4E).
 
 Increasing either efficacy or coverage yielded similar increases in the impact on epidemic peak, timing and final size.
 For the influenza archetype, expanding randomly allocated coverage from 40% to 60% at 40% efficacy lowered the final epidemic size by `r signif(100 * pct_reduction("flu", "epidemic_final_size", "Random", 0.4, 0.6, 0.4, 0.4), 3)`%, approximately matching the `r signif(100 * pct_reduction("flu", "epidemic_final_size", "Random", 0.6, 0.4, 0.4, 0.4), 3)`% from instead increasing efficacy from 40% to 60% while holding coverage at 40% (Figure 4E).
