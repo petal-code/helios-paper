@@ -4,6 +4,8 @@ bibliography: references.bib
 format: docx
 ---
 
+**Warning**: This write-up is behind the Google document.
+
 ```{r}
 number_of_simulations <- 10
 ```
