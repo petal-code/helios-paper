@@ -55,6 +55,36 @@ results_long <- results |>
     values_to = "value"
   )
 
+# Note: Any results with coverage == 0 would work as a baseline. The efficacy
+# and coverage_type do not matter in that case. However, we select a single
+# set of results in order to have the sample number of baseline samples as we
+# have for other results.
+baseline_results <- results_long |>
+  filter(
+    coverage == 0,
+    efficacy == 0.2,
+    coverage_type == "random"
+  ) |>
+  select(
+    iteration,
+    archetype,
+    metric,
+    value_baseline = value
+  )
+
+results_long <- results_long |>
+  left_join(
+    baseline_results,
+    by = c("iteration", "archetype", "metric")
+  ) |>
+  mutate(
+    pct_reduction = dplyr::case_when(
+      is.na(value_baseline) ~ NA_real_,
+      value_baseline == 0 ~ NA_real_,
+      TRUE ~ (value_baseline - value) / value_baseline
+    )
+  )
+
 pct <- function(x) {
   paste0(x * 100, "%")
 }
@@ -103,32 +133,13 @@ results_summary <- results_long |>
     max_value = max(value, na.rm = TRUE),
     min_value = min(value, na.rm = TRUE),
     sd_value = sd(value, na.rm = TRUE),
+    mean_pct_reduction = mean(pct_reduction, na.rm = TRUE),
+    max_pct_reduction = max(pct_reduction, na.rm = TRUE),
+    min_pct_reduction = min(pct_reduction, na.rm = TRUE),
+    sd_pct_reduction = sd(pct_reduction, na.rm = TRUE),
     .groups = "drop"
   ) |>
   update_labels()
-
-baseline_summary <- results_summary |>
-  filter(coverage == 0) |>
-  select(
-    coverage_type,
-    archetype,
-    efficacy,
-    metric,
-    baseline_value = mean_value
-  )
-
-results_summary <- results_summary |>
-  left_join(
-    baseline_summary,
-    by = c("coverage_type", "archetype", "efficacy", "metric")
-  ) |>
-  mutate(
-    pct_reduction = dplyr::case_when(
-      is.na(baseline_value) ~ NA_real_,
-      baseline_value == 0 ~ NA_real_,
-      TRUE ~ (baseline_value - mean_value) / baseline_value
-    )
-  )
 
 pointrange_plot_metric <- function(metric, archetype) {
   df <- results_summary |>
@@ -167,11 +178,12 @@ heatmap_plot_metric <- function(metric, archetype) {
   df <- results_summary |>
     filter(
       metric == .env$metric,
-      archetype_label == .env$archetype
+      archetype_label == .env$archetype,
+      coverage > 0
     )
 
   ggplot(df, aes(x = coverage_fct, y = efficacy_fct)) +
-    geom_tile(aes(fill = pct_reduction)) +
+    geom_tile(aes(fill = mean_pct_reduction)) +
     ggh4x::facet_nested(
       . ~ coverage_type
     ) +
