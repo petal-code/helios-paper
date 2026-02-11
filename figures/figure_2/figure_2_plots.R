@@ -186,14 +186,14 @@ row1 <- plot_grid(
   panelA + theme(legend.position="none"), 
   panelB + theme(legend.position="none"), 
   panelC + theme(legend.position="none"),
-  nrow = 1, labels = c("A", "B", "C"), rel_widths = c(1.2, 1.2, 0.8)
+  nrow = 1, labels = c("A", "B", "C"), rel_widths = c(1, 1, 1)
 )
 
 row2 <- plot_grid(
   panelD + theme(legend.position="none"), 
   panelE + theme(legend.position="none"), 
   panelF + theme(legend.position="none"),
-  nrow = 1, labels = c("D", "E", "F"), rel_widths = c(1.2, 1.2, 0.8)
+  nrow = 1, labels = c("D", "E", "F"), rel_widths = c(1, 1, 1)
 )
 
 # 7. Final Combined Layout
