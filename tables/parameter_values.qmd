@@ -11,39 +11,55 @@ execute:
 library(dplyr)
 library(gt)
 library(here)
+```
 
+## Pathogen archetype parameters
+
+```{r}
 table1_pathogen <- data.frame(
   Parameter = c(
-    "Basic reproduction number (R0)",
+    "Basic reproduction number ($R_0$)",
     "Mean incubation period (days)",
     "Mean infectious period (days)",
-    "Mean duration of immunity (days)",
-    "Approximate generation time (days)"
+    "Mean duration of immunity (days)"
   ),
   SARS_CoV_2_like = c(
     "2.5",
     "2",
     "4",
-    "365",
-    "~6"
+    "365"
   ),
   Influenza_like = c(
     "1.5",
     "1",
     "2",
-    "365",
-    "~3"
+    "365"
   ),
   Source_Reference = c(
     "Liu et al. 2020; Biggerstaff et al. 2014",
-    "Natural history parameters",
-    "Natural history parameters",
-    "Model assumption",
-    "Derived from incubation + infectious periods"
+    "?",
+    "?",
+    "?"
   ),
   stringsAsFactors = FALSE
 )
 
+table1_pathogen |>
+  gt() |>
+  tab_header(title = "Pathogen archetype natural history parameters") |>
+  cols_label(
+    Parameter = "Parameter",
+    SARS_CoV_2_like = "SARS-CoV-2-like",
+    Influenza_like = "Influenza-like",
+    Source_Reference = "Source"
+  ) |>
+  cols_align(align = "left", columns = c(Parameter, Source_Reference)) |>
+  cols_align(align = "center", columns = c(SARS_CoV_2_like, Influenza_like))
+```
+
+## Model parameters
+
+```{r}
 table2_model <- data.frame(
   Parameter = c(
     # Population Structure
@@ -192,6 +208,32 @@ table2_model <- data.frame(
   stringsAsFactors = FALSE
 )
 
+table2_model |>
+  mutate(
+    Category = c(
+      rep("Population structure", 5),
+      rep("Transmission dynamics", 5),
+      rep("Time allocation", 4),
+      rep("Indoor air quality and ventilation", 10),
+      rep("Air quality interventions", 5)
+    )
+  ) |>
+  select(Category, everything()) |>
+  gt(groupname_col = "Category") |>
+  tab_header(title = "Model parameters") |>
+  cols_label(
+    Parameter = "Parameter",
+    Baseline_Value = "Baseline value",
+    Sensitivity_Range = "Sensitivity range",
+    Source_Reference = "Source"
+  ) |>
+  cols_align(align = "left", columns = c(Parameter, Source_Reference)) |>
+  cols_align(align = "center", columns = c(Baseline_Value, Sensitivity_Range))
+```
+
+## Simulation parameters
+
+```{r}
 table3_simulation <- data.frame(
   Parameter = c(
     "Stochastic realizations per scenario",
@@ -223,53 +265,7 @@ table3_simulation <- data.frame(
   ),
   stringsAsFactors = FALSE
 )
-```
 
-## Pathogen archetype parameters
-
-```{r}
-table1_pathogen |>
-  gt() |>
-  tab_header(title = "Pathogen archetype parameters") |>
-  cols_label(
-    Parameter = "Parameter",
-    SARS_CoV_2_like = "SARS-CoV-2-like",
-    Influenza_like = "Influenza-like",
-    Source_Reference = "Source"
-  ) |>
-  cols_align(align = "left", columns = c(Parameter, Source_Reference)) |>
-  cols_align(align = "center", columns = c(SARS_CoV_2_like, Influenza_like))
-```
-
-## Model parameters
-
-```{r}
-table2_model |>
-  mutate(
-    Category = c(
-      rep("Population structure", 5),
-      rep("Transmission dynamics", 5),
-      rep("Time allocation", 4),
-      rep("Indoor air quality and ventilation", 10),
-      rep("Air quality interventions", 5)
-    )
-  ) |>
-  select(Category, everything()) |>
-  gt(groupname_col = "Category") |>
-  tab_header(title = "Model parameters") |>
-  cols_label(
-    Parameter = "Parameter",
-    Baseline_Value = "Baseline value",
-    Sensitivity_Range = "Sensitivity range",
-    Source_Reference = "Source"
-  ) |>
-  cols_align(align = "left", columns = c(Parameter, Source_Reference)) |>
-  cols_align(align = "center", columns = c(Baseline_Value, Sensitivity_Range))
-```
-
-## Simulation parameters
-
-```{r}
 table3_simulation |>
   gt() |>
   tab_header(title = "Simulation parameters") |>
