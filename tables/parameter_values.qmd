@@ -235,33 +235,19 @@ table2_model |>
 
 ```{r}
 table3_simulation <- data.frame(
-  Parameter = c(
-    "Stochastic realizations per scenario",
-    "Simulation duration - endemic (years)",
-    "Baseline period - endemic",
-    "Intervention period - endemic",
-    "Intervention start time"
+  Setting = c(
+    "Pathogen archetype",
+    "AQI efficacy",
+    "AQI coverage",
+    "AQI deployment",
+    "Transmission regime"
   ),
-  Baseline_Value = c(
-    "15-25",
-    "15",
-    "Years 6-10",
-    "Years 11-15",
-    "Year 10"
-  ),
-  Sensitivity_Range = c(
-    "—",
-    "Fixed",
-    "Fixed",
-    "Fixed",
-    "Fixed"
-  ),
-  Source_Reference = c(
-    "Assess stochastic variation",
-    "Model specification",
-    "Pre-intervention steady state",
-    "Post-intervention assessment",
-    "Model specification"
+  Values = c(
+    "SARS-CoV-2-like; Influenza-like",
+    "40%, 60%, 80%",
+    "0%, 20%, 40%, 60%, 80%, 100%",
+    "Random; Risk-targeted",
+    "Endemic; epidemic"
   ),
   stringsAsFactors = FALSE
 )
@@ -270,11 +256,8 @@ table3_simulation |>
   gt() |>
   tab_header(title = "Simulation parameters") |>
   cols_label(
-    Parameter = "Parameter",
-    Baseline_Value = "Baseline value",
-    Sensitivity_Range = "Sensitivity range",
-    Source_Reference = "Source"
+    Setting = "Setting",
+    Values = "Values"
   ) |>
-  cols_align(align = "left", columns = c(Parameter, Source_Reference)) |>
-  cols_align(align = "center", columns = c(Baseline_Value, Sensitivity_Range))
+  cols_align(align = "left", columns = c(Setting, Values))
 ```
