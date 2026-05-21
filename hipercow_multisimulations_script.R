@@ -5,23 +5,23 @@
 ##'
 ##' #+++++ README +++++#
 ##' #++++++++++++++++++#
-##' 
+##'
 ##' This script provides a demonstration, with explanation, of how to run helios-paper simulations
-##' on the Imperial cluster using the hipercow package. The script would be expected to be located 
+##' on the Imperial cluster using the hipercow package. The script would be expected to be located
 ##' in the figures/figure_x directory and run from there.
-##' 
+##'
 ##' I've tried to make it figure agnostic by writing things with respect to figure_X - these will
 ##' need to be modified for the given figure. I have tried to make it such that this should all run
 ##' through without much further modification, but some further tinkering may be needed.
-##' 
+##'
 ##' The script assumes that the current working directory is the repo root (~/helios-paper) - have
 ##' used the here function to try and generalise this, but a first check for most issues is that
 ##' your working directory is the root.
-##' 
+##'
 ##' The ouputs from the simulations should save into a directory: "figures/figure_X/figure_X_simulations/"
 ##' which is specifed in the run_simulation_hipercow() call and will need to be made prior to running
 ##' the simulations (I think - it may generate automatically but not worth chancing it)
-##' 
+##'
 
 # Set the working directory to the project root:
 setwd(dir = here::here())
@@ -30,7 +30,7 @@ setwd(dir = here::here())
 source(here::here("packages.R"))
 source(here::here("R/run.R"))
 
-# Load in the parameter lists - it is anticipated that these 
+# Load in the parameter lists - it is anticipated that these
 parameter_lists <- readRDS("figures/figure_X/figure_X_parameter_list.rds")
 
 ##' Note: We need to divide the parameter_lists into smaller lists that we can send to each node to
@@ -42,12 +42,13 @@ parameter_lists <- readRDS("figures/figure_X/figure_X_parameter_list.rds")
 ##' of simulations/nodes onto the final node while setting to TRUE will distribute remainder simulations
 ##' evenly across the all nodes.
 
-# Determine the number of simulations to run per node: 
+# Determine the number of simulations to run per node:
 nodes_to_use <- 20
 group_index <- assign_simulations(
-  n_simulations = length(parameter_lists), 
-  n_nodes = nodes_to_use, 
-  distribute_evenly = FALSE)
+  n_simulations = length(parameter_lists),
+  n_nodes = nodes_to_use,
+  distribute_evenly = FALSE
+)
 
 # Split the parameter lists into groups to run on individual nodes using the group_indexes calculated
 # using the assign_simulations() function.
