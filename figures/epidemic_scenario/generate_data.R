@@ -5,6 +5,7 @@ config <- list(
   dt = 0.5,
   simulation_time_days = 4 * 365,
   timestep_uvc_on = 1,
+  disable_hospitalisation = TRUE,
   human_population = 50000,
   setting_size = list(
     size_per_individual_workplace = 10,
