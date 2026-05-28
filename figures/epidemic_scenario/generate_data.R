@@ -14,6 +14,9 @@ config <- list(
   )
 )
 
+# Number of simulations per scenario
+N <- 25
+
 # Generate all parameter lists for this figure
 simulation_settings <- tidyr::crossing(
   archetype = c("flu", "sars_cov_2"),
@@ -22,7 +25,7 @@ simulation_settings <- tidyr::crossing(
   riskiness = "setting_specific_riskiness",
   efficacy = seq(0.2, 1, by = 0.2),
   figure = 4,
-  iteration = 1:10,
+  iteration = 1:N,
   scenario = "epidemic"
 ) |>
   mutate(
