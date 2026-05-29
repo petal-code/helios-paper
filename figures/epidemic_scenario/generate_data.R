@@ -48,22 +48,20 @@ time <- format(Sys.time(), "%Y%m%d_%H%M%S")
 name1 <- paste("figure_4_simulation_settings", slug, time, sep = "-")
 name2 <- paste("figure_4_parameter_lists", slug, time, sep = "-")
 
+data_dir <- here::here(
+  "figures",
+  "epidemic_scenario",
+  "data"
+)
+
+dir.create(data_dir, recursive = TRUE, showWarnings = FALSE)
+
 saveRDS(
   simulation_settings,
-  here::here(
-    "figures",
-    "epidemic_scenario",
-    "data",
-    paste0(name1, ".rds")
-  )
+  file.path(data_dir, paste0(name1, ".rds"))
 )
 
 saveRDS(
   parameter_lists,
-  here::here(
-    "figures",
-    "epidemic_scenario",
-    "data",
-    paste0(name2, ".rds")
-  )
+  file.path(data_dir, paste0(name2, ".rds"))
 )
