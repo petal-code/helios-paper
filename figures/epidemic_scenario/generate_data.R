@@ -5,6 +5,7 @@ config <- list(
   dt = 0.5,
   simulation_time_days = 4 * 365,
   timestep_uvc_on = 1,
+  disable_hospitalisation = TRUE,
   human_population = 50000,
   setting_size = list(
     size_per_individual_workplace = 10,
@@ -14,6 +15,9 @@ config <- list(
   )
 )
 
+# Number of simulations per scenario
+N <- 25
+
 # Generate all parameter lists for this figure
 simulation_settings <- tidyr::crossing(
   archetype = c("flu", "sars_cov_2"),
@@ -22,7 +26,7 @@ simulation_settings <- tidyr::crossing(
   riskiness = "setting_specific_riskiness",
   efficacy = seq(0.2, 1, by = 0.2),
   figure = 4,
-  iteration = 1:10,
+  iteration = 1:N,
   scenario = "epidemic"
 ) |>
   mutate(
@@ -44,22 +48,20 @@ time <- format(Sys.time(), "%Y%m%d_%H%M%S")
 name1 <- paste("figure_4_simulation_settings", slug, time, sep = "-")
 name2 <- paste("figure_4_parameter_lists", slug, time, sep = "-")
 
+data_dir <- here::here(
+  "figures",
+  "epidemic_scenario",
+  "data"
+)
+
+dir.create(data_dir, recursive = TRUE, showWarnings = FALSE)
+
 saveRDS(
   simulation_settings,
-  here::here(
-    "figures",
-    "epidemic_scenario",
-    "data",
-    paste0(name1, ".rds")
-  )
+  file.path(data_dir, paste0(name1, ".rds"))
 )
 
 saveRDS(
   parameter_lists,
-  here::here(
-    "figures",
-    "epidemic_scenario",
-    "data",
-    paste0(name2, ".rds")
-  )
+  file.path(data_dir, paste0(name2, ".rds"))
 )

@@ -33,7 +33,16 @@ expand_parameters <- function(
     human_population = config$human_population,
     simulation_time = config$simulation_time_days,
     !!!(config$setting_size),
-    !!!init_counts(config$human_population)
+    !!!init_counts(config$human_population),
+    !!!if (isTRUE(config$disable_hospitalisation)) {
+      list(
+        prob_hosp_child = 0,
+        prob_hosp_adult = 0,
+        prob_hosp_elderly = 0
+      )
+    } else {
+      list()
+    }
   ))
 
   param <- get_parameters(
