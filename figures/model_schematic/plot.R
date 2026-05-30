@@ -119,9 +119,11 @@ number_leisure_places <- sapply(leisure_places, function(x) sum(x > 0))
 
 plot_leisure_visits <- table(number_leisure_places) |>
   data.frame() |>
-  ggplot(aes(x = number_leisure_places, y = Freq)) +
+  mutate(prop = Freq / sum(Freq)) |>
+  ggplot(aes(x = number_leisure_places, y = prop)) +
   geom_col(col = "black", fill = "white") +
-  labs(x = "Leisure venues attended per week", y = "Count")
+  scale_y_continuous(labels = scales::percent_format()) +
+  labs(x = "Leisure venues attended per week", y = "")
 
 plot_leisure <- data.frame(
   "leisure_sizes" = parameters_list$setting_sizes$leisure
@@ -200,3 +202,4 @@ plot_age +
   plot_layout(design = design, tag_level = "keep")
 
 ggsave("plot.pdf", h = 5.5, w = 7)
+ggsave("plot.png", h = 5.5, w = 7)
