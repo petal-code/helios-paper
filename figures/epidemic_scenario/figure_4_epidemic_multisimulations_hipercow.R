@@ -122,7 +122,8 @@ for (i in 1:length(sub_parameter_lists)) {
 x <- sapply(
   task_ids,
   hipercow::task_status
-); table(x)
+)
+table(x)
 
 # Save/load the task_id as required:
 #saveRDS(object = task_ids, file = "figures/figure_X/simulation_task_ids.rds")
