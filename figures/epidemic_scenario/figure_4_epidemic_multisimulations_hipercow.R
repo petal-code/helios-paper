@@ -32,7 +32,9 @@ source(here::here("R/run.R"))
 
 # Load in the parameter lists - it is anticipated that these
 #parameter_lists <- readRDS("figures/figure_X/figure_X_parameter_list.rds")
-parameter_lists <- readRDS("figures/epidemic_scenario/data/figure_4_parameter_lists-humiliated_desertpupfish-20260528_181834.rds")
+parameter_lists <- readRDS(
+  "figures/epidemic_scenario/data/figure_4_parameter_lists-humiliated_desertpupfish-20260528_181834.rds"
+)
 
 ##' Note: We need to divide the parameter_lists into smaller lists that we can send to each node to
 ##' be simulated. We do this by specifying the number of nodes to use (n_nodes) and the number of
