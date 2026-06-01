@@ -210,7 +210,7 @@ panelC <- ggplot(
   labs(
     x = "AQI Coverage",
     y = "AQI Efficacy",
-    fill = "% Reduction in \n Annuzalized Disease\n Incidence"
+    fill = "% Reduction in \n Annualized Disease\n Incidence"
   )
 
 # PANEL D & E (Flu Lines)
