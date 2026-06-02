@@ -2,7 +2,7 @@ source(here::here("packages.R"))
 
 #Core Parameters
 archetypes <- c("flu", "sars_cov_2")
-iterations <- 1:15
+iterations <- 1:25
 years_to_simulate <- 20
 simulation_time_days <- (365 * years_to_simulate)
 human_population <- 50000
@@ -163,7 +163,3 @@ for (i in 1:length(parameter_lists)) {
 }
 
 saveRDS(parameter_lists, "figures/figure_2/figure_2_parameter_list.rds")
-#saveRDS(
-#  simulations_to_run,
-#  "figures/figure_2/figure_2_parameter_combinations.rds"
-#)
