@@ -3,10 +3,10 @@ source(here::here("packages.R"))
 
 # Core Parameters
 archetypes <- c("flu", "sars_cov_2")
-iterations <- 1:15
-years_to_simulate <- 15
+iterations <- 1:25
+years_to_simulate <- 20
 simulation_time_days <- (365 * years_to_simulate)
-human_population <- 100000
+human_population <- 50000
 duration_of_immunity <- 365
 external_infection_probability <- 1 / human_population
 riskiness <- "setting_specific_riskiness"
