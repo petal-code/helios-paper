@@ -1,6 +1,6 @@
 source(here::here("packages.R"))
 
-#Core Parameters
+# Core Parameters
 archetypes <- c("flu", "sars_cov_2")
 iterations <- 1:25
 years_to_simulate <- 20
@@ -14,6 +14,11 @@ size_per_individual_workplace <- 10
 size_per_individual_school <- 3.33
 size_per_individual_leisure <- 2
 size_per_individual_household <- 20
+
+# Turn hospitalisation functionality off:
+prob_hosp_child = 0
+prob_hosp_adult = 0
+prob_hosp_elderly = 0
 
 # Initial conditions for SARS-CoV-2:
 initial_S_SC2 <- round(0.4 * human_population)
@@ -79,6 +84,9 @@ for (i in 1:nrow(simulations_to_run)) {
         size_per_individual_household = size_per_individual_household,
         duration_immune = duration_of_immunity,
         prob_inf_external = external_infection_probability,
+        prob_hosp_child = prob_hosp_child,
+        prob_hosp_adult = prob_hosp_adult,
+        prob_hosp_elderly = prob_hosp_elderly, 
         simulation_time = simulation_time_days,
         seed = simulations_to_run$seed[i]
       )
