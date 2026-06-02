@@ -5,9 +5,10 @@
 source(here::here("packages.R"))
 
 parameter_lists <- readRDS(
-  "figures/epidemic_scenario/figure_4_parameter_lists.rds"
+  "figures/epidemic_scenario/data/figure_4_parameter_lists-humiliated_desertpupfish-20260528_181834.rds"
 )
 
+# Note: sometimes need to run setwd("P:/Tom/helios-paper/")
 # Prepare for cluster use (see https://mrc-ide.github.io/hipercow/)
 hipercow::hipercow_init(driver = 'dide-windows')
 hipercow::hipercow_configure(driver = "dide-windows")
