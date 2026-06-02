@@ -1,4 +1,4 @@
 figure_4_epidemic_simulations/
 simulation_task_id.rds
 **/*.rds
-*.zip
+**/*.zip
