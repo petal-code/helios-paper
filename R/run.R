@@ -71,6 +71,7 @@ run_simulation_hipercow <- function(
   # Get the date/time stamp:
   time_stamp <- format(Sys.time(), "%Y%m%d_%H%M")
 
+  # TODO: Improve parameter list generation across figures to enable effective naming of files
   # Save the outputs in the specified directory:
   if (file_save) {
     saveRDS(
@@ -82,7 +83,7 @@ run_simulation_hipercow <- function(
         "_scenario_",
         parameters$scenario,
         "_id_",
-        parameters$id,
+        parameters$simulation_id,
         "_iteration_",
         parameters$iteration,
         "_scenario_",
@@ -91,6 +92,6 @@ run_simulation_hipercow <- function(
       )
     )
   }
-
+  
   return(output)
 }
