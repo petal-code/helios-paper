@@ -30,9 +30,12 @@ setwd(dir = here::here())
 source(here::here("packages.R"))
 source(here::here("R/run.R"))
 
+# Open a new data folder (if one isn't already present):
+dir.create("figures/figure_2/outputs", recursive = TRUE, showWarnings = FALSE)
+
 # Load in the parameter lists - it is anticipated that these
 #parameter_lists <- readRDS("figures/figure_X/figure_X_parameter_list.rds")
-parameter_lists <- readRDS("figures/figure_2/")
+parameter_lists <- readRDS("figures/figure_2/figure_2_parameter_list.rds")
 
 ##' Note: We need to divide the parameter_lists into smaller lists that we can send to each node to
 ##' be simulated. We do this by specifying the number of nodes to use (n_nodes) and the number of
@@ -89,7 +92,7 @@ hipercow::hipercow_environment_create(
 # NOTE: If simulations fail, it is likely that it is due to the memory allocated to each node. A common
 #        solution for me has been to increase this using the function below):
 # Increase the memory allowed for the parameter lists:
-options(hipercow.max_size_local = 50000000)
+options(hipercow.max_size_local = 2000000000)
 
 ##' TODO: Find a way to decrease the size of sub_parameter_lists
 # Run the simulations using the hipercow function task_create_expr()
@@ -104,7 +107,7 @@ for (i in 1:length(sub_parameter_lists)) {
         run_simulation_hipercow(
           p,
           file_save = TRUE,
-          directory = "figures/epidemic_scenario/outputs/"
+          directory = "figures/figure_2/outputs/"
         )
       }
     ),
@@ -123,12 +126,18 @@ x <- sapply(
 )
 table(x)
 
+# Use the following to check which jobs have succeeded/failed:
+which(x == "success")
+which(x == "failure")
+
+hipercow::task_info(id = task_ids[[13]])
+
 # Save/load the task_id as required:
 #saveRDS(object = task_ids, file = "figures/figure_X/simulation_task_ids.rds")
 #task_ids <- readRDS(file = "./figures/figure_X/simulation_task_ids.rds")
 
 # View the job logs:
-hipercow::task_log_show(task_ids[[1]])
+hipercow::task_log_show(task_ids[[13]])
 
 # View the job result:
 #outputs <- hipercow::task_result(task_id)
