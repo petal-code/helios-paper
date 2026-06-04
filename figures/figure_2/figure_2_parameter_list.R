@@ -162,7 +162,7 @@ for (i in 1:nrow(simulations_to_run)) {
 }
 
 for (i in 1:length(parameter_lists)) {
-  parameter_lists[[i]]$simulation_id <- simulations_to_run$ID[i]
+  parameter_lists[[i]]$id <- simulations_to_run$ID[i]
   parameter_lists[[i]]$iteration_number <- simulations_to_run$iteration[i]
   parameter_lists[[i]]$archetype_label <- simulations_to_run$archetype[i]
   parameter_lists[[i]]$coverage <- simulations_to_run$coverage[i]

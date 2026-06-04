@@ -130,8 +130,6 @@ table(x)
 which(x == "success")
 which(x == "failure")
 
-hipercow::task_info(id = task_ids[[13]])
-
 # Save/load the task_id as required:
 #saveRDS(object = task_ids, file = "figures/figure_X/simulation_task_ids.rds")
 #task_ids <- readRDS(file = "./figures/figure_X/simulation_task_ids.rds")
