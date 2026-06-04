@@ -83,10 +83,10 @@ run_simulation_hipercow <- function(
         "_scenario_",
         parameters$scenario,
         "_id_",
-        parameters$simulation_id,
+        parameters$id,
         "_iteration_",
         parameters$iteration,
-        "_scenario_",
+        "_",
         time_stamp,
         "_output.rds"
       )

@@ -2,18 +2,33 @@
 #+++++ Figure 3 Hipercow Script  +++++#
 #+++++++++++++++++++++++++++++++++++++#
 
-source(here::here("packages.R"))
+# Set the working directory to the project root:
+setwd(dir = here::here())
 
+# Load in the requisite packages:
+source(here::here("packages.R"))
+source(here::here("R/run.R"))
+
+# Open a new data folder (if one isn't already present):
+dir.create("figures/figure_2/outputs", recursive = TRUE, showWarnings = FALSE)
+
+# Load the figure 3 parameter lists:
 parameter_lists <- readRDS("figures/figure_3/figure_3_parameter_list.rds")
 
-# Split job across 20 32-core nodes:
-group_index <- c(rep(1:20, each = 86))
+# Determine the number of simulations to run per node:
+nodes_to_use <- 30
+group_index <- assign_simulations(
+  n_simulations = length(parameter_lists),
+  n_nodes = nodes_to_use,
+  distribute_evenly = FALSE
+)
+
+# Split the parameter lists into groups to run on individual nodes using the group_indexes calculated
+# using the assign_simulations() function.
 sub_parameter_lists <- split(
   x = parameter_lists,
   f = group_index
 )
-
-#++++++++++++ BODGE SOME LIST SPLITTING ++++++++++++++++++++++++++++++++++#
 
 # Prepare for cluster use (see https://mrc-ide.github.io/hipercow/)
 hipercow::hipercow_init(driver = 'dide-windows')
@@ -39,7 +54,7 @@ hipercow::hipercow_environment_create(
 # TODO: "Better again, create large objects from your 'sources' argument to your environment, and
 # then advertise this using the 'globals' argument (see the hipercow::environments vignette)"
 # Increase the memory allowed for the parameter lists:
-options(hipercow.max_size_local = 26000000)
+options(hipercow.max_size_local = 2000000000)
 
 # Run the simulations using the hipercow function task_create_expr()
 # https://mrc-ide.github.io/hipercow/reference/task_create_expr.html
@@ -53,7 +68,7 @@ for (i in 1:length(sub_parameter_lists)) {
         run_simulation_hipercow(
           p,
           file_save = TRUE,
-          directory = "figures/figure_3/figure_3_simulations/"
+          directory = "figures/figure_3/outputs/"
         )
       }
     ),
@@ -73,8 +88,11 @@ table(x)
 saveRDS(object = task_ids, file = "figures/figure_3/simulation_task_ids.rds")
 task_ids <- readRDS(file = "./figures/figure_3/simulation_task_ids.rds")
 
+task_ids2 <- task_ids
+task_ids <- task_ids2
+
 # View the job logs:
-hipercow::task_log_show(task_ids[[1]])
+hipercow::task_log_show(task_ids[[5]])
 
 # View the job result:
 #outputs <- hipercow::task_result(task_id)

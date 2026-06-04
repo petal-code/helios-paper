@@ -1,1 +1,3 @@
-simulation_task_ids.rds
+**/*.rds
+**/*.zip
+/outputs/
