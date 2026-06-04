@@ -10,7 +10,7 @@ source(here::here("packages.R"))
 source(here::here("R/run.R"))
 
 # Open a new data folder (if one isn't already present):
-dir.create("figures/figure_2/outputs", recursive = TRUE, showWarnings = FALSE)
+dir.create("figures/figure_3/figure_3_outputs", recursive = TRUE, showWarnings = FALSE)
 
 # Load the figure 3 parameter lists:
 parameter_lists <- readRDS("figures/figure_3/figure_3_parameter_list.rds")
@@ -68,7 +68,7 @@ for (i in 1:length(sub_parameter_lists)) {
         run_simulation_hipercow(
           p,
           file_save = TRUE,
-          directory = "figures/figure_3/outputs/"
+          directory = "figures/figure_3/figure_3_outputs/"
         )
       }
     ),
@@ -88,11 +88,8 @@ table(x)
 saveRDS(object = task_ids, file = "figures/figure_3/simulation_task_ids.rds")
 task_ids <- readRDS(file = "./figures/figure_3/simulation_task_ids.rds")
 
-task_ids2 <- task_ids
-task_ids <- task_ids2
-
 # View the job logs:
-hipercow::task_log_show(task_ids[[5]])
+hipercow::task_log_show(task_ids[[]])
 
 # View the job result:
 #outputs <- hipercow::task_result(task_id)
