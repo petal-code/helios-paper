@@ -1,13 +1,13 @@
 source(here::here("packages.R"))
 
-version <- "epidemic_scenario_simulations_crafty_blackcrappie"
+version <- "epidemics_scenario_outputs-humiliated_desertpupfish-20260528_181834"
 files <- list.files(
   path = file.path("figures", "epidemic_scenario", "data", version),
   full.names = TRUE
 )
 
 get_results <- function(sim) {
-  df <- pivot_to_long(sim$simulation)
+  df <- pivot_to_long(sim$simulation$result)
   results <- list(
     "epidemic_final_size" = epidemic_final_size(df),
     "time_to_peak_infections" = time_to_peak_infections(
@@ -24,8 +24,15 @@ get_results <- function(sim) {
   return(results)
 }
 
-results <- purrr::map(files, readRDS) |>
-  purrr::map_dfr(get_results)
+results <- purrr::map_dfr(
+  files,
+  \(f) {
+    sim <- readRDS(f)
+    get_results(sim)
+  },
+  .progress = TRUE
+) |>
+  arrange(id)
 
 # simulation_settings obtained from previous script. Possible we want to save this with the simulations
 
@@ -34,7 +41,7 @@ simulation_settings <- readRDS(
     "figures",
     "epidemic_scenario",
     "data",
-    "figure_4_simulation_settings-crafty_blackcrappie-20251026_183336.rds"
+    "figure_4_simulation_settings-humiliated_desertpupfish-20260528_181834.rds"
   )
 )
 

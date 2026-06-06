@@ -1,4 +1,10 @@
 pivot_to_long <- function(df) {
+  if (all(c("I_mild_count", "I_hosp_count") %in% names(df))) {
+    df <- df |>
+      mutate(I_count = I_mild_count + I_hosp_count) |>
+      select(-I_mild_count, -I_hosp_count)
+  }
+
   df |>
     select(-E_new) |>
     tidyr::pivot_longer(
