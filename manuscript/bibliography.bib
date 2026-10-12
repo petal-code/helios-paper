@@ -1,0 +1,161 @@
+%%
+%% The bibliography is separated into the following sections:
+%% 1. Journal Articles
+%% 2. Software Packages
+%% 3. Data Sources
+%%
+
+%+++++ 1. Journal Articles ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+@article{bi2021insights,
+  title={Insights into household transmission of SARS-CoV-2 from a population-based serological survey},
+  author={Bi, Qifang and Lessler, Justin and Eckerle, Isabella and Lauer, Stephen A and Kaiser, Laurent and Vuilleumier, Nicolas and Cummings, Derek AT and Flahault, Antoine and Petrovic, Dusan and Guessous, Idris and others},
+  journal={Nature communications},
+  volume={12},
+  number={1},
+  pages={3643},
+  year={2021},
+  publisher={Nature Publishing Group UK London}
+}
+
+@article{blatchley2023quantitative,
+  title={Quantitative microbial risk assessment for quantification of the effects of ultraviolet germicidal irradiation on COVID-19 transmission},
+  author={Blatchley III, Ernest R and Cui, Haiying},
+  journal={Environmental Science \& Technology},
+  volume={57},
+  number={45},
+  pages={17393--17403},
+  year={2023},
+  publisher={ACS Publications}
+}
+
+% Ferguson et al. (2006):
+@article{Fergusonetal2006,
+  author  = {Ferguson, Neil M. and Cummings, Derek A. T. and Fraser, Christophe and Cajka, James C. and Cooley, Philip C. and Burke, Donald S.},
+  title   = {Strategies for mitigating an influenza pandemic},
+  journal = {Nature},
+  year    = {2006},
+  volume  = {442},
+  pages   = {448--452},
+  doi     = {10.1038/nature04795}
+}
+
+@article{ferretti2024digital,
+  title={Digital measurement of SARS-CoV-2 transmission risk from 7 million contacts},
+  author={Ferretti, Luca and Wymant, Chris and Petrie, James and Tsallis, Daphne and Kendall, Michelle and Ledda, Alice and Di Lauro, Francesco and Fowler, Adam and Di Francia, Andrea and Panovska-Griffiths, Jasmina and others},
+  journal={Nature},
+  volume={626},
+  number={7997},
+  pages={145--150},
+  year={2024},
+  publisher={Nature Publishing Group UK London}
+}
+
+% Hinch et al. (2021):
+@article{hinch2021openabm,
+  title={{OpenABM-Covid19—An agent-based model for non-pharmaceutical interventions against COVID-19 including contact tracing}},
+  author={Hinch, Robert and Probert, William JM and Nurtay, Anel and Kendall, Michelle and Wymant, Chris and Hall, Matthew and Lythgoe, Katrina and Bulas Cruz, Ana and Zhao, Lele and Stewart, Andrea and others},
+  journal={PLoS Computational Biology},
+  volume={17},
+  number={7},
+  pages={e1009146},
+  year={2021},
+  publisher={Public Library of Science San Francisco, CA USA}
+}
+
+@article{killingley2022safety,
+  title={Safety, tolerability and viral kinetics during SARS-CoV-2 human challenge in young adults},
+  author={Killingley, Ben and Mann, Alex J and Kalinova, Mariya and Boyers, Alison and Goonawardane, Niluka and Zhou, Jie and Lindsell, Kate and Hare, Samanjit S and Brown, Jonathan and Frise, Rebecca and others},
+  journal={Nature Medicine},
+  volume={28},
+  number={5},
+  pages={1031--1041},
+  year={2022},
+  publisher={Nature Publishing Group US New York}
+}
+
+%+++++ 2. Software ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+% individual package
+@article{individual,
+  title = {{individual: An R package for individual-based epidemiological models}},
+  author = {Giovanni D. Charles and Sean L. Wu},
+  journal = {Journal of Open Source Software},
+  year = {2021},
+  volume = {6},
+  number = {66},
+  pages = {3539},
+  url = {https://doi.org/10.21105/joss.03539},
+  doi = {10.21105/joss.03539},
+  publisher = {The Open Journal},
+}
+ % finalsize package
+@Manual{finalsize,
+  title = {finalsize: Calculate the Final Size of an Epidemic},
+  author = {Pratik Gupte and Edwin {Van Leeuwen} and Adam Kucharski},
+  year = {2024},
+  note = {R package version 0.2.1, 
+https://epiverse-trace.github.io/finalsize/},
+  url = {https://github.com/epiverse-trace/finalsize},
+}
+
+% hipercow package:
+@Manual{hipercow,
+  title        = {hipercow: High Performance Computing Support for the DIDE Cluster},
+  author       = {Rich FitzJohn and Wes Hinsley and Paul Liétar},
+  year         = {2025},
+  note         = {R package version 1.1.5},
+  url          = {https://github.com/mrc-ide/hipercow}
+}
+
+%+++++ Data Sources ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+% US Population Data
+@article{wheaton2014us,
+  title={US Synthetic Population 2010 Version 1.0 Quick Start Guide},
+  author={Wheaton, WD and RTI, Int},
+  journal={RTI International},
+  year={2014}
+}
+
+% US Schools Data
+@book{deBrey2023Digest,
+  author    = {de Brey, Cristobal and Zhang, Anlan and Duffy, Sarah},
+  year      = {2023},
+  title     = {Digest of Education Statistics, 2021},
+  publisher = {National Center for Education Statistics},
+  note       = {NCES 2023009},
+  url       = {https://nces.ed.gov/programs/digest/d21/}
+}
+
+%+++++ Other ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+@techreport{ASHRAE,
+  author      = {{American Society of Heating, Refrigerating and Air-Conditioning Engineers}},
+  title       = {{ANSI/ASHRAE Standard 62.1-2022: Ventilation and Acceptable Indoor Air Quality}},
+  institution = {ASHRAE},
+  year        = {2022},
+  address     = {Peachtree Corners, GA},
+}
+
+% US Bureau of Labour Statistics Report (2003) (Reference from Ferguson et al. 2006 were refer to for workplace size calculation)
+@techreport{BLS2003QCEWSize,
+  author      = {{U.S. Bureau of Labor Statistics}},
+  title       = {Quarterly Census of Employment and Wages: Establishment Size and Employment},
+  institution = {U.S. Department of Labor, Bureau of Labor Statistics},
+  year        = {2003},
+  url         = {http://www.bls.gov/cew/size2003.pdf}
+}
+
+Corsi Report (2006):
+@techreport{corsi22006ozone,
+  author       = {Richard L. Corsi},
+  title        = {Assessment of Maximum Ozone Emissions in Residential, Office and School Buildings},
+  institution  = {The University of Texas at Austin, Department of Civil, Architectural and Environmental Engineering},
+  type         = {Technical Report},
+  year         = {2006},
+  month        = {November},
+  day          = {21},
+  url          = {https://corsiaq.com/wp-content/uploads/2021/03/assessment-of-maximum-ozone-emissions-in-residential-office-and-school-buildings-.pdf},
+  note         = {ECH Bantel Professor Professional Practice Report}
+}
