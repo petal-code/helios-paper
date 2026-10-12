@@ -16,9 +16,9 @@ size_per_individual_leisure <- 2
 size_per_individual_household <- 20
 
 # Turn hospitalisation functionality off:
-prob_hosp_child = 0
-prob_hosp_adult = 0
-prob_hosp_elderly = 0
+prob_hosp_child <- 0
+prob_hosp_adult <- 0
+prob_hosp_elderly <- 0
 
 # Initial conditions for SARS-CoV-2:
 initial_S_SC2 <- round(0.4 * human_population)
