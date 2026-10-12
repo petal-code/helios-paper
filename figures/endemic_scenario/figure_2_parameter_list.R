@@ -177,4 +177,4 @@ for (i in 1:length(parameter_lists)) {
   parameter_lists[[i]]$coverage_type <- simulations_to_run$coverage_type[i]
 }
 
-saveRDS(parameter_lists, "figures/figure_2/figure_2_parameter_list.rds")
+saveRDS(parameter_lists, "figures/endemic_scenario/figure_2_parameter_list.rds")

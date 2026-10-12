@@ -6,7 +6,7 @@ library(ggplot2)
 library(viridis)
 library(cowplot)
 
-dir_sim <- "/helios-paper/figures/figure_2/figure_2_simulations"
+dir_sim <- here::here("figures", "endemic_scenario", "outputs")
 
 files <- list.files(
   path = dir_sim,

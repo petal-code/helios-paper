@@ -32,14 +32,14 @@ source(here::here("R/run.R"))
 
 # Open a new data folder (if one isn't already present):
 dir.create(
-  "figures/figure_2/figure_2_outputs",
+  "figures/endemic_scenario/outputs",
   recursive = TRUE,
   showWarnings = FALSE
 )
 
 # Load in the parameter lists - it is anticipated that these
 #parameter_lists <- readRDS("figures/figure_X/figure_X_parameter_list.rds")
-parameter_lists <- readRDS("figures/figure_2/figure_2_parameter_list.rds")
+parameter_lists <- readRDS("figures/endemic_scenario/figure_2_parameter_list.rds")
 
 ##' Note: We need to divide the parameter_lists into smaller lists that we can send to each node to
 ##' be simulated. We do this by specifying the number of nodes to use (n_nodes) and the number of
@@ -111,7 +111,7 @@ for (i in 1:length(sub_parameter_lists)) {
         run_simulation_hipercow(
           p,
           file_save = TRUE,
-          directory = "figures/figure_2/outputs/"
+          directory = "figures/endemic_scenario/outputs/"
         )
       }
     ),
@@ -137,10 +137,10 @@ which(x == "failure")
 # Save/load the task_id as required:
 saveRDS(
   object = task_ids,
-  file = "figures/figure_2/figure_2_simulation_task_ids.rds"
+  file = "figures/endemic_scenario/figure_2_simulation_task_ids.rds"
 )
 task_ids <- readRDS(
-  file = "./figures/figure_2/figure_2_simulation_task_ids.rds"
+  file = "./figures/endemic_scenario/figure_2_simulation_task_ids.rds"
 )
 
 # View the job logs:
