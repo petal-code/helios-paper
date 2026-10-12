@@ -192,7 +192,7 @@ design <- "
   56
 "
 
-plot_age +
+plot_population <- plot_age +
   plot_households +
   plot_schools +
   plot_workplaces +
@@ -201,4 +201,4 @@ plot_age +
   plot_annotation(tag_levels = "A") +
   plot_layout(design = design, tag_level = "keep")
 
-ggsave("plot.png", h = 5.5, w = 7, dpi = 600)
+ggsave("plot.png", plot = plot_population, h = 5.5, w = 7, dpi = 600)
