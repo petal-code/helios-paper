@@ -123,7 +123,7 @@ for (i in 1:nrow(simulations_to_run)) {
 
   # UVC Parameters
   if (simulations_to_run$coverage[i] > 0) {
-    parameter_lists[[i]] <- parameter_lists[[i]] %>%
+    parameter_lists[[i]] <- parameter_lists[[i]] |>
       set_uvc(
         setting = "joint",
         coverage = simulations_to_run$coverage[i],
@@ -136,28 +136,28 @@ for (i in 1:nrow(simulations_to_run)) {
 
   #Riskiness Settings
   if (simulations_to_run$riskiness[i] == "setting_specific_riskiness") {
-    parameter_lists[[i]] <- parameter_lists[[i]] %>%
+    parameter_lists[[i]] <- parameter_lists[[i]] |>
       set_setting_specific_riskiness(
         setting = "school",
         mean = 0,
         sd = 0.3544,
         min = 1 / sqrt(4.75),
         max = sqrt(4.75)
-      ) %>%
+      ) |>
       set_setting_specific_riskiness(
         setting = "workplace",
         mean = 0,
         sd = 0.5072,
         min = 1 / sqrt(6.35),
         max = sqrt(6.35)
-      ) %>%
+      ) |>
       set_setting_specific_riskiness(
         setting = "household",
         mean = 0,
         sd = 0.0871,
         min = 1 / sqrt(2.5),
         max = sqrt(2.5)
-      ) %>%
+      ) |>
       set_setting_specific_riskiness(
         setting = "leisure",
         mean = 0,

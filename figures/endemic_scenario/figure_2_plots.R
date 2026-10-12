@@ -13,7 +13,7 @@ read_simulation <- function(filepath) {
   dt <- simulation_file$parameters$dt
   pop_size <- 50000
 
-  simulation_file$simulation %>%
+  simulation_file$simulation |>
     mutate(
       days = timestep * dt,
       year = floor(days / 365),
@@ -23,8 +23,8 @@ read_simulation <- function(filepath) {
       efficacy = simulation_file$parameters$efficacy,
       active_infected = E_count + I_count,
       prevalence = (active_infected / pop_size) * 100
-    ) %>%
-    group_by(year, filename, archetype, coverage, efficacy) %>%
+    ) |>
+    group_by(year, filename, archetype, coverage, efficacy) |>
     summarise(
       total_infections = sum(E_new, na.rm = TRUE),
       annualized_incidence_rate = total_infections / pop_size,
@@ -36,15 +36,15 @@ read_simulation <- function(filepath) {
 
 all_sims <- purrr::map_dfr(files, read_simulation)
 
-metrics <- all_sims %>%
+metrics <- all_sims |>
   mutate(
     window = case_when(
       year %in% 5:7 ~ "baseline",
       year %in% 15:17 ~ "post"
     )
-  ) %>%
-  filter(!is.na(window)) %>%
-  group_by(filename, archetype, coverage, efficacy, window) %>%
+  ) |>
+  filter(!is.na(window)) |>
+  group_by(filename, archetype, coverage, efficacy, window) |>
   summarise(
     mean_incidence_rate = mean(annualized_incidence_rate, na.rm = TRUE),
     mean_active_infected = mean(mean_active_infected, na.rm = TRUE),
@@ -52,11 +52,11 @@ metrics <- all_sims %>%
     .groups = "drop"
   )
 
-reductions <- metrics %>%
+reductions <- metrics |>
   pivot_wider(
     names_from = window,
     values_from = c(mean_incidence_rate, mean_active_infected, mean_prevalence)
-  ) %>%
+  ) |>
   mutate(
     incidence_reduction = 1 -
       mean_incidence_rate_post / mean_incidence_rate_baseline,
@@ -65,8 +65,8 @@ reductions <- metrics %>%
     prevalence_reduction = 1 - mean_prevalence_post / mean_prevalence_baseline
   )
 
-reductions_summary <- reductions %>%
-  group_by(archetype, coverage, efficacy) %>%
+reductions_summary <- reductions |>
+  group_by(archetype, coverage, efficacy) |>
   summarise(
     mean_incidence_reduction = mean(incidence_reduction, na.rm = TRUE),
     low_incidence = min(incidence_reduction, na.rm = TRUE),
@@ -92,7 +92,7 @@ target_vals <- c(0.2, 0.4, 0.6, 0.8, 1.0)
 
 # PANEL A & B (SC2 Lines)
 cols_a <- c("#5083DB", "#395D9C", "#253B65")
-plot_data_a <- reductions_summary %>%
+plot_data_a <- reductions_summary |>
   filter(
     efficacy %in% target_efficacies,
     archetype == "sars_cov_2",
@@ -132,14 +132,14 @@ panelA <- ggplot(
   )
 
 cols_b <- c("#5083DB", "#395D9C", "#253B65")
-post_active_sc2 <- metrics %>%
+post_active_sc2 <- metrics |>
   filter(
     window == "post",
     archetype == "sars_cov_2",
     efficacy %in% target_efficacies,
     coverage %in% target_coverage_intervals
-  ) %>%
-  group_by(archetype, coverage, efficacy) %>%
+  ) |>
+  group_by(archetype, coverage, efficacy) |>
   summarise(
     mean_active_infected = mean(mean_prevalence, na.rm = TRUE),
     low = min(mean_prevalence, na.rm = TRUE),
@@ -176,7 +176,7 @@ panelB <- ggplot(
   )
 
 # PANEL C (SC2 Heatmap)
-heat_data_c <- reductions_summary %>%
+heat_data_c <- reductions_summary |>
   filter(
     coverage %in% target_vals,
     efficacy %in% target_vals,
@@ -209,7 +209,7 @@ panelC <- ggplot(
 
 # PANEL D & E (Flu Lines)
 cols_d <- c("#E68996", "#D93052", "#9D374C")
-plot_data_d <- reductions_summary %>%
+plot_data_d <- reductions_summary |>
   filter(
     efficacy %in% target_efficacies,
     archetype == "flu",
@@ -249,14 +249,14 @@ panelD <- ggplot(
   )
 
 cols_e <- c("#E68996", "#D93052", "#9D374C")
-post_active_flu <- metrics %>%
+post_active_flu <- metrics |>
   filter(
     window == "post",
     archetype == "flu",
     efficacy %in% target_efficacies,
     coverage %in% target_coverage_intervals
-  ) %>%
-  group_by(archetype, coverage, efficacy) %>%
+  ) |>
+  group_by(archetype, coverage, efficacy) |>
   summarise(
     mean_active_infected = mean(mean_prevalence, na.rm = TRUE),
     low = min(mean_prevalence, na.rm = TRUE),
@@ -293,7 +293,7 @@ panelE <- ggplot(
   )
 
 #  PANEL F (Flu Heatmap)
-heat_data_f <- reductions_summary %>%
+heat_data_f <- reductions_summary |>
   filter(
     coverage %in% target_vals,
     efficacy %in% target_vals,
