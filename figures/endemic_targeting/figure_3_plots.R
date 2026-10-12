@@ -133,14 +133,14 @@ read_simulation <- function(filepath) {
   dt <- sim$parameters$dt
   N <- sim$parameters$human_population
 
-  sim$simulation |>
+  sim$simulation$result |>
     mutate(
       days = timestep * dt,
       year = floor(days / 365) + 1,
       filename = basename(filepath),
       archetype = sim$parameters$archetype_label,
-      coverage = sim$parameters$coverage,
-      efficacy = sim$parameters$efficacy,
+      coverage = round(sim$parameters$coverage, 10),
+      efficacy = round(sim$parameters$efficacy, 10),
       coverage_type = sim$parameters$far_uvc_joint_coverage_type
     ) |>
     group_by(year, filename, archetype, coverage, efficacy, coverage_type) |>
@@ -272,7 +272,7 @@ panel_b <- ggplot(
       "Targeted (80%)"
     )
   ) +
-  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
   labs(
     x = "AQI Coverage",
     y = "% Reduction (vs baseline)",
@@ -394,7 +394,7 @@ panel_d <- ggplot(
     labels = c("40%", "60%", "80%"),
     name = "Efficacy"
   ) +
-  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
   labs(
     x = "AQI Coverage",
     y = "Absolute Difference \n in % Reduction",
@@ -474,7 +474,7 @@ panel_e <- ggplot(
       "Targeted (80%)"
     )
   ) +
-  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
   labs(
     x = "AQI Coverage",
     y = "% Reduction (vs baseline)",
@@ -592,7 +592,7 @@ panel_g <- ggplot(
     labels = c("40%", "60%", "80%"),
     name = "Efficacy"
   ) +
-  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
   labs(
     x = "AQI Coverage",
     y = "Absolute Difference \n in % Reduction",
@@ -665,3 +665,12 @@ final_figure <- plot_grid(
 )
 
 final_figure
+
+ggsave(
+  filename = here::here("figures", "endemic_targeting", "plot.png"),
+  plot = final_figure,
+  width = 12,
+  height = 14,
+  units = "in",
+  dpi = 600
+)
