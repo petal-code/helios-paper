@@ -1,8 +1,7 @@
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++#
 #+++++ Figure X Hipercow Multisimulation Script  +++++#
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++#
 
-##'
 ##' #+++++ README +++++#
 ##' #++++++++++++++++++#
 ##'
@@ -21,7 +20,6 @@
 ##' The ouputs from the simulations should save into a directory: "figures/figure_X/figure_X_simulations/"
 ##' which is specifed in the run_simulation_hipercow() call and will need to be made prior to running
 ##' the simulations (I think - it may generate automatically but not worth chancing it)
-##'
 
 # Set the working directory to the project root:
 setwd(dir = here::here())
@@ -30,7 +28,7 @@ setwd(dir = here::here())
 source(here::here("packages.R"))
 source(here::here("R/run.R"))
 
-# Load in the parameter lists - it is anticipated that these
+# Load in the parameter lists (placeholder)
 parameter_lists <- readRDS("figures/figure_X/figure_X_parameter_list.rds")
 
 ##' Note: We need to divide the parameter_lists into smaller lists that we can send to each node to
@@ -127,5 +125,3 @@ hipercow::task_log_show(task_ids[[1]])
 
 # View the job result:
 #outputs <- hipercow::task_result(task_id)
-
-#--------------------------------------------------------------------------------------------------#
