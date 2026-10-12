@@ -128,6 +128,10 @@ panel_a
 dir_sim <- here::here("figures", "endemic_targeting", "2026-06-04_tom_figure_3")
 files <- list.files(path = dir_sim, pattern = "\\.rds$", full.names = TRUE)
 
+if (length(files) == 0L) {
+  stop("No archived simulation outputs found in ", dir_sim)
+}
+
 read_simulation <- function(filepath) {
   sim <- readRDS(filepath)
   dt <- sim$parameters$dt
@@ -207,6 +211,46 @@ reductions_paired <- reductions |>
     rel_extra_impact < 1
   )
 
+
+# Save both marginal reductions and the paired comparisons used in the figure.
+summarise_manuscript <- function(data) {
+  data |>
+    group_by(archetype, coverage, efficacy, coverage_type, metric) |>
+    summarise(
+      n = sum(!is.na(value)),
+      mean_value = mean(value, na.rm = TRUE),
+      min_value = min(value, na.rm = TRUE),
+      max_value = max(value, na.rm = TRUE),
+      q05 = quantile(value, 0.05, na.rm = TRUE),
+      q25 = quantile(value, 0.25, na.rm = TRUE),
+      q75 = quantile(value, 0.75, na.rm = TRUE),
+      q95 = quantile(value, 0.95, na.rm = TRUE),
+      .groups = "drop"
+    )
+}
+
+results_summary <- bind_rows(
+  reductions |>
+    transmute(
+      archetype, coverage, efficacy, coverage_type,
+      metric = "incidence_reduction",
+      value = pct_reduction_incidence
+    ) |>
+    summarise_manuscript(),
+  reductions_paired |>
+    mutate(coverage_type = "targeted_vs_random") |>
+    pivot_longer(
+      c(diff_inc, rel_extra_impact),
+      names_to = "metric",
+      values_to = "value"
+    ) |>
+    summarise_manuscript()
+)
+
+readr::write_csv(
+  results_summary,
+  here::here("figures", "endemic_targeting", "results_summary.csv")
+)
 
 # Panel B: % reduction in annualized incidence - SC2
 
