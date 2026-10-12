@@ -39,7 +39,9 @@ dir.create(
 
 # Load in the parameter lists - it is anticipated that these
 #parameter_lists <- readRDS("figures/figure_X/figure_X_parameter_list.rds")
-parameter_lists <- readRDS("figures/endemic_scenario/figure_2_parameter_list.rds")
+parameter_lists <- readRDS(
+  "figures/endemic_scenario/figure_2_parameter_list.rds"
+)
 
 ##' Note: We need to divide the parameter_lists into smaller lists that we can send to each node to
 ##' be simulated. We do this by specifying the number of nodes to use (n_nodes) and the number of

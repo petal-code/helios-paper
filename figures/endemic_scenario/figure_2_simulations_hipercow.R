@@ -26,10 +26,16 @@ library(tidyverse)
 library(individual)
 library(parallel)
 
-dir.create("figures/endemic_scenario/outputs", recursive = TRUE, showWarnings = FALSE)
+dir.create(
+  "figures/endemic_scenario/outputs",
+  recursive = TRUE,
+  showWarnings = FALSE
+)
 
 # Load in the endemic scenario parameter lists to run simulations for:
-parameter_lists <- readRDS("figures/endemic_scenario/figure_2_parameter_list.rds")
+parameter_lists <- readRDS(
+  "figures/endemic_scenario/figure_2_parameter_list.rds"
+)
 
 ## Prepare for cluster use
 ## see https://mrc-ide.github.io/hipercow/
@@ -84,7 +90,10 @@ x <- sapply(
 table(x)
 
 # Save/load the task_id as required:
-saveRDS(object = task_id, file = "./figures/endemic_scenario/simulation_task_id.rds")
+saveRDS(
+  object = task_id,
+  file = "./figures/endemic_scenario/simulation_task_id.rds"
+)
 task_id <- readRDS(file = "./figures/endemic_scenario/simulation_task_id.rds")
 
 # View the job logs:

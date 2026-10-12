@@ -17,7 +17,9 @@ dir.create(
 )
 
 # Load the endemic targeting parameter lists:
-parameter_lists <- readRDS("figures/endemic_targeting/figure_3_parameter_list.rds")
+parameter_lists <- readRDS(
+  "figures/endemic_targeting/figure_3_parameter_list.rds"
+)
 
 # Determine the number of simulations to run per node:
 nodes_to_use <- 30
@@ -89,8 +91,13 @@ x <- sapply(
 table(x)
 
 # Save/load the task_id as required:
-saveRDS(object = task_ids, file = "figures/endemic_targeting/simulation_task_ids.rds")
-task_ids <- readRDS(file = "./figures/endemic_targeting/simulation_task_ids.rds")
+saveRDS(
+  object = task_ids,
+  file = "figures/endemic_targeting/simulation_task_ids.rds"
+)
+task_ids <- readRDS(
+  file = "./figures/endemic_targeting/simulation_task_ids.rds"
+)
 
 # View the job logs:
 hipercow::task_log_show(task_ids[[]])
