@@ -1,5 +1,7 @@
 ---
 title: "Supplementary Information: Modelling the public-health impact of indoor air quality interventions on respiratory virus transmission"
+metadata-files:
+  - authors.yml
 bibliography: bibliography.bib
 number-sections: true
 toc: true
@@ -11,7 +13,8 @@ format:
     papersize: letter
     pdf-engine: pdflatex
     cite-method: natbib
-    biblio-style: apalike
+    biblio-style: plos2015
+    natbiboptions: numbers
     keep-tex: true
     colorlinks: false
     indent: true

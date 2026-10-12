@@ -1,86 +1,7 @@
 ---
 title: "Modelling the public-health impact of indoor air quality interventions on respiratory virus transmission"
-author:
-  - name: Adam Howes
-    note: "Joint first author"
-    attributes:
-      equal-contributor: true
-    affiliations:
-      - ref: aff-1
-  - name: Geetha Jeyapragasan
-    note: "Joint first author"
-    attributes:
-      equal-contributor: true
-    affiliations:
-      - ref: aff-2
-      - ref: aff-3
-  - name: Richard Williamson
-    affiliations:
-      - ref: aff-4
-  - name: David Carel
-    affiliations:
-      - ref: aff-4
-  - name: Harrison Koos
-    affiliations:
-      - ref: aff-5
-  - name: Jacob L. Swett
-    affiliations:
-      - ref: aff-4
-  - name: James Montavon
-    affiliations:
-      - ref: aff-4
-  - name: Vivian Belenky
-    affiliations:
-      - ref: aff-6
-  - name: Paul Lietar
-    affiliations:
-      - ref: aff-7
-  - name: Richard Fitzjohn
-    affiliations:
-      - ref: aff-7
-  - name: Giovanni Charles
-    affiliations:
-      - ref: aff-7
-  - name: Serina Chang
-    affiliations:
-      - ref: aff-3
-      - ref: aff-8
-  - name: Thomas Brewer
-    note: "Joint senior author"
-    attributes:
-      equal-contributor: true
-    affiliations:
-      - ref: aff-7
-  - name: Charles Whittaker
-    note: "Joint senior author"
-    attributes:
-      equal-contributor: true
-      corresponding: true
-    email: cwhittaker@berkeley.edu
-    affiliations:
-      - ref: aff-2
-      - ref: aff-3
-      - ref: aff-7
-      - ref: aff-9
-affiliations:
-  - id: aff-1
-    name: "Independent"
-  - id: aff-2
-    name: "Division of Infectious Diseases and Vaccinology, School of Public Health, University of California, Berkeley, Berkeley, USA"
-  - id: aff-3
-    name: "Computational Precision Health, University of California, Berkeley and University of California, San Francisco, Berkeley, CA, USA"
-  - id: aff-4
-    name: "Blueprint Biosecurity, Washington, DC, USA"
-  - id: aff-5
-    name: "Department of Health Policy, Stanford University, Stanford, California, USA"
-  - id: aff-6
-    name: "Center for Radiological Research, Columbia University Irving Medical Center, New York, NY, USA"
-  - id: aff-7
-    name: "MRC Centre for Global Infectious Disease Analysis, Imperial College London, UK"
-  - id: aff-8
-    name: "Electrical Engineering and Computer Science, University of California, Berkeley, Berkeley, CA, USA"
-  - id: aff-9
-    name: "Center for Computational Biology, University of California, Berkeley, Berkeley, CA, USA"
+metadata-files:
+  - authors.yml
 bibliography: bibliography.bib
 link-citations: true
 number-sections: true
@@ -90,6 +11,9 @@ format:
     fontsize: 11pt
     papersize: letter
     pdf-engine: pdflatex
+    cite-method: natbib
+    biblio-style: plos2015
+    natbiboptions: numbers
     keep-tex: true
     colorlinks: false
     indent: true
@@ -481,7 +405,11 @@ Further research should quantify real-world effectiveness for specific technolog
 
 : Simulation parameter settings {#tbl-simulation}
 
+::: {.content-visible unless-format="pdf"}
+
 # References {.unnumbered}
 
 ::: {#refs}
-::: 
+:::
+
+:::
