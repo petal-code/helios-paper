@@ -1,0 +1,85 @@
+author:
+  - name: Adam Howes
+    note: "Joint first author"
+    contribution-group: first
+    attributes:
+      equal-contributor: true
+    affiliations:
+      - ref: independent
+  - name: Geetha Jeyapragasan
+    note: "Joint first author"
+    contribution-group: first
+    attributes:
+      equal-contributor: true
+    affiliations:
+      - ref: berkeley-ph
+      - ref: berkeley-cph
+  - name: Richard Williamson
+    affiliations:
+      - ref: blueprint
+  - name: David Carel
+    affiliations:
+      - ref: blueprint
+  - name: Harrison Koos
+    affiliations:
+      - ref: stanford-health-policy
+  - name: Jacob L. Swett
+    affiliations:
+      - ref: blueprint
+  - name: James Montavon
+    affiliations:
+      - ref: blueprint
+  - name: Vivian Belenky
+    affiliations:
+      - ref: columbia-radiological-research
+  - name: Paul Lietar
+    affiliations:
+      - ref: imperial-mrc
+  - name: Richard Fitzjohn
+    affiliations:
+      - ref: imperial-mrc
+  - name: Giovanni Charles
+    affiliations:
+      - ref: imperial-mrc
+  - name: Serina Chang
+    affiliations:
+      - ref: berkeley-cph
+      - ref: berkeley-eecs
+  - name: Thomas Brewer
+    note: "Joint senior author"
+    contribution-group: senior
+    attributes:
+      equal-contributor: true
+    affiliations:
+      - ref: imperial-mrc
+  - name: Charles Whittaker
+    note: "Joint senior author"
+    contribution-group: senior
+    attributes:
+      equal-contributor: true
+      corresponding: true
+    email: cwhittaker@berkeley.edu
+    affiliations:
+      - ref: berkeley-ph
+      - ref: berkeley-cph
+      - ref: imperial-mrc
+      - ref: berkeley-cb
+affiliations:
+  - id: independent
+    name: "Independent"
+  - id: berkeley-ph
+    name: "Division of Infectious Diseases and Vaccinology, School of Public Health, University of California, Berkeley, Berkeley, USA"
+  - id: berkeley-cph
+    name: "Computational Precision Health, University of California, Berkeley and University of California, San Francisco, Berkeley, CA, USA"
+  - id: blueprint
+    name: "Blueprint Biosecurity, Washington, DC, USA"
+  - id: stanford-health-policy
+    name: "Department of Health Policy, Stanford University, Stanford, California, USA"
+  - id: columbia-radiological-research
+    name: "Center for Radiological Research, Columbia University Irving Medical Center, New York, NY, USA"
+  - id: imperial-mrc
+    name: "MRC Centre for Global Infectious Disease Analysis, Imperial College London, UK"
+  - id: berkeley-eecs
+    name: "Electrical Engineering and Computer Science, University of California, Berkeley, Berkeley, CA, USA"
+  - id: berkeley-cb
+    name: "Center for Computational Biology, University of California, Berkeley, Berkeley, CA, USA"

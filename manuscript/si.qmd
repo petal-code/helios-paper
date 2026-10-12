@@ -1,18 +1,21 @@
 ---
 title: "Supplementary Information: Modelling the public-health impact of indoor air quality interventions on respiratory virus transmission"
+metadata-files:
+  - authors.yml
 bibliography: bibliography.bib
 number-sections: true
 toc: true
 toc-depth: 3
 format:
   pdf:
+    toc: false
     documentclass: article
-    fontsize: 12pt
+    fontsize: 11pt
     papersize: letter
     pdf-engine: pdflatex
     cite-method: natbib
-    biblio-style: apalike
-    keep-tex: true
+    biblio-style: plos2015
+    natbiboptions: numbers
     colorlinks: false
     indent: true
     latex-auto-install: false
@@ -28,6 +31,14 @@ crossref:
   eq-prefix: ""
   tbl-prefix: ""
 ---
+
+```{=latex}
+\clearpage
+\renewcommand{\contentsname}{Contents}
+\setcounter{tocdepth}{3}
+\tableofcontents
+\clearpage
+```
 
 # Introduction {#sec-introduction}
 

@@ -10,3 +10,7 @@
 *.log
 *.out
 *.toc
+
+**/*.quarto_ipynb
+
+/output/
