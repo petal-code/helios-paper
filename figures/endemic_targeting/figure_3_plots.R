@@ -1,6 +1,6 @@
 source(here::here("packages.R"))
 
-# Panel A: Random vs Targeting
+# Panel A: random vs targeting
 
 # Parameters to generate location riskiness across setting types
 parameter_list <- get_parameters(
@@ -186,7 +186,7 @@ reductions <- metrics |>
       mean_annualized_incidence_baseline
   )
 
-# pairing targeted and random indv runs
+# Pairing targeted and random indv runs
 reductions_paired <- reductions |>
   group_by(archetype, coverage, efficacy, coverage_type) |>
   mutate(run_id = row_number()) |>
@@ -208,7 +208,7 @@ reductions_paired <- reductions |>
   )
 
 
-#Panel B: % reduction in annualized incidence - SC2
+# Panel B: % reduction in annualized incidence - SC2
 
 panel_b_summary <- reductions |>
   filter(
@@ -260,9 +260,9 @@ panel_b <- ggplot(
   scale_fill_manual(
     values = c(
       "random" = "grey70",
-      "targeted_0.4" = "#839bd8", # light blue
-      "targeted_0.6" = "#3b5fba", # medium blue
-      "targeted_0.8" = "#1d2f5d" # dark blue
+      "targeted_0.4" = "#839bd8", # Light blue
+      "targeted_0.6" = "#3b5fba", # Medium blue
+      "targeted_0.8" = "#1d2f5d" # Dark blue
     ),
     breaks = c("random", "targeted_0.4", "targeted_0.6", "targeted_0.8"),
     labels = c(
@@ -291,7 +291,7 @@ panel_b <- ggplot(
 panel_b
 
 
-# Panel C:  Relative Extra Impact of Targeted vs Random - SC2
+# Panel C:  relative extra impact of targeted vs random - SC2
 
 panel_c_summary <- reductions_paired |>
   filter(
@@ -354,7 +354,7 @@ panel_c <- ggplot(
 panel_c
 
 
-#Panel D: Absolute Differences b/w random and Targeted - SC2
+# Panel D: absolute differences b/w random and targeted - SC2
 
 panel_d_summary <- reductions_paired |>
   filter(
@@ -411,7 +411,7 @@ panel_d <- ggplot(
 panel_d
 
 
-#Panel E: % reduction in annualized incidence - flu
+# Panel E: % reduction in annualized incidence - flu
 panel_e_summary <- reductions |>
   filter(
     archetype == "flu",
@@ -462,9 +462,9 @@ panel_e <- ggplot(
   scale_fill_manual(
     values = c(
       "random" = "grey70",
-      "targeted_0.4" = "#dc6a8b", # light pink
-      "targeted_0.6" = "#c62f5a", # medium pink
-      "targeted_0.8" = "#63172d" # dark pink
+      "targeted_0.4" = "#dc6a8b", # Light pink
+      "targeted_0.6" = "#c62f5a", # Medium pink
+      "targeted_0.8" = "#63172d" # Dark pink
     ),
     breaks = c("random", "targeted_0.4", "targeted_0.6", "targeted_0.8"),
     labels = c(
@@ -492,7 +492,7 @@ panel_e <- ggplot(
 
 panel_e
 
-#Panel F : Ratio of reduction - flu
+# Panel F: ratio of reduction - flu
 panel_f_summary <- reductions_paired |>
   filter(
     archetype == "flu",
@@ -553,7 +553,7 @@ panel_f <- ggplot(
 
 panel_f
 
-#Panel G: Absolute Difference - flu
+# Panel G: absolute difference - flu
 panel_g_summary <- reductions_paired |>
   filter(
     archetype == "flu",
@@ -609,7 +609,7 @@ panel_g <- ggplot(
 panel_g
 
 
-# sc2 plot
+# SC2 plot
 right_col <- plot_grid(
   panel_c,
   panel_d,
@@ -631,7 +631,7 @@ combined_sc2_plot <- plot_grid(
 
 combined_sc2_plot
 
-# flu plot
+# Flu plot
 right_col <- plot_grid(
   panel_f,
   panel_g,

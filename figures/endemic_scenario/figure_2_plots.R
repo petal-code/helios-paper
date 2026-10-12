@@ -80,7 +80,6 @@ reductions_summary <- reductions |>
     .groups = "drop"
   )
 
-
 x_percent_scale <- scale_x_continuous(
   labels = scales::percent_format(accuracy = 1),
   limits = c(0.2, 1.0),
@@ -90,7 +89,7 @@ target_coverage_intervals <- c(0.2, 0.4, 0.6, 0.8, 1.0)
 target_efficacies <- c(0.4, 0.6, 0.8)
 target_vals <- c(0.2, 0.4, 0.6, 0.8, 1.0)
 
-# PANEL A & B (SC2 Lines)
+# Panel A & B (SC2 lines)
 cols_a <- c("#5083DB", "#395D9C", "#253B65")
 plot_data_a <- reductions_summary |>
   filter(
@@ -175,7 +174,7 @@ panelB <- ggplot(
     colour = "Efficacy"
   )
 
-# PANEL C (SC2 Heatmap)
+# Panel C (SC2 heatmap)
 heat_data_c <- reductions_summary |>
   filter(
     coverage %in% target_vals,
@@ -207,7 +206,7 @@ panelC <- ggplot(
     fill = "% Reduction in \n Annualized Disease\n Incidence"
   )
 
-# PANEL D & E (Flu Lines)
+# Panel D & E (flu lines)
 cols_d <- c("#E68996", "#D93052", "#9D374C")
 plot_data_d <- reductions_summary |>
   filter(
@@ -292,7 +291,7 @@ panelE <- ggplot(
     colour = "Efficacy"
   )
 
-#  PANEL F (Flu Heatmap)
+# Panel F (flu heatmap)
 heat_data_f <- reductions_summary |>
   filter(
     coverage %in% target_vals,
@@ -323,9 +322,9 @@ panelF <- ggplot(
     fill = "% Reduction in \nAnnualized Disease \nIncidence"
   )
 
-# Grid Assembly
+# Grid assembly
 
-# 1. Extract Line (Discrete) Legends
+# 1. Extract line (discrete) legends
 leg_sc2_discrete <- get_legend(
   panelA + theme(legend.box.margin = margin(0, 0, 0, 10))
 )
@@ -333,7 +332,7 @@ leg_flu_discrete <- get_legend(
   panelD + theme(legend.box.margin = margin(0, 0, 0, 10))
 )
 
-# 2. Extract Heatmap (Continuous) Legends
+# 2. Extract heatmap (continuous) legends
 leg_sc2_heat <- get_legend(panelC + theme(legend.position = "right"))
 leg_flu_heat <- get_legend(panelF + theme(legend.position = "right"))
 
@@ -346,7 +345,7 @@ sc2_legend_group <- plot_grid(
   align = "v"
 )
 
-# 4. Create a tight sub-grid for Flu legends
+# 4. Create a tight sub-grid for flu legends
 flu_legend_group <- plot_grid(
   leg_flu_discrete,
   leg_flu_heat,
@@ -360,7 +359,7 @@ side_legends <- plot_grid(
   sc2_legend_group,
   flu_legend_group,
   ncol = 1,
-  rel_heights = c(1, 1) # This ensures SC2 stays top and Flu stays bottom
+  rel_heights = c(1, 1) # This ensures SC2 stays top and flu stays bottom
 )
 
 # 6. Create main rows (same as before)
@@ -382,7 +381,7 @@ row2 <- plot_grid(
   rel_widths = c(1, 1, 1)
 )
 
-# 7. Final Combined Layout
+# 7. Final combined Layout
 complete_combined_plot <- plot_grid(
   plot_grid(row1, row2, nrow = 2),
   side_legends,

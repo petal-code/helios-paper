@@ -1,7 +1,7 @@
 source(here::here("packages.R"))
-#Figure 3: Targeted vs Random
+# Figure 3: targeted vs random
 
-# Core Parameters
+# Core parameters
 archetypes <- c("flu", "sars_cov_2")
 iterations <- 1:25
 years_to_simulate <- 20
@@ -29,7 +29,7 @@ initial_R_SC2 <- human_population -
   initial_E_SC2 -
   initial_I_SC2
 
-# Initial conditions for Flu:
+# Initial conditions for flu:
 initial_S_flu <- round(0.67 * human_population)
 initial_E_flu <- round(0.006 * human_population)
 initial_I_flu <- round(0.012 * human_population)
@@ -42,7 +42,7 @@ simulations_to_run <- rbind(
   expand.grid(
     archetype = archetypes,
     coverage = seq(0.2, 0.8, 0.2),
-    efficacy = seq(0.2, 0.8, 0.2), # Low / Medium / High efficacy
+    efficacy = seq(0.2, 0.8, 0.2), # Low / medium / high efficacy
     coverage_type = c("random", "targeted_riskiness"),
     iteration = iterations,
     riskiness = riskiness,
@@ -114,7 +114,7 @@ for (i in 1:nrow(simulations_to_run)) {
       )
     )
   }
-  # UVC Parameters
+  # UVC parameters
   if (simulations_to_run$coverage[i] > 0) {
     parameter_lists[[i]] <- parameter_lists[[i]] |>
       set_uvc(
@@ -127,7 +127,7 @@ for (i in 1:nrow(simulations_to_run)) {
       )
   }
 
-  # Riskiness Settings
+  # Riskiness settings
   if (simulations_to_run$riskiness[i] == "setting_specific_riskiness") {
     parameter_lists[[i]] <- parameter_lists[[i]] |>
       set_setting_specific_riskiness(
