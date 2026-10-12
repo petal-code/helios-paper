@@ -31,6 +31,7 @@ execute:
 ```{r}
 #| label: epidemic-results-setup
 #| include: false
+#| eval: true
 
 library(dplyr)
 
@@ -333,21 +334,23 @@ Bars show the mean; error bars show the range across 25 stochastic simulations.
 :::
 
 
-::: {#fig-epidemic}
-
-**[Figure placeholder: epidemic figure to be added.]**
-
-**Analyses of the impact of air quality interventions on infection incidence across epidemic scenarios.
-(A)** Final epidemic size in terms of percentage of the population infected for the SARS-CoV-2 archetype, with point-ranges showing the mean and simulated range across coverage levels for random versus targeted deployment; line and point colors denote intervention efficacy.
-**(B)** Heatmap of final epidemic size for SARS-CoV-2, providing sensitivity analysis across a wider range of values.
-**(C)** As for **(A)**, but for the peak incidence measured in terms of daily infections per 1,000 population.
-**(D)** As for **(B)**, but for the peak incidence.
-**(E)** Final epidemic size for the influenza archetype.
-**(F)** Heatmap of final epidemic size for the influenza archetype.
-**(G)** As for **(E)**, but for the peak incidence.
-**(H)** As for **(F)**, but for the peak incidence.
-
-:::
+```{r}
+#| label: fig-epidemic
+#| eval: true
+#| echo: false
+#| out-width: "100%"
+#| fig-cap: >
+#|   **Analyses of the impact of air quality interventions on infection incidence across epidemic scenarios.
+#|   (A)** Final epidemic size in terms of percentage of the population infected for the SARS-CoV-2 archetype, with point-ranges showing the mean and simulated range across coverage levels for random versus targeted deployment; line and point colors denote intervention efficacy.
+#|   **(B)** Heatmap of percentage reduction in final epidemic size for SARS-CoV-2, providing sensitivity analysis across a wider range of values.
+#|   **(C)** As for **(A)**, but for the peak incidence measured in terms of daily infections per 1,000 population.
+#|   **(D)** As for **(B)**, but for the percentage reduction in peak incidence.
+#|   **(E)** Final epidemic size for the influenza archetype.
+#|   **(F)** Heatmap of percentage reduction in final epidemic size for the influenza archetype.
+#|   **(G)** As for **(E)**, but for the peak incidence.
+#|   **(H)** As for **(F)**, but for the percentage reduction in peak incidence.
+knitr::include_graphics("../figures/epidemic_scenario/plot.png")
+```
 Increasing either efficacy or coverage yielded similar increases in the impact on epidemic peak, timing and final size.
 For the influenza archetype, expanding randomly allocated coverage from 40% to 60% at 40% efficacy lowered the final epidemic size by `r epidemic_format(epidemic_reduction(0.4, 0.6), scale = 100)`%, approximately matching the `r epidemic_format(epidemic_reduction(0.6, 0.4), scale = 100)`% from instead increasing efficacy from 40% to 60% while holding coverage at 40% (@fig-epidemic, panel E).
 
