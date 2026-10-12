@@ -13,7 +13,7 @@ read_simulation <- function(filepath) {
   dt <- simulation_file$parameters$dt
   pop_size <- 50000
 
-  simulation_file$simulation |>
+  simulation_file$simulation$result |>
     mutate(
       days = timestep * dt,
       year = floor(days / 365),
@@ -21,7 +21,7 @@ read_simulation <- function(filepath) {
       archetype = simulation_file$parameters$archetype_label,
       coverage = simulation_file$parameters$coverage,
       efficacy = simulation_file$parameters$efficacy,
-      active_infected = E_count + I_count,
+      active_infected = E_count + I_mild_count + I_hosp_count,
       prevalence = (active_infected / pop_size) * 100
     ) |>
     group_by(year, filename, archetype, coverage, efficacy) |>
