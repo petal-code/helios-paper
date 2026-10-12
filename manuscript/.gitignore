@@ -12,3 +12,5 @@
 *.toc
 
 **/*.quarto_ipynb
+
+/output/

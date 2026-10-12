@@ -1,12 +1,14 @@
 author:
   - name: Adam Howes
     note: "Joint first author"
+    contribution-group: first
     attributes:
       equal-contributor: true
     affiliations:
       - ref: aff-1
   - name: Geetha Jeyapragasan
     note: "Joint first author"
+    contribution-group: first
     attributes:
       equal-contributor: true
     affiliations:
@@ -45,12 +47,14 @@ author:
       - ref: aff-8
   - name: Thomas Brewer
     note: "Joint senior author"
+    contribution-group: senior
     attributes:
       equal-contributor: true
     affiliations:
       - ref: aff-7
   - name: Charles Whittaker
     note: "Joint senior author"
+    contribution-group: senior
     attributes:
       equal-contributor: true
       corresponding: true
