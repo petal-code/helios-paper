@@ -81,6 +81,8 @@ affiliations:
     name: "Electrical Engineering and Computer Science, University of California, Berkeley, Berkeley, CA, USA"
   - id: aff-9
     name: "Center for Computational Biology, University of California, Berkeley, Berkeley, CA, USA"
+bibliography: bibliography.bib
+link-citations: true
 number-sections: true
 format:
   pdf:
@@ -117,43 +119,43 @@ These results support treating clean indoor air as core public-health infrastruc
 
 Respiratory infections remain among the leading causes of global morbidity and mortality across the life course.
 Lower respiratory infections (LRIs) (predominantly pneumonia and bronchiolitis) account for over two million deaths worldwide each year, with substantial concentration of mortality in young children and older adults.
-In 2021 alone, LRIs were estimated to cause approximately 2.18 million deaths, including approximately 502,000 in children under five [[1](#source-1)].
-Viral pathogens are major contributors to this burden: seasonal influenza is responsible for around a billion infections annually, including 3–5 million severe cases and an estimated 290,000–650,000 respiratory deaths [[2](#source-2)]; respiratory syncytial virus (RSV) drives a heavy paediatric toll, causing approximately 3.6 million hospitalisations and approximately 100,000 deaths in children under five each year, the vast majority in low- and middle-income countries [[3](#source-3)].
-Endemic human coronaviruses (OC43, NL63, 229E, HKU1) account for a significant proportion of experienced “common colds”, while rhinoviruses are a leading trigger of asthma and COPD exacerbations, adding substantially to healthcare use and disability [[4](#source-4), [5](#source-5)].
-Beyond human costs, these infections impose sizeable economic burdens through hospitalisations and productivity losses [[6](#source-6)].
-Immunity is rarely sterilising: previous work has highlighted that reinfections are common across a wide range of respiratory pathogens, with individuals experiencing seasonal coronavirus infection approximately once every 2.5 years on average [[7](#source-7)], influenza infection rates approaching 40% annually in some populations [[8](#source-8)], and SARS-CoV-2 reinfection occurring within approximately a year of prior infection [[9](#source-9), [10](#source-10)].
+In 2021 alone, LRIs were estimated to cause approximately 2.18 million deaths, including approximately 502,000 in children under five [@lri2021burden].
+Viral pathogens are major contributors to this burden: seasonal influenza is responsible for around a billion infections annually, including 3–5 million severe cases and an estimated 290,000–650,000 respiratory deaths [@whoInfluenza]; respiratory syncytial virus (RSV) drives a heavy paediatric toll, causing approximately 3.6 million hospitalisations and approximately 100,000 deaths in children under five each year, the vast majority in low- and middle-income countries [@li2022global].
+Endemic human coronaviruses (OC43, NL63, 229E, HKU1) account for a significant proportion of experienced “common colds”, while rhinoviruses are a leading trigger of asthma and COPD exacerbations, adding substantially to healthcare use and disability [@wilson2024global; @kurai2013virusinduced].
+Beyond human costs, these infections impose sizeable economic burdens through hospitalisations and productivity losses [@langer2024the].
+Immunity is rarely sterilising: previous work has highlighted that reinfections are common across a wide range of respiratory pathogens, with individuals experiencing seasonal coronavirus infection approximately once every 2.5 years on average [@edridge2020seasonal], influenza infection rates approaching 40% annually in some populations [@cohen2021asymptomatic], and SARS-CoV-2 reinfection occurring within approximately a year of prior infection [@guedes2023reinfection; @ma2023trends].
 This recurrent pattern of infection means that the cumulative burden of respiratory viral disease over the life course is substantial.
 
-A large share of respiratory-virus transmission occurs indoors, across both households and the other settings in which individuals routinely spend a high proportion of their time and which involve sustained close proximal contact with other individuals (e.g. schools, workplaces etc.) [[11](#source-11)].
-Previous work has shown the household to be an important site of influenza virus transmission, with estimates suggesting as much as 38% of transmission might occur in households [[12](#source-12)].
-Work using COVID-19 contact tracing app data has highlighted that approximately 40% of COVID-19 transmission occurs in households, with the majority of other transmission occurring in settings recurrently visited outside the household [[11](#source-11)].
+A large share of respiratory-virus transmission occurs indoors, across both households and the other settings in which individuals routinely spend a high proportion of their time and which involve sustained close proximal contact with other individuals (e.g. schools, workplaces etc.) [@ferretti2024digital].
+Previous work has shown the household to be an important site of influenza virus transmission, with estimates suggesting as much as 38% of transmission might occur in households [@tsang2016household].
+Work using COVID-19 contact tracing app data has highlighted that approximately 40% of COVID-19 transmission occurs in households, with the majority of other transmission occurring in settings recurrently visited outside the household [@ferretti2024digital].
 Serological evidence from a Swiss cohort suggests around 28% of COVID-19 infections were attributable to household transmission.
 A corollary of these studies is that a sizeable fraction of respiratory virus transmission occurs outside the household.
-Indeed, evidence from population-level modelling of transmission rates across multiple European countries has demonstrated the role specifically of non-household settings in sustaining population-level spread; showing that closure of non-essential businesses and schools were associated with approximately 35% and 7% reductions in the reproduction number of COVID-19, respectively [[13](#source-13)].
-Relatedly, prior work has shown that closure of schools over holiday periods in France lead to significant reductions in influenza incidence [[14](#source-14)], whilst recent work examining smart thermometer data from US households has suggested as much as 70% of household viral transmission might be initiated by children infected outside of the household [[15](#source-15)].
+Indeed, evidence from population-level modelling of transmission rates across multiple European countries has demonstrated the role specifically of non-household settings in sustaining population-level spread; showing that closure of non-essential businesses and schools were associated with approximately 35% and 7% reductions in the reproduction number of COVID-19, respectively [@sharma2021understanding].
+Relatedly, prior work has shown that closure of schools over holiday periods in France lead to significant reductions in influenza incidence [@cauchemez2008estimating], whilst recent work examining smart thermometer data from US households has suggested as much as 70% of household viral transmission might be initiated by children infected outside of the household [@tseng2023smart].
 
 Much of this transmission is thought to occur via inhalation of aerosolised virus transmitted over relatively long distances, rather than short distance transmission via direct exposure to droplets produced during symptoms such as sneezing and coughing.
-Previous work has demonstrated the viability of exhaled SARS-CoV-2 aerosols for transmission [[16](#source-16)], as well as empirical evidence from COVID-19 superspreading events during the pandemic (e.g. the Skagit Valley choir superspreading event [[17](#source-17)]) and mathematical modelling of closed-populations on the Diamond Princess [[18](#source-18)] have all highlighted the significance of aerosolised SARS-CoV-2 transmission.
-Similar results for influenza have confirmed the presence of infectious virus in the exhaled breath of infected individuals [[19](#source-19)], and has suggested that as much as 50% of all transmission events may be attributable to aerosolised virus [[20](#source-20)].
+Previous work has demonstrated the viability of exhaled SARS-CoV-2 aerosols for transmission [@alsved2023infectivity], as well as empirical evidence from COVID-19 superspreading events during the pandemic (e.g. the Skagit Valley choir superspreading event [@hamner2020high]) and mathematical modelling of closed-populations on the Diamond Princess [@azimi2021mechanistic] have all highlighted the significance of aerosolised SARS-CoV-2 transmission.
+Similar results for influenza have confirmed the presence of infectious virus in the exhaled breath of infected individuals [@yan2018infectious], and has suggested that as much as 50% of all transmission events may be attributable to aerosolised virus [@cowling2013aerosol].
 
 Indoor transmission is driven, in part, by crowding and inadequate ventilation in the spaces where people spend most of their time.
 These conditions increase the risk of respiratory virus transmission.
-Although ANSI/ASHRAE Standard 62.1 sets minimum outdoor-air requirements and default occupant densities for common space types, real-world occupancy frequently exceeds design assumptions and the effective per-capita ventilation rate can drop sharply during busy periods [[21](#source-21), [22](#source-22)].
-Previous studies have consistently identified substandard ventilation in schools for example [[23](#source-23)], with measurements in recently constructed U.S. schools showing that only approximately 22% of classrooms met the recommended minimum ventilation rates [[24](#source-24)].
+Although ANSI/ASHRAE Standard 62.1 sets minimum outdoor-air requirements and default occupant densities for common space types, real-world occupancy frequently exceeds design assumptions and the effective per-capita ventilation rate can drop sharply during busy periods [@ashraeStandards; @ASHRAE].
+Previous studies have consistently identified substandard ventilation in schools for example [@daisey2003indoor], with measurements in recently constructed U.S. schools showing that only approximately 22% of classrooms met the recommended minimum ventilation rates [@batterman2017ventilation].
 More broadly, previous work has highlighted that ventilation is also highly heterogeneous across setting types, and frequently insufficient.
-Surveys and reviews report wide distributions of air changes per hour (ACH) in homes and offices [[25](#source-25), [26](#source-26)], and that many routinely occupied rooms operate with insufficient ventilation rates [[27](#source-27)].
+Surveys and reviews report wide distributions of air changes per hour (ACH) in homes and offices [@persily2008ventilation; @nazaroff2021residential], and that many routinely occupied rooms operate with insufficient ventilation rates [@corsi22006ozone].
 Moreover, these crowding and ventilation deficits are not evenly distributed.
-Mobility-network analyses during COVID-19 show that disadvantaged groups tend to visit more crowded points of interest with higher modeled infection risk [[28](#source-28)].
+Mobility-network analyses during COVID-19 show that disadvantaged groups tend to visit more crowded points of interest with higher modeled infection risk [@chang2021mobility].
 The structure of the built environment and how and where individuals spend their time is therefore thought to be a key driver of socio-economic inequities in disease burden.
-Evidence from the COVID-19 pandemic has shown that locations visited by disadvantaged racial and socioeconomic groups were, on average, more crowded and therefore associated with higher infection risk [[28](#source-28)], a factor in-turn likely to be driving the disparities in infection rates observed in the US during the pandemic’s earliest months [[29](#source-29)].
+Evidence from the COVID-19 pandemic has shown that locations visited by disadvantaged racial and socioeconomic groups were, on average, more crowded and therefore associated with higher infection risk [@chang2021mobility], a factor in-turn likely to be driving the disparities in infection rates observed in the US during the pandemic’s earliest months [@millett2020assessing].
 
 Motivated by this, a growing literature is testing practical ways to improve indoor air quality (IAQ) and, in turn, reduce respiratory-virus exposure and burden across everyday settings.
-Interventions aimed at achieving this goal typically span those increasing effective ventilation/air changes (such as upgrades to HVAC systems) [[30](#source-30)], portable particulate filtration (e.g. via HEPA filtration units) [[31](#source-31)], and installation of technologies aiming to directly disinfect air (such as ultraviolet germicidal irradiation approaches including far-UVC 222nm) [[32](#source-32)].
+Interventions aimed at achieving this goal typically span those increasing effective ventilation/air changes (such as upgrades to HVAC systems) [@who2021ventilation], portable particulate filtration (e.g. via HEPA filtration units) [@chen2022efficacy], and installation of technologies aiming to directly disinfect air (such as ultraviolet germicidal irradiation approaches including far-UVC 222nm) [@eadie2022faruvc].
 Evidence supports the potential utility of these approaches.
-Lab studies have highlighted the utility of upper room UV at limiting tuberculosis transmission [[33](#source-33)], and that far-UVC technologies can rapidly inactivate viral bioaerosols [[32](#source-32)].
-Prior work in healthcare settings has similarly shown that portable HEPA filters with UV sterilisation can remove detectable airborne SARS-CoV-2 RNA from clinical wards [[34](#source-34)].
-In schools, recent work has shown that incorporation of air purifiers was associated with a reduction in student absences of 12.5% [[35](#source-35)], while other studies have highlighted associations between higher ventilation rates and decreased SARS-CoV-2 airborne transmission in school classrooms [[36](#source-36)] and college dormitories  [[37](#source-37)].
-Previous work has documented reduced ARI incidence in the intention-to-treat group during studies of air purifiers in residential aged care facilities [[38](#source-38)], and that germicidal UV light can similarly reduce ARI incidence in these settings [[39](#source-39)].
+Lab studies have highlighted the utility of upper room UV at limiting tuberculosis transmission [@escombe2009upperroom], and that far-UVC technologies can rapidly inactivate viral bioaerosols [@eadie2022faruvc].
+Prior work in healthcare settings has similarly shown that portable HEPA filters with UV sterilisation can remove detectable airborne SARS-CoV-2 RNA from clinical wards [@conwaymorris2022the].
+In schools, recent work has shown that incorporation of air purifiers was associated with a reduction in student absences of 12.5% [@bonan2025the], while other studies have highlighted associations between higher ventilation rates and decreased SARS-CoV-2 airborne transmission in school classrooms [@buonanno2022increasing] and college dormitories  [@gold2025impact].
+Previous work has documented reduced ARI incidence in the intention-to-treat group during studies of air purifiers in residential aged care facilities [@thottiyilsultanmuhammedabdulkhadar2024air], and that germicidal UV light can similarly reduce ARI incidence in these settings [@shoubridge2025germicidal].
 
 Despite this emerging evidence base, the majority of studies are empirical, device- and setting-specific, and frequently evaluate proximate outcomes (e.g., PM/CO$_2$ concentrations, pathogen RNA detection, absenteeism) within single rooms or facilities, and focus on local environments, short-horizon endpoints and specific populations.
 As a result, we still lack a coherent framework to quantify how indoor air interventions might alter pathogen transmission dynamics and disease burden at the population-level, and resolve their potential public-health impact under varying epidemiological conditions.
@@ -182,13 +184,13 @@ Our results demonstrate substantial potential public-health benefits from improv
 
 ## Population structure and data sources
 We simulated a population of individuals stratified into three age groups: children, adults, and elderly (@fig-population, panel A).
-Household sizes (@fig-population, panel B) and age composition were sampled from a 2010 San Francisco-based synthetic population produced by RTI International [[40](#source-40)].
-School enrollment sizes (@fig-population, panel C) were sampled from U.S. National Center for Education Statistics 2019–2020 data [[41](#source-41)].
-Workplace sizes (@fig-population, panel D) were sampled from a truncated offset power law distribution estimated previously from US-based data [[42](#source-42)].
+Household sizes (@fig-population, panel B) and age composition were sampled from a 2010 San Francisco-based synthetic population produced by RTI International [@rineer2025a].
+School enrollment sizes (@fig-population, panel C) were sampled from U.S. National Center for Education Statistics 2019–2020 data [@deBrey2023Digest].
+Workplace sizes (@fig-population, panel D) were sampled from a truncated offset power law distribution estimated previously from US-based data [@ferguson2005strategies].
 In the absence of detailed data and information on visit frequency and duration to other settings, we aggregated all other visits into a “leisure” category, with setting capacity (@fig-population, panel E) and visit frequency (@fig-population, panel F) sampled from empirically motivated negative binomial and Poisson distributions respectively.
 
 ## Overview of Individual-based modelling framework
-We developed a stochastic, individual-based epidemiological model in which space is explicitly represented by assigning each individual to membership of particular locations and setting types, following the approach of Ferguson et al [[42](#source-42)].
+We developed a stochastic, individual-based epidemiological model in which space is explicitly represented by assigning each individual to membership of particular locations and setting types, following the approach of Ferguson et al [@ferguson2005strategies].
 In what follows, we use “setting type” to denote classes of place (e.g., households, schools, workplaces, leisure venues), and “location” to index a specific instance of a given setting type (e.g., a particular household, classroom, office or leisure venue).
 Within the model, individuals exist in one of several disease states: susceptible, exposed (but not yet infectious), infectious, and recovered.
 Individuals progress through these states according to pathogen-specific natural history parameters, while acquisition of infection is governed by an exposure process that is computed based on the specific set of locations individuals visit during the course of a day.
@@ -197,18 +199,18 @@ Individuals are assumed to visit different setting types depending on their age 
 
 For each location *j* belonging to setting type s, the force of infection experienced by an individual visiting that location is proportional to the fraction of visiting individuals in that location who are currently infectious.
 This proportion is scaled by a setting-type specific transmissibility parameter ${\beta }_{s}$ and a location specific heterogeneity multiplier ${\gamma }_{j,\ s}$.
-The former captures differences in respiratory virus transmission between setting types [[11](#source-11)], while the latter captures variation in occupancy, ventilation, and mixing across locations of the same setting type and is parameterised using information on ventilation rates.
+The former captures differences in respiratory virus transmission between setting types [@ferretti2024digital], while the latter captures variation in occupancy, ventilation, and mixing across locations of the same setting type and is parameterised using information on ventilation rates.
 This construction lets us (i) control the average contribution of each setting type to transmission at the population level and (ii) represent between-location heterogeneity in transmission risk across the locations belonging to a particular setting type.
 
 To quantify between-location “riskiness”, we use empirically documented variation in ventilation rates across locations belonging to the same setting type, and integrate these with an explicit model of within-room airborne virus concentration and a Wells–Riley dose–response model.
 Together, this enables us to map variation in air changes per hour, pathogen emission rates, and viral decay/inactivation into infection probabilities as a function of dwell time.
 This provides a consistent means to link variation in baseline ventilation rates to location-specific transmission risk, and encode ventilation/filtration/UV parameters as multiplicative reductions in location-specific force of infection.
-This framework (described in further detail below) is implemented in R as an open-source package [[43](#source-43)], built using the *individual* R package; package documentation, vignettes, and source code are publicly available.
+This framework (described in further detail below) is implemented in R as an open-source package [@helios], built using the *individual* R package; package documentation, vignettes, and source code are publicly available.
 Further model details are provided below, but see [https://mrc-ide.github.io/helios/](https://mrc-ide.github.io/helios/) for full details.
 
 ## Transmission dynamics and calculation of individual force of infection
 
-Following the approach of Ferguson et al [[42](#source-42)], the force of infection (FOI) experienced by an individual $i$ at time $t$ is decomposed across the location $j$ and setting type $s$ as follows
+Following the approach of Ferguson et al [@ferguson2005strategies], the force of infection (FOI) experienced by an individual $i$ at time $t$ is decomposed across the location $j$ and setting type $s$ as follows
 $${\lambda }_{i}\left({t}\right)=\sum\limits_{j,s}^{}{\lambda }_{i,j,s}\left({t}\right).$$
 
 With the location and setting type-specific FOI calculated as
@@ -217,7 +219,7 @@ $${\lambda }_{i,j,s}\left({t}\right)=\frac{{\beta }_{j,s}{I}_{j,s}\left({t}\righ
 
 where ${I}_{j,s}\left({t}\right)$ is the number of infectious individuals in location $j$ belonging to setting type $s$, ${N}_{j,s}$ is the occupancy in that particular location, and ${\beta }_{j,s}={\gamma }_{j,s}{\beta }_{s}$ is a transmissibility parameter.
 The term ${\beta }_{s}$ represents a setting-type specific transmissibility, parameterised in order to recapitulate empirically observed patterns of the proportion of transmission for influenza and SARS-CoV-2 occurring across different setting types, while ${\gamma }_{j,s}\sim Lognormal\left({0,{\sigma }_{s}}\right)$ captures between-location heterogeneity in transmission risk arising from variation in ventilation rates and occupancy density, for a particular setting type (e.g. schools).
-We set between-setting transmission rate ratios based on estimates from prior work about how overall transmission is apportioned between settings [[11](#source-11), [44](#source-44)]
+We set between-setting transmission rate ratios based on estimates from prior work about how overall transmission is apportioned between settings [@ferretti2024digital; @Fergusonetal2006]
 
 $${\beta }_{household}:[{\beta }_{school}\text{ or } {\beta }_{workplace}]:{\beta }_{leisure}:{\beta }_{community}=30\%:30\%:30\%:10\%,$$
 
@@ -225,18 +227,18 @@ with ${\beta }_{school}$ or ${\beta }_{workplace}$ depending on the age-class an
 Households, workplaces, schools and leisure settings are explicitly represented within the modelling framework; “community” transmission is used to represent residual infection risk occurring in locations or contexts outside these settings.
 
 ## Indoor air quality motivated variation in riskiness between locations
-To represent variation in transmission riskiness across locations *j* belonging to the same setting type *s*, ${\gamma }_{j,s}$, we followed the approach of Blatchley et al [[45](#source-45)], modeling airborne pathogen concentration $C\left({t}\right)$ using an ordinary differential equation
+To represent variation in transmission riskiness across locations *j* belonging to the same setting type *s*, ${\gamma }_{j,s}$, we followed the approach of Blatchley et al [@blatchley2023quantitative], modeling airborne pathogen concentration $C\left({t}\right)$ using an ordinary differential equation
 
 $$\nu \frac{dC\left({t}\right)}{dt}=-QC\left({t}\right)-{k}_{D}\nu C\left({t}\right)+I\pi ,$$
 
-where $\nu$ is room volume, $Q$ is air flow rate, ${k}_{D}=0.64{h}^{-1}$ is a pathogen decay constant [[45](#source-45)], and $\pi =27$ virions per person per hour is the emission rate [[45](#source-45)].
-We assumed room volume $\nu =N{D}_{s}H$ where $N$ is the maximum room occupancy, ${D}_{s}$ is floor area (${m}^{2}$) per person (${D}_{household}=20$, ${D}_{school}=3.33$, ${D}_{workplace}=10$, ${D}_{leisure}=2$ [[46](#source-46)]), and $H=2.5m$ is the room height.
-For a given infectious viral concentration $C$, the probability of an individual becoming infected conditional on some time $t$ spent in that location is calculated based on the Wells-Riley equation [[47](#source-47), [48](#source-48)], as
+where $\nu$ is room volume, $Q$ is air flow rate, ${k}_{D}=0.64{h}^{-1}$ is a pathogen decay constant [@blatchley2023quantitative], and $\pi =27$ virions per person per hour is the emission rate [@blatchley2023quantitative].
+We assumed room volume $\nu =N{D}_{s}H$ where $N$ is the maximum room occupancy, ${D}_{s}$ is floor area (${m}^{2}$) per person (${D}_{household}=20$, ${D}_{school}=3.33$, ${D}_{workplace}=10$, ${D}_{leisure}=2$ [@kelechava2022ventilation]), and $H=2.5m$ is the room height.
+For a given infectious viral concentration $C$, the probability of an individual becoming infected conditional on some time $t$ spent in that location is calculated based on the Wells-Riley equation [@wellsAirborne; @riley1978airborne], as
 
 $$P\left({t}\right)=1-\exp\left({-rBCt}\right),$$
 
-with breathing rate $B=0.45{m}^{3}{h}^{-1}$ and infection probability per virion $r=1.37\times {10}^{-2}$  [[45](#source-45), [49](#source-49)].
-We calculated upper and lower bounds of infection probability using setting-specific ranges of air changes per hour derived from a review of setting type and location ventilation rates [[27](#source-27)], and assuming individuals spend 12 hours of the day in households, 8 hours in schools/workplaces, 2.5 hours at leisure venues, and 1.5 hours in community settings.
+with breathing rate $B=0.45{m}^{3}{h}^{-1}$ and infection probability per virion $r=1.37\times {10}^{-2}$  [@blatchley2023quantitative; @killingley2022safety].
+We calculated upper and lower bounds of infection probability using setting-specific ranges of air changes per hour derived from a review of setting type and location ventilation rates [@corsi22006ozone], and assuming individuals spend 12 hours of the day in households, 8 hours in schools/workplaces, 2.5 hours at leisure venues, and 1.5 hours in community settings.
 The distribution of location-specific variation in infection risk derived from the variation in ventilation rates was then used to parameterise a lognormal distribution of setting type and location specific riskiness values, with median 1 and with log-standard deviation ${\sigma }_{log,\ s}$.
 
 ## Modelling the impact of air quality interventions
@@ -364,12 +366,12 @@ Across the pathogen archetypes explored here, we highlight the potential for wid
 In epidemic scenarios, AQIs reduce peak incidence and population-level spread.
 Our modeled results suggest that AQIs of modest efficacy and population coverage are unlikely to control pandemics driven by pathogens with moderate to high ${R}_{0}$ (e.g. above 1.5) on their own.
 However, widespread presence of these technologies would i) slow epidemic progression and spread, buying valuable time for countermeasure development, healthcare capacity surging, etc.; and ii) reduce the need for community-based mitigation measures (such as school or business closures) to control spread, which are typically highly costly from a socio-economic perspective.
-These conclusions are consistent with current practice guidance that positions ventilation, filtration, and ultraviolet germicidal irradiation as foundational layers of protection, and with policy frameworks that formalize minimum performance targets for infectious-aerosol control [[50](#source-50)].
-Taken together, our analyses support interventions improving indoor air as capable of supporting burden reduction while underscoring that realized impact will hinge on coverage, targeting, maintenance, and other factors relating to their practical deployment [[51](#source-51)].
+These conclusions are consistent with current practice guidance that positions ventilation, filtration, and ultraviolet germicidal irradiation as foundational layers of protection, and with policy frameworks that formalize minimum performance targets for infectious-aerosol control [@who2021ventilation].
+Taken together, our analyses support interventions improving indoor air as capable of supporting burden reduction while underscoring that realized impact will hinge on coverage, targeting, maintenance, and other factors relating to their practical deployment [@okokon2025the].
 
 In endemic settings, we find that reductions in infection incidence scale with both coverage and efficacy of AQIs, with larger absolute and relative effects for the influenza-like archetype modeled than for the SARS-CoV-2-like archetype.
-Near the epidemic threshold of $R\ =\ 1$, standard epidemic theory implies strongly non-linear behaviour, with small proportional reductions in transmission translating into disproportionately large changes in equilibrium incidence and prevalence when the pathogen reproduction number is closer to this threshold [[52](#source-52), [53](#source-53)].
-Baseline reproduction numbers for seasonal and pandemic influenza typically lie closer to the epidemic threshold of $R\ =\ 1$ (typically between 1.2 and 1.4 for seasonal influenza [[54](#source-54)]), whereas early SARS-CoV-2 estimates were higher (often $R\ >\ 2.5$) [[55](#source-55)]; a difference which we captured in the way we parameterised the pathogen archetypes presented here.
+Near the epidemic threshold of $R\ =\ 1$, standard epidemic theory implies strongly non-linear behaviour, with small proportional reductions in transmission translating into disproportionately large changes in equilibrium incidence and prevalence when the pathogen reproduction number is closer to this threshold [@rohani2011modeling; @kermack1927a].
+Baseline reproduction numbers for seasonal and pandemic influenza typically lie closer to the epidemic threshold of $R\ =\ 1$ (typically between 1.2 and 1.4 for seasonal influenza [@biggerstaff2014estimates]), whereas early SARS-CoV-2 estimates were higher (often $R\ >\ 2.5$) [@liu2020the]; a difference which we captured in the way we parameterised the pathogen archetypes presented here.
 For example, coverage of 40% of non-household floor area with AQIs with efficacy 60% led to 26.2% and 10.2% reductions in annual infection incidence for influenza and SARS-CoV-2 respectively.
 Crucially, because overall annual infection incidence for our SARS-CoV-2-like pathogen is higher, this still translates into sizeable reductions in absolute burden, even though it remains a (relatively) smaller fraction of total burden.
 In both cases, achieving substantial impact (e.g. \>30% reduction) was contingent on comparatively high levels of coverage and/or efficacy: to achieve 30% reduction at assumed 60% efficacy required approximately 90% and approximately 45% coverage for the SARS-CoV-2-like and influenza-like pathogen, respectively.
@@ -377,7 +379,7 @@ In both cases, achieving substantial impact (e.g. \>30% reduction) was contingen
 In our modeled epidemic scenarios, installed AQIs reduced the final epidemic size and peak incidence, as well as lengthening the time to peak, with more pronounced effects again for the influenza-like archetype than for SARS-CoV-2-like scenarios.
 Our modeled results show that AQIs of modest efficacy and population coverage are unlikely to achieve containment of the most highly transmissible pathogens on their own.
 However, these results also indicate that these measures could still play a role in both reducing and slowing epidemic growth and associated population-level spread, buying time for the development of countermeasures under accelerated (but still delayed relative to epidemic onset) timelines, as with the Coalition for Epidemic Preparedness’ 100 Days Mission.
-Moreover, by lowering baseline transmission in public and community venues, IAQ improvements may also reduce reliance on disruptive measures such as prolonged school or business closures, which carry documented and persistent educational and macroeconomic costs [[56](#source-56), [57](#source-57), [58](#source-58)].
+Moreover, by lowering baseline transmission in public and community venues, IAQ improvements may also reduce reliance on disruptive measures such as prolonged school or business closures, which carry documented and persistent educational and macroeconomic costs [@oecd2020learning; @haw2022optimizing; @rothwell2024global].
 Together, these results position clean indoor air as a supportive component of layered epidemic control, even if not a standalone panacea for it.
 
 Despite these promising results, an important limitation of the analyses presented here is that sizeable and reliable burden disease reductions arise most clearly at high coverage (typically \>30% of targeted buildings).
@@ -386,38 +388,38 @@ Important to note however, is that the costs of different AQI technologies remai
 Without such analyses, whether AQI investments compare favourably to the per-person costs of other population-level control measures (such as vaccinating a comparable population fraction) remains an open question.
 Irrespective, maximizing AQI impact for a given coverage level or budget is likely to remain crucial.
 Our results indicate that targeting IAQ interventions to settings that contribute disproportionately to onward transmission yields larger population-level benefits than random allocation at the same coverage, with the advantage of targeting greatest when coverage is low and diminishing as coverage approaches saturation.
-This pattern is consistent with previous theoretical work highlighting that strategic allocation of general transmission reducing measures outperforms random allocation and that the two converge only at very high coverage [[59](#source-59), [60](#source-60)], as well as empirical evidence that a minority of venues account for a large share of infections [[28](#source-28)] and that transmission is highly overdispersed [[61](#source-61), [62](#source-62)].
+This pattern is consistent with previous theoretical work highlighting that strategic allocation of general transmission reducing measures outperforms random allocation and that the two converge only at very high coverage [@tanaka2014random; @hadjichrysanthou2015epidemic], as well as empirical evidence that a minority of venues account for a large share of infections [@chang2021mobility] and that transmission is highly overdispersed [@sneppen2021overdispersion; @wegehaupt2023superspreading].
 
 Targeted allocation of IAQ interventions to the riskiest settings would enable significantly more impact to be achieved even at lower levels of coverage; but consistently and comprehensively identifying these highest-risk settings remains challenging.
-The exact location in which infection occurs is not typically observed and difficult to identify via traditional contact-tracing based methods, especially in the context of asymptomatic or pre-symptomatic transmission (as for COVID-19 [[63](#source-63), [64](#source-64)]) and constraints on the resourcing of contact tracing infrastructure [[65](#source-65)].
-Additionally, transmission risk is strongly context dependent: beyond ventilation (which we use as a proxy for risk in the analyses presented here and which represents a significant limitation of our work), factors such as occupancy, duration of co-presence, vocalization and activity intensity shape emission and exposure [[66](#source-66), [67](#source-67)].
+The exact location in which infection occurs is not typically observed and difficult to identify via traditional contact-tracing based methods, especially in the context of asymptomatic or pre-symptomatic transmission (as for COVID-19 [@he2020temporal; @johansson2021sarscov]) and constraints on the resourcing of contact tracing infrastructure [@lash2021covid].
+Additionally, transmission risk is strongly context dependent: beyond ventilation (which we use as a proxy for risk in the analyses presented here and which represents a significant limitation of our work), factors such as occupancy, duration of co-presence, vocalization and activity intensity shape emission and exposure [@wang2021airborne; @qian2021indoor].
 Resolving patterns of transmission and risk at finer spatial granularity is therefore crucial.
-Previous work has highlighted the promise of digital contact tracing as a way to provide time-stamped proximity records that strengthen case–context linkage when recall is incomplete and exposure windows span multiple venues [[68](#source-68)].
-Similarly, previous work has highlighted that aggregated mobile network data can quantify venue-level person-time and crowding from anonymized device movements to estimate setting-specific exposure and risk [[28](#source-28)].
-More broadly, scalable sensing systems for proxies of poor ventilation and thus high transmission risk (such as CO$_2$) could also comprehensively characterize ventilation across locations and identification of persistently under-ventilated spaces [[69](#source-69), [70](#source-70)].
+Previous work has highlighted the promise of digital contact tracing as a way to provide time-stamped proximity records that strengthen case–context linkage when recall is incomplete and exposure windows span multiple venues [@kendall2023epidemiological].
+Similarly, previous work has highlighted that aggregated mobile network data can quantify venue-level person-time and crowding from anonymized device movements to estimate setting-specific exposure and risk [@chang2021mobility].
+More broadly, scalable sensing systems for proxies of poor ventilation and thus high transmission risk (such as CO$_2$) could also comprehensively characterize ventilation across locations and identification of persistently under-ventilated spaces [@peng2021exhaled; @rudnick2003risk].
 
 Indeed, a major limitation of this work is the simplified representation of the physical spaces that individuals visit and the contact structures they form within them.
-Although we differentiate setting types and locations and parameterize their relative contributions using estimates derived from previous work [[42](#source-42)], we do not explicitly model within-room spatial mixing, airflow patterns, or the dynamic co-location networks that arise from realistic daily schedules and repeated encounters.
+Although we differentiate setting types and locations and parameterize their relative contributions using estimates derived from previous work [@ferguson2005strategies], we do not explicitly model within-room spatial mixing, airflow patterns, or the dynamic co-location networks that arise from realistic daily schedules and repeated encounters.
 As a result, our framework cannot capture the fine-grained paths by which people move between venues during a day, the distribution of dwell times at specific points of interest, or the concurrency of contacts that shapes exposure risk.
-Future extensions that integrate time-use data to constrain schedules and dwell times such as the American Time User Survey [[71](#source-71)] or mobility network data from mobile phones or similar would enable a more realistic reconstruction of non-household transmission opportunities.
+Future extensions that integrate time-use data to constrain schedules and dwell times such as the American Time User Survey [@hamermesh2005data] or mobility network data from mobile phones or similar would enable a more realistic reconstruction of non-household transmission opportunities.
 
-We also do not explicitly differentiate shorter-range, droplet-mediated transmission (more closely determined by the specific interpersonal contacts made within a location or particular room) from longer-range aerosol inhalation, which depends more on room airflows and ventilation [[66](#source-66)].
+We also do not explicitly differentiate shorter-range, droplet-mediated transmission (more closely determined by the specific interpersonal contacts made within a location or particular room) from longer-range aerosol inhalation, which depends more on room airflows and ventilation [@wang2021airborne].
 Instead, we represent AQI effects via fixed efficacies that implicitly combine both the intrinsic performance of the intervention and the proportion of total transmission that is avertible by air-quality modification.
 The comparative contributions of these different pathways currently remains poorly resolved, and evidence suggests that relative contribution may vary across pathogens and contexts.
-Infectious influenza virus has been detected in fine exhaled aerosols from symptomatic cases [[19](#source-19)] and infectious SARS-CoV-2 aerosols have been shown to be emitted by COVID-19 patients [[72](#source-72)].
-For RSV however, aerosol spread has been demonstrated experimentally but remains less well characterized than droplet and contact routes [[73](#source-73)].
+Infectious influenza virus has been detected in fine exhaled aerosols from symptomatic cases [@yan2018infectious] and infectious SARS-CoV-2 aerosols have been shown to be emitted by COVID-19 patients [@hawks2021infectious].
+For RSV however, aerosol spread has been demonstrated experimentally but remains less well characterized than droplet and contact routes [@kulkarni2016evidence].
 Better resolving these distinct mechanisms and integrating them into the same framework would be a valuable direction for future work.
 
 A related limitation concerns our representation of within-room transmission dynamics.
-Although our framework advances prior individual-based models by explicitly linking setting-level ventilation and riskiness to exposure via a Wells-Riley-based mechanism [[74](#source-74)], we assume a steady-state, well-mixed approximation for each location that fails to capture fine-scale within-location granularity in airflow dynamics and spread of exhaled infectious virus throughout the space [[75](#source-75)].
+Although our framework advances prior individual-based models by explicitly linking setting-level ventilation and riskiness to exposure via a Wells-Riley-based mechanism [@szeto2010review], we assume a steady-state, well-mixed approximation for each location that fails to capture fine-scale within-location granularity in airflow dynamics and spread of exhaled infectious virus throughout the space [@edwards2024the].
 We also neglect inter-room airflows and building-scale transport, representing between-location variation through stochastic heterogeneity in overall transmission risk rather than explicitly coupling that altered risk to changes or differences in airflow.
-These simplifications were chosen for computational tractability at population scale, but they omit mechanisms that can materially influence risk in specific spaces [[76](#source-76), [77](#source-77)].
+These simplifications were chosen for computational tractability at population scale, but they omit mechanisms that can materially influence risk in specific spaces [@noakes2009mathematical; @mukherjee2022a].
 Further refining our current representation of indoor space and adding more realistic spatial structure and airflow within a particular location, such as computational fluid dynamics (CFD) models with our existing IBM would be valuable.
 
 Another limitation is that we do not represent specific AQI technologies or undertake health-economic evaluations, limiting our ability to assess the cost-effectiveness of interventions aiming to improve IAQ.
 This choice reflects the present evidence base: randomized and quasi-experimental studies of venue-level AQIs remain limited in number, heterogeneous in design, and mixed in outcomes.
-For example, trials in aged-care facilities showed no clear reduction in acute respiratory infections with in-room HEPA filtration and only modest, aggregate effects with germicidal UV in long-term care [[38](#source-38), [39](#source-39)], while reviews underscore sparse transmission-endpoint data and variable implementation quality [[51](#source-51)].
-Formal cost-effectiveness evidence is similarly limited: some analyses during the COVID-19 period suggest circumstances where portable filtration or ventilation upgrades could be cost-effective, but these findings depend on assumptions about device performance, usage patterns, energy costs, and background incidence that vary widely across settings [[78](#source-78), [79](#source-79)].
+For example, trials in aged-care facilities showed no clear reduction in acute respiratory infections with in-room HEPA filtration and only modest, aggregate effects with germicidal UV in long-term care [@thottiyilsultanmuhammedabdulkhadar2024air; @shoubridge2025germicidal], while reviews underscore sparse transmission-endpoint data and variable implementation quality [@okokon2025the].
+Formal cost-effectiveness evidence is similarly limited: some analyses during the COVID-19 period suggest circumstances where portable filtration or ventilation upgrades could be cost-effective, but these findings depend on assumptions about device performance, usage patterns, energy costs, and background incidence that vary widely across settings [@zafari2022the; @chang2023a].
 Rigorous evaluation of comparative effectiveness remains a priority, but is methodologically challenging: trial design is complicated by the need for large sample sizes, because individuals typically spend only a fraction of their infectious period in any single trial venue, so venue-specific interventions act on only a limited share of exposure; this dilutes detectable effects and increases required sample sizes; a feature that is further complicated by the possibility of averted infections occurring via other routes, in other locations individuals visit where IAQ interventions are not installed.
 Generating such evidence is therefore crucial.
 Integrating it into population-level models of spread and epidemiological impact will facilitate rigorous cost-effectiveness analyses across payer perspectives (societal, health-system, building owner or operator, employer or school district, etc.), decision contexts (e.g. time horizon, discounting choices etc.), and co-benefits (such as reduced PM$_{2.5}$ exposure and productivity or attendance gains).
@@ -427,407 +429,9 @@ Realizing this benefit will depend on implementation quality and coverage across
 It will also require practical guidance and workforce capacity to assess and upgrade ventilation, filtration, and air disinfection in priority settings.
 Further research should quantify real-world effectiveness for specific technologies in varied venues, generate comparative- and cost-effectiveness evidence across payer perspectives, and develop measurement systems that resolve venue-level risk in near-real time.
 
-# References {.unnumbered}
-
-::: {#source-1}
-1.
-[*Lower Respiratory Infections and Antimicrobial Resistance Collaborators. Global, Regional, and National Incidence and Mortality Burden of Non-COVID-19 Lower Respiratory Infections and Aetiologies, 1990-2021: A Systematic Analysis from the Global Burden of Disease Study*. (2021).](http://paperpile.com/b/Vci8WR/4ziLy)
-:::
-
-::: {#source-2}
-2.
-[Influenza (seasonal).](http://paperpile.com/b/Vci8WR/FSkX6) [https://www.who.int/news-room/fact-sheets/detail/influenza-(seasonal)](https://www.who.int/news-room/fact-sheets/detail/influenza-\(seasonal\))[.](http://paperpile.com/b/Vci8WR/FSkX6)
-:::
-
-::: {#source-3}
-3.
-[Li, Y. *et al.* Global, regional, and national disease burden estimates of acute lower respiratory infections due to respiratory syncytial virus in children younger than 5 years in 2019: a systematic analysis. *Lancet* **399**, 2047–2064 (2022).](http://paperpile.com/b/Vci8WR/gN5yo)
-:::
-
-::: {#source-4}
-4.
-[Wilson, R., Kovacs, D., Crosby, M. & Ho, A. Global epidemiology and seasonality of human seasonal coronaviruses: A systematic review. *Open Forum Infect. Dis.* **11**, ofae418 (2024).](http://paperpile.com/b/Vci8WR/zAHPB)
-:::
-
-::: {#source-5}
-5.
-[Kurai, D., Saraya, T., Ishii, H. & Takizawa, H. Virus-induced exacerbations in asthma and COPD. *Front. Microbiol.* **4**, 293 (2013).](http://paperpile.com/b/Vci8WR/9bEsl)
-:::
-
-::: {#source-6}
-6.
-[Langer, J. *et al.* The cost of seasonal influenza: A systematic literature review on the humanistic and economic burden of influenza in older ($\geq$ 65 years old) adults. *Adv. Ther.* **41**, 945–966 (2024).](http://paperpile.com/b/Vci8WR/K7x28)
-:::
-
-::: {#source-7}
-7.
-[Edridge, A. W. D. *et al.* Seasonal coronavirus protective immunity is short-lasting. *Nat. Med.* **26**, 1691–1693 (2020).](http://paperpile.com/b/Vci8WR/GGKzE)
-:::
-
-::: {#source-8}
-8.
-[Cohen, C. *et al.* Asymptomatic transmission and high community burden of seasonal influenza in an urban and a rural community in South Africa, 2017–18 (PHIRST): a population cohort study. *Lancet Glob. Health* **9**, e863–e874 (2021).](http://paperpile.com/b/Vci8WR/cWXpj)
-:::
-
-::: {#source-9}
-9.
-[Guedes, A. R. *et al.* Reinfection rate in a cohort of healthcare workers over 2 years of the COVID-19 pandemic. *Sci. Rep.* **13**, 712 (2023).](http://paperpile.com/b/Vci8WR/gy7vR)
-:::
-
-::: {#source-10}
-10.
-[Ma, K. C. *et al.* Trends in laboratory-confirmed SARS-CoV-2 reinfections and associated hospitalizations and deaths among adults aged $\geq 18$ years \- 18 U.S. jurisdictions, September 2021-December 2022\. *MMWR Morb. Mortal. Wkly. Rep.* **72**, 683–689 (2023).](http://paperpile.com/b/Vci8WR/EPKvW)
-:::
-
-::: {#source-11}
-11.
-[Ferretti, L. *et al.* Digital measurement of SARS-CoV-2 transmission risk from 7 million contacts. *Nature* **626**, 145–150 (2024).](http://paperpile.com/b/Vci8WR/dXiO8)
-:::
-
-::: {#source-12}
-12.
-[Tsang, T. K., Lau, L. L. H., Cauchemez, S. & Cowling, B. J. Household transmission of influenza virus. *Trends Microbiol.* **24**, 123–133 (2016).](http://paperpile.com/b/Vci8WR/3OlkH)
-:::
-
-::: {#source-13}
-13.
-[Sharma, M. *et al.* Understanding the effectiveness of government interventions against the resurgence of COVID-19 in Europe. *Nat. Commun.* **12**, 5820 (2021).](http://paperpile.com/b/Vci8WR/t7QbU)
-:::
-
-::: {#source-14}
-14.
-[Cauchemez, S., Valleron, A.-J., Boëlle, P.-Y., Flahault, A. & Ferguson, N. M. Estimating the impact of school closure on influenza transmission from Sentinel data. *Nature* **452**, 750–754 (2008).](http://paperpile.com/b/Vci8WR/oM0ob)
-:::
-
-::: {#source-15}
-15.
-[Tseng, Y.-J., Olson, K. L., Bloch, D. & Mandl, K. D. Smart thermometer-based participatory surveillance to discern the role of children in household viral transmission during the COVID-19 pandemic. *JAMA Netw. Open* **6**, e2316190 (2023).](http://paperpile.com/b/Vci8WR/8Vkw5)
-:::
-
-::: {#source-16}
-16.
-[Alsved, M. *et al.* Infectivity of exhaled SARS-CoV-2 aerosols is sufficient to transmit COVID-19 within minutes. *Sci. Rep.* **13**, 21245 (2023).](http://paperpile.com/b/Vci8WR/211cp)
-:::
-
-::: {#source-17}
-17.
-[Hamner, L. *et al.* High SARS-CoV-2 attack rate following exposure at a choir practice \- Skagit County, Washington, March 2020\. *MMWR Morb. Mortal. Wkly. Rep.* **69**, 606–610 (2020).](http://paperpile.com/b/Vci8WR/F3dWo)
-:::
-
-::: {#source-18}
-18.
-[Azimi, P., Keshavarz, Z., Cedeno Laurent, J. G., Stephens, B. & Allen, J. G. Mechanistic transmission modeling of COVID-19 on the Diamond Princess cruise ship demonstrates the importance of aerosol transmission. *Proc. Natl. Acad. Sci. U. S. A.* **118**, e2015482118 (2021).](http://paperpile.com/b/Vci8WR/R3SdG)
-:::
-
-::: {#source-19}
-19.
-[Yan, J. *et al.* Infectious virus in exhaled breath of symptomatic seasonal influenza cases from a college community. *Proc. Natl. Acad. Sci. U. S. A.* **115**, 1081–1086 (2018).](http://paperpile.com/b/Vci8WR/HDbw1)
-:::
-
-::: {#source-20}
-20.
-[Cowling, B. J. *et al.* Aerosol transmission is an important mode of influenza A virus spread. *Nat. Commun.* **4**, 1935 (2013).](http://paperpile.com/b/Vci8WR/jiO6j)
-:::
-
-::: {#source-21}
-21.
-[ANSI/ASHRAE. Standards 62.1 & 62.2.](http://paperpile.com/b/Vci8WR/OUbTe) [https://www.ashrae.org/technical-resources/bookstore/standards-62-1-62-2](https://www.ashrae.org/technical-resources/bookstore/standards-62-1-62-2)[.](http://paperpile.com/b/Vci8WR/OUbTe)
-:::
-
-::: {#source-22}
-22.
-[ASHRAE, American Society of Heating, Refrigerating and Air-Conditioning Engineers. *ANSI/ASHRAE Standard 62.1-2022: Ventilation and Acceptable Indoor Air Quality*.](http://paperpile.com/b/Vci8WR/ljkwx) [https://www.ashrae.org/file%20library/technical%20resources/standards%20and%20guidelines/standards%20addenda/62\_1\_2022\_v\_20250930.pdf](https://www.ashrae.org/file%20library/technical%20resources/standards%20and%20guidelines/standards%20addenda/62_1_2022_v_20250930.pdf) [(2022).](http://paperpile.com/b/Vci8WR/ljkwx)
-:::
-
-::: {#source-23}
-23.
-[Daisey, J. M., Angell, W. J. & Apte, M. G. Indoor air quality, ventilation and health symptoms in schools: an analysis of existing information. *Indoor Air* **13**, 53–64 (2003).](http://paperpile.com/b/Vci8WR/CCeHN)
-:::
-
-::: {#source-24}
-24.
-[Batterman, S. *et al.* Ventilation rates in recently constructed U.S. school classrooms. *Indoor Air* **27**, 880–890 (2017).](http://paperpile.com/b/Vci8WR/t0niu)
-:::
-
-::: {#source-25}
-25.
-[Persily A K And Gorfain. *Analysis of Ventilation Data from the U.S. Environmental Protection Agency Building Assessment Survey and Evaluation (BASE) Study*. (National Institute of Standards and Technology, Gaithersburg, MD, 2008).](http://paperpile.com/b/Vci8WR/cLwQj)
-:::
-
-::: {#source-26}
-26.
-[Nazaroff, W. W. Residential air-change rates: A critical review. *Indoor Air* **31**, 282–313 (2021).](http://paperpile.com/b/Vci8WR/oSvxc)
-:::
-
-::: {#source-27}
-27.
-[Corsi, R. L. *Assessment of Maximum Ozone Emissions in Residential, Office and School Buildings*.](http://paperpile.com/b/Vci8WR/p6gK) [https://corsiaq.com/wp-content/uploads/2021/03/assessment-of-maximum-ozone-emissions-in-residential-office-and-school-buildings-.pdf](https://corsiaq.com/wp-content/uploads/2021/03/assessment-of-maximum-ozone-emissions-in-residential-office-and-school-buildings-.pdf) [(2006).](http://paperpile.com/b/Vci8WR/p6gK)
-:::
-
-::: {#source-28}
-28.
-[Chang, S. *et al.* Mobility network models of COVID-19 explain inequities and inform reopening. *Nature* **589**, 82–87 (2021).](http://paperpile.com/b/Vci8WR/wcBci)
-:::
-
-::: {#source-29}
-29.
-[Millett, G. A. *et al.* Assessing differential impacts of COVID-19 on black communities. *Ann. Epidemiol.* **47**, 37–44 (2020).](http://paperpile.com/b/Vci8WR/0MFwp)
-:::
-
-::: {#source-30}
-30.
-[World Health Organization. *Roadmap to Improve and Ensure Good Indoor Ventilation in the Context of COVID-19*. (2021 / 03 / 01).](http://paperpile.com/b/Vci8WR/lVbrj)
-:::
-
-::: {#source-31}
-31.
-[Chen, C.-F., Hsu, C.-H., Chang, Y.-J., Lee, C.-H. & Lee, D. L. Efficacy of HEPA air cleaner on improving indoor particulate matter 2.5 concentration. *Int. J. Environ. Res. Public Health* **19**, 11517 (2022).](http://paperpile.com/b/Vci8WR/3i02a)
-:::
-
-::: {#source-32}
-32.
-[Eadie, E. *et al.* Far-UVC (222 nm) efficiently inactivates an airborne pathogen in a room-sized chamber. *Sci. Rep.* **12**, 4373 (2022).](http://paperpile.com/b/Vci8WR/J41iG)
-:::
-
-::: {#source-33}
-33.
-[Escombe, A. R. *et al.* Upper-room ultraviolet light and negative air ionization to prevent tuberculosis transmission. *PLoS Med.* **6**, e43 (2009).](http://paperpile.com/b/Vci8WR/h3xZT)
-:::
-
-::: {#source-34}
-34.
-[Conway Morris, A. *et al.* The removal of airborne severe acute respiratory syndrome Coronavirus 2 (SARS-CoV-2) and other microbial bioaerosols by air filtration on Coronavirus disease 2019 (COVID-19) surge units. *Clin. Infect. Dis.* **75**, e97–e101 (2022).](http://paperpile.com/b/Vci8WR/1REy8)
-:::
-
-::: {#source-35}
-35.
-[Bonan, J., Granella, F., Renna, S. & Sarmiento, L. The effect of air purifiers in schools (cluster RCT, Milan). *CSLDE Dev. Stud. Working Paper* **502**, (2025).](http://paperpile.com/b/Vci8WR/mKona)
-:::
-
-::: {#source-36}
-36.
-[Buonanno, G., Ricolfi, L., Morawska, L. & Stabile, L. Increasing ventilation reduces SARS-CoV-2 airborne transmission in schools: A retrospective cohort study in Italy’s Marche region. *Front. Public Health* **10**, 1087087 (2022).](http://paperpile.com/b/Vci8WR/xnYlo)
-:::
-
-::: {#source-37}
-37.
-[Gold, T. L. *et al.* Impact of ventilation on respiratory virus transmission in college residence hall cohorts: Potential for causal inference about mode of transmission. *Influenza Other Respi. Viruses* **19**, e70133 (2025).](http://paperpile.com/b/Vci8WR/VF6tl)
-:::
-
-::: {#source-38}
-38.
-[Thottiyil Sultanmuhammed Abdul Khadar, B. *et al.* Air purifiers and acute respiratory infections in residential aged care: A randomized clinical trial. *JAMA Netw. Open* **7**, e2443769 (2024).](http://paperpile.com/b/Vci8WR/GizLc)
-:::
-
-::: {#source-39}
-39.
-[Shoubridge, A. P. *et al.* Germicidal UV light and incidence of acute respiratory infection in long-term care for older adults: A randomized clinical trial. *JAMA Intern. Med.* **185**, 1128–1135 (2025).](http://paperpile.com/b/Vci8WR/O3Bt0)
-:::
-
-::: {#source-40}
-40.
-[Rineer, J. *et al.* A national synthetic populations dataset for the United States. *Sci. Data* **12**, 144 (2025).](http://paperpile.com/b/Vci8WR/MiI0p)
-:::
-
-::: {#source-41}
-41.
-[Digest of Education Statistics, 2021\.](http://paperpile.com/b/Vci8WR/OjqCW) [https://nces.ed.gov/use-work/resource-library/report/compendium/digest-education-statistics-2021](https://nces.ed.gov/use-work/resource-library/report/compendium/digest-education-statistics-2021)[.](http://paperpile.com/b/Vci8WR/OjqCW)
-:::
-
-::: {#source-42}
-42.
-[Ferguson, N. M. *et al.* Strategies for containing an emerging influenza pandemic in Southeast Asia. *Nature* **437**, 209–214 (2005).](http://paperpile.com/b/Vci8WR/XCZ7g)
-:::
-
-::: {#source-43}
-43.
-[*Helios: Simulating Far UVC for Pathogen Control*. (Github).](http://paperpile.com/b/Vci8WR/NDybG)
-:::
-
-::: {#source-44}
-44.
-[Ferguson, N. M. *et al.* Strategies for mitigating an influenza pandemic. *Nature* **442**, 448–452 (2006).](http://paperpile.com/b/Vci8WR/5tUzR)
-:::
-
-::: {#source-45}
-45.
-[Blatchley, E. R., 3rd & Cui, H. Quantitative microbial risk assessment for quantification of the effects of ultraviolet germicidal irradiation on COVID-19 transmission. *Environ. Sci. Technol.* **57**, 17393–17403 (2023).](http://paperpile.com/b/Vci8WR/L4Ohf)
-:::
-
-::: {#source-46}
-46.
-[Kelechava, B. ANSI/ASHRAE 62.1-2022: Ventilation for Indoor Air Quality. *The ANSI Blog*](http://paperpile.com/b/Vci8WR/tflYA) [https://blog.ansi.org/ansi/ansi-ashrae-62-1-2022-ventilation-indoor-air/](https://blog.ansi.org/ansi/ansi-ashrae-62-1-2022-ventilation-indoor-air/) [(2022).](http://paperpile.com/b/Vci8WR/tflYA)
-:::
-
-::: {#source-47}
-47.
-[Wells, W. F. Airborne Contagion and Air Hygiene: An Ecological Study of Droplet Infections. *Cambridge University Press*](http://paperpile.com/b/Vci8WR/s3xjx) [https://books.google.com/books/about/Airborne\_Contagion\_and\_Air\_Hygiene.html?id=T8nVAAAAMAAJ](https://books.google.com/books/about/Airborne_Contagion_and_Air_Hygiene.html?id=T8nVAAAAMAAJ)[.](http://paperpile.com/b/Vci8WR/s3xjx)
-:::
-
-::: {#source-48}
-48.
-[Riley, E. C., Murphy, G. & Riley, R. L. Airborne spread of measles in a suburban elementary school. *Am. J. Epidemiol.* **107**, 421–432 (1978).](http://paperpile.com/b/Vci8WR/33gpF)
-:::
-
-::: {#source-49}
-49.
-[Killingley, B. *et al.* Safety, tolerability and viral kinetics during SARS-CoV-2 human challenge in young adults. *Nat. Med.* **28**, 1031–1041 (2022).](http://paperpile.com/b/Vci8WR/dSTn2)
-:::
-
-::: {#source-50}
-50.
-[World Health Organization. *Roadmap to Improve and Ensure Good Indoor Ventilation in the Context of COVID-19*.](http://paperpile.com/b/Vci8WR/kEn8) [https://www.who.int/publications/i/item/9789240021280](https://www.who.int/publications/i/item/9789240021280) [(2021).](http://paperpile.com/b/Vci8WR/kEn8)
-:::
-
-::: {#source-51}
-51.
-[Okokon, E. *et al.* The effectiveness of air-cleaning technologies against COVID-19 transmission in healthcare settings. *Front. Environ. Health* **4**, (2025).](http://paperpile.com/b/Vci8WR/xyOxX)
-:::
-
-::: {#source-52}
-52.
-[Rohani, P. *Modeling Infectious Diseases in Humans and Animals*. (Princeton University Press, Princeton, NJ, 2011). doi:](http://paperpile.com/b/Vci8WR/lWbbM)[10.2307/j.ctvcm4gk0](http://dx.doi.org/10.2307/j.ctvcm4gk0)[.](http://paperpile.com/b/Vci8WR/lWbbM)
-:::
-
-::: {#source-53}
-53.
-[Kermack, W. O. & McKendrick, A. G. A contribution to the mathematical theory of epidemics. *Proc. R. Soc. Lond. A Math. Phys. Sci.* **115**, 700–721 (1927).](http://paperpile.com/b/Vci8WR/bKMXc)
-:::
-
-::: {#source-54}
-54.
-[Biggerstaff, M., Cauchemez, S., Reed, C., Gambhir, M. & Finelli, L. Estimates of the reproduction number for seasonal, pandemic, and zoonotic influenza: a systematic review of the literature. *BMC Infect. Dis.* **14**, 480 (2014).](http://paperpile.com/b/Vci8WR/yOysX)
-:::
-
-::: {#source-55}
-55.
-[Liu, Y., Gayle, A. A., Wilder-Smith, A. & Rocklöv, J. The reproductive number of COVID-19 is higher compared to SARS coronavirus. *J. Travel Med.* **27**, (2020).](http://paperpile.com/b/Vci8WR/lL2U2)
-:::
-
-::: {#source-56}
-56.
-[The economic impacts of learning losses. *OECD*](http://paperpile.com/b/Vci8WR/y43lx) [https://www.oecd.org/en/publications/the-economic-impacts-of-learning-losses\_21908d74-en.html](https://www.oecd.org/en/publications/the-economic-impacts-of-learning-losses_21908d74-en.html) [(2020).](http://paperpile.com/b/Vci8WR/y43lx)
-:::
-
-::: {#source-57}
-57.
-[Haw, D. J. *et al.* Optimizing social and economic activity while containing SARS-CoV-2 transmission using DAEDALUS. *Nat. Comput. Sci.* **2**, 223–233 (2022).](http://paperpile.com/b/Vci8WR/mJvRf)
-:::
-
-::: {#source-58}
-58.
-[Rothwell, J. T., Cojocaru, A., Srinivasan, R. & Kim, Y. S. Global evidence on the economic effects of disease suppression during COVID-19. *Humanit. Soc. Sci. Commun.* **11**, 1–14 (2024).](http://paperpile.com/b/Vci8WR/V2ylf)
-:::
-
-::: {#source-59}
-59.
-[Tanaka, G., Urabe, C. & Aihara, K. Random and targeted interventions for epidemic control in metapopulation models. *Sci. Rep.* **4**, 5522 (2014).](http://paperpile.com/b/Vci8WR/W18Wz)
-:::
-
-::: {#source-60}
-60.
-[Hadjichrysanthou, C. & Sharkey, K. J. Epidemic control analysis: designing targeted intervention strategies against epidemics propagated on contact networks. *J. Theor. Biol.* **365**, 84–95 (2015).](http://paperpile.com/b/Vci8WR/4LGHB)
-:::
-
-::: {#source-61}
-61.
-[Sneppen, K., Nielsen, B. F., Taylor, R. J. & Simonsen, L. Overdispersion in COVID-19 increases the effectiveness of limiting nonrepetitive contacts for transmission control. *Proc. Natl. Acad. Sci. U. S. A.* **118**, e2016623118 (2021).](http://paperpile.com/b/Vci8WR/JacE4)
-:::
-
-::: {#source-62}
-62.
-[Wegehaupt, O., Endo, A. & Vassall, A. Superspreading, overdispersion and their implications in the SARS-CoV-2 (COVID-19) pandemic: a systematic review and meta-analysis of the literature. *BMC Public Health* **23**, 1003 (2023).](http://paperpile.com/b/Vci8WR/8ZWAI)
-:::
-
-::: {#source-63}
-63.
-[He, X. *et al.* Temporal dynamics in viral shedding and transmissibility of COVID-19. *Nat. Med.* **26**, 672–675 (2020).](http://paperpile.com/b/Vci8WR/1ivbj)
-:::
-
-::: {#source-64}
-64.
-[Johansson, M. A. *et al.* SARS-CoV-2 transmission from people without COVID-19 symptoms. *JAMA Netw. Open* **4**, e2035057 (2021).](http://paperpile.com/b/Vci8WR/uuli7)
-:::
-
-::: {#source-65}
-65.
-[Lash, R. R. *et al.* COVID-19 case investigation and contact tracing in the US, 2020\. *JAMA Netw. Open* **4**, e2115850 (2021).](http://paperpile.com/b/Vci8WR/R7AOs)
-:::
-
-::: {#source-66}
-66.
-[Wang, C. C. *et al.* Airborne transmission of respiratory viruses. *Science* **373**, eabd9149 (2021).](http://paperpile.com/b/Vci8WR/kpT8s)
-:::
-
-::: {#source-67}
-67.
-[Qian, H. *et al.* Indoor transmission of SARS-CoV-2. *Indoor Air* **31**, 639–645 (2021).](http://paperpile.com/b/Vci8WR/y7Xry)
-:::
-
-::: {#source-68}
-68.
-[Kendall, M. *et al.* Epidemiological impacts of the NHS COVID-19 app in England and Wales throughout its first year. *Nat. Commun.* **14**, 858 (2023).](http://paperpile.com/b/Vci8WR/81d6I)
-:::
-
-::: {#source-69}
-69.
-[Peng, Z. & Jimenez, J. L. Exhaled CO2 as a COVID-19 infection risk proxy for different indoor environments and activities. *Environ. Sci. Technol. Lett.* **8**, 392–397 (2021).](http://paperpile.com/b/Vci8WR/CzP98)
-:::
-
-::: {#source-70}
-70.
-[Rudnick, S. N. & Milton, D. K. Risk of indoor airborne infection transmission estimated from carbon dioxide concentration. *Indoor Air* **13**, 237–245 (2003).](http://paperpile.com/b/Vci8WR/5egH4)
-:::
-
-::: {#source-71}
-71.
-[Hamermesh, D. S., Frazis, H. & Stewart, J. Data watch: the American time use survey. *J. Econ. Perspect.* **19**, 221–232 (2005).](http://paperpile.com/b/Vci8WR/CyJrw)
-:::
-
-::: {#source-72}
-72.
-[Hawks, S. A. *et al.* Infectious SARS-CoV-2 is emitted in aerosols. *bioRxiv* (2021) doi:](http://paperpile.com/b/Vci8WR/sfae4)[10.1101/2021.08.10.455702](http://dx.doi.org/10.1101/2021.08.10.455702)[.](http://paperpile.com/b/Vci8WR/sfae4)
-:::
-
-::: {#source-73}
-73.
-[Kulkarni, H. *et al.* Evidence of respiratory syncytial virus spread by aerosol. Time to revisit infection control strategies? *Am. J. Respir. Crit. Care Med.* **194**, 308–316 (2016).](http://paperpile.com/b/Vci8WR/ZokaE)
-:::
-
-::: {#source-74}
-74.
-[Sze To, G. N. & Chao, C. Y. H. Review and comparison between the Wells Riley and dose-response approaches to risk assessment of infectious respiratory diseases. *Indoor Air* **20**, 2–16 (2010).](http://paperpile.com/b/Vci8WR/5FTK6)
-:::
-
-::: {#source-75}
-75.
-[Edwards, A. J., King, M.-F., Noakes, C. J., Peckham, D. & López-García, M. The Wells-Riley model revisited: Randomness, heterogeneity, and transient behaviours. *Risk Anal.* **44**, 2125–2147 (2024).](http://paperpile.com/b/Vci8WR/tendN)
-:::
-
-::: {#source-76}
-76.
-[Noakes, C. J. & Sleigh, P. A. Mathematical models for assessing the role of airflow on the risk of airborne infection in hospital wards. *J. R. Soc. Interface* **6 Suppl 6**, S791–800 (2009).](http://paperpile.com/b/Vci8WR/NNJus)
-:::
-
-::: {#source-77}
-77.
-[Mukherjee, D. & Wadhwa, G. A mesoscale agent based modeling framework for flow-mediated infection transmission in indoor occupied spaces. *Comput. Methods Appl. Mech. Eng.* **401**, 115485 (2022).](http://paperpile.com/b/Vci8WR/hDcBT)
-:::
-
-::: {#source-78}
-78.
-[Zafari, Z., de Oliveira, P. M., Gkantonas, S., Ezeh, C. & Muennig, P. A. The cost-effectiveness of standalone HEPA filtration units for the prevention of airborne SARS CoV-2 transmission. *Cost Eff. Resour. Alloc.* **20**, 22 (2022).](http://paperpile.com/b/Vci8WR/YpsmP)
-:::
-
-::: {#source-79}
-79.
-[Chang, Y., Ai, Z., Ye, J. & Ma, G. A cost-effectiveness assessment of the operational parameters of central HVAC systems during pandemics. *Build. Simul.* **16**, 667–682 (2023).](http://paperpile.com/b/Vci8WR/MHfHH)
-:::
-
-
 | Parameter | SARS-CoV-2-like | Influenza-like | Source(s) |
 | :---- | :---: | :---: | :---- |
-| Approximate basic reproduction number (${R}_{0}$) | 2.5 | 1.5 | Liu et al. 2020; Biggerstaff et al. 2014 |
+| Approximate basic reproduction number (${R}_{0}$) | 2.5 | 1.5 | [@liu2020the; @biggerstaff2014estimates] |
 | Mean incubation period (days) | 2 | 1 | Model assumption |
 | Mean infectious period (days) | 4 | 2 | Model assumption |
 | Mean duration of immunity (days) | 365 | 365 | Model assumption |
@@ -839,27 +443,27 @@ Further research should quantify real-world effectiveness for specific technolog
 | Population structure |  |  |  |
 | Population size | 50,000 | Fixed | Model assumption |
 | Age groups | 3 (child, adult, elderly) | Fixed | Model assumption |
-| Household size distribution | approximately 1-16 members | Sampled: synthetic population | RTI International 2010 (Rineer et al. 2025\) |
-| School enrollment distribution | approximately 100-3,000 students | Sampled: empirical data | US NCES 2019-2020 |
-| Workplace size distribution | approximately 1-1,000+ employees | Sampled: truncated offset power-law distribution | Ferguson et al. 2005 |
+| Household size distribution | approximately 1-16 members | Sampled: synthetic population | RTI International 2010 [@rineer2025a] |
+| School enrollment distribution | approximately 100-3,000 students | Sampled: empirical data | US NCES 2019-2020 [@deBrey2023Digest] |
+| Workplace size distribution | approximately 1-1,000+ employees | Sampled: truncated offset power-law distribution | [@ferguson2005strategies] |
 | Leisure venue size distribution | approximately 1-300 | Sampled: negative binomial distributed | Model assumption |
 | Transmission dynamics |  |  |  |
-| Household transmission proportion | 30% | Fixed | Ferretti et al. 2024; Ferguson et al. 2006 |
-| School/Workplace transmission proportion | 30% | Fixed | Ferretti et al. 2024 |
-| Leisure transmission proportion | 30% | Fixed | Ferretti et al. 2024 |
+| Household transmission proportion | 30% | Fixed | [@ferretti2024digital; @Fergusonetal2006] |
+| School/Workplace transmission proportion | 30% | Fixed | [@ferretti2024digital] |
+| Leisure transmission proportion | 30% | Fixed | [@ferretti2024digital] |
 | Community transmission proportion | 10% | Fixed | Model assumption (residual transmission) |
-| Between-location heterogeneity | Median 1 with setting-specific standard deviation | Sampled: lognormal distribution | Corsi et al. |
+| Between-location heterogeneity | Median 1 with setting-specific standard deviation | Sampled: lognormal distribution | [@corsi22006ozone] |
 | Indoor air quality and ventilation |  |  |  |
-| Pathogen decay constant (${k}_{D}$, ${h}^{-1}$) | 0.64 | Fixed | Blatchley & Cui 2023 |
-| Viral emissions per person per hour | 27 | Fixed | Blatchley & Cui 2023 |
-| Breathing rate (${m}^{3}{h}^{-1}$) | 0.45 | Fixed | Blatchley & Cui 2023 |
-| Infection probability per virion | 0.0137 | Fixed | Blatchley & Cui 2023; Killingley et al. 2022 |
+| Pathogen decay constant (${k}_{D}$, ${h}^{-1}$) | 0.64 | Fixed | [@blatchley2023quantitative] |
+| Viral emissions per person per hour | 27 | Fixed | [@blatchley2023quantitative] |
+| Breathing rate (${m}^{3}{h}^{-1}$) | 0.45 | Fixed | [@blatchley2023quantitative] |
+| Infection probability per virion | 0.0137 | Fixed | [@blatchley2023quantitative; @killingley2022safety] |
 | Room height ($m$) | 2.5 | Fixed | Model assumption |
-| Household occupancy density (per 100${m}^{2}$) | 5 | Fixed | ASHRAE 62.1 (Kelechava 2022\) |
-| School occupancy density (per 100${m}^{2}$) | 30 | Fixed | ASHRAE 62.1 (Kelechava 2022\) |
-| Workplace occupancy density (per 100${m}^{2}$) | 10 | Fixed | ASHRAE 62.1 (Kelechava 2022\) |
-| Leisure occupancy density (per 100${m}^{2}$) | 50 | Fixed | ASHRAE 62.1 (Kelechava 2022\) |
-| Air changes per hour (ACH) | Setting-specific | Sampled: Lognormal per setting | Corsi et al. |
+| Household occupancy density (per 100${m}^{2}$) | 5 | Fixed | ASHRAE 62.1 [@kelechava2022ventilation] |
+| School occupancy density (per 100${m}^{2}$) | 30 | Fixed | ASHRAE 62.1 [@kelechava2022ventilation] |
+| Workplace occupancy density (per 100${m}^{2}$) | 10 | Fixed | ASHRAE 62.1 [@kelechava2022ventilation] |
+| Leisure occupancy density (per 100${m}^{2}$) | 50 | Fixed | ASHRAE 62.1 [@kelechava2022ventilation] |
+| Air changes per hour (ACH) | Setting-specific | Sampled: Lognormal per setting | [@corsi22006ozone] |
 | Air quality interventions |  |  |  |
 | Settings with AQI | Schools, workplaces, leisure | Fixed | Model assumption |
 | Settings without AQI | Households, community | Fixed | Model assumption |
@@ -877,3 +481,7 @@ Further research should quantify real-world effectiveness for specific technolog
 
 : Simulation parameter settings {#tbl-simulation}
 
+# References {.unnumbered}
+
+::: {#refs}
+::: 
