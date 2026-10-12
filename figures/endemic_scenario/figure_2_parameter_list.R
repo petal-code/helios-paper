@@ -1,5 +1,4 @@
 source(here::here("packages.R"))
-#Figure 3: Targeted vs Random
 
 # Core Parameters
 archetypes <- c("flu", "sars_cov_2")
@@ -8,8 +7,9 @@ years_to_simulate <- 20
 simulation_time_days <- (365 * years_to_simulate)
 human_population <- 50000
 duration_of_immunity <- 365
+external_infection_probability <- 1 / human_population
 riskiness <- "setting_specific_riskiness"
-
+dt <- 0.5
 size_per_individual_workplace <- 10
 size_per_individual_school <- 3.33
 size_per_individual_leisure <- 2
@@ -41,9 +41,9 @@ initial_R_flu <- human_population -
 simulations_to_run <- rbind(
   expand.grid(
     archetype = archetypes,
-    coverage = seq(0.2, 0.8, 0.2),
-    efficacy = seq(0.2, 0.8, 0.2), # Low / Medium / High efficacy
-    coverage_type = c("random", "targeted_riskiness"),
+    coverage = seq(0.2, 1.0, 0.2),
+    efficacy = seq(0.2, 1.0, 0.2),
+    coverage_type = "random",
     iteration = iterations,
     riskiness = riskiness,
     stringsAsFactors = FALSE
@@ -51,18 +51,22 @@ simulations_to_run <- rbind(
 )
 
 simulations_to_run <- simulations_to_run |>
-  dplyr::mutate(
+  mutate(
     scenario = "endemic",
     ID = 1:n(),
     seed = 1000 + ID
   ) |>
-  dplyr::arrange(
+  arrange(
     archetype,
     coverage_type,
     coverage,
     efficacy,
     iteration
   )
+
+# TODO: Remove when issue fixed
+# Fix a bad seed:
+simulations_to_run[514, ]$seed <- 16591
 
 parameter_lists <- list()
 
@@ -77,17 +81,18 @@ for (i in 1:nrow(simulations_to_run)) {
         number_initial_I = initial_I_SC2,
         number_initial_R = initial_R_SC2,
         endemic_or_epidemic = "endemic",
+        dt = dt,
+        size_per_individual_workplace = size_per_individual_workplace,
+        size_per_individual_school = size_per_individual_school,
+        size_per_individual_leisure = size_per_individual_leisure,
+        size_per_individual_household = size_per_individual_household,
         duration_immune = duration_of_immunity,
         prob_inf_external = external_infection_probability,
         prob_hosp_child = prob_hosp_child,
         prob_hosp_adult = prob_hosp_adult,
         prob_hosp_elderly = prob_hosp_elderly,
         simulation_time = simulation_time_days,
-        seed = simulations_to_run$seed[i],
-        size_per_individual_workplace = size_per_individual_workplace,
-        size_per_individual_school = size_per_individual_school,
-        size_per_individual_leisure = size_per_individual_leisure,
-        size_per_individual_household = size_per_individual_household
+        seed = simulations_to_run$seed[i]
       )
     )
   } else if (simulations_to_run$archetype[i] == "flu") {
@@ -100,20 +105,22 @@ for (i in 1:nrow(simulations_to_run)) {
         number_initial_I = initial_I_flu,
         number_initial_R = initial_R_flu,
         endemic_or_epidemic = "endemic",
+        dt = dt,
+        size_per_individual_workplace = size_per_individual_workplace,
+        size_per_individual_school = size_per_individual_school,
+        size_per_individual_leisure = size_per_individual_leisure,
+        size_per_individual_household = size_per_individual_household,
         duration_immune = duration_of_immunity,
         prob_inf_external = external_infection_probability,
         prob_hosp_child = prob_hosp_child,
         prob_hosp_adult = prob_hosp_adult,
         prob_hosp_elderly = prob_hosp_elderly,
         simulation_time = simulation_time_days,
-        seed = simulations_to_run$seed[i],
-        size_per_individual_workplace = size_per_individual_workplace,
-        size_per_individual_school = size_per_individual_school,
-        size_per_individual_leisure = size_per_individual_leisure,
-        size_per_individual_household = size_per_individual_household
+        seed = simulations_to_run$seed[i]
       )
     )
   }
+
   # UVC Parameters
   if (simulations_to_run$coverage[i] > 0) {
     parameter_lists[[i]] <- parameter_lists[[i]] %>%
@@ -123,11 +130,11 @@ for (i in 1:nrow(simulations_to_run)) {
         coverage_target = "square_footage",
         coverage_type = simulations_to_run$coverage_type[i],
         efficacy = simulations_to_run$efficacy[i],
-        timestep = 365 * 10 * 2 # Turn on UV-C 10 years in, adjust for dt=0.5
+        timestep = 365 * 10 * 2
       )
   }
 
-  # Riskiness Settings
+  #Riskiness Settings
   if (simulations_to_run$riskiness[i] == "setting_specific_riskiness") {
     parameter_lists[[i]] <- parameter_lists[[i]] %>%
       set_setting_specific_riskiness(
@@ -161,27 +168,13 @@ for (i in 1:nrow(simulations_to_run)) {
   }
 }
 
-simulations_to_run <- simulations_to_run |>
-  dplyr::mutate(
-    figure = 3
-  ) |>
-  select(
-    ID,
-    figure,
-    scenario,
-    iteration,
-    everything()
-  )
-
 for (i in 1:length(parameter_lists)) {
-  parameter_lists[[i]]$figure <- simulations_to_run$figure[i]
-  parameter_lists[[i]]$scenario <- simulations_to_run$scenario[i]
   parameter_lists[[i]]$id <- simulations_to_run$ID[i]
-  parameter_lists[[i]]$iteration <- simulations_to_run$iteration[i]
+  parameter_lists[[i]]$iteration_number <- simulations_to_run$iteration[i]
   parameter_lists[[i]]$archetype_label <- simulations_to_run$archetype[i]
   parameter_lists[[i]]$coverage <- simulations_to_run$coverage[i]
   parameter_lists[[i]]$efficacy <- simulations_to_run$efficacy[i]
   parameter_lists[[i]]$coverage_type <- simulations_to_run$coverage_type[i]
 }
 
-saveRDS(parameter_lists, "figures/figure_3/figure_3_parameter_list.rds")
+saveRDS(parameter_lists, "figures/endemic_scenario/figure_2_parameter_list.rds")

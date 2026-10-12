@@ -126,7 +126,7 @@ panel_a <- ggplot(
 panel_a
 
 #targeting results
-dir_sim <- "helios-paper/figures/figure_3/figure_3_outputs"
+dir_sim <- here::here("figures", "endemic_targeting", "outputs")
 files <- list.files(path = dir_sim, pattern = "\\.rds$", full.names = TRUE)
 
 read_simulation <- function(filepath) {

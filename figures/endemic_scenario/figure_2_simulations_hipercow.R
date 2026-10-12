@@ -6,7 +6,7 @@
 ##'
 ##' This script performs the following actions to run helios simulations on the cluster:
 ##'
-##' 1. Loads the figure 2 parameter lists (as generated using figure_2_parameter_list.R)
+##' 1. Loads the endemic scenario parameter lists (as generated using figure_2_parameter_list.R)
 ##'
 ##' 2. Configures hipercow to run tasks on the cluster
 ##'
@@ -15,7 +15,7 @@
 ##' 4. Runs an instance of run_simulation_hipercow() for each entry in the parameter lists on a single
 ##'    32 node core.
 ##'
-##' 5. Stores the outputs in the helios-paper/figures/figure_2/figure_2_simulations directory
+##' 5. Stores the outputs in the helios-paper/figures/endemic_scenario/outputs directory
 ##'
 ##' Note, to run this script the user must set the working directory to ./helios-paper
 ##'
@@ -26,8 +26,16 @@ library(tidyverse)
 library(individual)
 library(parallel)
 
-# Load in the figure 2 parameter lists to run simulations for:
-parameter_lists <- readRDS("figures/figure_2/figure2_parameter_list.rds")
+dir.create(
+  "figures/endemic_scenario/outputs",
+  recursive = TRUE,
+  showWarnings = FALSE
+)
+
+# Load in the endemic scenario parameter lists to run simulations for:
+parameter_lists <- readRDS(
+  "figures/endemic_scenario/figure_2_parameter_list.rds"
+)
 
 ## Prepare for cluster use
 ## see https://mrc-ide.github.io/hipercow/
@@ -66,7 +74,7 @@ task_id <- hipercow::task_create_expr(
       run_simulation_hipercow(
         p,
         file_save = TRUE,
-        directory = "figures/figure_2/figure_2_simulations/"
+        directory = "figures/endemic_scenario/outputs/"
       )
     }
   ),
@@ -82,8 +90,11 @@ x <- sapply(
 table(x)
 
 # Save/load the task_id as required:
-saveRDS(object = task_id, file = "./figures/figure_2/simulation_task_id.rds")
-task_id <- readRDS(file = "./figures/figure_2/simulation_task_id.rds")
+saveRDS(
+  object = task_id,
+  file = "./figures/endemic_scenario/simulation_task_id.rds"
+)
+task_id <- readRDS(file = "./figures/endemic_scenario/simulation_task_id.rds")
 
 # View the job logs:
 hipercow::task_log_show(task_id)
