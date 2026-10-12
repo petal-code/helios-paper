@@ -92,6 +92,6 @@ run_simulation_hipercow <- function(
       )
     )
   }
-  
+
   return(output)
 }

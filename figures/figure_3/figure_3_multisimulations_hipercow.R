@@ -10,7 +10,11 @@ source(here::here("packages.R"))
 source(here::here("R/run.R"))
 
 # Open a new data folder (if one isn't already present):
-dir.create("figures/figure_3/figure_3_outputs", recursive = TRUE, showWarnings = FALSE)
+dir.create(
+  "figures/figure_3/figure_3_outputs",
+  recursive = TRUE,
+  showWarnings = FALSE
+)
 
 # Load the figure 3 parameter lists:
 parameter_lists <- readRDS("figures/figure_3/figure_3_parameter_list.rds")

@@ -31,7 +31,11 @@ source(here::here("packages.R"))
 source(here::here("R/run.R"))
 
 # Open a new data folder (if one isn't already present):
-dir.create("figures/figure_2/figure_2_outputs", recursive = TRUE, showWarnings = FALSE)
+dir.create(
+  "figures/figure_2/figure_2_outputs",
+  recursive = TRUE,
+  showWarnings = FALSE
+)
 
 # Load in the parameter lists - it is anticipated that these
 #parameter_lists <- readRDS("figures/figure_X/figure_X_parameter_list.rds")
@@ -131,8 +135,13 @@ which(x == "success")
 which(x == "failure")
 
 # Save/load the task_id as required:
-saveRDS(object = task_ids, file = "figures/figure_2/figure_2_simulation_task_ids.rds")
-task_ids <- readRDS(file = "./figures/figure_2/figure_2_simulation_task_ids.rds")
+saveRDS(
+  object = task_ids,
+  file = "figures/figure_2/figure_2_simulation_task_ids.rds"
+)
+task_ids <- readRDS(
+  file = "./figures/figure_2/figure_2_simulation_task_ids.rds"
+)
 
 # View the job logs:
 hipercow::task_log_show(task_ids[[13]])

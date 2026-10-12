@@ -66,7 +66,7 @@ simulations_to_run <- simulations_to_run |>
 
 # TODO: Remove when issue fixed
 # Fix a bad seed:
-simulations_to_run[514,]$seed <- 16591
+simulations_to_run[514, ]$seed <- 16591
 
 parameter_lists <- list()
 
@@ -90,7 +90,7 @@ for (i in 1:nrow(simulations_to_run)) {
         prob_inf_external = external_infection_probability,
         prob_hosp_child = prob_hosp_child,
         prob_hosp_adult = prob_hosp_adult,
-        prob_hosp_elderly = prob_hosp_elderly, 
+        prob_hosp_elderly = prob_hosp_elderly,
         simulation_time = simulation_time_days,
         seed = simulations_to_run$seed[i]
       )
@@ -114,7 +114,7 @@ for (i in 1:nrow(simulations_to_run)) {
         prob_inf_external = external_infection_probability,
         prob_hosp_child = prob_hosp_child,
         prob_hosp_adult = prob_hosp_adult,
-        prob_hosp_elderly = prob_hosp_elderly, 
+        prob_hosp_elderly = prob_hosp_elderly,
         simulation_time = simulation_time_days,
         seed = simulations_to_run$seed[i]
       )
