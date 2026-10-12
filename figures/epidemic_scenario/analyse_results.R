@@ -104,10 +104,10 @@ update_labels <- function(df) {
         coverage_type == "targeted_riskiness" ~ "Targeted",
       ),
       metric_label = case_when(
-        metric == "epidemic_final_size" ~ "Final % of\nPopulation Infected",
+        metric == "epidemic_final_size" ~ "Final % of\npopulation infected",
         metric == "time_to_peak_infections" ~ "Time to peak infections",
         metric == "peak_daily_incidence" ~
-          "Peak Daily Incidence\nper 1,000 Population"
+          "Peak daily incidence\nper 1,000 population"
       ),
       metric_reduction_label = case_when(
         metric == "epidemic_final_size" ~
@@ -177,6 +177,8 @@ pointrange_plot_metric <- function(metric, archetype) {
     ) +
     theme_minimal() +
     theme(
+      axis.title = element_text(size = 10),
+      axis.text = element_text(size = 8),
       legend.position = "left"
     )
 }
@@ -201,6 +203,8 @@ heatmap_plot_metric <- function(metric, archetype) {
     ) +
     theme_minimal() +
     theme(
+      axis.title = element_text(size = 10),
+      axis.text = element_text(size = 8),
       legend.position = "right",
       panel.grid.minor = element_blank(),
       panel.grid.major = element_blank()
@@ -289,7 +293,8 @@ row2 <- peak_incidence_covid_pointrange + peak_incidence_covid_heatmap
 row3 <- final_size_flu_pointrange + final_size_flu_heatmap
 row4 <- peak_incidence_flu_pointrange + peak_incidence_flu_heatmap
 
-plot <- row1 / row2 / row3 / row4 + plot_annotation(tag_levels = "A")
+plot <- row1 / row2 / row3 / row4 + plot_annotation(tag_levels = "A")  &
+  theme(plot.margin = margin(2, 2, 2, 2, unit = "pt"))
 
 ggsave(
   filename = here::here("figures", "epidemic_scenario", "plot.png"),
