@@ -1,0 +1,251 @@
+---
+title: "Parameter Tables"
+format: html
+execute:
+  echo: false
+  message: false
+  warning: false
+---
+
+```{r}
+library(dplyr)
+library(gt)
+library(here)
+```
+
+## Pathogen archetype parameters
+
+```{r}
+table1_pathogen <- data.frame(
+  Parameter = c(
+    "Basic reproduction number ($R_0$)",
+    "Mean incubation period (days)",
+    "Mean infectious period (days)",
+    "Mean duration of immunity (days)"
+  ),
+  SARS_CoV_2_like = c(
+    "2.5",
+    "2",
+    "4",
+    "365"
+  ),
+  Influenza_like = c(
+    "1.5",
+    "1",
+    "2",
+    "365"
+  ),
+  Source_Reference = c(
+    "Liu et al. 2020; Biggerstaff et al. 2014",
+    "?",
+    "?",
+    "?"
+  ),
+  stringsAsFactors = FALSE
+)
+
+table1_pathogen |>
+  gt() |>
+  tab_header(title = "Pathogen archetype natural history parameters") |>
+  cols_label(
+    Parameter = "Parameter",
+    SARS_CoV_2_like = "SARS-CoV-2-like",
+    Influenza_like = "Influenza-like",
+    Source_Reference = "Source"
+  ) |>
+  cols_align(align = "left", columns = c(Parameter, Source_Reference)) |>
+  cols_align(align = "center", columns = c(SARS_CoV_2_like, Influenza_like))
+```
+
+## Model parameters
+
+```{r}
+table2_model <- data.frame(
+  Parameter = c(
+    # Population Structure
+    "Population size",
+    "Age groups",
+    "Household size distribution",
+    "School enrollment distribution",
+    "Workplace size distribution",
+    # Transmission Dynamics
+    "Household transmission proportion",
+    "School/Workplace transmission proportion",
+    "Leisure transmission proportion",
+    "Community transmission proportion",
+    "Between-location heterogeneity (gamma)",
+    # Time Allocation
+    "Hours per day in household",
+    "Hours per day in school/workplace",
+    "Hours per day in leisure venues",
+    "Hours per day in community",
+    # Indoor Air Quality & Ventilation
+    "Pathogen decay constant (k_D, h^-1)",
+    "Viral emission rate (virions/person/h)",
+    "Breathing rate (m^3/h)",
+    "Infection probability per virion",
+    "Room height (m)",
+    "Household occupancy density (per 100m^2)",
+    "School occupancy density (per 100m^2)",
+    "Workplace occupancy density (per 100m^2)",
+    "Leisure occupancy density (per 100m^2)",
+    "Air changes per hour (ACH)",
+    # Air Quality Interventions
+    "Settings with AQI",
+    "Settings without AQI"
+  ),
+  Baseline_Value = c(
+    # Population Structure
+    "100,000",
+    "3 (child, adult, elderly)",
+    "1-16 members",
+    "~100-3,000 students",
+    "1-1,000+ employees",
+    # Transmission Dynamics
+    "30%",
+    "30%",
+    "30%",
+    "10%",
+    "Lognormal(0, sigma_s)",
+    # Time Allocation
+    "12",
+    "8",
+    "2.5",
+    "1.5",
+    # Indoor Air Quality & Ventilation
+    "0.64",
+    "27",
+    "0.45",
+    "0.0137",
+    "2.5",
+    "5",
+    "30",
+    "10",
+    "50",
+    "Setting-specific",
+    # Air Quality Interventions
+    "Schools, workplaces, leisure",
+    "Households, community"
+  ),
+  Sensitivity_Range = c(
+    # Population Structure
+    "Fixed",
+    "Fixed",
+    "Distribution sampled",
+    "Distribution sampled",
+    "Distribution sampled",
+    # Transmission Dynamics
+    "Fixed",
+    "Fixed",
+    "Fixed",
+    "Fixed",
+    "Variance from ACH data",
+    # Time Allocation
+    "Fixed",
+    "Fixed",
+    "Fixed",
+    "Fixed",
+    # Indoor Air Quality & Ventilation
+    "Fixed",
+    "Fixed",
+    "Fixed",
+    "Fixed",
+    "Fixed",
+    "Fixed",
+    "Fixed",
+    "Fixed",
+    "Fixed",
+    "Lognormal per setting",
+    # Air Quality Interventions
+    "Fixed",
+    "Fixed"
+  ),
+  Source_Reference = c(
+    # Population Structure
+    "Model specification",
+    "Model specification",
+    "RTI International 2010 (Rineer et al. 2025)",
+    "US NCES 2019-2020",
+    "Ferguson et al. 2005",
+    # Transmission Dynamics
+    "Ferretti et al. 2024; Ferguson et al. 2006",
+    "Ferretti et al. 2024",
+    "Ferretti et al. 2024",
+    "Residual transmission",
+    "Corsi et al.",
+    # Time Allocation
+    "Model assumption",
+    "Model assumption",
+    "Model assumption",
+    "Model assumption",
+    # Indoor Air Quality & Ventilation
+    "Blatchley & Cui 2023",
+    "Blatchley & Cui 2023",
+    "Blatchley & Cui 2023",
+    "Blatchley & Cui 2023; Killingley et al. 2022",
+    "Standard assumption",
+    "ASHRAE 62.1 (Kelechava 2022)",
+    "ASHRAE 62.1 (Kelechava 2022)",
+    "ASHRAE 62.1 (Kelechava 2022)",
+    "ASHRAE 62.1 (Kelechava 2022)",
+    "Corsi et al.",
+    # Air Quality Interventions
+    "Model specification",
+    "Model specification"
+  ),
+  stringsAsFactors = FALSE
+)
+
+table2_model |>
+  mutate(
+    Category = c(
+      rep("Population structure", 5),
+      rep("Transmission dynamics", 5),
+      rep("Time allocation", 4),
+      rep("Indoor air quality and ventilation", 10),
+      rep("Air quality interventions", 2)
+    )
+  ) |>
+  select(Category, everything()) |>
+  gt(groupname_col = "Category") |>
+  tab_header(title = "Model parameters") |>
+  cols_label(
+    Parameter = "Parameter",
+    Baseline_Value = "Baseline value",
+    Sensitivity_Range = "Range",
+    Source_Reference = "Source"
+  ) |>
+  cols_align(align = "left", columns = c(Parameter, Source_Reference)) |>
+  cols_align(align = "center", columns = c(Baseline_Value, Sensitivity_Range))
+```
+
+## Simulation parameters
+
+```{r}
+table3_simulation <- data.frame(
+  Setting = c(
+    "Pathogen archetype",
+    "AQI efficacy",
+    "AQI coverage",
+    "AQI deployment",
+    "Transmission regime"
+  ),
+  Values = c(
+    "SARS-CoV-2-like; Influenza-like",
+    "40%, 60%, 80%",
+    "0%, 20%, 40%, 60%, 80%, 100%",
+    "Random; Risk-targeted",
+    "Endemic; epidemic"
+  ),
+  stringsAsFactors = FALSE
+)
+
+table3_simulation |>
+  gt() |>
+  tab_header(title = "Simulation parameters") |>
+  cols_label(
+    Setting = "Setting",
+    Values = "Values"
+  ) |>
+  cols_align(align = "left", columns = c(Setting, Values))
+```
