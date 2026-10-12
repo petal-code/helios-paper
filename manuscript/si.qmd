@@ -1,0 +1,287 @@
+---
+title: "Supplementary Information: Modelling the public-health impact of indoor air quality interventions on respiratory virus transmission"
+bibliography: bibliography.bib
+number-sections: true
+toc: true
+toc-depth: 3
+format:
+  pdf:
+    documentclass: article
+    fontsize: 12pt
+    papersize: letter
+    pdf-engine: pdflatex
+    cite-method: natbib
+    biblio-style: apalike
+    keep-tex: true
+    colorlinks: false
+    indent: true
+    latex-auto-install: false
+    toc-title: Contents
+    geometry: margin=1in
+    linestretch: 1.9
+  html:
+    toc: true
+  docx:
+    toc: true
+crossref:
+  sec-prefix: ""
+  eq-prefix: ""
+  tbl-prefix: ""
+---
+
+# Introduction {#sec-introduction}
+
+We developed an individual-based susceptible-exposed-infectious-recovered (SEIR) transmission model to simulate the effects of interventions that modify indoor air quality on the transmission of an airborne pathogen.
+The model incorporates both age structure and social mixing patterns across multiple locations within different types of setting.
+To assess the impact of interventions that modify air quality, we altered the force of infection across locations.
+The model is available as an open-source R package called `helios` (<https://github.com/mrc-ide/helios/>), which was developed using the `individual` R package [@individual].
+
+# Model structure {#sec-structure}
+
+## Population {#sec-population}
+
+We simulated a human population consisting of a fixed number of individuals, $i = 1, \ldots, N$.
+The population was divided into three age groups: children, adults, and the elderly (Section @sec-age).
+Each individual was assumed to visit different settings throughout the course of a day (Section @sec-settings).
+We did not explicitly represent the amount of time that individuals spend in each setting.
+Instead, we used empirical data for the proportion of transmission that occurs by setting (Section @sec-foi).
+
+## Age {#sec-age}
+
+There are three age groups individuals can be assigned to: children, adults and the elderly.
+Individuals remain in their assigned age group for the full simulation.
+The age group an individual is assigned to informs the settings they are assigned to.
+For example, children are assigned to schools and adults are primarily assigned to workplaces.
+
+We assigned individuals to age groups using data from a synthetic household panel representative of San Francisco, California.
+These data were developed in 2010 by RTI International to inform disease modelling [@wheaton2014us].
+We sampled households from this synthetic panel with replacement.
+If the final household sampled caused the population size to exceed $N$, the excess individuals were dropped from the model.
+
+## Spatial structure {#sec-settings}
+
+To capture social mixing patterns, we assumed that individuals divide their time between the following types of setting: household, workplace, school, leisure, and community.
+
+### Households {#sec-households}
+
+Each individual was assigned to a household which remained fixed for the duration of the simulation.
+Household assignments were generated jointly with age assignments as described in Section @sec-age.
+
+### Community
+
+We assumed a background rate of mixing between all individuals intended to represent an overall community setting.
+A background force of infection term applies to all individuals regardless of the location.
+
+### Schools {#sec-schools}
+
+All children were assumed to attend school.
+School assignments were fixed throughout the duration of the simulation.
+To inform the distribution of school sizes, we used national-level US school data for 2019-2020 from the National Center for Education Statistics, available from @deBrey2023Digest.
+We sampled with replacement from this list of school sizes.
+All schools categorised as prekindergarten, elementary, middle, or secondary and high were included.
+School sizes were provided in ranges (e.g. "500 to 599"), so we used the midpoint (e.g. 550).
+We modified the final sample such that the sum of the total school sizes equalled the population size of children.
+
+Some adults were also assumed to attend schools as staff, with each school having a fixed staff-to-student ratio of 1:20.
+Adults assigned as staff in a school were not assigned a workplace location (Section @sec-workplaces).
+
+### Workplaces {#sec-workplaces}
+
+All adults (who are not school staff) are assumed to attend workplaces.
+The number of employees in each workplace was sampled from a truncated offset power statistical distribution with cumulative distribution function
+
+$$
+\mathbb{P}(n > m) = \frac{\left( \dfrac{1+N/a}{\,1+m/a\,}\right)^{c}-1}{(1+N/a)^{c}-1}, \quad \text{for } m \le N.
+$$ {#eq-workplace-size}
+
+ This equation was based on that of @Fergusonetal2006, which in turn is based on data from the United States [@BLS2003QCEWSize].
+We used the parameters $a = 5.36$ and $c = 1.34$, and truncated draws at $10\%$ of the total adult population.
+We modified the final sample such that the sum of all workplace sizes equalled the eligible workforce size.
+Adults were randomly assigned to each of these workplaces and assumed to visit the same workplace each day.
+
+### Leisure venues {#sec-leisure-venues}
+
+All individuals are eligible to attend leisure venues.
+The maximum occupancy sizes of the leisure venues were sampled from a truncated negative binomial distribution.
+The negative binomial parameters were mean 50 and overdispersion 2, with all samples greater than $10\%$ of the total population truncated.
+We modified the final sample such that the sum of all leisure venue capacities equalled the population size.
+
+Individuals were assigned to visit different leisure venues each day (or sometimes not to visit any leisure venues on a given day).
+The number of leisure venues visited by each individual per week was sampled from a Poisson distribution with rate 3.
+The samples were truncated at seven, corresponding to a daily leisure visit.
+Particular leisure venues visited each day were drawn without replacement from the list of all leisure venues, with probability proportional to venue capacity.
+
+## Disease states {#sec-disease-states}
+
+We used an individual-based implementation of an SEIR compartmental model with susceptible (S), exposed (E), infectious (I), and recovered (R) disease states.
+Discrete timesteps with a step size of $\Delta t = 0.5$ days were used in the model.
+At each timestep $t$, individuals transition between states stochastically.
+A susceptible individual transitions to exposed with probability $1 - \exp({-\lambda_i(t)\, \Delta t})$, exposed individuals become infectious with probability $1 - \exp({-\frac{1}{\sigma}\, \Delta t})$, and infectious individuals recover with probability $1 - \exp({-\frac{\Delta t}{\delta}})$.
+In the endemic model, recovered individuals return to the susceptible state with probability $1 - \exp({-\frac{\Delta t}{\omega}})$.
+The term $\lambda_{i}(t)$ is the total force of infection experienced by an individual $i$ at time $t$.
+The terms $\sigma$, $\delta$, and $\omega$ are the mean residence times in the exposed, infectious, and recovered states respectively.
+
+## Force of infection {#sec-foi}
+
+The total force of infection $\lambda_{i}(t)$ is the sum of the location-specific force of infections terms that individual $i$ experiences across all settings they visit in that timestep
+
+$$
+\lambda_{i}(t) = \sum_{j, s} \lambda_{i, j, s}(t).
+$$ {#eq-foi}
+
+ The force of infection an individual experiences at a given location was modelled as
+
+$$
+\lambda_{i, j, s}(t) = \frac{\beta_{j, s} I_{j, s}(t)}{N_{j, s}},
+$$ {#eq-foisetting}
+
+ where $\beta_{j, s}$ is a transmissibility parameter for location $j$ in setting $s$ that integrates consideration of both the amount of time spent in a location and the inherent "riskiness" of a location, $I_{j, s}(t)$ is the number of individuals who are infected in location $j$ of setting $s$ at time $t$, and $N_{j, s}$ is the total number of individuals in location $j$ of setting $s$.
+Transmissibility varied between locations in a setting according to
+
+$$
+\beta_{j, s} = \gamma_{j, s} \beta_s,
+$$
+where $\beta_s$ is the average riskiness of the setting (Section @sec-between) and $\gamma_{j, s}$ are location-specific relative riskiness parameters (Section @sec-within).
+
+### Variation in risk between settings {#sec-between}
+
+We set $\beta_s$ using a 3:3:3:1 ratio of setting-specific transmissibility parameters $\beta_{\text{household}}:[\beta_{\text{school}} \text { or } \beta_{\text{workplace}}]:\beta_{\text{leisure}}:\beta_{\text{community}}$.
+These parameters are based on data on the proportion of transmission that occurs within each setting [@Fergusonetal2006; @bi2021insights; @ferretti2024digital].
+We set the sum over $\beta_s$ based on the particular pathogen in order to achieve a given effective reproduction number (Section @sec-archetypes).
+
+### Variation in risk within settings {#sec-within}
+
+    Setting    $\sigma_{log,s}$   Riskiness ratio $R_{s}$
+  ----------- ------------------ -------------------------
+    School          0.3544                 4.75
+   Workplace        0.5072                 6.35
+   Household        0.0871                  2.5
+    Leisure         0.4278                  5.5
+
+  : Setting-specific riskiness distribution parameters {#tbl-riskiness}
+
+To capture heterogeneity in transmission risk between locations in a particular setting type, each location $j$ of setting type $s$ was assigned a riskiness multiplier $\gamma_{j,s}$ at the start of each simulation.
+The multipliers were drawn from a truncated lognormal distribution
+
+$$
+\gamma_{j,s} \sim \mathrm{TruncLognormal}\!\left(
+  \mu_{\log} = 0,\;
+  \sigma_{\log,s},\;
+  \min = \tfrac{1}{\sqrt{R_s}},\;
+  \max = \sqrt{R_s}
+\right).
+$$
+Each multiplier scales the FOI for all individuals at that location relative to the setting-level transmissibility $\beta_s$.
+A log-mean of 0 centers the distribution at one, such that $\beta_s$ represents the transmission rate at an average location.
+The distribution was scaled using setting-specific log-standard deviation parameters $\sigma_{\log,s}$ and truncated based on setting-specific riskiness ratios $R_s$.
+We informed these parameters (Table @tbl-riskiness) empirically using a Wells-Riley model of airborne transmission [@blatchley2023quantitative].
+
+In particular, the steady-state concentration of infective virus in an enclosed space is
+
+$$
+\begin{aligned}
+C_{ss} &= \frac{I\pi}{\alpha\nu}, \\
+\alpha &= \frac{Q}{\nu} + k_D,
+\end{aligned}
+$$
+where $\nu = ND_sH$ is room volume ($N$ maximum occupants; floor area per person $D_s$; room height $H = 2.5\mathrm{m}$), $Q$ is volumetric airflow ($Q/\nu$ gives ACH), $k_D = 0.64\,\mathrm{h}^{-1}$ is the viral decay rate, $I = 1$ is the number of infectors, and $\pi = 27\,\mathrm{h}^{-1}$ is the infectious-unit emission rate [@blatchley2023quantitative].
+Floor area per person was parameterised as: $D_{\text{household}} = 20$, $D_{\text{school}} = 3.33$, $D_{\text{workplace}} = 10$, $D_{\text{leisure}} = 2$, taken from @ASHRAE (Table 6.1) for non-household settings and assumed for households.
+The probability of infection after dwell time $t$ is
+
+$$
+P_i(t) = 1 - \exp({-r B C_{ss} t}),
+$$
+where $B = 0.45 \text{m}^3$ per hour is the inhalation rate of virus particles and $r = 1.37 \times 10^{-2}$ is the probability of infection per infective-virion inhaled [@killingley2022safety; @blatchley2023quantitative].
+We evaluated $P_i$ at the minimum and maximum ACH for each setting type [@corsi22006ozone], using dwell times of $12\,\mathrm{h}$ (households), $8\,\mathrm{h}$ (schools and workplaces), and $2.5\,\mathrm{h}$ (leisure).
+The resulting riskiness ratios $P_i(\mathrm{ACH}_{\min})/P_i(\mathrm{ACH}_{\max})$ ranged from 2.5-fold (households) to 6.35-fold (workplaces).
+For each setting and associated set of riskiness ratios, we estimated the value of $\sigma_{log,s}$ that best defined a truncated log-normal with bounds $[\frac{1}{\sqrt{R_s}}, \sqrt{R_{s}}]$.
+For each setting and riskiness ratio, we set $\sigma_{log,s}$ to the value that places approximately 80% of the probability mass of the truncated lognormal distribution within the range $[\frac{1}{\sqrt{R_s/2}}, \sqrt{R_{s}/2}]$, with 10% of the mass in each tail, identified through numerical optimization.
+
+## Intervention model {#sec-intervention}
+
+We modelled the impact of air quality interventions (AQIs) as a multiplicative reduction to the force of infection (Equation @eq-foisetting) such that
+
+$$
+\lambda^{\text{AQI}}_{i, j, s}(t) = (1 - E_{s}) \times \lambda_{i, j, s}(t),
+$$
+where $E_{s}$ is applied uniformly to all locations within setting $s$ that receive an AQI.
+We considered efficacy values of 20%, 40%, 60%, 80%, and 100%.
+We applied AQIs across schools, workplaces and leisure settings, excluding households as they are unlikely to have AQIs installed.
+
+Coverage was defined as the target proportion non-household floor area receiving AQI installation.
+Two allocation strategies were considered: random and targeted.
+Under random allocation, locations were selected uniformly at random from all non-household settings until the cumulative covered floor area met or exceeded the coverage target.
+Under targeted allocation, locations were ranked by their riskiness $\gamma_{j,s}$, with AQIs installed in locations of descending order of riskiness until the cumulative covered floor area met or exceeded the coverage target.
+
+## Pathogen archetypes {#sec-archetypes}
+
+We simulated pathogen archetypes with transmission intensities approximating those of influenza and SARS-CoV-2.
+To parameterise pathogens that approximate these archetypes, we used the `finalsize` package [@finalsize] to determine the final epidemic size, as a proportion of the total human population, expected for a pathogen with an $R_{0}$ equivalent to influenza ($R_{0} \approx 1.5$) or SARS-CoV-2 ($R_{0} \approx 2.5$).
+We then determined the setting-specific transmissibility parameters ($\beta_s$) required to generate an epidemic with a final size equivalent to each of the pathogen archetypes, maintaining the 3:3:3:1 ratio of setting-specific transmissibility parameters (Table @tbl-archetype-params).
+
+           Parameter            Influenza   SARS-CoV-2
+  ---------------------------- ----------- ------------
+     mean exposed duration          1           2
+    mean infectious duration        2           4
+   $\beta_{\text{household}}$     0.207        0.24
+    $\beta_{\text{school}}$       0.207        0.24
+   $\beta_{\text{workplace}}$     0.207        0.24
+    $\beta_{\text{leisure}}$      0.207        0.24
+   $\beta_{\text{community}}$     0.069        0.08
+
+  : Pathogen parameters required to generate epidemic final sizes for pathogens with $R_{0}$ values equivalent to those of influenza and SARS-CoV-2. {#tbl-archetype-params}
+
+# Model outputs
+
+To quantify the impact of AQIs on disease transmission, we summarised each model run using a set of epidemiological metrics.
+
+## Endemic scenarios
+
+For endemic scenarios, we simulated 20 years of transmission dynamics.
+The first four years served as a burn-in, with years 5-7 used as the baseline period without interventions.
+AQIs were implemented at the beginning of year 11, with outcomes assessed during years 15-17.
+We considered two output metrics: the annualized disease incidence and active infection prevalence.
+
+Annual incidence is the proportion of the population newly infected over one year,
+
+$$
+\text{Annual incidence} = \frac{1}{N} \sum_{t \in \mathcal{T}} E_{\text{new}}(t),
+$$ {#eq-annual-incidence}
+
+ where $E_{\text{new}}(t)$ is the number of new exposures at timestep $t$, $N$ is the total population, and $\mathcal{T}$ denotes the set of timesteps within the year.
+
+Active infection prevalence is the proportion of the population that is currently exposed or infectious.
+We summarise this by its time-average over the year,
+
+$$
+\text{Mean active infection prevalence} = \frac{1}{|\mathcal{T}|} \sum_{t \in \mathcal{T}} \frac{E_t + I_t}{N},
+$$ {#eq-prevalence}
+
+ where $E_t$ and $I_t$ are the numbers of exposed and infectious individuals at timestep $t$, and $|\mathcal{T}|$ is the number of timesteps in the year.
+
+## Epidemic scenarios
+
+For epidemic scenarios, we computed the final epidemic size and the peak incidence.
+
+The final epidemic size is the proportion of the population infected over the course of the outbreak,
+
+$$
+\text{Final epidemic size} = \frac{R_{\text{final}}}{N},
+$$ {#eq-final-size}
+
+ where $R_{\text{final}}$ is the total number of recovered individuals at the end of the epidemic.
+
+Peak incidence is the maximum per-capita rate of new exposures observed in any single timestep,
+
+$$
+\text{Peak incidence} = \frac{1}{N}\max_{t \in \mathcal{T}}\, E_{\text{new}}(t).
+$$ {#eq-peak-incidence}
+
+# Computational information
+
+Simulations were performed on Imperial College London's Department for Infectious Disease Epidemiology (DIDE) high-performance computing cluster using the `hipercow` package [@hipercow].
+
+# References {.unnumbered .unlisted}
+
+::: {#refs}
+:::

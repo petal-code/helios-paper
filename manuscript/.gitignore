@@ -1,0 +1,12 @@
+*.pdf
+*.docx
+*.html
+/si.tex
+/si_files/
+/.quarto/
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
