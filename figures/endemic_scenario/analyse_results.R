@@ -8,6 +8,10 @@ files <- list.files(
   full.names = TRUE
 )
 
+if (length(files) == 0L) {
+  stop("No archived simulation outputs found in ", dir_sim)
+}
+
 read_simulation <- function(filepath) {
   simulation_file <- readRDS(filepath)
   dt <- simulation_file$parameters$dt
@@ -79,6 +83,24 @@ reductions_summary <- reductions |>
     hi_prev = max(prevalence_reduction, na.rm = TRUE),
     .groups = "drop"
   )
+
+results_summary <- reductions_summary |>
+  left_join(
+    metrics |>
+      group_by(archetype, coverage, efficacy, window) |>
+      summarise(
+        mean_prevalence = mean(mean_prevalence, na.rm = TRUE),
+        n = n(),
+        .groups = "drop"
+      ) |>
+      pivot_wider(names_from = window, values_from = c(mean_prevalence, n)),
+    by = c("archetype", "coverage", "efficacy")
+  )
+
+readr::write_csv(
+  results_summary,
+  here::here("figures", "endemic_scenario", "results_summary.csv")
+)
 
 x_percent_scale <- scale_x_continuous(
   labels = scales::percent_format(accuracy = 1),
