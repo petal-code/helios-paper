@@ -193,6 +193,7 @@ heatmap_plot_metric <- function(metric, archetype) {
 
   ggplot(df, aes(x = coverage_fct, y = efficacy_fct)) +
     geom_tile(aes(fill = mean_pct_reduction)) +
+    coord_fixed(ratio = 1) +
     ggh4x::facet_nested(
       . ~ coverage_type
     ) +

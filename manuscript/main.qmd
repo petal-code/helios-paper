@@ -300,38 +300,42 @@ As with our results examining endemic scenarios, the impact of AQI installation 
 Random AQI installation at 40% coverage and 60% efficacy reduced the final epidemic size by `r epidemic_format(epidemic_value("flu", "epidemic_final_size", "Random", 0.6, 0.4, "mean_pct_reduction"), scale = 100)`% (range `r epidemic_format(epidemic_value("flu", "epidemic_final_size", "Random", 0.6, 0.4, "min_pct_reduction"), scale = 100)`%-`r epidemic_format(epidemic_value("flu", "epidemic_final_size", "Random", 0.6, 0.4, "max_pct_reduction"), scale = 100)`%), compared with only `r epidemic_format(epidemic_value("sars_cov_2", "epidemic_final_size", "Random", 0.6, 0.4, "mean_pct_reduction"), scale = 100)`% (range `r epidemic_format(epidemic_value("sars_cov_2", "epidemic_final_size", "Random", 0.6, 0.4, "min_pct_reduction"), scale = 100)`%-`r epidemic_format(epidemic_value("sars_cov_2", "epidemic_final_size", "Random", 0.6, 0.4, "max_pct_reduction"), scale = 100)`%) for the SARS-CoV-2 archetype under the same settings (@fig-epidemic, panels A and E).
 
 
-::: {#fig-endemic}
+```{r}
+#| label: fig-endemic
+#| eval: true
+#| echo: false
+#| out-width: "100%"
+#| fig-cap: >
+#|   **Impact of AQI installation implementation on infection incidence.**
+#|   **(A)** The percentage reduction in annual incidence of infection (y-axis) and how this varies with AQI coverage (x-axis), for the SARS-CoV-2-like archetype.
+#|   Coloured lines represent different assumptions about the efficacy of installed AQIs at reducing onward transmission.
+#|   Error bars indicate the range of impact observed across 25 stochastic simulations.
+#|   **(B)** Active infection prevalence (y-axis) and its dependence on AQI coverage for the SARS-CoV-2-like archetype.
+#|   **(C)** Heatmap showing percentage reduction in annualized disease incidence across AQI coverage and efficacy.
+#|   **(D)** As for **(A)**, but for the influenza-like archetype.
+#|   **(E)** As for **(B)**, but for the influenza-like archetype.
+#|   **(F)** As for **(C)**, but for the influenza-like archetype.
+knitr::include_graphics(here::here("figures", "endemic_scenario", "plot.png"))
+```
 
-**[Figure placeholder: endemic figure to be added.]**
 
-**Impact of AQI installation implementation on infection incidence.**
-**(A)** The percentage reduction in annual incidence of infection (y-axis) and how this varies with AQI coverage (x-axis), for the SARS-CoV-2-like archetype.
-Coloured lines represent different assumptions about the efficacy of installed AQIs at reducing onward transmission.
-Error bars indicate the range of impact observed across 25 stochastic simulations.
-**(B)** Active infection prevalence (y-axis) and its dependence on AQI coverage for the SARS-CoV-2-like archetype.
-(**C)** Heatmap showing percentage reduction in annualized disease incidence across AQI coverage and efficacy.
-**(D)** As for **(A)**, but for the influenza-like archetype.
-**(E)** As for **(B)**, but for the influenza-like archetype.
-**(F)** As for **(C)**, but for the influenza-like archetype.
-
-:::
-
-
-::: {#fig-targeting}
-
-**[Figure placeholder: targeting figure to be added.]**
-
-**Comparison of the impact achieved under random and risk-based AQI installation and deployment strategies.
-(A)** Schematic contrasting random selection of locations with risk-based targeting when 50% of locations are equipped; grey bars indicate locations without AQIs, dark blue bars indicate locations with AQIs installed.
-**(B)** Percentage reduction in annual incidence (y-axis) across increasing coverage (x-axis) for random (grey) versus targeted (blue) implementation, under alternative assumptions about AQI efficacy.
-Bars show the mean; error bars show the range across 25 stochastic simulations.
-**(C)** Relative added impact of targeted versus random deployment.
-**(D)** Absolute difference in percentage reduction between targeted and random strategies.
-**(E)** As for (B) but for influenza-like archetype.
-**(F)** As for (C) but for influenza-like archetype.
-**(G)** As for (D) but for influenza-like archetype.
-
-:::
+```{r}
+#| label: fig-targeting
+#| eval: true
+#| echo: false
+#| out-width: "100%"
+#| fig-cap: >
+#|   **Comparison of the impact achieved under random and risk-based AQI installation and deployment strategies.
+#|   (A)** Schematic contrasting random selection of locations with risk-based targeting when 50% of locations are equipped; grey bars indicate locations without AQIs, dark blue bars indicate locations with AQIs installed.
+#|   **(B)** Percentage reduction in annual incidence (y-axis) across increasing coverage (x-axis) for random (grey) versus targeted (blue) implementation, under alternative assumptions about AQI efficacy.
+#|   Bars show the mean; error bars show the range across 25 stochastic simulations.
+#|   **(C)** Relative added impact of targeted versus random deployment.
+#|   **(D)** Absolute difference in percentage reduction between targeted and random strategies.
+#|   **(E)** As for (B) but for influenza-like archetype.
+#|   **(F)** As for (C) but for influenza-like archetype.
+#|   **(G)** As for (D) but for influenza-like archetype.
+knitr::include_graphics(here::here("figures", "endemic_targeting", "plot.png"))
+```
 
 
 ```{r}

@@ -6,7 +6,7 @@
 ##'
 ##' This script performs the following actions to run helios simulations on the cluster:
 ##'
-##' 1. Loads the endemic scenario parameter lists (as generated using figure_2_parameter_list.R)
+##' 1. Loads the endemic scenario parameter lists (as generated using generate_data.R)
 ##'
 ##' 2. Configures hipercow to run tasks on the cluster
 ##'
@@ -20,10 +20,7 @@
 ##' Note, to run this script the user must set the working directory to ./helios-paper
 
 # Load in the requisite packages:
-library(hipercow)
-library(tidyverse)
-library(individual)
-library(parallel)
+source(here::here("packages.R"))
 
 dir.create(
   "figures/endemic_scenario/outputs",
