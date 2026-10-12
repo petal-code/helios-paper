@@ -201,5 +201,4 @@ plot_age +
   plot_annotation(tag_levels = "A") +
   plot_layout(design = design, tag_level = "keep")
 
-ggsave("plot.pdf", h = 5.5, w = 7)
-ggsave("plot.png", h = 5.5, w = 7)
+ggsave("plot.png", h = 5.5, w = 7, dpi = 600)
