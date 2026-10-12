@@ -24,7 +24,7 @@ format:
   docx:
     toc: false
 execute:
-  enabled: false
+  eval: false
 ---
 
 # Abstract
@@ -89,19 +89,21 @@ Using SARS-CoV-2 and influenza as case studies, we simulate a range of indoor-ai
 Our results demonstrate substantial potential public-health benefits from improving indoor air quality, and underscore the utility of treating “clean indoor air” as core public-health infrastructure to be optimized alongside vaccines and therapeutics.
 
 
-::: {#fig-population}
-
-**[Figure placeholder: population figure to be added.]**
-
-**Example realised demographic and social contact setting distributions obtained for one stochastic model simulation with an illustrative population size of 200,000.**
-**(A)** Age distribution across age classes (child, adult, and elderly).
-**(B)** Household size distribution showing frequency of households with 1-16 members.
-**(C)** School size distribution on a logarithmic scale, ranging from approximately 100 to 3,000 students.
-**(D)** Workplace size distribution on a logarithmic scale, ranging from 1 to over 1,000 employees.
-**(E)** Leisure venue size distribution showing capacity of venues attended.
-**(F)** Distribution of the number of leisure venues attended per week per individual.
-
-:::
+```{r}
+#| label: fig-population
+#| eval: true
+#| echo: false
+#| out-width: "100%"
+#| fig-cap: >
+#|   **Example realised demographic and social contact setting distributions obtained for one stochastic model simulation with an illustrative population size of 200,000.**
+#|   **(A)** Age distribution across age classes (child, adult, and elderly).
+#|   **(B)** Household size distribution showing frequency of households with 1-16 members.
+#|   **(C)** School size distribution on a logarithmic scale, ranging from approximately 100 to 3,000 students.
+#|   **(D)** Workplace size distribution on a logarithmic scale, ranging from 1 to over 1,000 employees.
+#|   **(E)** Leisure venue size distribution showing capacity of venues attended.
+#|   **(F)** Distribution of the number of leisure venues attended per week per individual.
+knitr::include_graphics("../figures/model_schematic/plot.png")
+```
 
 # Methods
 
