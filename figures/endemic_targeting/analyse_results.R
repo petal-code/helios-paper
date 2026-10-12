@@ -232,7 +232,10 @@ summarise_manuscript <- function(data) {
 results_summary <- bind_rows(
   reductions |>
     transmute(
-      archetype, coverage, efficacy, coverage_type,
+      archetype,
+      coverage,
+      efficacy,
+      coverage_type,
       metric = "incidence_reduction",
       value = pct_reduction_incidence
     ) |>
