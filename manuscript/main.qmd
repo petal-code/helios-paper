@@ -14,7 +14,6 @@ format:
     cite-method: natbib
     biblio-style: plos2015
     natbiboptions: numbers
-    keep-tex: true
     colorlinks: false
     indent: true
     latex-auto-install: false
