@@ -89,6 +89,14 @@ target_coverage_intervals <- c(0.2, 0.4, 0.6, 0.8, 1.0)
 target_efficacies <- c(0.4, 0.6, 0.8)
 target_vals <- c(0.2, 0.4, 0.6, 0.8, 1.0)
 
+# Shared presentation settings
+figure_theme <- theme_minimal() +
+  theme(
+    axis.title = element_text(size = 10),
+    axis.text = element_text(size = 8),
+    legend.position = "left"
+  )
+
 # Panel A & B (SC2 lines)
 cols_a <- c("#5083DB", "#395D9C", "#253B65")
 plot_data_a <- reductions_summary |>
@@ -111,12 +119,9 @@ panelA <- ggplot(
     group = efficacy
   )
 ) +
-  geom_line(linewidth = 1) +
-  geom_point(size = 3) +
-  geom_errorbar(
-    aes(ymin = low_incidence, ymax = hi_incidence),
-    width = 0.02,
-    alpha = 0.5
+  geom_line() +
+  geom_pointrange(
+    aes(ymin = low_incidence, ymax = hi_incidence)
   ) +
   scale_y_continuous(
     labels = scales::percent_format(accuracy = 1),
@@ -124,14 +129,14 @@ panelA <- ggplot(
   ) +
   x_percent_scale +
   scale_color_manual(values = cols_a) +
-  theme_minimal() +
+  figure_theme +
   labs(
-    x = "AQI Coverage",
-    y = "% Reduction in Annualized \n  Disease Incidence",
+    x = "Coverage",
+    y = "Annual incidence\nreduction (%)",
     colour = "Efficacy"
   )
 
-cols_b <- c("#5083DB", "#395D9C", "#253B65")
+cols_b <- cols_a
 post_active_sc2 <- metrics |>
   filter(
     window == "post",
@@ -160,19 +165,20 @@ panelB <- ggplot(
     group = efficacy
   )
 ) +
-  geom_line(linewidth = 1) +
-  geom_point(size = 3) +
+  geom_line() +
   scale_y_continuous(
     labels = scales::percent_format(scale = 1),
     limits = c(0, NA)
   ) +
-  geom_errorbar(aes(ymin = low, ymax = hi), width = 0.02, alpha = 0.5) +
+  geom_pointrange(
+    aes(ymin = low, ymax = hi)
+  ) +
   x_percent_scale +
   scale_color_manual(values = cols_b) +
-  theme_minimal() +
+  figure_theme +
   labs(
-    x = "AQI Coverage",
-    y = "Active Infection Prevalence",
+    x = "Coverage",
+    y = "Active infection\nprevalence (%)",
     colour = "Efficacy"
   )
 
@@ -192,20 +198,21 @@ panelC <- ggplot(
     fill = mean_incidence_reduction
   )
 ) +
-  geom_tile(color = "white") +
-  viridis::scale_fill_viridis(
+  geom_tile() +
+  coord_fixed(ratio = 1) +
+  ggplot2::scale_fill_viridis_c(
     option = "mako",
     direction = -1,
     limits = c(0, 1),
     breaks = seq(0, 1, 0.2),
     labels = scales::percent_format(accuracy = 1)
   ) +
-  theme_minimal() +
-  theme(panel.grid = element_blank()) +
+  figure_theme +
+  theme(panel.grid = element_blank(), legend.position = "right") +
   labs(
-    x = "AQI Coverage",
-    y = "AQI Efficacy",
-    fill = "% Reduction in \n Annualized Disease\n Incidence"
+    x = "Coverage",
+    y = "Efficacy",
+    fill = "Annual incidence\nreduction (%)"
   )
 
 # Panel D & E (flu lines)
@@ -230,12 +237,9 @@ panelD <- ggplot(
     group = efficacy
   )
 ) +
-  geom_line(linewidth = 1) +
-  geom_point(size = 3) +
-  geom_errorbar(
-    aes(ymin = low_incidence, ymax = hi_incidence),
-    width = 0.02,
-    alpha = 0.5
+  geom_line() +
+  geom_pointrange(
+    aes(ymin = low_incidence, ymax = hi_incidence)
   ) +
   scale_y_continuous(
     labels = scales::percent_format(accuracy = 1),
@@ -243,14 +247,14 @@ panelD <- ggplot(
   ) +
   x_percent_scale +
   scale_color_manual(values = cols_d) +
-  theme_minimal() +
+  figure_theme +
   labs(
-    x = "AQI Coverage",
-    y = "% Reduction in Annualized \n  Disease Incidence",
+    x = "Coverage",
+    y = "Annual incidence\nreduction (%)",
     colour = "Efficacy"
   )
 
-cols_e <- c("#E68996", "#D93052", "#9D374C")
+cols_e <- cols_d
 post_active_flu <- metrics |>
   filter(
     window == "post",
@@ -279,19 +283,20 @@ panelE <- ggplot(
     group = efficacy
   )
 ) +
-  geom_line(linewidth = 1) +
-  geom_point(size = 3) +
+  geom_line() +
   scale_y_continuous(
     labels = scales::percent_format(scale = 1),
     limits = c(0, 1.5)
   ) +
-  geom_errorbar(aes(ymin = low, ymax = hi), width = 0.02, alpha = 0.5) +
+  geom_pointrange(
+    aes(ymin = low, ymax = hi)
+  ) +
   x_percent_scale +
   scale_color_manual(values = cols_e) +
-  theme_minimal() +
+  figure_theme +
   labs(
-    x = "AQI Coverage",
-    y = "Active Infection Prevalence",
+    x = "Coverage",
+    y = "Active infection\nprevalence (%)",
     colour = "Efficacy"
   )
 
@@ -310,87 +315,37 @@ panelF <- ggplot(
     fill = mean_incidence_reduction
   )
 ) +
-  geom_tile(color = "white") +
-  viridis::scale_fill_viridis(
+  geom_tile() +
+  coord_fixed(ratio = 1) +
+  ggplot2::scale_fill_viridis_c(
     option = "magma",
     direction = -1,
     limits = c(0, 1),
     breaks = seq(0, 1, 0.2),
     labels = scales::percent_format(accuracy = 1)
   ) +
-  theme_minimal() +
-  theme(panel.grid = element_blank()) +
+  figure_theme +
+  theme(panel.grid = element_blank(), legend.position = "right") +
   labs(
-    x = "AQI Coverage",
-    y = "AQI Efficacy",
-    fill = "% Reduction in \nAnnualized Disease \nIncidence"
+    x = "Coverage",
+    y = "Efficacy",
+    fill = "Annual incidence\nreduction (%)"
   )
 
 # Grid assembly
-
-# 1. Extract line (discrete) legends
-leg_sc2_discrete <- get_legend(
-  panelA + theme(legend.box.margin = margin(0, 0, 0, 10))
-)
-leg_flu_discrete <- get_legend(
-  panelD + theme(legend.box.margin = margin(0, 0, 0, 10))
-)
-
-# 2. Extract heatmap (continuous) legends
-leg_sc2_heat <- get_legend(panelC + theme(legend.position = "right"))
-leg_flu_heat <- get_legend(panelF + theme(legend.position = "right"))
-
-# 3. Create a tight sub-grid for SC2 legends
-sc2_legend_group <- plot_grid(
-  leg_sc2_discrete,
-  leg_sc2_heat,
-  ncol = 1,
-  rel_heights = c(1, 1),
-  align = "v"
-)
-
-# 4. Create a tight sub-grid for flu legends
-flu_legend_group <- plot_grid(
-  leg_flu_discrete,
-  leg_flu_heat,
-  ncol = 1,
-  rel_heights = c(1, 1),
-  align = "v"
-)
-
-# 5. Stack the two groups with space (rel_heights) between them
-side_legends <- plot_grid(
-  sc2_legend_group,
-  flu_legend_group,
-  ncol = 1,
-  rel_heights = c(1, 1) # This ensures SC2 stays top and flu stays bottom
-)
-
-# 6. Create main rows (same as before)
-row1 <- plot_grid(
-  panelA + theme(legend.position = "none"),
-  panelB + theme(legend.position = "none"),
-  panelC + theme(legend.position = "none"),
-  nrow = 1,
-  labels = c("A", "B", "C"),
-  rel_widths = c(1, 1, 1)
-)
-
-row2 <- plot_grid(
-  panelD + theme(legend.position = "none"),
-  panelE + theme(legend.position = "none"),
-  panelF + theme(legend.position = "none"),
-  nrow = 1,
-  labels = c("D", "E", "F"),
-  rel_widths = c(1, 1, 1)
-)
-
-# 7. Final combined Layout
-complete_combined_plot <- plot_grid(
-  plot_grid(row1, row2, nrow = 2),
-  side_legends,
-  ncol = 2,
-  rel_widths = c(1, 0.2)
-)
+complete_combined_plot <- (
+  (panelA + (panelB + theme(legend.position = "none")) + panelC) /
+    (panelD + (panelE + theme(legend.position = "none")) + panelF) +
+    plot_annotation(tag_levels = "A")
+) & theme(plot.margin = margin(2, 2, 2, 2, unit = "pt"))
 
 complete_combined_plot
+
+ggsave(
+  filename = here::here("figures", "endemic_scenario", "plot.png"),
+  plot = complete_combined_plot,
+  width = 9,
+  height = 6,
+  units = "in",
+  dpi = 600
+)
