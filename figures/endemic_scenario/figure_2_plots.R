@@ -339,13 +339,11 @@ complete_combined_plot <- (
     plot_annotation(tag_levels = "A")
 ) & theme(plot.margin = margin(2, 2, 2, 2, unit = "pt"))
 
-complete_combined_plot
-
 ggsave(
   filename = here::here("figures", "endemic_scenario", "plot.png"),
   plot = complete_combined_plot,
-  width = 9,
-  height = 6,
+  width = 9.5,
+  height = 4.5,
   units = "in",
   dpi = 600
 )
