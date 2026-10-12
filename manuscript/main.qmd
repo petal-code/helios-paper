@@ -319,21 +319,23 @@ knitr::include_graphics(here::here("figures", "endemic_scenario", "plot.png"))
 ```
 
 
-::: {#fig-targeting}
-
-**[Figure placeholder: targeting figure to be added.]**
-
-**Comparison of the impact achieved under random and risk-based AQI installation and deployment strategies.
-(A)** Schematic contrasting random selection of locations with risk-based targeting when 50% of locations are equipped; grey bars indicate locations without AQIs, dark blue bars indicate locations with AQIs installed.
-**(B)** Percentage reduction in annual incidence (y-axis) across increasing coverage (x-axis) for random (grey) versus targeted (blue) implementation, under alternative assumptions about AQI efficacy.
-Bars show the mean; error bars show the range across 25 stochastic simulations.
-**(C)** Relative added impact of targeted versus random deployment.
-**(D)** Absolute difference in percentage reduction between targeted and random strategies.
-**(E)** As for (B) but for influenza-like archetype.
-**(F)** As for (C) but for influenza-like archetype.
-**(G)** As for (D) but for influenza-like archetype.
-
-:::
+```{r}
+#| label: fig-targeting
+#| eval: true
+#| echo: false
+#| out-width: "100%"
+#| fig-cap: >
+#|   **Comparison of the impact achieved under random and risk-based AQI installation and deployment strategies.
+#|   (A)** Schematic contrasting random selection of locations with risk-based targeting when 50% of locations are equipped; grey bars indicate locations without AQIs, dark blue bars indicate locations with AQIs installed.
+#|   **(B)** Percentage reduction in annual incidence (y-axis) across increasing coverage (x-axis) for random (grey) versus targeted (blue) implementation, under alternative assumptions about AQI efficacy.
+#|   Bars show the mean; error bars show the range across 25 stochastic simulations.
+#|   **(C)** Relative added impact of targeted versus random deployment.
+#|   **(D)** Absolute difference in percentage reduction between targeted and random strategies.
+#|   **(E)** As for (B) but for influenza-like archetype.
+#|   **(F)** As for (C) but for influenza-like archetype.
+#|   **(G)** As for (D) but for influenza-like archetype.
+knitr::include_graphics(here::here("figures", "endemic_targeting", "plot.png"))
+```
 
 
 ```{r}
