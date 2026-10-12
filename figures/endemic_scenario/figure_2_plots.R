@@ -1,10 +1,4 @@
-library(dplyr)
-library(purrr)
-library(tibble)
-library(tidyr)
-library(ggplot2)
-library(viridis)
-library(cowplot)
+source(here::here("packages.R"))
 
 dir_sim <- here::here("figures", "endemic_scenario", "outputs")
 

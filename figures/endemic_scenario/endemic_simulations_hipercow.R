@@ -20,10 +20,7 @@
 ##' Note, to run this script the user must set the working directory to ./helios-paper
 
 # Load in the requisite packages:
-library(hipercow)
-library(tidyverse)
-library(individual)
-library(parallel)
+source(here::here("packages.R"))
 
 dir.create(
   "figures/endemic_scenario/outputs",
