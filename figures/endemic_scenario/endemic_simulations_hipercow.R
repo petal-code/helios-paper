@@ -1,4 +1,4 @@
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+#+++++++++++++++++++++++++++++++++++++#
 #+++++ Figure 2 Hipercow Script  +++++#
 #+++++++++++++++++++++++++++++++++++++#
 
@@ -18,7 +18,6 @@
 ##' 5. Stores the outputs in the helios-paper/figures/endemic_scenario/outputs directory
 ##'
 ##' Note, to run this script the user must set the working directory to ./helios-paper
-##'
 
 # Load in the requisite packages:
 library(hipercow)
@@ -101,5 +100,3 @@ hipercow::task_log_show(task_id)
 
 # View the job result:
 #outputs <- hipercow::task_result(task_id)
-
-#--------------------------------------------------------------------------------------------------#

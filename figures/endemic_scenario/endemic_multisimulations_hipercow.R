@@ -1,4 +1,4 @@
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++#
 #+++++ Figure 2 Hipercow Multisimulation Script  +++++#
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++#
 
@@ -21,7 +21,6 @@
 ##' The ouputs from the simulations should save into a directory: "figures/figure_X/figure_X_simulations/"
 ##' which is specifed in the run_simulation_hipercow() call and will need to be made prior to running
 ##' the simulations (I think - it may generate automatically but not worth chancing it)
-##'
 
 # Set the working directory to the project root:
 setwd(dir = here::here())
@@ -150,5 +149,3 @@ hipercow::task_log_show(task_ids[[13]])
 
 # View the job result:
 #outputs <- hipercow::task_result(task_id)
-
-#--------------------------------------------------------------------------------------------------#
