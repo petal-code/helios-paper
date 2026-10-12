@@ -19,8 +19,8 @@ read_simulation <- function(filepath) {
       year = floor(days / 365),
       filename = basename(filepath),
       archetype = simulation_file$parameters$archetype_label,
-      coverage = simulation_file$parameters$coverage,
-      efficacy = simulation_file$parameters$efficacy,
+      coverage = round(simulation_file$parameters$coverage, 10),
+      efficacy = round(simulation_file$parameters$efficacy, 10),
       active_infected = E_count + I_mild_count + I_hosp_count,
       prevalence = (active_infected / pop_size) * 100
     ) |>
@@ -105,6 +105,7 @@ panelA <- ggplot(
     y = mean_incidence_reduction,
     color = factor(
       efficacy,
+      levels = target_efficacies,
       labels = scales::percent(target_efficacies, accuracy = 1)
     ),
     group = efficacy
@@ -153,6 +154,7 @@ panelB <- ggplot(
     y = mean_active_infected,
     color = factor(
       efficacy,
+      levels = target_efficacies,
       labels = scales::percent(target_efficacies, accuracy = 1)
     ),
     group = efficacy
@@ -185,8 +187,8 @@ heat_data_c <- reductions_summary |>
 panelC <- ggplot(
   heat_data_c,
   aes(
-    x = factor(coverage, labels = scales::percent(target_vals)),
-    y = factor(efficacy, labels = scales::percent(target_vals)),
+    x = factor(coverage, levels = target_vals, labels = scales::percent(target_vals)),
+    y = factor(efficacy, levels = target_vals, labels = scales::percent(target_vals)),
     fill = mean_incidence_reduction
   )
 ) +
@@ -222,6 +224,7 @@ panelD <- ggplot(
     y = mean_incidence_reduction,
     color = factor(
       efficacy,
+      levels = target_efficacies,
       labels = scales::percent(target_efficacies, accuracy = 1)
     ),
     group = efficacy
@@ -270,6 +273,7 @@ panelE <- ggplot(
     y = mean_active_infected,
     color = factor(
       efficacy,
+      levels = target_efficacies,
       labels = scales::percent(target_efficacies, accuracy = 1)
     ),
     group = efficacy
@@ -301,8 +305,8 @@ heat_data_f <- reductions_summary |>
 panelF <- ggplot(
   heat_data_f,
   aes(
-    x = factor(coverage, labels = scales::percent(target_vals)),
-    y = factor(efficacy, labels = scales::percent(target_vals)),
+    x = factor(coverage, levels = target_vals, labels = scales::percent(target_vals)),
+    y = factor(efficacy, levels = target_vals, labels = scales::percent(target_vals)),
     fill = mean_incidence_reduction
   )
 ) +
