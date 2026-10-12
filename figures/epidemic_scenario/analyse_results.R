@@ -111,9 +111,9 @@ update_labels <- function(df) {
       ),
       metric_reduction_label = case_when(
         metric == "epidemic_final_size" ~
-          "% Reduction in Final %\nof Population Infected",
+          "Final size\nreduction (%)",
         metric == "peak_daily_incidence" ~
-          "% Reduction in\nPeak Daily Incidence",
+          "Peak incidence\nreduction (%)",
         TRUE ~ metric_label
       ),
       archetype_label = case_when(
@@ -292,12 +292,12 @@ row4 <- peak_incidence_flu_pointrange + peak_incidence_flu_heatmap
 plot <- row1 / row2 / row3 / row4 + plot_annotation(tag_levels = "A")
 
 ggsave(
-  filename = here::here("figures", "epidemic_scenario", "figure4.png"),
+  filename = here::here("figures", "epidemic_scenario", "plot.png"),
   plot = plot,
-  width = 12,
-  height = 12,
+  width = 10,
+  height = 10,
   units = "in",
-  dpi = 300
+  dpi = 600
 )
 
 readr::write_csv(
