@@ -48,8 +48,8 @@ function Pandoc(doc)
 
   local mark = function (mark_name) return default_marks[mark_name] end
 
-  body:extend(create_equal_contributors_block(meta.authors, mark) or {})
   body:extend(create_affiliations_blocks(meta.affiliations) or {})
+  body:extend(create_equal_contributors_block(meta.authors, mark) or {})
   body:extend(create_correspondence_blocks(meta.authors, mark) or {})
   body:extend(doc.blocks)
 

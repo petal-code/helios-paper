@@ -146,14 +146,6 @@ M.create_correspondence_blocks = create_correspondence_blocks
 local function author_inline_generator (get_mark)
   return function (author)
     local author_marks = List:new{}
-    -- modified by @kapsner
-    if has_key(author, "attributes") then
-      if author.attributes["equal-contributor"] then
-        local mark_name = author.metadata and stringify(author.metadata['contribution-group'] or '') == 'senior'
-          and 'senior_contributor' or 'equal_contributor'
-        author_marks[#author_marks + 1] = get_mark(mark_name)
-      end
-    end
     local idx_str
     for _, idx in ipairs(author.affiliations) do
       if type(idx) ~= 'table' then
@@ -162,6 +154,14 @@ local function author_inline_generator (get_mark)
         idx_str = stringify(idx)
       end
       author_marks[#author_marks + 1] = {pandoc.Str(idx_str)}
+    end
+    -- modified by @kapsner
+    if has_key(author, "attributes") then
+      if author.attributes["equal-contributor"] then
+        local mark_name = author.metadata and stringify(author.metadata['contribution-group'] or '') == 'senior'
+          and 'senior_contributor' or 'equal_contributor'
+        author_marks[#author_marks + 1] = get_mark(mark_name)
+      end
     end
     if is_corresponding_author(author) then
       author_marks[#author_marks + 1] = get_mark 'corresponding_author'
@@ -213,7 +213,11 @@ local function create_affiliations_blocks(affiliations)
       return num_inlines .. affil.name
     end
   )
-  return {pandoc.Para(intercalate(affil_lines, {pandoc.LineBreak()}))}
+  local inlines = intercalate(affil_lines, {pandoc.LineBreak()})
+  if FORMAT:match 'latex' then
+    inlines:insert(1, pandoc.RawInline('latex', '\\noindent '))
+  end
+  return {pandoc.Para(inlines)}
 end
 M.create_affiliations_blocks = create_affiliations_blocks
 

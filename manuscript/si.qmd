@@ -8,8 +8,9 @@ toc: true
 toc-depth: 3
 format:
   pdf:
+    toc: false
     documentclass: article
-    fontsize: 12pt
+    fontsize: 11pt
     papersize: letter
     pdf-engine: pdflatex
     cite-method: natbib
@@ -31,6 +32,14 @@ crossref:
   eq-prefix: ""
   tbl-prefix: ""
 ---
+
+```{=latex}
+\clearpage
+\renewcommand{\contentsname}{Contents}
+\setcounter{tocdepth}{3}
+\tableofcontents
+\clearpage
+```
 
 # Introduction {#sec-introduction}
 
