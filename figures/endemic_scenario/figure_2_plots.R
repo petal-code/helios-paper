@@ -1,6 +1,6 @@
 source(here::here("packages.R"))
 
-dir_sim <- here::here("figures", "endemic_scenario", "outputs")
+dir_sim <- here::here("figures", "endemic_scenario", "2026-06-04_tom_figure_2")
 
 files <- list.files(
   path = dir_sim,

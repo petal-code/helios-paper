@@ -1,7 +1,6 @@
 source(here::here("packages.R"))
 
-
-#Panel A: Random vs Targeting
+# Panel A: Random vs Targeting
 
 # Parameters to generate location riskiness across setting types
 parameter_list <- get_parameters(
@@ -125,8 +124,8 @@ panel_a <- ggplot(
   )
 panel_a
 
-#targeting results
-dir_sim <- here::here("figures", "endemic_targeting", "outputs")
+# Targeting results
+dir_sim <- here::here("figures", "endemic_targeting", "2026-06-04_tom_figure_3")
 files <- list.files(path = dir_sim, pattern = "\\.rds$", full.names = TRUE)
 
 read_simulation <- function(filepath) {
