@@ -1,5 +1,5 @@
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
-#+++++ Figure X Hipercow Multisimulation Script  +++++#
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++#
+#+++++ Figure 2 Hipercow Multisimulation Script  +++++#
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++#
 
 ##'
@@ -21,7 +21,6 @@
 ##' The ouputs from the simulations should save into a directory: "figures/figure_X/figure_X_simulations/"
 ##' which is specifed in the run_simulation_hipercow() call and will need to be made prior to running
 ##' the simulations (I think - it may generate automatically but not worth chancing it)
-##'
 
 # Set the working directory to the project root:
 setwd(dir = here::here())
@@ -30,8 +29,18 @@ setwd(dir = here::here())
 source(here::here("packages.R"))
 source(here::here("R/run.R"))
 
+# Open a new data folder (if one isn't already present):
+dir.create(
+  "figures/endemic_scenario/outputs",
+  recursive = TRUE,
+  showWarnings = FALSE
+)
+
 # Load in the parameter lists - it is anticipated that these
-parameter_lists <- readRDS("figures/figure_X/figure_X_parameter_list.rds")
+#parameter_lists <- readRDS("figures/figure_X/figure_X_parameter_list.rds")
+parameter_lists <- readRDS(
+  "figures/endemic_scenario/figure_2_parameter_list.rds"
+)
 
 ##' Note: We need to divide the parameter_lists into smaller lists that we can send to each node to
 ##' be simulated. We do this by specifying the number of nodes to use (n_nodes) and the number of
@@ -57,7 +66,10 @@ sub_parameter_lists <- split(
   f = group_index
 )
 
-#++++++++++++ BODGE SOME LIST SPLITTING ++++++++++++++++++++++++++++++++++#
+# Check sub_parameter_lists of correct length:
+if (length(sub_parameter_lists) != nodes_to_use) {
+  stop("sub_parameter_lists length not equal to defined number of HPC nodes")
+}
 
 # Prepare for cluster use (see https://mrc-ide.github.io/hipercow/)
 hipercow::hipercow_init(driver = 'dide-windows')
@@ -85,8 +97,9 @@ hipercow::hipercow_environment_create(
 # NOTE: If simulations fail, it is likely that it is due to the memory allocated to each node. A common
 #        solution for me has been to increase this using the function below):
 # Increase the memory allowed for the parameter lists:
-options(hipercow.max_size_local = 10000000)
+options(hipercow.max_size_local = 2000000000)
 
+##' TODO: Find a way to decrease the size of sub_parameter_lists
 # Run the simulations using the hipercow function task_create_expr()
 # https://mrc-ide.github.io/hipercow/reference/task_create_expr.html
 task_ids <- list()
@@ -99,7 +112,7 @@ for (i in 1:length(sub_parameter_lists)) {
         run_simulation_hipercow(
           p,
           file_save = TRUE,
-          directory = "figures/figure_X/figure_X_simulations/"
+          directory = "figures/endemic_scenario/outputs/"
         )
       }
     ),
@@ -118,14 +131,21 @@ x <- sapply(
 )
 table(x)
 
+# Use the following to check which jobs have succeeded/failed:
+which(x == "success")
+which(x == "failure")
+
 # Save/load the task_id as required:
-#saveRDS(object = task_ids, file = "figures/figure_X/simulation_task_ids.rds")
-#task_ids <- readRDS(file = "./figures/figure_X/simulation_task_ids.rds")
+saveRDS(
+  object = task_ids,
+  file = "figures/endemic_scenario/figure_2_simulation_task_ids.rds"
+)
+task_ids <- readRDS(
+  file = "./figures/endemic_scenario/figure_2_simulation_task_ids.rds"
+)
 
 # View the job logs:
-hipercow::task_log_show(task_ids[[1]])
+hipercow::task_log_show(task_ids[[13]])
 
 # View the job result:
 #outputs <- hipercow::task_result(task_id)
-
-#--------------------------------------------------------------------------------------------------#
