@@ -193,8 +193,16 @@ heat_data_c <- reductions_summary |>
 panelC <- ggplot(
   heat_data_c,
   aes(
-    x = factor(coverage, levels = target_vals, labels = scales::percent(target_vals)),
-    y = factor(efficacy, levels = target_vals, labels = scales::percent(target_vals)),
+    x = factor(
+      coverage,
+      levels = target_vals,
+      labels = scales::percent(target_vals)
+    ),
+    y = factor(
+      efficacy,
+      levels = target_vals,
+      labels = scales::percent(target_vals)
+    ),
     fill = mean_incidence_reduction
   )
 ) +
@@ -310,8 +318,16 @@ heat_data_f <- reductions_summary |>
 panelF <- ggplot(
   heat_data_f,
   aes(
-    x = factor(coverage, levels = target_vals, labels = scales::percent(target_vals)),
-    y = factor(efficacy, levels = target_vals, labels = scales::percent(target_vals)),
+    x = factor(
+      coverage,
+      levels = target_vals,
+      labels = scales::percent(target_vals)
+    ),
+    y = factor(
+      efficacy,
+      levels = target_vals,
+      labels = scales::percent(target_vals)
+    ),
     fill = mean_incidence_reduction
   )
 ) +
@@ -333,11 +349,12 @@ panelF <- ggplot(
   )
 
 # Grid assembly
-complete_combined_plot <- (
-  (panelA + (panelB + theme(legend.position = "none")) + panelC) /
-    (panelD + (panelE + theme(legend.position = "none")) + panelF) +
-    plot_annotation(tag_levels = "A")
-) & theme(plot.margin = margin(2, 2, 2, 2, unit = "pt"))
+complete_combined_plot <- ((panelA +
+  (panelB + theme(legend.position = "none")) +
+  panelC) /
+  (panelD + (panelE + theme(legend.position = "none")) + panelF) +
+  plot_annotation(tag_levels = "A")) &
+  theme(plot.margin = margin(2, 2, 2, 2, unit = "pt"))
 
 ggsave(
   filename = here::here("figures", "endemic_scenario", "plot.png"),
