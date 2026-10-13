@@ -152,7 +152,7 @@ Transmissibility varied between locations in a setting according to
 $$
 \beta_{j, s} = \gamma_{j, s} \beta_s,
 $$
-where $\beta_s$ is the average riskiness of the setting (Section @sec-between) and $\gamma_{j, s}$ are location-specific relative riskiness parameters (Section @sec-within).
+where $\beta_s$ is the transmissibility of a location with riskiness multiplier one (Section @sec-between) and $\gamma_{j, s}$ are location-specific relative riskiness parameters (Section @sec-within).
 
 ### Variation in risk between settings {#sec-between}
 
@@ -183,7 +183,7 @@ $$
 \right).
 $$
 Each multiplier scales the FOI for all individuals at that location relative to the setting-level transmissibility $\beta_s$.
-A log-mean of 0 centers the distribution at one, such that $\beta_s$ represents the transmission rate at an average location.
+The distribution has median one, so $\beta_s$ represents the transmission rate at a location with riskiness multiplier one.
 The distribution was scaled using setting-specific log-standard deviation parameters $\sigma_{\log,s}$ and truncated based on setting-specific riskiness ratios $R_s$.
 We informed these parameters (Table @tbl-riskiness) empirically using a Wells-Riley model of airborne transmission [@blatchley2023quantitative].
 
