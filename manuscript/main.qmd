@@ -299,9 +299,14 @@ Following @blatchley2023quantitative, we described airborne pathogen concentrati
 
 $$\nu \frac{dC\left({t}\right)}{dt}=-QC\left({t}\right)-{k}_{\mathrm{D}}\nu C\left({t}\right)+I\pi ,$$
 
-where $\nu$ is room volume, $Q$ is air flow rate, ${k}_{\mathrm{D}}=0.64{h}^{-1}$ is a pathogen decay constant [@blatchley2023quantitative], and $\pi =27$ virions per person per hour is the emission rate [@blatchley2023quantitative].
+where $\nu$ is room volume, $Q$ is air flow rate, $I$ is the number of infectious occupants, ${k}_{\mathrm{D}}=0.64{h}^{-1}$ is a pathogen decay constant [@blatchley2023quantitative], and $\pi =27$ virions per person per hour is the emission rate [@blatchley2023quantitative].
 We assumed room volume $\nu =N{D}_{s}H$ where $N$ is the maximum room occupancy, ${D}_{s}$ is floor area (${m}^{2}$) per person (${D}_{\mathrm{household}}=20$, ${D}_{\mathrm{school}}=3.33$, ${D}_{\mathrm{workplace}}=10$, ${D}_{\mathrm{leisure}}=2$ [@kelechava2022ventilation]), and $H=2.5m$ is the room height.
-For a given steady-state infectious viral concentration $C_{\mathrm{ss}}$, the probability of an individual becoming infected conditional on dwell time $\tau$ spent in that location is calculated based on the Wells-Riley equation [@wellsAirborne; @riley1978airborne], as
+We evaluated the steady-state concentration for one infectious occupant ($I=1$),
+
+$$C_{\mathrm{ss}}=\frac{\pi}{\nu(\mathrm{ACH}+k_{\mathrm{D}})},$$
+
+where $\mathrm{ACH}=Q/\nu$ is the ventilation rate in air changes per hour.
+For this concentration, the probability of infection for a susceptible individual exposed for dwell time $\tau$ is given by the Wells–Riley equation [@wellsAirborne; @riley1978airborne], as
 
 $$P_i(\tau)=1-\exp\left({-rBC_{\mathrm{ss}}\tau}\right),$$
 
