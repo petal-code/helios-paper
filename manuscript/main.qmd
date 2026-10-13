@@ -318,7 +318,7 @@ with breathing rate $B=0.45{m}^{3}{h}^{-1}$ and infection probability per virion
 For each explicitly represented setting type, we evaluated the Wells–Riley infection probability across the ACH range reported in @corsi22006ozone, using dwell times of 12 hours in households, 8 hours in schools and workplaces, and 2.5 hours at leisure venues.
 Holding the other exposure parameters fixed, the minimum and maximum ACH gave the upper and lower infection-probability bounds, respectively.
 The ratio of these probabilities (upper divided by lower) defined a setting-specific riskiness ratio $R_s$.
-This ratio determined the bounds $[R_s^{-1/2}, R_s^{1/2}]$ of a truncated lognormal distribution with median one and setting-specific log-standard deviation $\sigma_{\log,s}$.
+This ratio determined the bounds $[R_s^{-1/2}, R_s^{1/2}]$ of a median-one truncated lognormal distribution, with setting-specific log-standard deviation $\sigma_{\log,s}$ selected numerically to place approximately 80% of the distribution within $[(R_s/2)^{-1/2}, (R_s/2)^{1/2}]$ and 10% in each tail (see Supplementary Information).
 Each location was assigned a fixed multiplier $\gamma_{j,s}$ drawn from this distribution, with changes in infection risk during the simulation driven by infectious occupancy through $I_{j,s}(t)/N_{j,s}$ rather than recalculated airborne concentrations or Wells–Riley probabilities.
 
 ## Modelling the impact of air quality interventions
