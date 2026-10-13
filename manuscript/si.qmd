@@ -162,7 +162,7 @@ We set the sum over $\beta_s$ based on the particular pathogen in order to achie
 
 ### Variation in risk within settings {#sec-within}
 
-    Setting    $\sigma_{log,s}$   Riskiness ratio $R_{s}$
+    Setting    $\sigma_{\log,s}$   Riskiness ratio $R_{s}$
   ----------- ------------------ -------------------------
     School          0.3544                 4.75
    Workplace        0.5072                 6.35
@@ -192,10 +192,10 @@ In particular, the steady-state concentration of infective virus in an enclosed 
 $$
 \begin{aligned}
 C_{\mathrm{ss}} &= \frac{I\pi}{\alpha\nu}, \\
-\alpha &= \frac{Q}{\nu} + k_D,
+\alpha &= \frac{Q}{\nu} + k_{\mathrm{D}},
 \end{aligned}
 $$
-where $\nu = ND_sH$ is room volume ($N$ maximum occupants; floor area per person $D_s$; room height $H = 2.5\mathrm{m}$), $Q$ is volumetric airflow ($Q/\nu$ gives ACH), $k_D = 0.64\,\mathrm{h}^{-1}$ is the viral decay rate, $I = 1$ is the number of infectors, and $\pi = 27\,\mathrm{h}^{-1}$ is the infectious-unit emission rate [@blatchley2023quantitative].
+where $\nu = ND_sH$ is room volume ($N$ maximum occupants; floor area per person $D_s$; room height $H = 2.5\mathrm{m}$), $Q$ is volumetric airflow ($Q/\nu$ gives ACH), $k_{\mathrm{D}} = 0.64\,\mathrm{h}^{-1}$ is the viral decay rate, $I = 1$ is the number of infectors, and $\pi = 27\,\mathrm{h}^{-1}$ is the infectious-unit emission rate [@blatchley2023quantitative].
 Floor area per person was parameterised as: $D_{\text{household}} = 20$, $D_{\text{school}} = 3.33$, $D_{\text{workplace}} = 10$, $D_{\text{leisure}} = 2$, taken from @ASHRAE (Table 6.1) for non-household settings and assumed for households.
 The probability of infection after dwell time $\tau$ is
 
@@ -205,8 +205,8 @@ $$
 where $B = 0.45 \text{m}^3$ per hour is the inhalation rate of virus particles and $r = 1.37 \times 10^{-2}$ is the probability of infection per infective-virion inhaled [@killingley2022safety; @blatchley2023quantitative].
 We evaluated $P_i$ at the minimum and maximum ACH for each setting type [@corsi22006ozone], using dwell times of $12\,\mathrm{h}$ (households), $8\,\mathrm{h}$ (schools and workplaces), and $2.5\,\mathrm{h}$ (leisure).
 The resulting riskiness ratios $P_i(\mathrm{ACH}_{\min})/P_i(\mathrm{ACH}_{\max})$ ranged from 2.5-fold (households) to 6.35-fold (workplaces).
-For each setting and associated set of riskiness ratios, we estimated the value of $\sigma_{log,s}$ that best defined a truncated log-normal with bounds $[\frac{1}{\sqrt{R_s}}, \sqrt{R_{s}}]$.
-For each setting and riskiness ratio, we set $\sigma_{log,s}$ to the value that places approximately 80% of the probability mass of the truncated lognormal distribution within the range $[\frac{1}{\sqrt{R_s/2}}, \sqrt{R_{s}/2}]$, with 10% of the mass in each tail, identified through numerical optimization.
+For each setting and associated set of riskiness ratios, we estimated the value of $\sigma_{\log,s}$ that best defined a truncated log-normal with bounds $[\frac{1}{\sqrt{R_s}}, \sqrt{R_{s}}]$.
+For each setting and riskiness ratio, we set $\sigma_{\log,s}$ to the value that places approximately 80% of the probability mass of the truncated lognormal distribution within the range $[\frac{1}{\sqrt{R_s/2}}, \sqrt{R_{s}/2}]$, with 10% of the mass in each tail, identified through numerical optimization.
 
 ## Intervention model {#sec-intervention}
 
