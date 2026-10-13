@@ -284,7 +284,7 @@ With the location and setting type-specific FOI calculated as
 $${\lambda }_{i,j,s}\left({t}\right)=\frac{{\beta }_{j,s}{I}_{j,s}\left({t}\right)}{{N}_{j,s}},$$
 
 where ${I}_{j,s}\left({t}\right)$ is the number of infectious individuals in location $j$ belonging to setting type $s$, ${N}_{j,s}$ is the occupancy in that particular location, and ${\beta }_{j,s}={\gamma }_{j,s}{\beta }_{s}$ is a transmissibility parameter.
-The term ${\beta }_{s}$ represents a setting-type specific transmissibility, parameterised in order to recapitulate empirically observed patterns of the proportion of transmission for influenza and SARS-CoV-2 occurring across different setting types, while ${\gamma }_{j,s}\sim Lognormal\left({0,{\sigma }_{s}}\right)$ captures between-location heterogeneity in transmission risk arising from variation in ventilation rates and occupancy density, for a particular setting type (e.g. schools).
+The term ${\beta }_{s}$ represents a setting-type specific transmissibility, parameterised in order to recapitulate empirically observed patterns of the proportion of transmission for influenza and SARS-CoV-2 occurring across different setting types, while ${\gamma }_{j,s}$, drawn from a truncated lognormal distribution with log-mean zero and log-standard deviation $\sigma_{\log,s}$, captures between-location heterogeneity in transmission risk arising from variation in ventilation rates and occupancy density, for a particular setting type (e.g. schools).
 We set between-setting transmission rate ratios based on estimates from prior work about how overall transmission is apportioned between settings [@ferretti2024digital; @Fergusonetal2006]
 
 $${\beta }_{household}:[{\beta }_{school}\text{ or } {\beta }_{workplace}]:{\beta }_{leisure}:{\beta }_{community}=30\%:30\%:30\%:10\%,$$
@@ -305,7 +305,7 @@ $$P_i(\tau)=1-\exp\left({-rBC_{\mathrm{ss}}\tau}\right),$$
 
 with breathing rate $B=0.45{m}^{3}{h}^{-1}$ and infection probability per virion $r=1.37\times {10}^{-2}$  [@blatchley2023quantitative; @killingley2022safety].
 We calculated upper and lower bounds of infection probability using setting-specific ranges of air changes per hour derived from a review of setting type and location ventilation rates [@corsi22006ozone], and assuming individuals spend 12 hours of the day in households, 8 hours in schools/workplaces, 2.5 hours at leisure venues, and 1.5 hours in community settings.
-The distribution of location-specific variation in infection risk derived from the variation in ventilation rates was then used to parameterise a lognormal distribution of setting type and location specific riskiness values, with median 1 and with log-standard deviation ${\sigma }_{log,\ s}$.
+The distribution of location-specific variation in infection risk derived from the variation in ventilation rates was then used to parameterise a truncated lognormal distribution of setting type and location specific riskiness values, with median 1 and with log-standard deviation $\sigma_{\log,s}$.
 
 ## Modelling the impact of air quality interventions
 We modeled the impact of generic air quality interventions (AQIs) that either modify the physical number of air changes per hour (ACH) or increase the rate at which exhaled virus becomes inactive (thereby decreasing the total virus concentration in a room, in what is typically referred to as the “effective air changes per hour” or eACH).
