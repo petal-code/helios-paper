@@ -284,7 +284,11 @@ With the location and setting type-specific FOI calculated as
 $${\lambda }_{i,j,s}\left({t}\right)=\frac{{\beta }_{j,s}{I}_{j,s}\left({t}\right)}{{N}_{j,s}},$$
 
 where ${I}_{j,s}\left({t}\right)$ is the number of infectious individuals in location $j$ belonging to setting type $s$, ${N}_{j,s}$ is the occupancy in that particular location, and ${\beta }_{j,s}={\gamma }_{j,s}{\beta }_{s}$ is a transmissibility parameter.
-The term ${\beta }_{s}$ represents a setting-type specific transmissibility, parameterised in order to recapitulate empirically observed patterns of the proportion of transmission for influenza and SARS-CoV-2 occurring across different setting types, while ${\gamma }_{j,s}$, drawn from a truncated lognormal distribution with log-mean zero and log-standard deviation $\sigma_{\log,s}$, captures between-location heterogeneity in transmission risk arising from variation in ventilation rates and occupancy density, for a particular setting type (e.g. schools).
+The setting-specific transmissibility $\beta_s$ was parameterised to reflect empirical estimates of how influenza and SARS-CoV-2 transmission is apportioned between setting types.
+The location-specific multiplier $\gamma_{j,s}$ captures heterogeneity in transmission risk between locations of the same setting type, informed by variation in ventilation rates and occupancy density.
+These multipliers were drawn from a truncated lognormal distribution with log-mean zero and log-standard deviation $\sigma_{\log,s}$.
+The ventilation-informed parameterisation of this distribution is described in @sec-location-riskiness.
+
 We set between-setting transmission rate ratios based on estimates from prior work about how overall transmission is apportioned between settings [@ferretti2024digital; @Fergusonetal2006]
 
 $${\beta }_{\mathrm{household}}:[{\beta }_{\mathrm{school}}\text{ or } {\beta }_{\mathrm{workplace}}]:{\beta }_{\mathrm{leisure}}:{\beta }_{\mathrm{community}}=30\%:30\%:30\%:10\%,$$
@@ -292,7 +296,7 @@ $${\beta }_{\mathrm{household}}:[{\beta }_{\mathrm{school}}\text{ or } {\beta }_
 with ${\beta }_{\mathrm{school}}$ or ${\beta }_{\mathrm{workplace}}$ depending on the age-class an individual belongs to, and with the sum of ${\beta }_{s}$ values scaled to achieve overall levels of transmission consistent with reproduction number estimates for the specific pathogen archetypes modeled (see below).
 Households, workplaces, schools and leisure settings are explicitly represented within the modelling framework; “community” transmission is used to represent residual infection risk occurring in locations or contexts outside these settings.
 
-## Indoor air quality motivated variation in riskiness between locations
+## Indoor air quality motivated variation in riskiness between locations {#sec-location-riskiness}
 
 We used an airborne concentration model and the Wells–Riley dose–response equation to inform the variation in riskiness $\gamma_{j,s}$ between locations $j$ of the same setting type $s$.
 Following @blatchley2023quantitative, we described airborne pathogen concentration $C(t)$ using the ordinary differential equation
