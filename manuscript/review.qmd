@@ -626,7 +626,9 @@ I suggest slightly qualifying this statement unless separate analyses demonstrat
 
 **Response**
 
-*Response to be added.*
+We have added a sentence to the discussion:
+
+> As $R_0$ and the generation interval varied simultaneously between our two pathogen archetypes, we did not disentangle their respective contributions to the observed difference in intervention impact.
 
 ## Comment 10
 
