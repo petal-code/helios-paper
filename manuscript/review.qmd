@@ -314,7 +314,10 @@ The authors should consider differentiating between elementary and high school s
 
 **Response**
 
-*Response to be added.*
+We agree that primary and secondary schools differ in their contact structures and schedules.
+This reflects a broader limitation of our model: each location is represented as a single unit, without separate rooms or movement between rooms.
+Children are also represented as a single age group.
+We have expanded the discussion section to acknowledge this limitation.
 
 ## Comment 7
 
