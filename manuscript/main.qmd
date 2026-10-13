@@ -293,7 +293,9 @@ with ${\beta }_{\mathrm{school}}$ or ${\beta }_{\mathrm{workplace}}$ depending o
 Households, workplaces, schools and leisure settings are explicitly represented within the modelling framework; “community” transmission is used to represent residual infection risk occurring in locations or contexts outside these settings.
 
 ## Indoor air quality motivated variation in riskiness between locations
-To represent variation in transmission riskiness across locations *j* belonging to the same setting type *s*, ${\gamma }_{j,s}$, we followed the approach of Blatchley et al [@blatchley2023quantitative], modeling airborne pathogen concentration $C\left({t}\right)$ using an ordinary differential equation
+
+We used an airborne concentration model and the Wells–Riley dose–response equation to inform the variation in riskiness $\gamma_{j,s}$ between locations $j$ of the same setting type $s$.
+Following @blatchley2023quantitative, we described airborne pathogen concentration $C(t)$ using the ordinary differential equation
 
 $$\nu \frac{dC\left({t}\right)}{dt}=-QC\left({t}\right)-{k}_{\mathrm{D}}\nu C\left({t}\right)+I\pi ,$$
 
