@@ -455,7 +455,7 @@ Discussion: avoid the word significant apart from in the statistical sense.
 
 **Response**
 
-*Response to be added.*
+We have replaced uses of “significant” and “significantly” in the results and discussion sections to avoid implying statistical significance.
 
 ## Comment 18
 
