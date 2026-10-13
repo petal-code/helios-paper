@@ -299,9 +299,9 @@ $$\nu \frac{dC\left({t}\right)}{dt}=-QC\left({t}\right)-{k}_{D}\nu C\left({t}\ri
 
 where $\nu$ is room volume, $Q$ is air flow rate, ${k}_{D}=0.64{h}^{-1}$ is a pathogen decay constant [@blatchley2023quantitative], and $\pi =27$ virions per person per hour is the emission rate [@blatchley2023quantitative].
 We assumed room volume $\nu =N{D}_{s}H$ where $N$ is the maximum room occupancy, ${D}_{s}$ is floor area (${m}^{2}$) per person (${D}_{household}=20$, ${D}_{school}=3.33$, ${D}_{workplace}=10$, ${D}_{leisure}=2$ [@kelechava2022ventilation]), and $H=2.5m$ is the room height.
-For a given infectious viral concentration $C$, the probability of an individual becoming infected conditional on some time $t$ spent in that location is calculated based on the Wells-Riley equation [@wellsAirborne; @riley1978airborne], as
+For a given steady-state infectious viral concentration $C_{\mathrm{ss}}$, the probability of an individual becoming infected conditional on dwell time $\tau$ spent in that location is calculated based on the Wells-Riley equation [@wellsAirborne; @riley1978airborne], as
 
-$$P\left({t}\right)=1-\exp\left({-rBCt}\right),$$
+$$P_i(\tau)=1-\exp\left({-rBC_{\mathrm{ss}}\tau}\right),$$
 
 with breathing rate $B=0.45{m}^{3}{h}^{-1}$ and infection probability per virion $r=1.37\times {10}^{-2}$  [@blatchley2023quantitative; @killingley2022safety].
 We calculated upper and lower bounds of infection probability using setting-specific ranges of air changes per hour derived from a review of setting type and location ventilation rates [@corsi22006ozone], and assuming individuals spend 12 hours of the day in households, 8 hours in schools/workplaces, 2.5 hours at leisure venues, and 1.5 hours in community settings.
