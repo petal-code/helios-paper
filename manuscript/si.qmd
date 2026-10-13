@@ -219,7 +219,9 @@ where $E_{s}$ is applied uniformly to all locations within setting $s$ that rece
 We considered efficacy values of 20%, 40%, 60%, 80%, and 100%.
 We applied AQIs across schools, workplaces and leisure settings, excluding households as they are unlikely to have AQIs installed.
 
-Coverage was defined as the target proportion non-household floor area receiving AQI installation.
+Coverage was defined as the target proportion of combined school, workplace and leisure floor area receiving AQI installation, with households excluded.
+Modelled floor area was calculated as location occupancy multiplied by the setting-specific floor area per person.
+Because whole locations received AQIs, achieved coverage could slightly exceed the nominal target.
 Two allocation strategies were considered: random and targeted.
 Under random allocation, locations were selected uniformly at random from all non-household settings until the cumulative covered floor area met or exceeded the coverage target.
 Under targeted allocation, locations were ranked by their riskiness $\gamma_{j,s}$, with AQIs installed in locations of descending order of riskiness until the cumulative covered floor area met or exceeded the coverage target.
