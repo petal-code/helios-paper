@@ -639,7 +639,8 @@ Since readers might otherwise interpret, for example, “20% coverage” as 20% 
 
 **Response**
 
-*Response to be added.*
+Thank you for pointing out this discrepancy.
+We have clarified coverage as proportion of non-household floor area in the results, figure captions, and in the discussion.
 
 ## Comment 11
 
