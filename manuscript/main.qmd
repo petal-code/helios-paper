@@ -269,8 +269,8 @@ The former captures differences in respiratory virus transmission between settin
 This construction lets us (i) control the average contribution of each setting type to transmission at the population level and (ii) represent between-location heterogeneity in transmission risk across the locations belonging to a particular setting type.
 
 To quantify between-location “riskiness”, we use empirically documented variation in ventilation rates across locations belonging to the same setting type, and integrate these with an explicit model of within-room airborne virus concentration and a Wells–Riley dose–response model.
-Together, this enables us to map variation in air changes per hour, pathogen emission rates, and viral decay/inactivation into infection probabilities as a function of dwell time.
-This provides a consistent means to link variation in baseline ventilation rates to location-specific transmission risk, and encode ventilation/filtration/UV parameters as multiplicative reductions in location-specific force of infection.
+This connects observed variation in ventilation to differences in transmission risk between locations, allowing us to assess how this heterogeneity affects population transmission and the benefits of targeting higher-risk locations.
+We represent interventions as assumed proportional reductions in location-specific force of infection to compare efficacy, coverage, and allocation strategies; the efficacy achievable with specific ventilation, filtration, or UV technologies must be established separately.
 This framework (described in further detail below) is implemented in R as an open-source package [@helios], built using the *individual* R package; package documentation, vignettes, and source code are publicly available.
 Further model details are provided below, but see [https://mrc-ide.github.io/helios/](https://mrc-ide.github.io/helios/) for full details.
 
