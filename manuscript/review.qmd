@@ -379,7 +379,9 @@ Please ensure the model github is up to date so that I can review this.
 
 **Response**
 
-*Response to be added.*
+Thank you for this comment.
+We clarify that `helios` was originally developed to model UVC interventions, but can be applied more generally to IAQ control measures.
+The code specific to this manuscript is available in the repository [`helios-paper`](https://github.com/petal-code/helios-paper).
 
 ## Comment 12
 
