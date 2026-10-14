@@ -249,6 +249,7 @@ knitr::include_graphics(here::here("figures", "model_schematic", "plot.png"))
 # Methods
 
 ## Population structure and data sources
+
 We simulated a population of individuals stratified into three age groups: children, adults, and elderly (@fig-population, panel A).
 Household sizes (@fig-population, panel B) and age composition were sampled from a 2010 San Francisco-based synthetic population produced by RTI International [@rineer2025a].
 School enrollment sizes (@fig-population, panel C) were sampled from U.S. National Center for Education Statistics 2019–2020 data [@deBrey2023Digest].
@@ -256,6 +257,7 @@ Workplace sizes (@fig-population, panel D) were sampled from a truncated offset 
 In the absence of detailed data and information on visit frequency and duration to other settings, we aggregated all other visits into a “leisure” category, with setting capacity (@fig-population, panel E) and visit frequency (@fig-population, panel F) sampled from empirically motivated negative binomial and Poisson distributions respectively.
 
 ## Overview of Individual-based modelling framework
+
 We developed a stochastic, individual-based epidemiological model in which space is explicitly represented by assigning each individual to membership of particular locations and setting types, following the approach of Ferguson et al [@ferguson2005strategies].
 In what follows, we use “setting type” to denote classes of place (e.g., households, schools, workplaces, leisure venues), and “location” to index a specific instance of a given setting type (e.g., a particular household, classroom, office or leisure venue).
 Within the model, individuals exist in one of several disease states: susceptible, exposed (but not yet infectious), infectious, and recovered.
@@ -293,6 +295,7 @@ with ${\beta }_{school}$ or ${\beta }_{workplace}$ depending on the age-class an
 Households, workplaces, schools and leisure settings are explicitly represented within the modelling framework; “community” transmission is used to represent residual infection risk occurring in locations or contexts outside these settings.
 
 ## Indoor air quality motivated variation in riskiness between locations
+
 To represent variation in transmission riskiness across locations *j* belonging to the same setting type *s*, ${\gamma }_{j,s}$, we followed the approach of Blatchley et al [@blatchley2023quantitative], modeling airborne pathogen concentration $C\left({t}\right)$ using an ordinary differential equation
 
 $$\nu \frac{dC\left({t}\right)}{dt}=-QC\left({t}\right)-{k}_{D}\nu C\left({t}\right)+I\pi ,$$
@@ -308,15 +311,17 @@ We calculated upper and lower bounds of infection probability using setting-spec
 The distribution of location-specific variation in infection risk derived from the variation in ventilation rates was then used to parameterise a lognormal distribution of setting type and location specific riskiness values, with median 1 and with log-standard deviation ${\sigma }_{log,\ s}$.
 
 ## Modelling the impact of air quality interventions
+
 We modeled the impact of generic air quality interventions (AQIs) that either modify the physical number of air changes per hour (ACH) or increase the rate at which exhaled virus becomes inactive (thereby decreasing the total virus concentration in a room, in what is typically referred to as the “effective air changes per hour” or eACH).
 Given substantial heterogeneity between different AQIs in terms of changes to eACH and dependence on the specific ventilation dynamics of each space, as well as the initial, exploratory nature of this work, we made the simplifying assumption that modeled AQIs installed in a given setting would reduce the location-specific FOI multiplicatively by efficacy ${E}_{j,s}$ and modify the FOI as follows
 
 $${\lambda }_{i,j,s}^{AQI}\left({t}\right)=\left({1-{E}_{j,s}}\right)\times {\lambda }_{i,j,s}\left({t}\right).$$
 
-With this formulation, we then carried out a suite of sensitivity analyses varying AQI efficacy, coverage level (i.e. the target proportion of floor area receiving AQI installation), and allocation strategy (randomly distributed across locations vs. targeted to highest-risk eligible locations).
+With this formulation, we then carried out a suite of sensitivity analyses varying AQI efficacy, coverage level (i.e. the target proportion of combined eligible non-household floor area receiving AQI installation), and allocation strategy (randomly distributed across locations vs. targeted to highest-risk eligible locations).
 In all instances, AQIs were assumed to be installed in schools, workplaces and leisure facilities only, with the assumption that private residences (i.e. households) would not have these installed.
 
 ## Disease and AQI scenario modelling
+
 We simulated two pathogen archetypes possessing the epidemiological properties of influenza and SARS-CoV-2, including the natural history (average incubation period of 2 days and an average duration of infectiousness of 4 days for SARS-CoV-2; average incubation period of 1 day, average duration of infectiousness of 2 days for influenza), and reproduction number (approximately ${R}_{0}\approx 1.5$ for influenza and ${R}_{0}\approx 2.5$ for SARS-CoV-2).
 For both pathogen archetypes, we carried out a suite of simulations assuming both endemic transmission (i.e. in which transmission is recurring and individuals are routinely reinfected due to declining immunity level, and which matches the dynamics of SARS-CoV-2 and influenza currently); and an alternative set of scenarios (“epidemic” scenarios) in which a novel pathogen with properties similar to existing influenza and SARS-CoV-2 viruses emerges into the population.
 We simulated both endemic and epidemic scenarios for each pathogen archetype under multiple AQI strategies: no AQI (baseline), random allocation of AQI to locations, and targeted allocation to the highest-risk eligible locations.
@@ -329,7 +334,7 @@ For epidemic scenarios, we examined epidemic final size, the time to the peak of
 # Results
 
 **AQI installation can achieve substantial reductions in endemic respiratory virus infection incidence burden, though impact depends on coverage and efficacy.**
-Across the explored scenarios, AQI installation reduced annualized disease incidence and the prevalence of active infections across both pathogen archetypes considered, though overall impact depended strongly on coverage (defined as the proportion of non-household floor area receiving AQI installation) and the efficacy of the AQI (defined as the proportion reduction in the force of infection experienced by a susceptible individual in the space where the AQI was installed).
+Across the explored scenarios, AQI installation reduced annualized disease incidence and the prevalence of active infections across both pathogen archetypes considered, though overall impact depended strongly on coverage (defined as the target proportion of non-household floor area receiving AQI installation) and the efficacy of the AQI (defined as the proportion reduction in the force of infection experienced by a susceptible individual in the space where the AQI was installed).
 Assuming random allocation of AQIs to locations, at 20% coverage and 80% efficacy, annualized disease incidence decreased by `r endemic_format(endemic_value("sars_cov_2", 0.8, 0.2, "mean_incidence_reduction"))`% (range `r endemic_format(endemic_value("sars_cov_2", 0.8, 0.2, "low_incidence"))`%-`r endemic_format(endemic_value("sars_cov_2", 0.8, 0.2, "hi_incidence"))`% across `r endemic_value("sars_cov_2", 0.8, 0.2, "n_post")` stochastic simulations) for the SARS-CoV-2-like pathogen and by `r endemic_format(endemic_value("flu", 0.8, 0.2, "mean_incidence_reduction"))`% (range `r endemic_format(endemic_value("flu", 0.8, 0.2, "low_incidence"))`%-`r endemic_format(endemic_value("flu", 0.8, 0.2, "hi_incidence"))`%) for the influenza-like pathogen (@fig-endemic, panels A and D).
 Active infection prevalence declined by `r endemic_format(endemic_value("sars_cov_2", 0.8, 0.2, "mean_prevalence_reduction"))`%, from `r endemic_format(endemic_value("sars_cov_2", 0.8, 0.2, "mean_prevalence_baseline"), digits = 1, scale = 1)`% to `r endemic_format(endemic_value("sars_cov_2", 0.8, 0.2, "mean_prevalence_post"), digits = 1, scale = 1)`% on average for SARS-CoV-2 and declined by `r endemic_format(endemic_value("flu", 0.8, 0.2, "mean_prevalence_reduction"))`%, from `r endemic_format(endemic_value("flu", 0.8, 0.2, "mean_prevalence_baseline"), digits = 1, scale = 1)`% to `r endemic_format(endemic_value("flu", 0.8, 0.2, "mean_prevalence_post"), digits = 1, scale = 1)`% for influenza on average (@fig-endemic, panels B and E).
 Increasing coverage or efficacy both led to larger reductions in infection incidence (@fig-endemic, panels C and F).
@@ -367,7 +372,6 @@ Without intervention, the peak incidence of the influenza archetype was `r epide
 As with our results examining endemic scenarios, the impact of AQI installation was more pronounced in the influenza archetype.
 Random AQI installation at 40% coverage and 60% efficacy reduced the final epidemic size by `r epidemic_format(epidemic_value("flu", "epidemic_final_size", "Random", 0.6, 0.4, "mean_pct_reduction"), scale = 100)`% (range `r epidemic_format(epidemic_value("flu", "epidemic_final_size", "Random", 0.6, 0.4, "min_pct_reduction"), scale = 100)`%-`r epidemic_format(epidemic_value("flu", "epidemic_final_size", "Random", 0.6, 0.4, "max_pct_reduction"), scale = 100)`%), compared with only `r epidemic_format(epidemic_value("sars_cov_2", "epidemic_final_size", "Random", 0.6, 0.4, "mean_pct_reduction"), scale = 100)`% (range `r epidemic_format(epidemic_value("sars_cov_2", "epidemic_final_size", "Random", 0.6, 0.4, "min_pct_reduction"), scale = 100)`%-`r epidemic_format(epidemic_value("sars_cov_2", "epidemic_final_size", "Random", 0.6, 0.4, "max_pct_reduction"), scale = 100)`%) for the SARS-CoV-2 archetype under the same settings (@fig-epidemic, panels A and E).
 
-
 ```{r}
 #| label: fig-endemic
 #| eval: true
@@ -383,9 +387,9 @@ Random AQI installation at 40% coverage and 60% efficacy reduced the final epide
 #|   **(D)** As for **(A)**, but for the influenza-like archetype.
 #|   **(E)** As for **(B)**, but for the influenza-like archetype.
 #|   **(F)** As for **(C)**, but for the influenza-like archetype.
+#|   Coverage denotes the target proportion of non-household floor area receiving AQIs.
 knitr::include_graphics(here::here("figures", "endemic_scenario", "plot.png"))
 ```
-
 
 ```{r}
 #| label: fig-targeting
@@ -394,7 +398,7 @@ knitr::include_graphics(here::here("figures", "endemic_scenario", "plot.png"))
 #| out-width: "100%"
 #| fig-cap: >
 #|   **Comparison of the impact achieved under random and risk-based AQI installation and deployment strategies.
-#|   (A)** Schematic contrasting random selection of locations with risk-based targeting when 50% of locations are equipped; grey bars indicate locations without AQIs, dark blue bars indicate locations with AQIs installed.
+#|   (A)** Schematic contrasting random selection of locations with risk-based targeting at a target coverage of 50% of eligible non-household floor area; grey bars indicate locations without AQIs, dark blue bars indicate locations with AQIs installed.
 #|   **(B)** Percentage reduction in annual incidence (y-axis) across increasing coverage (x-axis) for random (grey) versus targeted (blue) implementation, under alternative assumptions about AQI efficacy.
 #|   Bars show the mean; error bars show the range across 25 stochastic simulations.
 #|   **(C)** Relative added impact of targeted versus random deployment.
@@ -402,9 +406,9 @@ knitr::include_graphics(here::here("figures", "endemic_scenario", "plot.png"))
 #|   **(E)** As for (B) but for influenza-like archetype.
 #|   **(F)** As for (C) but for influenza-like archetype.
 #|   **(G)** As for (D) but for influenza-like archetype.
+#|   Coverage denotes the target proportion of non-household floor area receiving AQIs.
 knitr::include_graphics(here::here("figures", "endemic_targeting", "plot.png"))
 ```
-
 
 ```{r}
 #| label: fig-epidemic
@@ -421,8 +425,10 @@ knitr::include_graphics(here::here("figures", "endemic_targeting", "plot.png"))
 #|   **(F)** Heatmap of percentage reduction in final epidemic size for the influenza archetype.
 #|   **(G)** As for **(E)**, but for the peak incidence.
 #|   **(H)** As for **(F)**, but for the percentage reduction in peak incidence.
+#|   Coverage denotes the target proportion of combined school, workplace and leisure floor area receiving AQIs; households are excluded.
 knitr::include_graphics(here::here("figures", "epidemic_scenario", "plot.png"))
 ```
+
 Increasing either efficacy or coverage yielded similar increases in the impact on epidemic peak, timing and final size.
 For the influenza archetype, expanding randomly allocated coverage from 40% to 60% at 40% efficacy lowered the final epidemic size by `r epidemic_format(epidemic_reduction(0.4, 0.6), scale = 100)`%, approximately matching the `r epidemic_format(epidemic_reduction(0.6, 0.4), scale = 100)`% from instead increasing efficacy from 40% to 60% while holding coverage at 40% (@fig-epidemic, panel E).
 
@@ -436,7 +442,7 @@ In these cases, taking a targeted approach allowed a 20% reduction in the covera
 Our results highlight the potential impact that widespread improvements to indoor air quality (IAQ) could have on respiratory-virus transmission and associated disease burden.
 Across the pathogen archetypes explored here, we highlight the potential for widespread introduction of AQIs to yield substantial reductions in endemic disease burden as coverage and efficacy increase, with larger gains when interventions are targeted to higher-risk locations rather than distributed at random.
 In epidemic scenarios, AQIs reduce peak incidence and population-level spread.
-Our modeled results suggest that AQIs of modest efficacy and population coverage are unlikely to control pandemics driven by pathogens with moderate to high ${R}_{0}$ (e.g. above 1.5) on their own.
+Our modeled results suggest that AQIs of modest efficacy and floor-area coverage are unlikely to control pandemics driven by pathogens with moderate to high ${R}_{0}$ (e.g. above 1.5) on their own.
 However, widespread presence of these technologies would i) slow epidemic progression and spread, buying valuable time for countermeasure development, healthcare capacity surging, etc.; and ii) reduce the need for community-based mitigation measures (such as school or business closures) to control spread, which are typically highly costly from a socio-economic perspective.
 These conclusions are consistent with current practice guidance that positions ventilation, filtration, and ultraviolet germicidal irradiation as foundational layers of protection, and with policy frameworks that formalize minimum performance targets for infectious-aerosol control [@who2021ventilation].
 Taken together, our analyses support interventions improving indoor air as capable of supporting burden reduction while underscoring that realized impact will hinge on coverage, targeting, maintenance, and other factors relating to their practical deployment [@okokon2025the].
@@ -449,12 +455,12 @@ Crucially, because overall annual infection incidence for our SARS-CoV-2-like pa
 In both cases, achieving substantial impact (e.g. \>30% reduction) was contingent on comparatively high levels of coverage and/or efficacy: to achieve 30% reduction at assumed 60% efficacy required approximately 90% and approximately 45% coverage for the SARS-CoV-2-like and influenza-like pathogen, respectively.
 
 In our modeled epidemic scenarios, installed AQIs reduced the final epidemic size and peak incidence, as well as lengthening the time to peak, with more pronounced effects again for the influenza-like archetype than for SARS-CoV-2-like scenarios.
-Our modeled results show that AQIs of modest efficacy and population coverage are unlikely to achieve containment of the most highly transmissible pathogens on their own.
+Our modeled results show that AQIs of modest efficacy and floor-area coverage are unlikely to achieve containment of the most highly transmissible pathogens on their own.
 However, these results also indicate that these measures could still play a role in both reducing and slowing epidemic growth and associated population-level spread, buying time for the development of countermeasures under accelerated (but still delayed relative to epidemic onset) timelines, as with the Coalition for Epidemic Preparedness’ 100 Days Mission.
 Moreover, by lowering baseline transmission in public and community venues, IAQ improvements may also reduce reliance on disruptive measures such as prolonged school or business closures, which carry documented and persistent educational and macroeconomic costs [@oecd2020learning; @haw2022optimizing; @rothwell2024global].
 Together, these results position clean indoor air as a supportive component of layered epidemic control, even if not a standalone panacea for it.
 
-Despite these promising results, an important limitation of the analyses presented here is that sizeable and reliable burden disease reductions arise most clearly at high coverage (typically \>30% of targeted buildings).
+Despite these promising results, an important limitation of the analyses presented here is that sizeable and reliable burden disease reductions arise most clearly at high coverage (typically \>30% of eligible non-household floor area).
 Widespread and comprehensive improvement of indoor air quality across such a large stock of buildings is likely to be very expensive, and whether such levels can be achieved (especially in the short-term) remains an important practical question that we do not address here.
 Important to note however, is that the costs of different AQI technologies remain deeply uncertain (and likely highly variable), and no rigorous cost-effectiveness analysis has yet compared AQI interventions to alternative disease control measures (such as population-level vaccination).
 Without such analyses, whether AQI investments compare favourably to the per-person costs of other population-level control measures (such as vaccinating a comparable population fraction) remains an open question.
