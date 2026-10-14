@@ -1,0 +1,841 @@
+coverage_type,coverage,archetype,efficacy,metric,mean_value,max_value,min_value,sd_value,mean_pct_reduction,max_pct_reduction,min_pct_reduction,sd_pct_reduction,metric_label,metric_reduction_label,archetype_label,coverage_label,efficacy_label,coverage_fct,efficacy_fct
+Random,0,flu,0.2,epidemic_final_size,0.6134984,0.63646,0.57588,0.015561019589559898,0,0,0,0,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,0%,20%
+Random,0,flu,0.2,peak_daily_incidence,18.423199999999998,20.519999999999982,15.160000000000062,1.2624140894862037,0,0,0,0,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,0%,20%
+Random,0,flu,0.2,time_to_peak_infections,42.02,47.5,38,2.2336442569636437,0,0,0,0,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,0%,20%
+Random,0,flu,0.4,epidemic_final_size,0.612556,0.63884,0.58804,0.013885624460810778,9.333575998835478e-4,0.050686610313295515,-0.08619851357921793,0.03355833919471184,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,0%,40%
+Random,0,flu,0.4,peak_daily_incidence,18.467200000000005,20.220000000000017,16.279999999999962,1.1590783695103024,-0.006922298172573813,0.12550200803212624,-0.28364116094986497,0.09485535225817532,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,0%,40%
+Random,0,flu,0.4,time_to_peak_infections,41.68,44.5,38.5,1.580348062927911,0.004835308642002452,0.12359550561797752,-0.13157894736842105,0.07397035417337415,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,0%,40%
+Random,0,flu,0.6000000000000001,epidemic_final_size,0.6164472,0.64376,0.5961,0.0129382557814671,-0.005571332881248727,0.06211649202303419,-0.10238244078627495,0.03752762862723377,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,0%,60%
+Random,0,flu,0.6000000000000001,peak_daily_incidence,18.670399999999994,21.93999999999996,16.199999999999992,1.453078570942859,-0.019727018230468636,0.17446393762182844,-0.3179419525065907,0.12283948525063662,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,0%,60%
+Random,0,flu,0.6000000000000001,time_to_peak_infections,42.04,47,38.5,1.9035055380358978,-0.003727765755813421,0.14736842105263157,-0.1794871794871795,0.07801153650644686,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,0%,60%
+Random,0,flu,0.8,epidemic_final_size,0.6148064,0.64128,0.58444,0.015288876915369998,-0.002630850548675734,0.06630424535713166,-0.06925106013556392,0.03167934383558257,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,0%,80%
+Random,0,flu,0.8,peak_daily_incidence,18.778400000000012,21.68000000000003,16.54,1.283068197719828,-0.02328634897695994,0.12149532710280393,-0.1741424802110796,0.0907375914944995,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,0%,80%
+Random,0,flu,0.8,time_to_peak_infections,41.92,46,40,1.711967678822627,-2.9715536249870774e-5,0.11827956989247312,-0.10526315789473684,0.062150312103934985,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,0%,80%
+Random,0,flu,1,epidemic_final_size,0.6136168,0.64498,0.5783,0.0144742595435253,-7.200747436795328e-4,0.06908985544573575,-0.06040892193308554,0.031511334929331045,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,0%,100%
+Random,0,flu,1,peak_daily_incidence,18.48960000000001,21.359999999999935,16.220000000000013,1.2580821382829779,-0.00795814158047721,0.14631578947368432,-0.19293820933164085,0.09434305961707966,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,0%,100%
+Random,0,flu,1,time_to_peak_infections,41.82,44.5,38.5,1.6825080485196304,0.0025292905520716462,0.13978494623655913,-0.11842105263157894,0.058878013023926035,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,0%,100%
+Random,0,sars_cov_2,0.2,epidemic_final_size,0.8975448,0.90694,0.89224,0.003704930408703146,0,0,0,0,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,0%,20%
+Random,0,sars_cov_2,0.2,peak_daily_incidence,40.524,44.300000000000004,38.15999999999997,1.5873457930352348,0,0,0,0,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,0%,20%
+Random,0,sars_cov_2,0.2,time_to_peak_infections,38.26,40,37,0.7788880963698614,0,0,0,0,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,0%,20%
+Random,0,sars_cov_2,0.4,epidemic_final_size,0.89766,0.90402,0.8912,0.0032859194552920332,-1.4532404125393018e-4,0.011717798205781407,-0.009342862904129248,0.005630288218127663,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,0%,40%
+Random,0,sars_cov_2,0.4,peak_daily_incidence,40.5712,42.519999999999946,38.660000000000025,1.0376749651665098,-0.002665479142112102,0.09206200093940649,-0.0929018789144052,0.04748091059277373,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,0%,40%
+Random,0,sars_cov_2,0.4,time_to_peak_infections,37.98,40,36,0.8717797887081347,0.006815025843606793,0.07692307692307693,-0.05405405405405406,0.03374621889495794,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,0%,40%
+Random,0,sars_cov_2,0.6000000000000001,epidemic_final_size,0.8952904,0.90286,0.88718,0.0038546816556839906,0.0025010482215139045,0.010210157232010866,-0.005377187282952106,0.004874411247699197,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,0%,60%
+Random,0,sars_cov_2,0.6000000000000001,peak_daily_incidence,40.276799999999994,42.39999999999999,37.05999999999998,1.2392024316739645,0.005001572130002137,0.0875846501128667,-0.05685785536159477,0.041571164471380866,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,0%,60%
+Random,0,sars_cov_2,0.6000000000000001,time_to_peak_infections,38.14,39.5,36.5,0.7147260547463856,0.002831466279967279,0.05194805194805195,-0.05405405405405406,0.02389877809055304,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,0%,60%
+Random,0,sars_cov_2,0.8,epidemic_final_size,0.8970408,0.90404,0.88894,0.0034699926993198905,5.430977416972826e-4,0.015216001058504338,-0.008299404948324565,0.006018914992350626,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,0%,80%
+Random,0,sars_cov_2,0.8,peak_daily_incidence,40.455200000000005,43.59999999999997,38.23999999999994,1.2282545881588827,2.0972225739100014e-4,0.0929791271347258,-0.09163745618427638,0.05000692517574021,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,0%,80%
+Random,0,sars_cov_2,0.8,time_to_peak_infections,38.36,40.5,36.5,1.005402075457045,-0.0031055321886101377,0.0641025641025641,-0.06578947368421052,0.035995434965823095,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,0%,80%
+Random,0,sars_cov_2,1,epidemic_final_size,0.8984016,0.91238,0.89064,0.004606411908054539,-9.755950655038931e-4,0.013644015238770265,-0.021976791074868912,0.0072847162022713205,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,0%,100%
+Random,0,sars_cov_2,1,peak_daily_incidence,40.6544,44.60000000000003,38.000000000000036,1.374803258651937,-0.004944621189743408,0.10286519492719455,-0.16876310272536862,0.05739450290079223,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,0%,100%
+Random,0,sars_cov_2,1,time_to_peak_infections,38.42,40.5,36,1.0962055768270231,-0.0045161121021214294,0.07692307692307693,-0.06578947368421052,0.033121610562479906,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,0%,100%
+Random,0.2,flu,0.2,epidemic_final_size,0.5921336,0.61782,0.53954,0.016597374009161815,0.03405416686500625,0.13446483572895276,-0.04803083975828301,0.0410261213223027,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,20%,20%
+Random,0.2,flu,0.2,peak_daily_incidence,16.94000000000001,19.66000000000001,13.939999999999952,1.3449907062876063,0.07506699906903086,0.2851282051282062,-0.20184696569920438,0.10940349869511787,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,20%,20%
+Random,0.2,flu,0.2,time_to_peak_infections,42.76,45.5,38.5,2.0418537329266924,-0.020545835717724663,0.17894736842105263,-0.15789473684210525,0.07470420480813961,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,20%,20%
+Random,0.2,flu,0.4,epidemic_final_size,0.570612,0.61226,0.54016,0.017393601313893187,0.06921164499955572,0.11656185831622186,-0.035935563816604725,0.04021490038891981,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,20%,40%
+Random,0.2,flu,0.4,peak_daily_incidence,15.847200000000003,18.820000000000057,13.560000000000016,1.5708477541336248,0.1340253726051357,0.3046153846153824,-0.19393139841688195,0.12292734868020125,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,20%,40%
+Random,0.2,flu,0.4,time_to_peak_infections,43.54,48.5,40,2.3045245351988193,-0.03893564255155445,0.11827956989247312,-0.16666666666666666,0.07713254386849093,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,20%,40%
+Random,0.2,flu,0.6000000000000001,epidemic_final_size,0.54608,0.58032,0.50888,0.015115629879917894,0.10947674277933007,0.18659889389725387,0.04712787386261017,0.02919864575146588,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,20%,60%
+Random,0.2,flu,0.6000000000000001,peak_daily_incidence,14.28640000000001,16.719999999999956,12.179999999999968,1.090821097461292,0.22129291237152585,0.35759493670886167,0.05408970976253559,0.07662501891586393,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,20%,60%
+Random,0.2,flu,0.6000000000000001,time_to_peak_infections,44.94,48.5,41,1.9595917942265428,-0.07214214764918675,0.06451612903225806,-0.2,0.06947080296818478,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,20%,60%
+Random,0.2,flu,0.8,epidemic_final_size,0.523912,0.55706,0.49268,0.018648521835970454,0.14572986822590372,0.19676894096612485,0.0764392678868552,0.03126109508115063,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,20%,80%
+Random,0.2,flu,0.8,peak_daily_incidence,13.617599999999994,16.839999999999968,11.319999999999997,1.452633470631866,0.2595505987573245,0.35891891891891853,0.09534883720930085,0.07468576139085636,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,20%,80%
+Random,0.2,flu,0.8,time_to_peak_infections,45.48,52,41.5,2.822823645453845,-0.0840707599680864,0.056179775280898875,-0.20238095238095238,0.07114953121953586,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,20%,80%
+Random,0.2,flu,1,epidemic_final_size,0.5050528,0.5362,0.44296,0.020210413058619064,0.1758876614229571,0.30306177035148996,0.0948461485031604,0.04624360316172735,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,20%,100%
+Random,0.2,flu,1,peak_daily_incidence,13.164800000000003,15.260000000000051,9.399999999999963,1.392076147342532,0.2800862883222039,0.541910331384017,0.07387862796834534,0.10566199293467818,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,20%,100%
+Random,0.2,flu,1,time_to_peak_infections,45.1,51,41,2.4748737341529163,-0.07746487230369696,0.1368421052631579,-0.2911392405063291,0.09804597227503392,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,20%,100%
+Random,0.2,sars_cov_2,0.2,epidemic_final_size,0.8900936,0.89794,0.88498,0.003037596198751025,0.008286646745618336,0.016612031540710566,-0.002914014166591876,0.005098341446859137,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,20%,20%
+Random,0.2,sars_cov_2,0.2,peak_daily_incidence,38.86000000000001,41.83999999999999,37.039999999999964,1.0441264291262864,0.03939103796197735,0.15349887133182902,-0.08225556130367505,0.05094457549338061,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,20%,20%
+Random,0.2,sars_cov_2,0.2,time_to_peak_infections,39.1,41,37.5,0.8660254037844386,-0.02249935685491981,0.0625,-0.10810810810810811,0.03526664880339901,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,20%,20%
+Random,0.2,sars_cov_2,0.4,epidemic_final_size,0.8819136,0.89138,0.86932,0.004789724139586054,0.0173934320251502,0.037191272566175715,0.006433246660091543,0.0075567732526174896,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,20%,40%
+Random,0.2,sars_cov_2,0.4,peak_daily_incidence,37.3952,39.140000000000065,36.00000000000003,0.963764839920337,0.0756607786040627,0.17516930022573327,0.005138746145938279,0.047017558687997306,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,20%,40%
+Random,0.2,sars_cov_2,0.4,time_to_peak_infections,39.54,42,38,0.9780933834080806,-0.034001136986546714,0.0375,-0.12162162162162163,0.03718599572241004,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,20%,40%
+Random,0.2,sars_cov_2,0.6000000000000001,epidemic_final_size,0.8719408,0.88166,0.86234,0.004750510428715357,0.028513128778719844,0.03685750664552017,0.01437642534543664,0.006290486310084932,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,20%,60%
+Random,0.2,sars_cov_2,0.6000000000000001,peak_daily_incidence,36.1872,38.27999999999998,34.519999999999996,0.969740171386122,0.10569312375769996,0.17563218390804572,0.02990369994931752,0.042649358364566035,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,20%,60%
+Random,0.2,sars_cov_2,0.6000000000000001,time_to_peak_infections,39.88,41.5,38.5,0.8072587358874893,-0.04277777213273549,0.025,-0.09333333333333334,0.030646558341109815,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,20%,60%
+Random,0.2,sars_cov_2,0.8,epidemic_final_size,0.8565496,0.86302,0.84778,0.004737538460705795,0.04566010229314357,0.0582177431803647,0.033204131472229066,0.006451741666300976,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,20%,80%
+Random,0.2,sars_cov_2,0.8,peak_daily_incidence,34.2248,36.739999999999995,32.119999999999926,1.2401784817786037,0.1540059053284263,0.26365688487584454,0.06315240083507252,0.04857155567338869,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,20%,80%
+Random,0.2,sars_cov_2,0.8,time_to_peak_infections,40.64,43,38.5,1.2120918557051137,-0.06267018661695543,0.012658227848101266,-0.13513513513513514,0.039417010307041825,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,20%,80%
+Random,0.2,sars_cov_2,1,epidemic_final_size,0.840464,0.85774,0.82968,0.007229887043838703,0.06357451672965592,0.07712842873350989,0.040415134941271386,0.009663895219488247,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,20%,100%
+Random,0.2,sars_cov_2,1,peak_daily_incidence,33.01680000000001,36.959999999999994,30.67999999999993,1.4071801590414832,0.18378991105489617,0.269321953532478,0.035490605427975656,0.052522439293487586,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,20%,100%
+Random,0.2,sars_cov_2,1,time_to_peak_infections,41.16,43.5,39,1.048013994817499,-0.07627998153900885,0.012658227848101266,-0.17567567567567569,0.03683523341287722,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,20%,100%
+Random,0.4,flu,0.2,epidemic_final_size,0.57098,0.60358,0.54658,0.013971049829319682,0.06875690430543713,0.14121861546680084,0.02052510939779111,0.031644616371699616,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,40%,20%
+Random,0.4,flu,0.2,peak_daily_incidence,15.473599999999994,17.679999999999918,13.440000000000008,1.0965661554750517,0.15786013900579113,0.2678002125398586,0.02036199095022779,0.06363469073920586,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,40%,20%
+Random,0.4,flu,0.2,time_to_peak_infections,44.38,49.5,41.5,2.08806130178211,-0.05885440630670316,0.08421052631578947,-0.19736842105263158,0.07256419339416785,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,40%,20%
+Random,0.4,flu,0.4,epidemic_final_size,0.5244408,0.54356,0.49774,0.01456461291395461,0.14462154492450408,0.2062203546302487,0.07252512735784103,0.032504059701507014,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,40%,40%
+Random,0.4,flu,0.4,peak_daily_incidence,13.143199999999995,15.100000000000001,11.440000000000005,1.0182776307733246,0.28357916037586217,0.3875802997858679,0.12736443883985618,0.07140421387199443,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,40%,40%
+Random,0.4,flu,0.4,time_to_peak_infections,45.58,52,40,2.88559641437722,-0.0879849596305667,0.09090909090909091,-0.3,0.09497802824852287,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,40%,40%
+Random,0.4,flu,0.6000000000000001,epidemic_final_size,0.46809839999999997,0.5063,0.41396,0.023169961099089764,0.23682477446057762,0.31829260259534947,0.18948565313356971,0.036591106134118215,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,40%,60%
+Random,0.4,flu,0.6000000000000001,peak_daily_incidence,10.703199999999974,13.14000000000004,7.560000000000011,1.4099489352455357,0.4185467472026537,0.5604651162790689,0.2640845070422562,0.0714324929665317,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,40%,60%
+Random,0.4,flu,0.6000000000000001,time_to_peak_infections,47.48,55.5,36,4.512667356084056,-0.13274150294071413,0.14285714285714285,-0.3875,0.12006683361688976,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,40%,60%
+Random,0.4,flu,0.8,epidemic_final_size,0.4075128,0.46782,0.34516,0.028594935379072522,0.3355288064648936,0.447744,0.2522297880502541,0.04666876699228452,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,40%,80%
+Random,0.4,flu,0.8,peak_daily_incidence,8.560800000000004,12.13999999999993,6.000000000000005,1.4028242940582565,0.5341575396365742,0.6788008565310495,0.35970464135021385,0.07597888405309938,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,40%,80%
+Random,0.4,flu,0.8,time_to_peak_infections,49.34,60,41.5,4.6068789145508635,-0.17673503789581885,0.011363636363636364,-0.4473684210526316,0.12105323030595669,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,40%,80%
+Random,0.4,flu,1,epidemic_final_size,0.3542248,0.39234,0.29376,0.024990164918756875,0.42197600427117526,0.5338770588048618,0.3545022717885171,0.04684381898098078,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,40%,100%
+Random,0.4,flu,1,peak_daily_incidence,6.803199999999996,8.539999999999992,4.9600000000000755,0.9383084070105235,0.6278424932167582,0.7519999999999964,0.5034883720930234,0.06446868969679041,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,40%,100%
+Random,0.4,flu,1,time_to_peak_infections,52.28,64.5,43,5.293628245353086,-0.24818494390818202,0.07526881720430108,-0.573170731707317,0.14638570428746006,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,40%,100%
+Random,0.4,sars_cov_2,0.2,epidemic_final_size,0.884472,0.89218,0.87658,0.0036381634561043763,0.014547429199309044,0.024654332149866513,0.003529385484843804,0.006010597053417442,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,40%,20%
+Random,0.4,sars_cov_2,0.2,peak_daily_incidence,37.73439999999999,40.6399999999999,35.78000000000004,1.1772357452948836,0.06743157934295392,0.1430601610611082,-0.013466334164585488,0.0475533103187108,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,40%,20%
+Random,0.4,sars_cov_2,0.2,time_to_peak_infections,39.3,41,37.5,0.9895285072531601,-0.027571856544341557,0.0625,-0.08,0.03237974888781846,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,40%,20%
+Random,0.4,sars_cov_2,0.4,epidemic_final_size,0.8660304,0.8751,0.85808,0.004665915844361824,0.035087420083666394,0.04970319836980601,0.023211525104743082,0.007746551070901801,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,40%,40%
+Random,0.4,sars_cov_2,0.4,peak_daily_incidence,34.7656,37.39999999999999,32.54000000000001,1.065340634100957,0.14065515025910608,0.229275225011842,0.052204764318298444,0.04637563393091575,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,40%,40%
+Random,0.4,sars_cov_2,0.4,time_to_peak_infections,40.9,43.5,39,0.9354143466934857,-0.0695399220018807,-0.012658227848101266,-0.17567567567567569,0.0367115793478923,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,40%,40%
+Random,0.4,sars_cov_2,0.6000000000000001,epidemic_final_size,0.8412896,0.85186,0.82924,0.005989774954036252,0.06265074028513674,0.0815815704950715,0.045256881556531965,0.008965555345688799,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,40%,60%
+Random,0.4,sars_cov_2,0.6000000000000001,peak_daily_incidence,31.466399999999993,33.98000000000001,28.980000000000004,1.204556903318949,0.22210958108516168,0.3250574712643689,0.15396264512872276,0.0468941268587761,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,40%,60%
+Random,0.4,sars_cov_2,0.6000000000000001,time_to_peak_infections,42.12,44,39.5,1.0634064760632846,-0.10136073355014061,-0.025974025974025976,-0.16216216216216217,0.03677254356282076,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,40%,60%
+Random,0.4,sars_cov_2,0.8,epidemic_final_size,0.8058976,0.81372,0.79336,0.006255142737513412,0.10209168040472538,0.12523430436412555,0.09141782692393795,0.008161737609434174,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,40%,80%
+Random,0.4,sars_cov_2,0.8,peak_daily_incidence,28.166400000000007,31.360000000000056,25.320000000000007,1.4240870759894007,0.30404415299752874,0.39943074003795015,0.23586744639376014,0.04224471867694651,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,40%,80%
+Random,0.4,sars_cov_2,0.8,time_to_peak_infections,43.7,47.5,40,1.6457014715109584,-0.1423844005632147,-0.05263157894736842,-0.25,0.04247696521401224,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,40%,80%
+Random,0.4,sars_cov_2,1,epidemic_final_size,0.76438,0.77982,0.7437,0.007383831435417966,0.14834252284417695,0.17429053603943687,0.12640871104339843,0.009821194562825717,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,40%,100%
+Random,0.4,sars_cov_2,1,peak_daily_incidence,25.796799999999998,29.059999999999974,23.05999999999997,1.3312109775188485,0.3620348246621404,0.4467370441458747,0.2515657620041748,0.04846123680545187,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,40%,100%
+Random,0.4,sars_cov_2,1,time_to_peak_infections,43.72,47.5,40.5,1.689921102694837,-0.14335230568148621,-0.02531645569620253,-0.26666666666666666,0.054233363203247405,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,40%,100%
+Random,0.6000000000000001,flu,0.2,epidemic_final_size,0.5474640000000001,0.5735,0.5189,0.01478548725383555,0.10699741752886056,0.18360933915721345,0.012572063624366038,0.03551332589695019,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,60%,20%
+Random,0.6000000000000001,flu,0.2,peak_daily_incidence,14.198400000000007,16.040000000000056,12.119999999999909,0.9588347094259918,0.22592096614657106,0.3384279475982544,0.04089709762533393,0.07383972590571258,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,60%,20%
+Random,0.6000000000000001,flu,0.2,time_to_peak_infections,45.48,50.5,42.5,1.9551214796017156,-0.08549546940220715,0.09473684210526316,-0.2073170731707317,0.07611077771093333,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,60%,20%
+Random,0.6000000000000001,flu,0.4,epidemic_final_size,0.4660592,0.4949,0.42402,0.01921990329493535,0.23997367910347195,0.3271873314080797,0.15791484337014652,0.03430102390525587,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,60%,40%
+Random,0.6000000000000001,flu,0.4,peak_daily_incidence,9.888,12.900000000000023,7.360000000000033,1.2291460450247524,0.4614906250688423,0.5890000000000001,0.26517150395778405,0.0725482850499948,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,60%,40%
+Random,0.6000000000000001,flu,0.4,time_to_peak_infections,50.6,58,45,3.5207716957129347,-0.2071344685853993,0.042105263157894736,-0.4146341463414634,0.10086362459156957,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,60%,40%
+Random,0.6000000000000001,flu,0.6000000000000001,epidemic_final_size,0.3751624,0.42738,0.32774,0.02021107148734739,0.3881936833473496,0.43922510406660265,0.3168696652920303,0.03503518880069713,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,60%,60%
+Random,0.6000000000000001,flu,0.6000000000000001,peak_daily_incidence,7.060800000000009,8.940000000000058,4.4000000000000705,0.946792479902536,0.6152974945774959,0.7225725094577526,0.5065963060686008,0.05711467717591913,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,60%,60%
+Random,0.6000000000000001,flu,0.6000000000000001,time_to_peak_infections,52.04,65.5,42.5,5.068119309303337,-0.24184943408503784,0.03409090909090909,-0.5057471264367817,0.1361872007473495,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,60%,60%
+Random,0.6000000000000001,flu,0.8,epidemic_final_size,0.2718528,0.33722,0.21192,0.03077821355006384,0.5563055984342493,0.6653450391768149,0.4388458082337671,0.05422443154427755,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,60%,80%
+Random,0.6000000000000001,flu,0.8,peak_daily_incidence,4.419200000000005,7.020000000000026,2.6199999999999557,1.0918253828642623,0.7583818210483936,0.8639667705088293,0.5775535939470366,0.06599589814717186,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,60%,80%
+Random,0.6000000000000001,flu,0.8,time_to_peak_infections,53.26,67.5,43,6.246865880850439,-0.27314559769139185,0.021505376344086023,-0.6463414634146342,0.18201943645074375,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,60%,80%
+Random,0.6000000000000001,flu,1,epidemic_final_size,0.215868,0.29804,0.15916,0.0362043961419052,0.6478020087876,0.749583057994273,0.5072252901689759,0.06057662927517933,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,60%,100%
+Random,0.6000000000000001,flu,1,peak_daily_incidence,3.595199999999985,6.159999999999943,2.1999999999999797,1.0518440949113996,0.803670172507669,0.8871794871794881,0.663755458515285,0.06072413696199905,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,60%,100%
+Random,0.6000000000000001,flu,1,time_to_peak_infections,51.74,64,37,7.106511098985211,-0.23594593077432066,0.0975609756097561,-0.5609756097560976,0.19178104352024994,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,60%,100%
+Random,0.6000000000000001,sars_cov_2,0.2,epidemic_final_size,0.8778304,0.88454,0.87072,0.0033097135827741884,0.021948842341756397,0.033872141486757636,0.011141936638625468,0.005460241533663648,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,60%,20%
+Random,0.6000000000000001,sars_cov_2,0.2,peak_daily_incidence,36.294399999999996,38.38000000000008,34.959999999999994,0.9101560305793828,0.10294898305206968,0.20316027088036132,0.01100628930817541,0.04420380067190382,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,60%,20%
+Random,0.6000000000000001,sars_cov_2,0.2,time_to_peak_infections,40.26,41.5,38,0.7788880963698614,-0.052838950806772256,0.0125,-0.12162162162162163,0.03462292965122003,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,60%,20%
+Random,0.6000000000000001,sars_cov_2,0.4,epidemic_final_size,0.8462144,0.85698,0.8375,0.004422064073107333,0.057175570575731284,0.07028028314993276,0.044146515570625565,0.00608468955475348,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,60%,40%
+Random,0.6000000000000001,sars_cov_2,0.4,peak_daily_incidence,31.366400000000002,33.49999999999997,29.92000000000006,0.8696497379213401,0.22502633186319207,0.2913311226906662,0.16208104052026123,0.032846921922909965,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,60%,40%
+Random,0.6000000000000001,sars_cov_2,0.4,time_to_peak_infections,42.9,44.5,41.5,0.9464847243000457,-0.12159492917727428,-0.07692307692307693,-0.18666666666666668,0.029064577174844834,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,60%,40%
+Random,0.6000000000000001,sars_cov_2,0.6000000000000001,epidemic_final_size,0.8015496,0.81208,0.79192,0.004737830445819422,0.10693951931127384,0.12106644320462215,0.09504538747037516,0.006285643616548286,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,60%,60%
+Random,0.6000000000000001,sars_cov_2,0.6000000000000001,peak_daily_incidence,26.43600000000001,28.70000000000006,25.100000000000012,1.0010327999954256,0.34686089736678505,0.3942125237191646,0.2682425488180859,0.03230711288073199,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,60%,60%
+Random,0.6000000000000001,sars_cov_2,0.6000000000000001,time_to_peak_infections,45.68,48,42.5,1.4568802284333466,-0.19420706663378215,-0.13157894736842105,-0.25,0.03931126568454637,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,60%,60%
+Random,0.6000000000000001,sars_cov_2,0.8,epidemic_final_size,0.7382056,0.75246,0.71672,0.009946398879326458,0.17752222587860733,0.20270540859234204,0.16371464263406801,0.01099059913223985,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,60%,80%
+Random,0.6000000000000001,sars_cov_2,0.8,peak_daily_incidence,21.762400000000007,23.880000000000013,19.459999999999923,1.0766200196293394,0.462281823956399,0.5225225225225213,0.39999999999999974,0.032361517331558086,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,60%,80%
+Random,0.6000000000000001,sars_cov_2,0.8,time_to_peak_infections,48.02,51,44,2.1138432612976144,-0.25554447317871704,-0.14285714285714285,-0.33783783783783783,0.059770513725944996,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,60%,80%
+Random,0.6000000000000001,sars_cov_2,1,epidemic_final_size,0.6484759999999999,0.677,0.6251,0.013444189575178317,0.27748449163829264,0.30422115470153893,0.25019381991361167,0.015461240231488819,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,60%,100%
+Random,0.6000000000000001,sars_cov_2,1,peak_daily_incidence,17.50319999999999,19.839999999999968,15.23999999999992,1.0279053134084601,0.5675552832204843,0.6230248306997732,0.5191424196018384,0.028833228692126255,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,60%,100%
+Random,0.6000000000000001,sars_cov_2,1,time_to_peak_infections,48.98,52,43.5,2.0180436070610566,-0.28055272917178314,-0.12987012987012986,-0.35135135135135137,0.055298666726157165,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,60%,100%
+Random,0.8,flu,0.2,epidemic_final_size,0.5314936,0.5639,0.49784,0.015551351195314188,0.13298854228019819,0.19837853125098204,0.05708648250953123,0.037233888165244526,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,80%,20%
+Random,0.8,flu,0.2,peak_daily_incidence,13.033600000000005,14.519999999999978,11.02000000000003,0.8827744143702125,0.28879003984998497,0.4144527098831033,0.13871374527112715,0.07444726848421984,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,80%,20%
+Random,0.8,flu,0.2,time_to_peak_infections,46.96,52,44.5,1.9306734576307827,-0.12078388009216204,0.021052631578947368,-0.3026315789473684,0.07947290949435916,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,80%,20%
+Random,0.8,flu,0.4,epidemic_final_size,0.4022416,0.45496,0.34824,0.02168336837301806,0.3436224631237288,0.4520910034928727,0.2394943390984232,0.04451876045291464,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,80%,40%
+Random,0.8,flu,0.4,peak_daily_incidence,7.455199999999991,9.660000000000002,5.539999999999989,0.9119992690055672,0.59222566806783306,0.7300194931773882,0.41820580474933944,0.0666789716731288,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,80%,40%
+Random,0.8,flu,0.4,time_to_peak_infections,54.14,62,44,4.47567499564777,-0.2899016006634339,-0.07317073170731707,-0.4588235294117647,0.10413932954468091,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,80%,40%
+Random,0.8,flu,0.6000000000000001,epidemic_final_size,0.2470976,0.29394,0.18454,0.028141415695258354,0.5968443617873894,0.6997689779715615,0.510696672917969,0.048449789540276754,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,80%,60%
+Random,0.8,flu,0.6000000000000001,peak_daily_incidence,3.4360000000000124,4.7000000000000375,1.9400000000000528,0.7570777150772939,0.8122412974722957,0.8969181721572769,0.7320410490307846,0.04529467542073264,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,80%,60%
+Random,0.8,flu,0.6000000000000001,time_to_peak_infections,58.56,82.5,44.5,8.701436662988472,-0.3991454067668603,-0.02247191011235955,-0.9642857142857143,0.23160127312034892,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,80%,60%
+Random,0.8,flu,0.8,epidemic_final_size,0.110124,0.16644,0.0494,0.027730151460098443,0.8201403966464949,0.919580647261835,0.7216908567988762,0.04678581923617734,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,80%,80%
+Random,0.8,flu,0.8,peak_daily_incidence,1.5647999999999929,2.3999999999999577,1.080000000000081,0.3581098527919398,0.9145144380638475,0.9437751004016056,0.8591549295774678,0.02127398422853972,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,80%,80%
+Random,0.8,flu,0.8,time_to_peak_infections,26.740000000000002,69,4,25.079506906370117,0.3651246599473106,0.9139784946236559,-0.6707317073170732,0.591176330064092,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,80%,80%
+Random,0.8,flu,1,epidemic_final_size,0.0645296,0.12462,0.02662,0.026874910926984175,0.89455502865237,0.9581749049429659,0.793955226348335,0.04467219557053996,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,80%,100%
+Random,0.8,flu,1,peak_daily_incidence,1.2687999999999988,2.3400000000000087,0.9000000000000119,0.37590246962033824,0.9305089878173637,0.9522417153996109,0.8688524590163962,0.022228593830144125,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,80%,100%
+Random,0.8,flu,1,time_to_peak_infections,12.34,56,4,17.234727538703165,0.7059148090311961,0.9157894736842105,-0.36585365853658536,0.41269680056213,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,80%,100%
+Random,0.8,sars_cov_2,0.2,epidemic_final_size,0.86934,0.8783,0.85796,0.004654381448341633,0.031401105937909436,0.047938212969949864,0.018768735179633917,0.0076074236856446915,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,80%,20%
+Random,0.8,sars_cov_2,0.2,peak_daily_incidence,35.008799999999994,36.559999999999924,33.98000000000007,0.7728535868239537,0.1348378306134598,0.21715575620767646,0.06837160751565936,0.03861110142059034,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,80%,20%
+Random,0.8,sars_cov_2,0.2,time_to_peak_infections,41.16,43,39.5,0.9433981132056602,-0.07625897300627481,-0.01282051282051282,-0.13513513513513514,0.03420428496648487,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,80%,20%
+Random,0.8,sars_cov_2,0.4,epidemic_final_size,0.8244544,0.83614,0.81336,0.006020585575063828,0.08142009724604102,0.09916934322737851,0.063786884144019,0.007529776992689262,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,80%,40%
+Random,0.8,sars_cov_2,0.4,peak_daily_incidence,28.301599999999997,30.519999999999992,27.179999999999982,0.8443916942588542,0.30049031268225246,0.3751724137931037,0.22968197879858657,0.036172797345230705,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,80%,40%
+Random,0.8,sars_cov_2,0.4,time_to_peak_infections,45.08,46.5,43.5,0.7170541588099649,-0.17881177401803652,-0.125,-0.25675675675675674,0.034008393777538844,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,80%,40%
+Random,0.8,sars_cov_2,0.6000000000000001,epidemic_final_size,0.7547768,0.77436,0.73894,0.009318706419526973,0.15905641036824314,0.17478072118366259,0.13751085963778922,0.010536349737904339,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,80%,60%
+Random,0.8,sars_cov_2,0.6000000000000001,peak_daily_incidence,21.27999999999999,22.73999999999998,19.73999999999998,0.9207424540373024,0.4741590423732127,0.5300225733634323,0.4164926931106492,0.029785457268268384,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,80%,60%
+Random,0.8,sars_cov_2,0.6000000000000001,time_to_peak_infections,49.76,52.5,45.5,1.9585283590832516,-0.30124672315578377,-0.19736842105263158,-0.4189189189189189,0.06136899698553505,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,80%,60%
+Random,0.8,sars_cov_2,0.8,epidemic_final_size,0.6323376,0.66072,0.61198,0.012738007850523567,0.29546783286816564,0.3199768873480454,0.2650664056416988,0.01453922606132947,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,80%,80%
+Random,0.8,sars_cov_2,0.8,peak_daily_incidence,14.225600000000004,17.100000000000005,12.599999999999945,1.1873853628877156,0.6484626035996758,0.688477951635848,0.560637204522096,0.03249423503302041,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,80%,80%
+Random,0.8,sars_cov_2,0.8,time_to_peak_infections,55.4,62.5,48,3.0788255336518615,-0.4483599821033532,-0.2631578947368421,-0.6447368421052632,0.0821477892607939,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,80%,80%
+Random,0.8,sars_cov_2,1,epidemic_final_size,0.4543584,0.50624,0.419,0.018416762219963283,0.49375917004384207,0.535043721425718,0.43406519697714974,0.02084883598225896,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,80%,100%
+Random,0.8,sars_cov_2,1,peak_daily_incidence,8.6064,11.880000000000003,6.659999999999999,1.0755110413194298,0.7870869499990952,0.845146726862303,0.6989356310187534,0.029296362341635098,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,80%,100%
+Random,0.8,sars_cov_2,1,time_to_peak_infections,59.14,65,53.5,3.4926112485264285,-0.5468821675008884,-0.38961038961038963,-0.7432432432432432,0.10555037225376394,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,80%,100%
+Random,1,flu,0.2,epidemic_final_size,0.500732,0.53728,0.46756,0.017863279840686228,0.18323062643378737,0.251904,0.1015985552805833,0.03747905964769984,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,100%,20%
+Random,1,flu,0.2,peak_daily_incidence,11.511199999999992,13.560000000000016,9.120000000000017,0.9936142779435766,0.3717355276788067,0.5117773019271947,0.20976253298153427,0.07524587816210727,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,100%,20%
+Random,1,flu,0.2,time_to_peak_infections,48.6,53.5,45,2.406588179698942,-0.15946002678321863,0.05263157894736842,-0.3048780487804878,0.0795997148134825,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,100%,20%
+Random,1,flu,0.4,epidemic_final_size,0.3277104,0.36988,0.28066,0.0235674663607836,0.46530425805565423,0.5466939114332238,0.37014655831075916,0.04344918936521325,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,100%,40%
+Random,1,flu,0.4,peak_daily_incidence,4.832000000000001,6.179999999999963,3.1200000000000117,0.7874854496010285,0.7355135668748903,0.8378378378378366,0.6002638522427487,0.05234673698611784,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,100%,40%
+Random,1,flu,0.4,time_to_peak_infections,59.6,75,51.5,5.2221483446310994,-0.42282582428716164,-0.24731182795698925,-0.9736842105263158,0.15790548071810243,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,100%,40%
+Random,1,flu,0.6000000000000001,epidemic_final_size,0.0794752,0.11038,0.04634,0.017907530334098743,0.8704742227334342,0.9258085174511687,0.824854812605122,0.02872132597344688,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,100%,60%
+Random,1,flu,0.6000000000000001,peak_daily_incidence,1.366400000000012,1.6800000000000148,0.9800000000000919,0.15723867208800052,0.9256372869803047,0.9415204678362583,0.910633484162901,0.008826294927134692,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,100%,60%
+Random,1,flu,0.6000000000000001,time_to_peak_infections,4.02,4.5,4,0.1,0.9040283122352519,0.9157894736842105,0.881578947368421,0.006505196883868344,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,100%,60%
+Random,1,flu,0.8,epidemic_final_size,0.0206592,0.02602,0.01622,0.0023057210007573197,0.9663138410149441,0.9740313800832533,0.9583946274384393,0.0037352539442028184,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,100%,80%
+Random,1,flu,0.8,peak_daily_incidence,1.0623999999999967,1.2199999999999989,0.8799999999999919,0.09079647570252518,0.9420974494111561,0.9532412327311377,0.9274406332453836,0.006098904723352101,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,100%,80%
+Random,1,flu,0.8,time_to_peak_infections,4.02,4.5,4,0.1,0.9040482989108015,0.9157894736842105,0.8860759493670886,0.006097229529539478,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,100%,80%
+Random,1,flu,1,epidemic_final_size,0.011204,0.01228,0.00962,6.812243878977518e-4,0.9817236205274993,0.9846232537322976,0.9800305619226228,0.0012344311872351122,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,100%,100%
+Random,1,flu,1,peak_daily_incidence,0.8175999999999917,1.0000000000000009,0.640000000000085,0.08968834929911118,0.9553285001593033,0.966244725738392,0.9432717678100284,0.006459049130626333,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,100%,100%
+Random,1,flu,1,time_to_peak_infections,4,4,4,0,0.9045546280247255,0.9157894736842105,0.8947368421052632,0.004962586281556851,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,100%,100%
+Random,1,sars_cov_2,0.2,epidemic_final_size,0.8604056,0.869,0.8528,0.004982233501820899,0.041366782718881015,0.054226299424438226,0.03062413190555136,0.00623456517241457,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,100%,20%
+Random,1,sars_cov_2,0.2,peak_daily_incidence,33.4184,35.399999999999984,31.359999999999943,1.0297235875062094,0.17438535852455622,0.23400097703957107,0.10770801429300662,0.035539693370125344,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,100%,20%
+Random,1,sars_cov_2,0.2,time_to_peak_infections,41.44,43,39,1.0136567466356643,-0.08339630684360864,-0.02564102564102564,-0.14864864864864866,0.029296205951220785,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,100%,20%
+Random,1,sars_cov_2,0.4,epidemic_final_size,0.7979648,0.81878,0.7852,0.007723952528768318,0.11094249480285018,0.12660452492714291,0.09322672100646766,0.00830369981686107,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,100%,40%
+Random,1,sars_cov_2,0.4,peak_daily_incidence,24.97679999999999,27.899999999999924,22.800000000000043,1.331048208493344,0.38295363324721204,0.4392776523702013,0.30653266331658124,0.03748655277751216,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,100%,40%
+Random,1,sars_cov_2,0.4,time_to_peak_infections,48.14,51,44.5,1.4966629547095762,-0.25854399516131693,-0.17721518987341772,-0.36,0.04136788896603859,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,100%,40%
+Random,1,sars_cov_2,0.6000000000000001,epidemic_final_size,0.6888184,0.70666,0.66854,0.010429010691335956,0.23254938397233718,0.2546105759604903,0.2119796091758709,0.011415812745481407,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,100%,60%
+Random,1,sars_cov_2,0.6000000000000001,peak_daily_incidence,15.579999999999984,17.58000000000004,13.340000000000018,0.9437513796899453,0.6149952228918181,0.6663656884875868,0.5558362809499744,0.02762576236485368,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,100%,60%
+Random,1,sars_cov_2,0.6000000000000001,time_to_peak_infections,58.78,64.5,54.5,2.3232520310977884,-0.5371196564915419,-0.3974358974358974,-0.6973684210526315,0.07229303412584832,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,100%,60%
+Random,1,sars_cov_2,0.8,epidemic_final_size,0.455148,0.48784,0.42512,0.013249418855180023,0.49287787555615936,0.529161590430834,0.4543420876023444,0.015267349640933367,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,100%,80%
+Random,1,sars_cov_2,0.8,peak_daily_incidence,5.5967999999999885,6.840000000000068,4.5800000000000285,0.49469451853306823,0.861544429055903,0.8947126436781603,0.8287431146720062,0.014771708675626188,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,100%,80%
+Random,1,sars_cov_2,0.8,time_to_peak_infections,81.3,93,65.5,6.712860791048776,-1.1260575649012026,-0.7702702702702703,-1.5135135135135136,0.18552677700730613,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,100%,80%
+Random,1,sars_cov_2,1,epidemic_final_size,0.0426704,0.06322,0.03222,0.007022687329885427,0.9524459759797127,0.9639613440114536,0.9293252247015158,0.007917945814225724,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,100%,100%
+Random,1,sars_cov_2,1,peak_daily_incidence,0.9248000000000012,1.1799999999999589,0.7000000000000339,0.10104124570357512,0.9771007613032227,0.9841986455981935,0.9692066805845523,0.003007203089241291,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,100%,100%
+Random,1,sars_cov_2,1,time_to_peak_infections,9.04,15,5.5,3.5264476932649003,0.7641616923772819,0.8571428571428571,0.6052631578947368,0.09062671479990166,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,100%,100%
+Targeted,0,flu,0.2,epidemic_final_size,0.6192832,0.66064,0.59068,0.015837189018256998,-0.00980394551388929,0.029412688935675564,-0.06681358309125524,0.028143103940139278,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,0%,20%
+Targeted,0,flu,0.2,peak_daily_incidence,18.97359999999999,23.18000000000009,16.38000000000006,1.6109388566919642,-0.03237129480208208,0.073529411764704,-0.18915510718788622,0.08782482288159002,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,0%,20%
+Targeted,0,flu,0.2,time_to_peak_infections,41.88,46,36,2.3729377011066544,0.0012466170707411833,0.12903225806451613,-0.1125,0.06885263528410132,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,0%,20%
+Targeted,0,flu,0.4,epidemic_final_size,0.6133856,0.64402,0.5799,0.014719806973372088,-5.945619241898467e-4,0.0647585545251039,-0.07682156004723217,0.03946935537604665,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,0%,40%
+Targeted,0,flu,0.4,peak_daily_incidence,18.5984,20.320000000000004,15.759999999999996,1.1513893057230187,-0.01548606064158289,0.15264797507788402,-0.27572559366754257,0.11044844444060661,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,0%,40%
+Targeted,0,flu,0.4,time_to_peak_infections,41.92,46,39.5,1.6116761461286195,-4.535041756306552e-4,0.16842105263157894,-0.1282051282051282,0.06731267493391474,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,0%,40%
+Targeted,0,flu,0.6000000000000001,epidemic_final_size,0.6191720000000001,0.6368,0.59032,0.011035761565625335,-0.009893364684755332,0.045123121202430304,-0.0919288740709872,0.03206550423430236,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,0%,60%
+Targeted,0,flu,0.6000000000000001,peak_daily_incidence,18.860799999999987,21.03999999999995,16.69999999999994,1.097079152416404,-0.028083287549536883,0.13291796469367126,-0.3126649076517114,0.09018167793140665,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,0%,60%
+Targeted,0,flu,0.6000000000000001,time_to_peak_infections,41.68,48,38.5,2.1500000000000004,0.005775929255688294,0.11827956989247312,-0.12941176470588237,0.06795580801301009,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,0%,60%
+Targeted,0,flu,0.8,epidemic_final_size,0.6123624,0.63496,0.58548,0.01055873780335509,0.001184630702582789,0.07882563957330317,-0.0692505383065917,0.03213763527427484,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,0%,80%
+Targeted,0,flu,0.8,peak_daily_incidence,18.373600000000003,20.67999999999992,15.720000000000066,1.0945275997738177,-0.0029323878163041357,0.23391812865496683,-0.2427440633245383,0.10208007782956913,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,0%,80%
+Targeted,0,flu,0.8,time_to_peak_infections,41.8,44.5,37,2.041241452319315,0.0024905184695255688,0.13978494623655913,-0.14473684210526316,0.07303613767697976,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,0%,80%
+Targeted,0,flu,1,epidemic_final_size,0.6165872,0.64592,0.59524,0.015387438469955514,-0.005971486113522294,0.06346958683407287,-0.11166184772132735,0.04435510153361659,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,0%,100%
+Targeted,0,flu,1,peak_daily_incidence,18.717599999999987,21.000000000000018,16.37999999999995,1.4052439883047716,-0.022934003026964293,0.1455301455301415,-0.3153034300791548,0.12863405045510556,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,0%,100%
+Targeted,0,flu,1,time_to_peak_infections,41.84,44.5,39,1.539209753953848,0.0012329566117048269,0.17894736842105263,-0.13157894736842105,0.06978039778289562,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,0%,100%
+Targeted,0,sars_cov_2,0.2,epidemic_final_size,0.8965288,0.90532,0.89042,0.003688929745423016,0.0011184031965533925,0.01221690519769773,-0.008510827911950784,0.0053019452563636115,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,0%,20%
+Targeted,0,sars_cov_2,0.2,peak_daily_incidence,40.168000000000006,43.019999999999946,38.220000000000034,1.19776180158382,0.007714116229746072,0.12415349887133069,-0.05483704086911854,0.039374210688943465,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,0%,20%
+Targeted,0,sars_cov_2,0.2,time_to_peak_infections,38.28,40,36.5,0.8175165645620481,-7.991498319279803e-4,0.039473684210526314,-0.06756756756756757,0.025017358956886875,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,0%,20%
+Targeted,0,sars_cov_2,0.4,epidemic_final_size,0.8964792,0.90298,0.888,0.004242905765313828,0.001168558727494591,0.01156274227489202,-0.011207746794584427,0.006653660016468838,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,0%,40%
+Targeted,0,sars_cov_2,0.4,peak_daily_incidence,40.27760000000001,43.159999999999975,37.380000000000024,1.390782992897641,0.004279369212980716,0.11918735891647744,-0.10158244002041816,0.0581582369524957,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,0%,40%
+Targeted,0,sars_cov_2,0.4,time_to_peak_infections,38.18,40,36.5,0.8401388774085704,0.0017223697340286272,0.05194805194805195,-0.05263157894736842,0.028946378579031908,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,0%,40%
+Targeted,0,sars_cov_2,0.6000000000000001,epidemic_final_size,0.8972055999999999,0.9057,0.88954,0.00440031635226377,3.6272617371938546e-4,0.011894214583148724,-0.014494376988216264,0.0062207516791065835,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,0%,60%
+Targeted,0,sars_cov_2,0.6000000000000001,peak_daily_incidence,40.60799999999998,42.57999999999995,37.599999999999966,1.3115131210425026,-0.0035135346671033726,0.10942681193747072,-0.10587002096436196,0.050126203822507515,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,0%,60%
+Targeted,0,sars_cov_2,0.6000000000000001,time_to_peak_infections,38,40,36.5,0.8779711460710616,0.006459724271982765,0.05194805194805195,-0.06756756756756757,0.028670019836060916,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,0%,60%
+Targeted,0,sars_cov_2,0.8,epidemic_final_size,0.8958488,0.90656,0.88676,0.0046493371570579855,0.0018688281217856323,0.017875733746815864,-0.011808299292394957,0.007273025582547946,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,0%,80%
+Targeted,0,sars_cov_2,0.8,peak_daily_incidence,39.85360000000001,41.88000000000003,37.86000000000001,1.190948081711934,0.015028082213980089,0.12229885057471253,-0.07863424728401867,0.04962962990010656,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,0%,80%
+Targeted,0,sars_cov_2,0.8,time_to_peak_infections,38.36,40.5,37,0.9411871935663668,-0.0031070465819299934,0.075,-0.0945945945945946,0.034964136170089276,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,0%,80%
+Targeted,0,sars_cov_2,1,epidemic_final_size,0.8970288,0.90618,0.89008,0.0033544352728887045,5.562252458519e-4,0.01303283568924068,-0.013578810791463515,0.005986394590782376,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,0%,100%
+Targeted,0,sars_cov_2,1,peak_daily_incidence,40.4336,42.71999999999998,38.239999999999995,1.0298660107023547,6.071024251766632e-4,0.09706546275394963,-0.09035222052067345,0.050169859220241586,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,0%,100%
+Targeted,0,sars_cov_2,1,time_to_peak_infections,38.1,40,37,0.8779711460710616,0.003715913056819117,0.0625,-0.05333333333333334,0.032901744107810396,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,0%,100%
+Targeted,0.2,flu,0.2,epidemic_final_size,0.5802872,0.6143,0.54938,0.015358934294626909,0.053428311669162204,0.13562415431574318,-0.019757675891504966,0.03797754912629123,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,20%,20%
+Targeted,0.2,flu,0.2,peak_daily_incidence,15.737600000000018,18.300000000000093,13.720000000000066,1.1114752958718175,0.14052223903216696,0.33138401559453806,-0.07440100882723541,0.09794526595664665,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,20%,20%
+Targeted,0.2,flu,0.2,time_to_peak_infections,44.76,48.5,41,2.131705107810803,-0.06757781288614143,0.03225806451612903,-0.23684210526315788,0.06916000882319401,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,20%,20%
+Targeted,0.2,flu,0.4,epidemic_final_size,0.557732,0.5878,0.5291,0.01715734342295837,0.09044228233111501,0.15121278234086244,0.035878443173175574,0.03317254812942452,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,20%,40%
+Targeted,0.2,flu,0.4,peak_daily_incidence,14.050400000000002,16.120000000000022,12.07999999999998,1.2974349052393093,0.234536276450886,0.3836734693877546,0.0825581395348824,0.08037541093338636,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,20%,40%
+Targeted,0.2,flu,0.4,time_to_peak_infections,47.06,52,43.5,2.6232930958371137,-0.12317450968145349,0.02247191011235955,-0.3684210526315789,0.09030610025053569,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,20%,40%
+Targeted,0.2,flu,0.6000000000000001,epidemic_final_size,0.5042248,0.5414,0.45332,0.022955693033900475,0.17767193484531493,0.2553876478318003,0.10088806278397357,0.041432876442891814,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,20%,60%
+Targeted,0.2,flu,0.6000000000000001,peak_daily_incidence,11.401599999999998,13.460000000000027,8.959999999999969,1.2202447841860886,0.37795259709479684,0.5093099671412926,0.19419924337957523,0.08153978801547712,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,20%,60%
+Targeted,0.2,flu,0.6000000000000001,time_to_peak_infections,49.48,54.5,44,2.963247092858328,-0.18170309979208527,0.07368421052631578,-0.4342105263157895,0.10598093570301922,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,20%,60%
+Targeted,0.2,flu,0.8,epidemic_final_size,0.4616896,0.52522,0.42968,0.022195136944835457,0.2466695775756208,0.3016970861351265,0.09606911744458209,0.04737205390455636,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,20%,80%
+Targeted,0.2,flu,0.8,peak_daily_incidence,9.563200000000007,13.24000000000003,7.7600000000001,1.1926675982854498,0.47684804597038427,0.5791710945802331,0.1651954602774306,0.09142946626417613,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,20%,80%
+Targeted,0.2,flu,0.8,time_to_peak_infections,51.56,56,45.5,2.554897258208244,-0.23111904219846335,-0.07368421052631578,-0.4230769230769231,0.10024026287393305,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,20%,80%
+Targeted,0.2,flu,1,epidemic_final_size,0.4182896,0.48822,0.36208,0.03093696662570523,0.31802142537608025,0.414592,0.23291330170002833,0.049778757284431506,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,20%,100%
+Targeted,0.2,flu,1,peak_daily_incidence,8.1264,11.660000000000004,5.819999999999936,1.3862145096148268,0.5565483144153233,0.6907630522088317,0.3786279683377272,0.0844623337158782,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,20%,100%
+Targeted,0.2,flu,1,time_to_peak_infections,54.14,62,48.5,3.6671969313541557,-0.29161738520211566,-0.06315789473684211,-0.42528735632183906,0.1051332877077828,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,20%,100%
+Targeted,0.2,sars_cov_2,0.2,epidemic_final_size,0.889412,0.89954,0.87868,0.005277644676684233,0.009050325978140079,0.022393018516877843,-0.004556317423447136,0.006343863960768361,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,20%,20%
+Targeted,0.2,sars_cov_2,0.2,peak_daily_incidence,38.399199999999986,39.939999999999976,36.3,1.039510782371521,0.05110225042047685,0.14021790620558938,-0.01758923952405627,0.04379495400347788,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,20%,20%
+Targeted,0.2,sars_cov_2,0.2,time_to_peak_infections,39.38,40.5,38,0.7399324293474374,-0.02965134656713604,0.025,-0.0945945945945946,0.027387037098677368,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,20%,20%
+Targeted,0.2,sars_cov_2,0.4,epidemic_final_size,0.8821784,0.89188,0.87082,0.0045685042045145,0.017099690019411015,0.029925794661645855,0.0029513034923757723,0.0072172194303527,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,20%,40%
+Targeted,0.2,sars_cov_2,0.4,peak_daily_incidence,36.69120000000001,39.220000000000034,34.580000000000055,1.1422795921606246,0.09287037421776718,0.2050574712643663,0.006082108464268016,0.05227580536804876,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,20%,40%
+Targeted,0.2,sars_cov_2,0.4,time_to_peak_infections,40.72,42.5,39,0.8046738469715539,-0.0648647940004369,-0.025,-0.14864864864864866,0.03544111776948257,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,20%,40%
+Targeted,0.2,sars_cov_2,0.6000000000000001,epidemic_final_size,0.8687208,0.87742,0.86038,0.004979533043703337,0.032099029167611086,0.050323064370300145,0.018681761231430158,0.0067486734260401,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,20%,60%
+Targeted,0.2,sars_cov_2,0.6000000000000001,peak_daily_incidence,34.062400000000004,36.739999999999995,31.92000000000006,1.2060033167450255,0.1581342978136386,0.2496613995485318,0.055323590814196515,0.04634035878003123,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,20%,60%
+Targeted,0.2,sars_cov_2,0.6000000000000001,time_to_peak_infections,41.86,43.5,40.5,0.895823643358446,-0.09459639468933273,-0.02531645569620253,-0.16216216216216217,0.034596220638364615,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,20%,60%
+Targeted,0.2,sars_cov_2,0.8,epidemic_final_size,0.84836,0.86644,0.8343,0.007464696912802276,0.05478190291558529,0.07118809249579162,0.03359507450700459,0.00939074216451565,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,20%,80%
+Targeted,0.2,sars_cov_2,0.8,peak_daily_incidence,31.817600000000002,34.479999999999954,29.259999999999952,1.31192377827372,0.21385781081303928,0.28754144954997607,0.14107053526763325,0.041560389172595365,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,20%,80%
+Targeted,0.2,sars_cov_2,0.8,time_to_peak_infections,43.12,46,41,1.1572236891226633,-0.12745021765181658,-0.075,-0.22666666666666666,0.03751624893614015,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,20%,80%
+Targeted,0.2,sars_cov_2,1,epidemic_final_size,0.8159912,0.83482,0.8042,0.008005581552891708,0.09084674170259377,0.10721736428603126,0.07016996725401523,0.009804531815812773,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,20%,100%
+Targeted,0.2,sars_cov_2,1,peak_daily_incidence,28.892800000000015,31.299999999999994,26.60000000000007,1.1744769048389079,0.28581464291351566,0.39954853273137547,0.216716716716719,0.042596677460325416,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,20%,100%
+Targeted,0.2,sars_cov_2,1,time_to_peak_infections,44.48,46.5,42.5,1.035615758860399,-0.16316375745542966,-0.11392405063291139,-0.25675675675675674,0.04038703202436501,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,20%,100%
+Targeted,0.4,flu,0.2,epidemic_final_size,0.5587576,0.58528,0.52942,0.015926197830409286,0.08859652944347991,0.16818024699116993,0.010314648885184319,0.03646067662744817,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,40%,20%
+Targeted,0.4,flu,0.2,peak_daily_incidence,14.151200000000005,16.41999999999999,12.340000000000018,1.0707642130739998,0.2288573283757571,0.3419999999999976,0.03957783641161236,0.07359074219707497,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,40%,20%
+Targeted,0.4,flu,0.2,time_to_peak_infections,46.76,50.5,43,1.9045996954740914,-0.11501396791561871,0.010526315789473684,-0.19230769230769232,0.06080845098177994,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,40%,20%
+Targeted,0.4,flu,0.4,epidemic_final_size,0.4763184,0.50248,0.4463,0.016022151249650177,0.22339793578024672,0.2783560946105116,0.18710888610763454,0.024862513104712807,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,40%,40%
+Targeted,0.4,flu,0.4,peak_daily_incidence,9.738399999999997,11.399999999999967,8.340000000000014,0.8813043363863337,0.4701723228296336,0.5459183673469367,0.36046511627906885,0.04790236186201663,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,40%,40%
+Targeted,0.4,flu,0.4,time_to_peak_infections,52.16,57,45,2.9287369291214937,-0.242882253030914,-0.0967741935483871,-0.34523809523809523,0.06804763791667516,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,40%,40%
+Targeted,0.4,flu,0.6000000000000001,epidemic_final_size,0.3812688,0.45202,0.34038,0.02638681746630312,0.3786324841347207,0.4462304363387889,0.2897904031675204,0.038058522137208214,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,40%,60%
+Targeted,0.4,flu,0.6000000000000001,peak_daily_incidence,6.2992000000000115,8.939999999999948,4.4199999999999795,1.0346091049280204,0.6574103770332436,0.7651434643995767,0.5259809119830353,0.0550355998974296,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,40%,60%
+Targeted,0.4,flu,0.6000000000000001,time_to_peak_infections,57.42,67.5,49.5,4.464396189109267,-0.3719650736171369,-0.042105263157894736,-0.6329113924050633,0.1457864026850217,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,40%,60%
+Targeted,0.4,flu,0.8,epidemic_final_size,0.2775816,0.33946,0.22942,0.024964408611728283,0.5471555938323337,0.6332917745596368,0.4473855570749496,0.04326965108079372,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,40%,80%
+Targeted,0.4,flu,0.8,peak_daily_incidence,3.5704000000000002,5.0200000000000244,2.4199999999999777,0.5988077042479326,0.8052679232089776,0.8723628691983133,0.7389659520807057,0.035135349523117164,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,40%,80%
+Targeted,0.4,flu,0.8,time_to_peak_infections,62.02,79,49,7.008150017420195,-0.48048153591097004,-0.15789473684210525,-0.8588235294117647,0.18576821602239188,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,40%,80%
+Targeted,0.4,flu,1,epidemic_final_size,0.1917848,0.26892,0.118,0.03408279980674514,0.6874392070768397,0.8026887833589726,0.5624898317769174,0.054750403619199105,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,40%,100%
+Targeted,0.4,flu,1,peak_daily_incidence,2.3527999999999993,3.7800000000000056,1.5399999999999858,0.519675539800228,0.872227869603037,0.9187763713080117,0.799149840595112,0.02662388363882598,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,40%,100%
+Targeted,0.4,flu,1,time_to_peak_infections,55.12,73.5,20.5,12.879473332917511,-0.3176839374406637,0.5119047619047619,-0.6625,0.32125548991965613,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,40%,100%
+Targeted,0.4,sars_cov_2,0.2,epidemic_final_size,0.8815928,0.88828,0.8751,0.0034761323334993937,0.017759371236196145,0.025071744788769997,0.0076740647932701895,0.005133607764578808,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,40%,20%
+Targeted,0.4,sars_cov_2,0.2,peak_daily_incidence,36.33119999999999,38.080000000000005,34.7400000000001,0.9276687627236982,0.10242940320080322,0.1686237670267725,0.0062630480167018806,0.035495000749115393,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,40%,20%
+Targeted,0.4,sars_cov_2,0.2,time_to_peak_infections,40.48,42,39,0.7968688725254616,-0.058308536554705775,0.012658227848101266,-0.0945945945945946,0.024279128003257613,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,40%,20%
+Targeted,0.4,sars_cov_2,0.4,epidemic_final_size,0.8608624,0.87428,0.8492,0.006478817587595229,0.040859698515382355,0.05482170816151012,0.025238424943604475,0.007518119266934575,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,40%,40%
+Targeted,0.4,sars_cov_2,0.4,peak_daily_incidence,32.604000000000006,35.71999999999997,31.320000000000014,1.071929724064651,0.19464932314457808,0.26206896551724207,0.12663316582914552,0.03205461945880172,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,40%,40%
+Targeted,0.4,sars_cov_2,0.4,time_to_peak_infections,43.2,45,41.5,0.9574271077563382,-0.12960414288881977,-0.0625,-0.2,0.03537705261767486,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,40%,40%
+Targeted,0.4,sars_cov_2,0.6000000000000001,epidemic_final_size,0.829076,0.84222,0.81638,0.007020180434528254,0.07626150285377478,0.09221397718462732,0.057371177866320545,0.00954648127204557,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,40%,60%
+Targeted,0.4,sars_cov_2,0.6000000000000001,peak_daily_incidence,28.070399999999996,30.320000000000014,25.879999999999903,1.108243655519853,0.30602488485922036,0.37977011494252844,0.23395654370894475,0.04352315113906058,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,40%,60%
+Targeted,0.4,sars_cov_2,0.6000000000000001,time_to_peak_infections,46.54,50,44,1.3222455646865807,-0.21711003249171137,-0.1125,-0.3157894736842105,0.04827012998452218,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,40%,60%
+Targeted,0.4,sars_cov_2,0.8,epidemic_final_size,0.781188,0.79868,0.76582,0.008965398299387854,0.12963455270609434,0.14466012911296275,0.11028428838784432,0.009754152651249362,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,40%,80%
+Targeted,0.4,sars_cov_2,0.8,peak_daily_incidence,23.704800000000002,26.040000000000063,21.460000000000036,1.0752872484441884,0.4145639016719815,0.47310344827586326,0.36382322713257875,0.02769967519691043,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,40%,80%
+Targeted,0.4,sars_cov_2,0.8,time_to_peak_infections,49,52.5,46.5,1.5206906325745548,-0.281287412054967,-0.21518987341772153,-0.3815789473684211,0.04961654015917341,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,40%,80%
+Targeted,0.4,sars_cov_2,1,epidemic_final_size,0.7063464,0.72676,0.68414,0.010293116988227295,0.21302263211157776,0.23692781297403415,0.19481159550159052,0.011071054706451365,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,40%,100%
+Targeted,0.4,sars_cov_2,1,peak_daily_incidence,19.087999999999997,20.600000000000062,17.39999999999997,0.8241561340749329,0.5284231722231992,0.5647823911955987,0.4606918238993695,0.025066776850784768,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,40%,100%
+Targeted,0.4,sars_cov_2,1,time_to_peak_infections,52.72,55.5,48.5,1.7204650534085257,-0.37818287995203387,-0.2948717948717949,-0.4473684210526316,0.04431864588733672,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,40%,100%
+Targeted,0.6000000000000001,flu,0.2,epidemic_final_size,0.532308,0.56864,0.48638,0.01980609502148266,0.1316417590651995,0.20513155744402684,0.05384359400998327,0.042732982001289464,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,60%,20%
+Targeted,0.6000000000000001,flu,0.2,peak_daily_incidence,12.701600000000006,14.539999999999997,11.00000000000001,0.9425129530498176,0.3065340646383927,0.4155154091392148,0.1372031662269105,0.07914460353818027,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,60%,20%
+Targeted,0.6000000000000001,flu,0.2,time_to_peak_infections,47.92,52.5,42.5,2.771431639664477,-0.14481981027930943,0.05263157894736842,-0.34210526315789475,0.10585856240443732,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,60%,20%
+Targeted,0.6000000000000001,flu,0.4,epidemic_final_size,0.416008,0.4702,0.38484,0.0189786564329512,0.321384602418497,0.3712409263740063,0.21323886920886292,0.03799386340294844,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,60%,40%
+Targeted,0.6000000000000001,flu,0.4,peak_daily_incidence,7.341599999999997,9.440000000000005,5.859999999999976,0.7686551025438335,0.5994709869929483,0.6617179215270383,0.43667546174142763,0.053910605884168177,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,60%,40%
+Targeted,0.6000000000000001,flu,0.4,time_to_peak_infections,55.44,67,49,4.454211490264018,-0.32280390778475415,-0.031578947368421054,-0.5952380952380952,0.12334326973948516,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,60%,40%
+Targeted,0.6000000000000001,flu,0.6000000000000001,epidemic_final_size,0.2550008,0.30394,0.20994,0.02357481741180618,0.5837516121855163,0.6638808837656099,0.48354674376979206,0.043914002065093036,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,60%,60%
+Targeted,0.6000000000000001,flu,0.6000000000000001,peak_daily_incidence,3.166399999999996,4.5600000000000085,1.9799999999999818,0.5537965932241447,0.8265197847823967,0.8947927736450597,0.7124842370744021,0.03857115436867215,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,60%,60%
+Targeted,0.6000000000000001,flu,0.6000000000000001,time_to_peak_infections,59.7,75,46.5,9.109290129678968,-0.42419698718651694,-0.13636363636363635,-0.9230769230769231,0.2291510592828194,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,60%,60%
+Targeted,0.6000000000000001,flu,0.8,epidemic_final_size,0.0953088,0.13814,0.05628,0.021072758148851803,0.8445281617203328,0.9104192531754369,0.7701268013445601,0.03447938815260939,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,60%,80%
+Targeted,0.6000000000000001,flu,0.8,peak_daily_incidence,1.3687999999999878,1.5800000000000258,1.0599999999999499,0.11973303637678297,0.9252799176515917,0.9459183673469412,0.9023746701846945,0.009083978189496505,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,60%,80%
+Targeted,0.6000000000000001,flu,0.8,time_to_peak_infections,4.9,25,4,4.190763653560053,0.8826891406268037,0.9157894736842105,0.3902439024390244,0.10273646444574915,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,60%,80%
+Targeted,0.6000000000000001,flu,1,epidemic_final_size,0.0369112,0.05606,0.02428,0.007712492204209998,0.9398673038193205,0.9604984869684053,0.9076806534483894,0.01225930365319877,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,60%,100%
+Targeted,0.6000000000000001,flu,1,peak_daily_incidence,1.1816000000000093,1.4199999999999768,0.9600000000000719,0.13315654946963798,0.9356416729686868,0.9493670886075911,0.9209302325581443,0.007766807731426112,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,60%,100%
+Targeted,0.6000000000000001,flu,1,time_to_peak_infections,4,4,4,0,0.9045546280247255,0.9157894736842105,0.8947368421052632,0.004962586281556851,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,60%,100%
+Targeted,0.6000000000000001,sars_cov_2,0.2,epidemic_final_size,0.8739272,0.88248,0.86124,0.005331522234159147,0.026302077932074928,0.039870333208370974,0.016241767104260896,0.006516043988239221,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,60%,20%
+Targeted,0.6000000000000001,sars_cov_2,0.2,peak_daily_incidence,35.24319999999999,37.739999999999995,32.51999999999994,1.22699741917687,0.12904914225818648,0.2210626185958254,0.03721174004192656,0.04529657470080087,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,60%,20%
+Targeted,0.6000000000000001,sars_cov_2,0.2,time_to_peak_infections,41.14,42.5,40,0.6849574196011508,-0.0756463462077053,-0.025,-0.11842105263157894,0.025933720498027907,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,60%,20%
+Targeted,0.6000000000000001,sars_cov_2,0.4,epidemic_final_size,0.8400296,0.85824,0.82722,0.008088757877449417,0.06406008032703893,0.08078316332199924,0.040558064660376494,0.010319195405350095,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,60%,40%
+Targeted,0.6000000000000001,sars_cov_2,0.4,peak_daily_incidence,29.244000000000003,31.90000000000004,27.260000000000062,1.2751339798886518,0.27704997070977333,0.3673563218390805,0.1915864166244298,0.04623823302819955,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,60%,40%
+Targeted,0.6000000000000001,sars_cov_2,0.4,time_to_peak_infections,45.26,47,43,1.128420725320717,-0.1834655536659534,-0.12987012987012986,-0.2702702702702703,0.03959484449736661,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,60%,40%
+Targeted,0.6000000000000001,sars_cov_2,0.6000000000000001,epidemic_final_size,0.7840368,0.802,0.76102,0.009712546319065868,0.12644065913687202,0.14746936123496066,0.10166226085398086,0.012198625477871537,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,60%,60%
+Targeted,0.6000000000000001,sars_cov_2,0.6000000000000001,peak_daily_incidence,22.705599999999997,24.540000000000006,20.90000000000003,1.017865740982892,0.4385878681801923,0.5133182844243788,0.3658280922431861,0.038136581349084916,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,60%,60%
+Targeted,0.6000000000000001,sars_cov_2,0.6000000000000001,time_to_peak_infections,50.84,54.5,48.5,1.5324272685296787,-0.32925009893863993,-0.2564102564102564,-0.4342105263157895,0.046017109305749336,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,60%,60%
+Targeted,0.6000000000000001,sars_cov_2,0.8,epidemic_final_size,0.6898944,0.71262,0.66984,0.012519191294435388,0.23134776172372154,0.25568371224748315,0.20510875627440037,0.013929445411527673,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,60%,80%
+Targeted,0.6000000000000001,sars_cov_2,0.8,peak_daily_incidence,15.92080000000001,18.100000000000005,14.479999999999936,1.0074965674052245,0.6065721616886623,0.6519677572309144,0.5426983324911577,0.02897408081677751,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,60%,80%
+Targeted,0.6000000000000001,sars_cov_2,0.8,time_to_peak_infections,57.88,62.5,53,2.9236107812087435,-0.513167193879519,-0.34177215189873417,-0.6351351351351351,0.07702778491405153,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,60%,80%
+Targeted,0.6000000000000001,sars_cov_2,1,epidemic_final_size,0.5437504,0.5829,0.49448,0.019909936480729074,0.39416077569000935,0.44606009006788705,0.35282231203091,0.022609517608638826,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,60%,100%
+Targeted,0.6000000000000001,sars_cov_2,1,peak_daily_incidence,10.078400000000013,11.680000000000025,7.780000000000009,1.003459349782879,0.7508186808550167,0.8001027749229184,0.6983298538622127,0.027943773805569755,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,60%,100%
+Targeted,0.6000000000000001,sars_cov_2,1,time_to_peak_infections,65.04,72.5,59.5,3.514612354157995,-0.700644621850951,-0.5569620253164557,-0.9054054054054054,0.09836794739255228,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,60%,100%
+Targeted,0.8,flu,0.2,epidemic_final_size,0.5066264,0.53376,0.45694,0.019254623444772943,0.1737173884315953,0.2669725359342916,0.11748975481002978,0.03700475877123648,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,80%,20%
+Targeted,0.8,flu,0.2,peak_daily_incidence,11.5056,13.440000000000008,9.260000000000046,1.1468728496800822,0.37171145070298245,0.5251282051282018,0.20316622691293332,0.08339811118898283,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,80%,20%
+Targeted,0.8,flu,0.2,time_to_peak_infections,48.46,52.5,46,1.9252705437591537,-0.1565993631130874,0.031578947368421054,-0.31645569620253167,0.07938253338553479,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,80%,20%
+Targeted,0.8,flu,0.4,epidemic_final_size,0.3658664,0.40368,0.31814,0.022542943256519694,0.40331364362486066,0.48883200000000004,0.3352216586522627,0.038993362192549744,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,80%,40%
+Targeted,0.8,flu,0.4,peak_daily_incidence,5.887199999999995,7.059999999999955,4.3800000000000505,0.7912412190139315,0.6788685762688486,0.7723492723492689,0.5895348837209325,0.04910660756135313,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,80%,40%
+Targeted,0.8,flu,0.4,time_to_peak_infections,58.76,68.5,52,4.163632228395459,-0.4028589166695729,-0.1797752808988764,-0.6710526315789473,0.13259352094412494,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,80%,40%
+Targeted,0.8,flu,0.6000000000000001,epidemic_final_size,0.1461456,0.21906,0.1049,0.025899345886205957,0.761515240716107,0.8320525136087096,0.6418247220405493,0.043630420138953206,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,80%,60%
+Targeted,0.8,flu,0.6000000000000001,peak_daily_incidence,1.63520000000001,2.4600000000000177,1.1599999999999389,0.27774568703522384,0.9107914257704751,0.9405128205128235,0.8670270270270257,0.01638534182605658,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,80%,60%
+Targeted,0.8,flu,0.6000000000000001,time_to_peak_infections,33.019999999999996,88,4,27.59773541434152,0.20093514808962779,0.9139784946236559,-1.3157894736842106,0.6864650267272812,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,80%,60%
+Targeted,0.8,flu,0.8,epidemic_final_size,0.0319744,0.05026,0.02224,0.005906926781330542,0.9477359574716784,0.9641994784456391,0.9134999311579237,0.010475928195805015,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,80%,80%
+Targeted,0.8,flu,0.8,peak_daily_incidence,1.2063999999999986,1.4199999999999768,1.020000000000021,0.10610058121109417,0.9340103266056626,0.948999999999999,0.9104665825977322,0.00934926850344102,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,80%,80%
+Targeted,0.8,flu,0.8,time_to_peak_infections,4,4,4,0,0.9045546280247255,0.9157894736842105,0.8947368421052632,0.004962586281556851,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,80%,80%
+Targeted,0.8,flu,1,epidemic_final_size,0.014864,0.0176,0.01288,0.0012733027919548437,0.9757398585728443,0.9794518392649234,0.9707765386204048,0.0023531783884677654,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,80%,100%
+Targeted,0.8,flu,1,peak_daily_incidence,0.8927999999999914,1.1200000000000099,0.7400000000000739,0.10721940122943237,0.9512074139738534,0.9619883040935672,0.9331651954602811,0.0077636920566888055,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,80%,100%
+Targeted,0.8,flu,1,time_to_peak_infections,4,4,4,0,0.9045546280247255,0.9157894736842105,0.8947368421052632,0.004962586281556851,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,80%,100%
+Targeted,0.8,sars_cov_2,0.2,epidemic_final_size,0.8664456,0.8731,0.8578,0.004941907593902035,0.03463369771096749,0.049016567732789895,0.02342177083799378,0.006748810091400918,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,80%,20%
+Targeted,0.8,sars_cov_2,0.2,peak_daily_incidence,33.987199999999994,36.22000000000003,32.23999999999994,1.0480756970117595,0.16013363538221775,0.2312643678160911,0.08581524482584463,0.04069666817064149,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,80%,20%
+Targeted,0.8,sars_cov_2,0.2,time_to_peak_infections,41.64,43,39.5,0.9411871935663668,-0.08887011963554269,-0.01282051282051282,-0.16216216216216217,0.036305883244853496,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,80%,20%
+Targeted,0.8,sars_cov_2,0.4,epidemic_final_size,0.8162768,0.8306,0.80032,0.006810268423491101,0.0905265043213829,0.1048275244955482,0.07083407911222485,0.008854886405517478,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,80%,40%
+Targeted,0.8,sars_cov_2,0.4,peak_daily_incidence,26.352800000000006,29.37999999999996,24.00000000000002,1.1122631583098195,0.34857674990105797,0.4252821670428886,0.2332985386221309,0.04094891344590203,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,80%,40%
+Targeted,0.8,sars_cov_2,0.4,time_to_peak_infections,47.7,50,45.5,1.2583057392117918,-0.24715771328263,-0.16455696202531644,-0.30666666666666664,0.039095313584956826,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,80%,40%
+Targeted,0.8,sars_cov_2,0.6000000000000001,epidemic_final_size,0.7361984,0.75428,0.71486,0.010336343518543357,0.17975107911873586,0.20084514600008935,0.15511447645503837,0.01198976593595768,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,80%,60%
+Targeted,0.8,sars_cov_2,0.6000000000000001,peak_daily_incidence,18.572799999999994,20.040000000000056,16.800000000000036,0.8612951487923955,0.5411321607902136,0.5815939278937381,0.4884696016771489,0.025918927117399168,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,80%,60%
+Targeted,0.8,sars_cov_2,0.6000000000000001,time_to_peak_infections,55.16,58.5,52.5,1.5924300089276553,-0.4421610265079286,-0.358974358974359,-0.5131578947368421,0.0467931966626686,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,80%,60%
+Targeted,0.8,sars_cov_2,0.8,epidemic_final_size,0.5777992,0.60384,0.54612,0.013680133381416031,0.3562564780403747,0.3891548476578228,0.32450331125827814,0.014480238192291233,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,80%,80%
+Targeted,0.8,sars_cov_2,0.8,peak_daily_incidence,9.712000000000002,10.88,8.419999999999984,0.657571288910958,0.7601245573159073,0.7891837756634955,0.7192066805845486,0.017059051998025862,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,80%,80%
+Targeted,0.8,sars_cov_2,0.8,time_to_peak_infections,69.7,78,62,3.832427429188973,-0.8226700391739032,-0.569620253164557,-1.1081081081081081,0.11049915229840528,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,80%,80%
+Targeted,0.8,sars_cov_2,1,epidemic_final_size,0.277764,0.32662,0.24084,0.02312406754876832,0.6905073183873137,0.7317502394689358,0.6341457950625028,0.02605472202386676,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,80%,100%
+Targeted,0.8,sars_cov_2,1,peak_daily_incidence,2.7240000000000064,3.6399999999999766,1.9799999999999818,0.4160929383362875,0.9326052010982361,0.9509172037679727,0.904612159329141,0.011251140530334271,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,80%,100%
+Targeted,0.8,sars_cov_2,1,time_to_peak_infections,86.38,111,62.5,10.338318689870869,-1.2579734990735656,-0.6891891891891891,-1.9210526315789473,0.2697357034599611,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,80%,100%
+Targeted,1,flu,0.2,epidemic_final_size,0.5008216,0.53968,0.47458,0.019121324849497225,0.18313374767209212,0.2452794262321094,0.10749690210656747,0.03793876535002445,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,100%,20%
+Targeted,1,flu,0.2,peak_daily_incidence,11.391199999999998,13.959999999999972,9.85999999999998,1.2194545228639562,0.3781196795793782,0.4980506822612093,0.21185372005044184,0.08519380431773593,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,100%,20%
+Targeted,1,flu,0.2,time_to_peak_infections,49.54,55,44.5,3.268919291345893,-0.18111592084439312,-0.05952380952380952,-0.3670886075949367,0.08762132970647281,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,100%,20%
+Targeted,1,flu,0.4,epidemic_final_size,0.3218912,0.37192,0.27568,0.023717408571202147,0.4749680062319917,0.5498714734537146,0.3851247920133112,0.0412317459232898,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,100%,40%
+Targeted,1,flu,0.4,peak_daily_incidence,4.703200000000005,5.799999999999916,3.0200000000000227,0.7297643455253036,0.7432242900699225,0.8489999999999991,0.6627906976744233,0.04467784548140819,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,100%,40%
+Targeted,1,flu,0.4,time_to_peak_infections,60.44,73.5,52,4.859097995856158,-0.4429420910013591,-0.20454545454545456,-0.7926829268292683,0.14747645656880803,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,100%,40%
+Targeted,1,flu,0.6000000000000001,epidemic_final_size,0.0835872,0.12878,0.05392,0.018703883625243896,0.863614753219954,0.9137280000000001,0.785757071547421,0.031093753311730345,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,100%,60%
+Targeted,1,flu,0.6000000000000001,peak_daily_incidence,1.4008000000000065,1.8000000000000238,1.1600000000000499,0.16222207001514874,0.9236602202001831,0.9399999999999955,0.8999999999999967,0.009913407218113896,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,100%,60%
+Targeted,1,flu,0.6000000000000001,time_to_peak_infections,5.220000000000001,33,4,5.789861829094025,0.8770448619617942,0.9157894736842105,0.25842696629213485,0.12903777098536925,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,100%,60%
+Targeted,1,flu,0.8,epidemic_final_size,0.020376,0.02512,0.0163,0.002434721065474784,0.9667683304642044,0.9740553274122179,0.9595341098169717,0.0040055643860323195,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,100%,80%
+Targeted,1,flu,0.8,peak_daily_incidence,1.068800000000003,1.4200000000000879,0.8599999999999719,0.1307771641635832,0.9415544176248373,0.9539614561027854,0.916886543535625,0.009607498253920372,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,100%,80%
+Targeted,1,flu,0.8,time_to_peak_infections,4,4,4,0,0.9045546280247255,0.9157894736842105,0.8947368421052632,0.004962586281556851,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,100%,80%
+Targeted,1,flu,1,epidemic_final_size,0.0109432,0.01214,0.00992,6.308903761087709e-4,0.9821598303609839,0.9838720000000001,0.979971623717293,9.79537896096891e-4,"Final % of
+population infected","Final size
+reduction (%)",Influenza,Coverage strategy,Efficacy,100%,100%
+Targeted,1,flu,1,peak_daily_incidence,0.8160000000000123,1.100000000000101,0.6599999999999939,0.10376254944183251,0.955626498740187,0.9630769230769203,0.9428274428274374,0.0053975211396806,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",Influenza,Coverage strategy,Efficacy,100%,100%
+Targeted,1,flu,1,time_to_peak_infections,4.04,4.5,4,0.13844373104863456,0.9036346015871842,0.9157894736842105,0.8941176470588236,0.005316697938559726,Time to peak infections,Time to peak infections,Influenza,Coverage strategy,Efficacy,100%,100%
+Targeted,1,sars_cov_2,0.2,epidemic_final_size,0.858568,0.87334,0.848,0.006017538256352569,0.0434067458442887,0.06269433479612767,0.02955752605729266,0.008223430100006902,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,100%,20%
+Targeted,1,sars_cov_2,0.2,peak_daily_incidence,33.128799999999984,35.42000000000001,31.100000000000016,1.2008619126832691,0.18151076137465053,0.26303428839830906,0.1242171189979148,0.038972538212955606,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,100%,20%
+Targeted,1,sars_cov_2,0.2,time_to_peak_infections,42.16,44.5,40,1.2806248474865694,-0.10218119291383781,-0.02564102564102564,-0.17105263157894737,0.03429953526460684,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,100%,20%
+Targeted,1,sars_cov_2,0.4,epidemic_final_size,0.799056,0.81246,0.78294,0.007835157943526082,0.10971347708523482,0.1255389014229232,0.09338294629247743,0.009799720244477544,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,100%,40%
+Targeted,1,sars_cov_2,0.4,peak_daily_incidence,24.896000000000015,26.540000000000006,22.25999999999995,1.0878419002777957,0.38457732627138447,0.47178329571106153,0.311844863731654,0.03892978929654709,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,100%,40%
+Targeted,1,sars_cov_2,0.4,time_to_peak_infections,48.1,50.5,45.5,1.2247448713915892,-0.25760884640624815,-0.20253164556962025,-0.36486486486486486,0.038856368377059906,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,100%,40%
+Targeted,1,sars_cov_2,0.6000000000000001,epidemic_final_size,0.6917192,0.70854,0.67596,0.008902431278401797,0.2293149182797783,0.24649921714777162,0.2091049210355843,0.0098821576849986,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,100%,60%
+Targeted,1,sars_cov_2,0.6000000000000001,peak_daily_incidence,15.736000000000008,17.079999999999984,14.179999999999971,0.7615554258664855,0.6111529223279967,0.6740229885057477,0.5830441249380258,0.02320045126854098,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,100%,60%
+Targeted,1,sars_cov_2,0.6000000000000001,time_to_peak_infections,57.94,64,54.5,2.0631690833925047,-0.5150454830612725,-0.4230769230769231,-0.7297297297297297,0.06481973770961666,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,100%,60%
+Targeted,1,sars_cov_2,0.8,epidemic_final_size,0.453648,0.46816,0.4226,0.011356843751676783,0.4945693833814498,0.5265834696300944,0.4779560016129755,0.012435605136935188,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,100%,80%
+Targeted,1,sars_cov_2,0.8,peak_daily_incidence,5.588000000000006,6.300000000000083,4.7199999999999465,0.4273952113286707,0.8618912513747145,0.8914942528735643,0.8364779874213858,0.011987048746832044,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,100%,80%
+Targeted,1,sars_cov_2,0.8,time_to_peak_infections,82.26,94,73.5,5.458403307439518,-1.1506108959973051,-0.9090909090909091,-1.4415584415584415,0.14496191535184194,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,100%,80%
+Targeted,1,sars_cov_2,1,epidemic_final_size,0.0446248,0.05588,0.03506,0.006265339256576614,0.9502743966317139,0.9612322755639844,0.937861400231296,0.00702177090256366,"Final % of
+population infected","Final size
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,100%,100%
+Targeted,1,sars_cov_2,1,peak_daily_incidence,0.9351999999999983,1.0799999999999699,0.7399999999999629,0.08332266598392082,0.9769011601845933,0.9814907453726872,0.9735660847880284,0.002109834526741224,"Peak daily incidence
+per 1,000 population","Peak incidence
+reduction (%)",SARS-CoV-2,Coverage strategy,Efficacy,100%,100%
+Targeted,1,sars_cov_2,1,time_to_peak_infections,8.76,15.5,5.5,3.116221002004404,0.7705881961170435,0.8589743589743589,0.5921052631578947,0.08289175995669026,Time to peak infections,Time to peak infections,SARS-CoV-2,Coverage strategy,Efficacy,100%,100%
