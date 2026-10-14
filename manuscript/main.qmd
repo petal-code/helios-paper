@@ -482,9 +482,11 @@ Similarly, previous work has highlighted that aggregated mobile network data can
 More broadly, scalable sensing systems for proxies of poor ventilation and thus high transmission risk (such as CO$_2$) could also comprehensively characterize ventilation across locations and identification of persistently under-ventilated spaces [@peng2021exhaled; @rudnick2003risk].
 
 Indeed, a major limitation of this work is the simplified representation of the physical spaces that individuals visit and the contact structures they form within them.
-Although we differentiate setting types and locations and parameterize their relative contributions using estimates derived from previous work [@ferguson2005strategies], we do not explicitly model within-room spatial mixing, airflow patterns, or the dynamic co-location networks that arise from realistic daily schedules and repeated encounters.
-As a result, our framework cannot capture the fine-grained paths by which people move between venues during a day, the distribution of dwell times at specific points of interest, or the concurrency of contacts that shapes exposure risk.
-Future extensions that integrate time-use data to constrain schedules and dwell times such as the American Time User Survey [@hamermesh2005data] or mobility network data from mobile phones or similar would enable a more realistic reconstruction of non-household transmission opportunities.
+Although we differentiate setting types and locations and parameterize their relative contributions using estimates derived from previous work [@ferguson2005strategies], each location is represented as a single unit, without separate rooms, movement between them, or any representation of airflow.
+We therefore do not capture the contact structures that arise from realistic daily schedules, differences in dwell times, and repeated encounters within and between rooms.
+For example, children are represented as a single age group, and we do not distinguish primary school pupils remaining with one classroom from secondary school pupils moving between classrooms and mixing with different classmates.
+Future extensions could represent individual rooms and distinguish more age groups.
+Time-use data, such as the American Time Use Survey [@hamermesh2005data], or mobility network data could inform schedules and dwell times, allowing a more realistic representation of non-household transmission opportunities.
 
 We also do not explicitly differentiate shorter-range, droplet-mediated transmission (more closely determined by the specific interpersonal contacts made within a location or particular room) from longer-range aerosol inhalation, which depends more on room airflows and ventilation [@wang2021airborne].
 Instead, we represent AQI effects via fixed efficacies that implicitly combine both the intrinsic performance of the intervention and the proportion of total transmission that is avertible by air-quality modification.
