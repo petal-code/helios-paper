@@ -220,7 +220,8 @@ Was there a sensitivity assessment made say with 10 or 100x larger ?
 
 **Response**
 
-*Response to be added.*
+We have added an explicit definition of highest-risk locations to the Methods subsection “Modelling the impact of air quality interventions”.
+We have also changed the wording to consistently refer to highest-risk locations (rather than settings).
 
 # Reviewer 2
 
@@ -319,7 +320,10 @@ The authors should consider differentiating between elementary and high school s
 
 **Response**
 
-*Response to be added.*
+We agree that primary and secondary schools differ in their contact structures and schedules.
+This reflects a broader limitation of our model: each location is represented as a single unit, without separate rooms or movement between rooms.
+Children are also represented as a single age group.
+We have expanded the discussion section to acknowledge this limitation.
 
 ## Comment 7
 
@@ -343,7 +347,8 @@ The authors model targeted allocation to the highest-risk eligible locations - b
 
 **Response**
 
-*Response to be added.*
+We have added an explicit definition of highest-risk locations to the Methods subsection “Modelling the impact of air quality interventions”.
+We have also changed the wording to consistently refer to highest-risk locations (rather than settings).
 
 ## Comment 9
 
@@ -384,7 +389,9 @@ Please ensure the model github is up to date so that I can review this.
 
 **Response**
 
-*Response to be added.*
+Thank you for this comment.
+We clarify that `helios` was originally developed to model UVC interventions, but can be applied more generally to IAQ control measures.
+The code specific to this manuscript is available in the repository [`helios-paper`](https://github.com/petal-code/helios-paper).
 
 ## Comment 12
 
@@ -460,7 +467,7 @@ Discussion: avoid the word significant apart from in the statistical sense.
 
 **Response**
 
-*Response to be added.*
+We have replaced uses of “significant” and “significantly” in the results and discussion sections to avoid implying statistical significance.
 
 ## Comment 18
 
@@ -472,7 +479,7 @@ Can the authors provide line numbers on the next draft, so it is easier to refer
 
 **Response**
 
-*Response to be added.*
+We have added line numbers to the revised manuscript and supplementary information documents.
 
 # Reviewer 3
 
@@ -634,7 +641,9 @@ I suggest slightly qualifying this statement unless separate analyses demonstrat
 
 **Response**
 
-*Response to be added.*
+We have added a sentence to the discussion:
+
+> As $R_0$ and the generation interval varied simultaneously between our two pathogen archetypes, we did not disentangle their respective contributions to the observed difference in intervention impact.
 
 ## Comment 10
 
@@ -647,7 +656,8 @@ Since readers might otherwise interpret, for example, “20% coverage” as 20% 
 
 **Response**
 
-*Response to be added.*
+Thank you for pointing out this discrepancy.
+We have clarified coverage as proportion of non-household floor area in the results, figure captions, and in the discussion.
 
 ## Comment 11
 
