@@ -19,6 +19,10 @@ format:
     latex-auto-install: false
     geometry: margin=1in
     linestretch: 1.9
+    include-in-header:
+      text: |
+        \usepackage[mathlines]{lineno}
+        \AtBeginDocument{\linenumbers}
   html:
     toc: true
   docx:
