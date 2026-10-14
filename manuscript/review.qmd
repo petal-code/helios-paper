@@ -216,7 +216,8 @@ Was there a sensitivity assessment made say with 10 or 100x larger ?
 
 **Response**
 
-*Response to be added.*
+We have added an explicit definition of highest-risk locations to the Methods subsection “Modelling the impact of air quality interventions”.
+We have also changed the wording to consistently refer to highest-risk locations (rather than settings).
 
 # Reviewer 2
 
@@ -341,7 +342,8 @@ The authors model targeted allocation to the highest-risk eligible locations - b
 
 **Response**
 
-*Response to be added.*
+We have added an explicit definition of highest-risk locations to the Methods subsection “Modelling the impact of air quality interventions”.
+We have also changed the wording to consistently refer to highest-risk locations (rather than settings).
 
 ## Comment 9
 
