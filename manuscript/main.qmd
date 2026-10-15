@@ -449,7 +449,7 @@ knitr::include_graphics(here::here("figures", "endemic_targeting", "plot.png"))
 knitr::include_graphics(here::here("figures", "epidemic_scenario", "plot.png"))
 ```
 
-Increasing either efficacy or coverage yielded similar increases in the impact on epidemic peak, timing and final size.
+Increasing either efficacy or coverage yielded similar increases in the impact on epidemic peak and final size.
 For the influenza archetype, expanding randomly allocated coverage from 40% to 60% at 40% efficacy lowered the final epidemic size by `r epidemic_format(epidemic_reduction(0.4, 0.6), scale = 100)`%, approximately matching the `r epidemic_format(epidemic_reduction(0.6, 0.4), scale = 100)`% from instead increasing efficacy from 40% to 60% while holding coverage at 40% (@fig-epidemic, panel E).
 
 As with our endemic scenario results, targeted AQI strategies achieved higher reductions in infection incidence at lower coverage levels than the random strategy.
@@ -475,7 +475,7 @@ For example, coverage of 40% of non-household floor area with AQIs with efficacy
 Crucially, because overall annual infection incidence for our SARS-CoV-2-like pathogen is higher, this still translates into sizeable reductions in absolute burden, even though it remains a (relatively) smaller fraction of total burden.
 In both cases, achieving substantial impact (e.g. \>30% reduction) was contingent on comparatively high levels of coverage and/or efficacy: to achieve 30% reduction at assumed 60% efficacy required approximately 90% and approximately 45% coverage for the SARS-CoV-2-like and influenza-like pathogen, respectively.
 
-In our modeled epidemic scenarios, installed AQIs reduced the final epidemic size and peak incidence, as well as lengthening the time to peak, with more pronounced effects again for the influenza-like archetype than for SARS-CoV-2-like scenarios.
+In our modeled epidemic scenarios, installed AQIs reduced the final epidemic size and peak incidence with more pronounced effects again for the influenza-like archetype than for SARS-CoV-2-like scenarios.
 Our modeled results show that AQIs of modest efficacy and floor-area coverage are unlikely to achieve containment of the most highly transmissible pathogens on their own.
 However, these results also indicate that these measures could still play a role in both reducing and slowing epidemic growth and associated population-level spread, buying time for the development of countermeasures under accelerated (but still delayed relative to epidemic onset) timelines, as with the Coalition for Epidemic Preparedness’ 100 Days Mission.
 Moreover, by lowering baseline transmission in public and community venues, IAQ improvements may also reduce reliance on disruptive measures such as prolonged school or business closures, which carry documented and persistent educational and macroeconomic costs [@oecd2020learning; @haw2022optimizing; @rothwell2024global].
