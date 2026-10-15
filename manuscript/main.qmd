@@ -507,7 +507,7 @@ Time-use data, such as the American Time Use Survey [@hamermesh2005data], or mob
 
 We also do not explicitly differentiate shorter-range, droplet-mediated transmission (more closely determined by the specific interpersonal contacts made within a location or particular room) from longer-range aerosol inhalation, which depends more on room airflows and ventilation [@wang2021airborne].
 Instead, we represent AQI effects via fixed efficacies that implicitly combine both the intrinsic performance of the intervention and the proportion of total transmission that is avertible by air-quality modification.
-The comparative contributions of these different pathways currently remains poorly resolved, and evidence suggests that relative contribution may vary across pathogens and contexts.
+The comparative contributions of these different pathways currently remain poorly resolved, and evidence suggests that relative contribution may vary across pathogens and contexts.
 Infectious influenza virus has been detected in fine exhaled aerosols from symptomatic cases [@yan2018infectious] and infectious SARS-CoV-2 aerosols have been shown to be emitted by COVID-19 patients [@hawks2021infectious].
 For RSV however, aerosol spread has been demonstrated experimentally but remains less well characterized than droplet and contact routes [@kulkarni2016evidence].
 Better resolving these distinct mechanisms and integrating them into the same framework would be a valuable direction for future work.
