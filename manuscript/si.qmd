@@ -138,7 +138,7 @@ The terms $\sigma$, $\delta$, and $\omega$ are the mean residence times in the e
 
 ## Force of infection {#sec-foi}
 
-The total force of infection $\lambda_{i}(t)$ is the sum of the location-specific force of infections terms that individual $i$ experiences across all settings they visit in that timestep
+The total force of infection $\lambda_{i}(t)$ is the sum of the location-specific force of infection terms that individual $i$ experiences across all settings they visit in that timestep
 
 $$
 \lambda_{i}(t) = \sum_{j, s} \lambda_{i, j, s}(t).
