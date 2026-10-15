@@ -205,7 +205,7 @@ Relatedly, prior work has shown that closure of schools over holiday periods in 
 
 Much of this transmission is thought to occur via inhalation of aerosolised virus transmitted over relatively long distances, rather than short distance transmission via direct exposure to droplets produced during symptoms such as sneezing and coughing.
 Previous work has demonstrated the viability of exhaled SARS-CoV-2 aerosols for transmission [@alsved2023infectivity], as well as empirical evidence from COVID-19 superspreading events during the pandemic (e.g. the Skagit Valley choir superspreading event [@hamner2020high]) and mathematical modelling of closed populations on the Diamond Princess [@azimi2021mechanistic] have all highlighted the significance of aerosolised SARS-CoV-2 transmission.
-Similar results for influenza have confirmed the presence of infectious virus in the exhaled breath of infected individuals [@yan2018infectious], and has suggested that as much as 50% of all transmission events may be attributable to aerosolised virus [@cowling2013aerosol].
+Similar results for influenza have confirmed the presence of infectious virus in the exhaled breath of infected individuals [@yan2018infectious], and have suggested that as much as 50% of all transmission events may be attributable to aerosolised virus [@cowling2013aerosol].
 
 Indoor transmission is driven, in part, by crowding and inadequate ventilation in the spaces where people spend most of their time.
 These conditions increase the risk of respiratory virus transmission.
