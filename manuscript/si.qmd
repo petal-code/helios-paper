@@ -234,21 +234,21 @@ Under targeted allocation, locations were ranked by their riskiness $\gamma_{j,s
 
 ## Pathogen archetypes {#sec-archetypes}
 
-We simulated pathogen archetypes with transmission intensities approximating those of influenza and SARS-CoV-2.
-To parameterise pathogens that approximate these archetypes, we used the `finalsize` package [@finalsize] to determine the final epidemic size, as a proportion of the total human population, expected for a pathogen with an $R_{0}$ equivalent to influenza ($R_{0} \approx 1.5$) or SARS-CoV-2 ($R_{0} \approx 2.5$).
+We simulated two pathogen archetypes with transmission intensities approximating those of influenza A/B and SARS-CoV-2.
+To parameterise pathogens that approximate these archetypes, we used the `finalsize` package [@finalsize] to determine the final epidemic size, as a proportion of the total human population, expected for a pathogen with an $R_{0}$ equivalent to influenza A/B ($R_{0} \approx 1.5$) or SARS-CoV-2 ($R_{0} \approx 2.5$).
 We then determined the setting-specific transmissibility parameters ($\beta_s$) required to generate an epidemic with a final size equivalent to each of the pathogen archetypes, maintaining the 3:3:3:1 ratio of setting-specific transmissibility parameters (Table @tbl-archetype-params).
 
-           Parameter            Influenza   SARS-CoV-2
-  ---------------------------- ----------- ------------
-     mean exposed duration          1           2
-    mean infectious duration        2           4
-   $\beta_{\text{household}}$     0.207        0.24
-    $\beta_{\text{school}}$       0.207        0.24
-   $\beta_{\text{workplace}}$     0.207        0.24
-    $\beta_{\text{leisure}}$      0.207        0.24
-   $\beta_{\text{community}}$     0.069        0.08
+| Parameter | Influenza A/B | SARS-CoV-2 |
+|:---|:---:|:---:|
+| mean exposed duration | 1 | 2 |
+| mean infectious duration | 2 | 4 |
+| $\beta_{\text{household}}$ | 0.207 | 0.24 |
+| $\beta_{\text{school}}$ | 0.207 | 0.24 |
+| $\beta_{\text{workplace}}$ | 0.207 | 0.24 |
+| $\beta_{\text{leisure}}$ | 0.207 | 0.24 |
+| $\beta_{\text{community}}$ | 0.069 | 0.08 |
 
-  : Pathogen parameters required to generate epidemic final sizes for pathogens with $R_{0}$ values equivalent to those of influenza and SARS-CoV-2. {#tbl-archetype-params}
+  : Pathogen parameters required to generate epidemic final sizes for pathogens with $R_{0}$ values equivalent to those of influenza A/B and SARS-CoV-2. {#tbl-archetype-params}
 
 # Model outputs
 

@@ -8,7 +8,7 @@ table_data <- data.frame(
     "Stochastic replicates"
   ),
   "Values" = c(
-    "SARS-CoV-2-like; Influenza-like",
+    "SARS-CoV-2; influenza A/B",
     "20%, 40%, 60%, 80%, 100%",
     "0%, 20%, 40%, 60%, 80%, 100%",
     "Random; Risk-targeted",

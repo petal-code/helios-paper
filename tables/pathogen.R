@@ -5,13 +5,13 @@ table_data <- data.frame(
     "Mean infectious period (days)",
     "Mean duration of immunity (days)"
   ),
-  "SARS-CoV-2-like" = c(
+  "SARS-CoV-2" = c(
     "2.5",
     "2",
     "4",
     "365"
   ),
-  "Influenza-like" = c(
+  "Influenza A/B" = c(
     "1.5",
     "1",
     "2",
