@@ -221,7 +221,8 @@ $$
 \lambda^{\text{AQI}}_{i, j, s}(t) = (1 - E_{s}) \times \lambda_{i, j, s}(t),
 $$
 where $E_{s}$ is applied uniformly to all locations within setting $s$ that receive an AQI.
-We considered efficacy values of 20%, 40%, 60%, 80%, and 100%.
+We considered assumed efficacy values of 20%, 40%, 60%, 80%, and 100%.
+These values are a modelling assumption, and not derived based on the measured performance of particular IAQ technologies.
 We applied AQIs across schools, workplaces and leisure settings, excluding households as they are unlikely to have AQIs installed.
 
 Coverage was defined as the target proportion of combined school, workplace and leisure floor area receiving AQI installation, with households excluded.
