@@ -275,8 +275,8 @@ The former captures differences in respiratory virus transmission between settin
 This construction lets us (i) control the average contribution of each setting type to transmission at the population level and (ii) represent between-location heterogeneity in transmission risk across the locations belonging to a particular setting type.
 
 To quantify between-location “riskiness”, we use empirically documented variation in ventilation rates across locations belonging to the same setting type, and integrate these with an explicit model of within-room airborne virus concentration and a Wells–Riley dose–response model.
-Together, this enables us to map variation in air changes per hour, pathogen emission rates, and viral decay/inactivation into infection probabilities as a function of dwell time.
-This provides a consistent means to link variation in baseline ventilation rates to location-specific transmission risk, and encode ventilation/filtration/UV parameters as multiplicative reductions in location-specific force of infection.
+This connects observed variation in ventilation to differences in transmission risk between locations, allowing us to assess how this heterogeneity affects population transmission and the benefits of targeting higher-risk locations.
+We represent interventions as assumed proportional reductions in location-specific force of infection to compare efficacy, coverage, and allocation strategies; the efficacy achievable with specific ventilation, filtration, or disinfection must be established separately.
 This framework (described in further detail below) is implemented in R as an open-source package [@helios], built using the *individual* R package; package documentation, vignettes, and source code are publicly available.
 Further model details are provided below, but see [https://mrc-ide.github.io/helios/](https://mrc-ide.github.io/helios/) for full details.
 
@@ -290,36 +290,49 @@ With the location and setting type-specific FOI calculated as
 $${\lambda }_{i,j,s}\left({t}\right)=\frac{{\beta }_{j,s}{I}_{j,s}\left({t}\right)}{{N}_{j,s}},$$
 
 where ${I}_{j,s}\left({t}\right)$ is the number of infectious individuals in location $j$ belonging to setting type $s$, ${N}_{j,s}$ is the occupancy in that particular location, and ${\beta }_{j,s}={\gamma }_{j,s}{\beta }_{s}$ is a transmissibility parameter.
-The term ${\beta }_{s}$ represents a setting-type specific transmissibility, parameterised in order to recapitulate empirically observed patterns of the proportion of transmission for influenza and SARS-CoV-2 occurring across different setting types, while ${\gamma }_{j,s}\sim Lognormal\left({0,{\sigma }_{s}}\right)$ captures between-location heterogeneity in transmission risk arising from variation in ventilation rates and occupancy density, for a particular setting type (e.g. schools).
+The setting-specific transmissibility $\beta_s$ was parameterised to reflect empirical estimates of how influenza and SARS-CoV-2 transmission is apportioned between setting types.
+The location-specific multiplier $\gamma_{j,s}$ captures heterogeneity in transmission risk between locations of the same setting type, informed by variation in ventilation rates and occupancy density.
+These multipliers were drawn from a truncated lognormal distribution with log-mean zero and log-standard deviation $\sigma_{\log,s}$.
+The ventilation-informed parameterisation of this distribution is described in @sec-location-riskiness.
+
 We set between-setting transmission rate ratios based on estimates from prior work about how overall transmission is apportioned between settings [@ferretti2024digital; @Fergusonetal2006]
 
-$${\beta }_{household}:[{\beta }_{school}\text{ or } {\beta }_{workplace}]:{\beta }_{leisure}:{\beta }_{community}=30\%:30\%:30\%:10\%,$$
+$${\beta }_{\mathrm{household}}:[{\beta }_{\mathrm{school}}\text{ or } {\beta }_{\mathrm{workplace}}]:{\beta }_{\mathrm{leisure}}:{\beta }_{\mathrm{community}}=30\%:30\%:30\%:10\%,$$
 
-with ${\beta }_{school}$ or ${\beta }_{workplace}$ depending on the age-class an individual belongs to, and with the sum of ${\beta }_{s}$ values scaled to achieve overall levels of transmission consistent with reproduction number estimates for the specific pathogen archetypes modeled (see below).
+with ${\beta }_{\mathrm{school}}$ or ${\beta }_{\mathrm{workplace}}$ depending on the age-class an individual belongs to, and with the sum of ${\beta }_{s}$ values scaled to achieve overall levels of transmission consistent with reproduction number estimates for the specific pathogen archetypes modeled (see below).
 Households, workplaces, schools and leisure settings are explicitly represented within the modelling framework; “community” transmission is used to represent residual infection risk occurring in locations or contexts outside these settings.
 
-## Indoor air quality motivated variation in riskiness between locations
+## Indoor air quality motivated variation in riskiness between locations {#sec-location-riskiness}
 
-To represent variation in transmission riskiness across locations *j* belonging to the same setting type *s*, ${\gamma }_{j,s}$, we followed the approach of Blatchley et al [@blatchley2023quantitative], modeling airborne pathogen concentration $C\left({t}\right)$ using an ordinary differential equation
+We used an airborne concentration model and the Wells–Riley dose–response equation to inform the variation in riskiness $\gamma_{j,s}$ between locations $j$ of the same setting type $s$.
+Following @blatchley2023quantitative, we described airborne pathogen concentration $C(t)$ using the ordinary differential equation
 
-$$\nu \frac{dC\left({t}\right)}{dt}=-QC\left({t}\right)-{k}_{D}\nu C\left({t}\right)+I\pi ,$$
+$$\nu \frac{dC\left({t}\right)}{dt}=-QC\left({t}\right)-{k}_{\mathrm{D}}\nu C\left({t}\right)+I\pi ,$$
 
-where $\nu$ is room volume, $Q$ is air flow rate, ${k}_{D}=0.64{h}^{-1}$ is a pathogen decay constant [@blatchley2023quantitative], and $\pi =27$ virions per person per hour is the emission rate [@blatchley2023quantitative].
-We assumed room volume $\nu =N{D}_{s}H$ where $N$ is the maximum room occupancy, ${D}_{s}$ is floor area (${m}^{2}$) per person (${D}_{household}=20$, ${D}_{school}=3.33$, ${D}_{workplace}=10$, ${D}_{leisure}=2$ [@kelechava2022ventilation]), and $H=2.5m$ is the room height.
-For a given infectious viral concentration $C$, the probability of an individual becoming infected conditional on some time $t$ spent in that location is calculated based on the Wells-Riley equation [@wellsAirborne; @riley1978airborne], as
+where $\nu$ is room volume, $Q$ is air flow rate, $I$ is the number of infectious occupants, ${k}_{\mathrm{D}}=0.64{h}^{-1}$ is a pathogen decay constant [@blatchley2023quantitative], and $\pi =27$ virions per person per hour is the emission rate [@blatchley2023quantitative].
+We assumed room volume $\nu =N{D}_{s}H$ where $N$ is the maximum room occupancy, ${D}_{s}$ is floor area (${m}^{2}$) per person (${D}_{\mathrm{household}}=20$, ${D}_{\mathrm{school}}=3.33$, ${D}_{\mathrm{workplace}}=10$, ${D}_{\mathrm{leisure}}=2$ [@kelechava2022ventilation]), and $H=2.5m$ is the room height.
+We evaluated the steady-state concentration for one infectious occupant ($I=1$),
 
-$$P\left({t}\right)=1-\exp\left({-rBCt}\right),$$
+$$C_{\mathrm{ss}}=\frac{\pi}{\nu(\mathrm{ACH}+k_{\mathrm{D}})},$$
+
+where $\mathrm{ACH}=Q/\nu$ is the ventilation rate in air changes per hour.
+For this concentration, the probability of infection for a susceptible individual exposed for dwell time $\tau$ is given by the Wells–Riley equation [@wellsAirborne; @riley1978airborne], as
+
+$$P_i(\tau)=1-\exp\left({-rBC_{\mathrm{ss}}\tau}\right),$$
 
 with breathing rate $B=0.45{m}^{3}{h}^{-1}$ and infection probability per virion $r=1.37\times {10}^{-2}$  [@blatchley2023quantitative; @killingley2022safety].
-We calculated upper and lower bounds of infection probability using setting-specific ranges of air changes per hour derived from a review of setting type and location ventilation rates [@corsi22006ozone], and assuming individuals spend 12 hours of the day in households, 8 hours in schools/workplaces, 2.5 hours at leisure venues, and 1.5 hours in community settings.
-The distribution of location-specific variation in infection risk derived from the variation in ventilation rates was then used to parameterise a lognormal distribution of setting type and location specific riskiness values, with median 1 and with log-standard deviation ${\sigma }_{log,\ s}$.
+For each explicitly represented setting type, we evaluated the Wells–Riley infection probability across the ACH range reported in @corsi22006ozone, using dwell times of 12 hours in households, 8 hours in schools and workplaces, and 2.5 hours at leisure venues.
+Holding the other exposure parameters fixed, the minimum and maximum ACH gave the upper and lower infection-probability bounds, respectively.
+The ratio of these probabilities (upper divided by lower) defined a setting-specific riskiness ratio $R_s$.
+This ratio determined the bounds $[R_s^{-1/2}, R_s^{1/2}]$ of a median-one truncated lognormal distribution, with setting-specific log-standard deviation $\sigma_{\log,s}$ selected numerically to place approximately 80% of the distribution within $[(R_s/2)^{-1/2}, (R_s/2)^{1/2}]$ and 10% in each tail (see Supplementary Information).
+Each location was assigned a fixed multiplier $\gamma_{j,s}$ drawn from this distribution, with changes in infection risk during the simulation driven by infectious occupancy through $I_{j,s}(t)/N_{j,s}$ rather than recalculated airborne concentrations or Wells–Riley probabilities.
 
 ## Modelling the impact of air quality interventions
 
 We modeled the impact of generic air quality interventions (AQIs) that either modify the physical number of air changes per hour (ACH) or increase the rate at which exhaled virus becomes inactive (thereby decreasing the total virus concentration in a room, in what is typically referred to as the “effective air changes per hour” or eACH).
 Given substantial heterogeneity between different AQIs in terms of changes to eACH and dependence on the specific ventilation dynamics of each space, as well as the initial, exploratory nature of this work, we made the simplifying assumption that modeled AQIs installed in a given setting would reduce the location-specific FOI multiplicatively by efficacy ${E}_{j,s}$ and modify the FOI as follows
 
-$${\lambda }_{i,j,s}^{AQI}\left({t}\right)=\left({1-{E}_{j,s}}\right)\times {\lambda }_{i,j,s}\left({t}\right).$$
+$${\lambda }_{i,j,s}^{\mathrm{AQI}}\left({t}\right)=\left({1-{E}_{j,s}}\right)\times {\lambda }_{i,j,s}\left({t}\right).$$
 
 With this formulation, we then carried out a suite of sensitivity analyses varying AQI efficacy, coverage level (i.e. the target proportion of combined eligible non-household floor area receiving AQI installation), and allocation strategy (randomly distributed across locations vs. targeted to highest-risk eligible locations).
 AQIs were eligible for installation in schools, workplaces, and leisure venues; households and background community transmission were excluded.
@@ -541,7 +554,7 @@ Further research should quantify real-world effectiveness for specific technolog
 | Community transmission proportion | 10% | Fixed | Model assumption (residual transmission) |
 | Between-location heterogeneity | Median 1 with setting-specific standard deviation | Sampled: lognormal distribution | [@corsi22006ozone] |
 | Indoor air quality and ventilation |  |  |  |
-| Pathogen decay constant (${k}_{D}$, ${h}^{-1}$) | 0.64 | Fixed | [@blatchley2023quantitative] |
+| Pathogen decay constant (${k}_{\mathrm{D}}$, ${h}^{-1}$) | 0.64 | Fixed | [@blatchley2023quantitative] |
 | Viral emissions per person per hour | 27 | Fixed | [@blatchley2023quantitative] |
 | Breathing rate (${m}^{3}{h}^{-1}$) | 0.45 | Fixed | [@blatchley2023quantitative] |
 | Infection probability per virion | 0.0137 | Fixed | [@blatchley2023quantitative; @killingley2022safety] |

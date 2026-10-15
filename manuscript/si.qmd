@@ -150,13 +150,13 @@ $$
 \lambda_{i, j, s}(t) = \frac{\beta_{j, s} I_{j, s}(t)}{N_{j, s}},
 $$ {#eq-foisetting}
 
- where $\beta_{j, s}$ is a transmissibility parameter for location $j$ in setting $s$ that integrates consideration of both the amount of time spent in a location and the inherent "riskiness" of a location, $I_{j, s}(t)$ is the number of individuals who are infected in location $j$ of setting $s$ at time $t$, and $N_{j, s}$ is the total number of individuals in location $j$ of setting $s$.
+ where $\beta_{j, s}$ is a transmissibility parameter for location $j$ in setting $s$ that integrates consideration of both the amount of time spent in a location and the inherent "riskiness" of a location, $I_{j, s}(t)$ is the number of infectious individuals in location $j$ of setting $s$ at time $t$, and $N_{j, s}$ is the total number of individuals in location $j$ of setting $s$.
 Transmissibility varied between locations in a setting according to
 
 $$
 \beta_{j, s} = \gamma_{j, s} \beta_s,
 $$
-where $\beta_s$ is the average riskiness of the setting (Section @sec-between) and $\gamma_{j, s}$ are location-specific relative riskiness parameters (Section @sec-within).
+where $\beta_s$ is the transmissibility of a location with riskiness multiplier one (Section @sec-between) and $\gamma_{j, s}$ are location-specific relative riskiness parameters (Section @sec-within).
 
 ### Variation in risk between settings {#sec-between}
 
@@ -166,7 +166,7 @@ We set the sum over $\beta_s$ based on the particular pathogen in order to achie
 
 ### Variation in risk within settings {#sec-within}
 
-    Setting    $\sigma_{log,s}$   Riskiness ratio $R_{s}$
+    Setting    $\sigma_{\log,s}$   Riskiness ratio $R_{s}$
   ----------- ------------------ -------------------------
     School          0.3544                 4.75
    Workplace        0.5072                 6.35
@@ -175,7 +175,7 @@ We set the sum over $\beta_s$ based on the particular pathogen in order to achie
 
   : Setting-specific riskiness distribution parameters {#tbl-riskiness}
 
-To capture heterogeneity in transmission risk between locations in a particular setting type, each location $j$ of setting type $s$ was assigned a riskiness multiplier $\gamma_{j,s}$ at the start of each simulation.
+To capture heterogeneity in transmission risk between locations of the same setting type, each location $j$ of setting type $s$ was assigned a fixed riskiness multiplier $\gamma_{j,s}$.
 The multipliers were drawn from a truncated lognormal distribution
 
 $$
@@ -187,30 +187,31 @@ $$
 \right).
 $$
 Each multiplier scales the FOI for all individuals at that location relative to the setting-level transmissibility $\beta_s$.
-A log-mean of 0 centers the distribution at one, such that $\beta_s$ represents the transmission rate at an average location.
+During the population simulation, changes in infectious occupancy affect the FOI through $I_{j,s}(t)/N_{j,s}$.
+The distribution has median one, so $\beta_s$ represents the transmission rate at a location with riskiness multiplier one.
 The distribution was scaled using setting-specific log-standard deviation parameters $\sigma_{\log,s}$ and truncated based on setting-specific riskiness ratios $R_s$.
-We informed these parameters (Table @tbl-riskiness) empirically using a Wells-Riley model of airborne transmission [@blatchley2023quantitative].
+We informed these parameters (Table @tbl-riskiness) using setting-specific ventilation ranges and a Wells–Riley model of airborne transmission [@blatchley2023quantitative].
 
 In particular, the steady-state concentration of infective virus in an enclosed space is
 
 $$
 \begin{aligned}
-C_{ss} &= \frac{I\pi}{\alpha\nu}, \\
-\alpha &= \frac{Q}{\nu} + k_D,
+C_{\mathrm{ss}} &= \frac{I\pi}{\alpha\nu}, \\
+\alpha &= \frac{Q}{\nu} + k_{\mathrm{D}},
 \end{aligned}
 $$
-where $\nu = ND_sH$ is room volume ($N$ maximum occupants; floor area per person $D_s$; room height $H = 2.5\mathrm{m}$), $Q$ is volumetric airflow ($Q/\nu$ gives ACH), $k_D = 0.64\,\mathrm{h}^{-1}$ is the viral decay rate, $I = 1$ is the number of infectors, and $\pi = 27\,\mathrm{h}^{-1}$ is the infectious-unit emission rate [@blatchley2023quantitative].
+where $\nu = ND_sH$ is room volume ($N$ maximum occupants; floor area per person $D_s$; room height $H = 2.5\mathrm{m}$), $Q$ is volumetric airflow ($Q/\nu$ gives ACH), $k_{\mathrm{D}} = 0.64\,\mathrm{h}^{-1}$ is the viral decay rate, $I = 1$ is the number of infectors, and $\pi = 27\,\mathrm{h}^{-1}$ is the infectious-unit emission rate [@blatchley2023quantitative].
 Floor area per person was parameterised as: $D_{\text{household}} = 20$, $D_{\text{school}} = 3.33$, $D_{\text{workplace}} = 10$, $D_{\text{leisure}} = 2$, taken from @ASHRAE (Table 6.1) for non-household settings and assumed for households.
-The probability of infection after dwell time $t$ is
+The probability of infection after dwell time $\tau$ is
 
 $$
-P_i(t) = 1 - \exp({-r B C_{ss} t}),
+P_i(\tau) = 1 - \exp({-r B C_{\mathrm{ss}} \tau}),
 $$
-where $B = 0.45 \text{m}^3$ per hour is the inhalation rate of virus particles and $r = 1.37 \times 10^{-2}$ is the probability of infection per infective-virion inhaled [@killingley2022safety; @blatchley2023quantitative].
+where $B = 0.45\,\mathrm{m}^{3}\mathrm{h}^{-1}$ is the breathing rate and $r = 1.37 \times 10^{-2}$ is the probability of infection per infective-virion inhaled [@killingley2022safety; @blatchley2023quantitative].
 We evaluated $P_i$ at the minimum and maximum ACH for each setting type [@corsi22006ozone], using dwell times of $12\,\mathrm{h}$ (households), $8\,\mathrm{h}$ (schools and workplaces), and $2.5\,\mathrm{h}$ (leisure).
-The resulting riskiness ratios $P_i(\mathrm{ACH}_{\min})/P_i(\mathrm{ACH}_{\max})$ ranged from 2.5-fold (households) to 6.35-fold (workplaces).
-For each setting and associated set of riskiness ratios, we estimated the value of $\sigma_{log,s}$ that best defined a truncated log-normal with bounds $[\frac{1}{\sqrt{R_s}}, \sqrt{R_{s}}]$.
-For each setting and riskiness ratio, we set $\sigma_{log,s}$ to the value that places approximately 80% of the probability mass of the truncated lognormal distribution within the range $[\frac{1}{\sqrt{R_s/2}}, \sqrt{R_{s}/2}]$, with 10% of the mass in each tail, identified through numerical optimization.
+Holding the other exposure parameters fixed, the minimum and maximum ACH gave the upper and lower infection-probability bounds, respectively.
+The ratio of these probabilities (upper divided by lower) defined the setting-specific riskiness ratio $R_s$, ranging from 2.5-fold (households) to 6.35-fold (workplaces).
+For each setting and riskiness ratio, we set $\sigma_{\log,s}$ to the value that places approximately 80% of the probability mass of the truncated lognormal distribution within the range $[\frac{1}{\sqrt{R_s/2}}, \sqrt{R_{s}/2}]$, with 10% of the mass in each tail, identified through numerical optimization.
 
 ## Intervention model {#sec-intervention}
 

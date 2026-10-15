@@ -48,7 +48,9 @@ In addition, it is necessary to reconstruct parts of the modelling workflow for 
 
 **Response**
 
-*Response to be added.*
+We have revised the Methods to clarify the modelling workflow and the connection between the indoor-air calculations and population transmission.
+
+*Draft response: the flowchart, endpoint definitions, and reproduction workflow remain to be addressed.*
 
 ## Comment 3
 
@@ -93,7 +95,9 @@ The abstract mentions modelling "within-location airborne dynamics" although it 
 
 **Response**
 
-*Response to be added.*
+We have clarified that the indoor-air calculations inform between-location transmission heterogeneity and are not dynamically coupled to infection events in the population model.
+
+*Draft response: the corresponding abstract wording remains to be revised.*
 
 ## Comment 6
 
@@ -255,7 +259,8 @@ Can the authors ensure that this is explained in full in the main text, as it is
 
 **Response**
 
-*Response to be added.*
+We have revised the Methods to clarify how the Wells–Riley calculations inform location-specific transmission risk and how this enters the population model.
+We have also clarified the distinction between this parameterisation and the assumed intervention effects.
 
 ## Comment 3
 
@@ -540,7 +545,10 @@ This would make the multiscale nature of the model much easier to understand and
 
 **Response**
 
-*Response to be added.*
+We have revised the Methods to distinguish epidemiologically parameterised transmission from ventilation-informed heterogeneity between locations.
+The revised text explains more clearly how the indoor-air calculations inform the population model.
+
+*Draft response: the suggested schematic remains to be considered.*
 
 ## Comment 4
 
