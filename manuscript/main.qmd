@@ -261,6 +261,8 @@ In the absence of detailed data and information on visit frequency and duration 
 
 We developed a stochastic, individual-based epidemiological model in which space is explicitly represented by assigning each individual to membership of particular locations and setting types, following the approach of Ferguson et al [@ferguson2005strategies].
 In what follows, we use “setting type” to denote classes of place (e.g., households, schools, workplaces, leisure venues), and “location” to index a specific instance of a given setting type (e.g., a particular household, school, workplace or leisure venue).
+Each location is represented as a single aggregate unit (i.e. without rooms within locations).
+
 Within the model, individuals exist in one of several disease states: susceptible, exposed (but not yet infectious), infectious, and recovered.
 Individuals progress through these states according to pathogen-specific natural history parameters, while acquisition of infection is governed by an exposure process that is computed based on the specific set of locations individuals visit during the course of a day.
 At each time step, an individual’s total force of infection (FOI) is the sum of location-specific FOIs from the locations that they visit.
