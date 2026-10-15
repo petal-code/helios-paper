@@ -375,7 +375,9 @@ Because of this, instead of writing “AQI installation can achieve substantial 
 
 **Response**
 
-*Response to be added.*
+We have revised results headings and figure captions to use "projected impact" and related terminology, making clear that the reported gains are model projections conditional on the assumed intervention efficacy.
+
+*Draft note: a more thorough pass through the manuscript could apply this terminology more consistently.*
 
 ## Comment 11
 
