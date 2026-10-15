@@ -362,13 +362,13 @@ Increasing coverage or efficacy both led to larger reductions in infection incid
 For example, keeping efficacy fixed at 80% and increasing coverage to 60%, reductions in annualized incidence were `r endemic_format(endemic_value("sars_cov_2", 0.8, 0.6, "mean_incidence_reduction"))`% (range `r endemic_format(endemic_value("sars_cov_2", 0.8, 0.6, "low_incidence"))`%-`r endemic_format(endemic_value("sars_cov_2", 0.8, 0.6, "hi_incidence"))`%) and `r endemic_format(endemic_value("flu", 0.8, 0.6, "mean_incidence_reduction"))`% (range `r endemic_format(endemic_value("flu", 0.8, 0.6, "low_incidence"))`%-`r endemic_format(endemic_value("flu", 0.8, 0.6, "hi_incidence"))`%) for SARS-CoV-2 and influenza, respectively.
 Similarly, fixing coverage at 20%, average reductions in annualized incidence were `r endemic_format(endemic_value("sars_cov_2", 0.4, 0.2, "mean_incidence_reduction"))`%, `r endemic_format(endemic_value("sars_cov_2", 0.6, 0.2, "mean_incidence_reduction"))`% and `r endemic_format(endemic_value("sars_cov_2", 0.8, 0.2, "mean_incidence_reduction"))`% for the SARS-CoV-2-like pathogen at 40%, 60% and 80% assumed efficacy, respectively, and `r endemic_format(endemic_value("flu", 0.4, 0.2, "mean_incidence_reduction"))`%, `r endemic_format(endemic_value("flu", 0.6, 0.2, "mean_incidence_reduction"))`% and `r endemic_format(endemic_value("flu", 0.8, 0.2, "mean_incidence_reduction"))`% for the influenza-like pathogen.
 
-**AQI installation has a larger impact on “influenza-like” pathogens than on “SARS-CoV-2-like” pathogens.**
+**Projected AQI impact is larger for the “influenza-like” archetype than for the “SARS-CoV-2-like” archetype.**
 Across all intervention scenarios explored, AQI installation produced greater proportional reductions in disease for the influenza-like archetype than for the SARS-CoV-2-like archetype (@fig-endemic).
 Across equivalent coverage and efficacy levels ranging from 40% to 80%, reductions in annualized disease incidence for influenza were `r endemic_format(endemic_ratio_range("mean_incidence_reduction")$low, scale = 1)`–`r endemic_format(endemic_ratio_range("mean_incidence_reduction")$high, scale = 1)`$\times$ higher than those observed for SARS-CoV-2.
 Similarly, reductions in active infection prevalence were approximately `r endemic_format(endemic_ratio_range("mean_prevalence_reduction")$low, scale = 1)`–`r endemic_format(endemic_ratio_range("mean_prevalence_reduction")$high, scale = 1)`$\times$ higher for influenza than for SARS-CoV-2 across the same range of coverage and efficacy.
 These differences reflect the higher sensitivity of pathogens with lower $R_0$ and shorter generation times to reductions in per-contact transmission risk, suggesting that AQI installation would have particularly strong effects on influenza-like endemic pathogens.
 
-**Specifically targeting the highest-risk locations substantially increases the impact of AQI installation.**
+**Specifically targeting the highest-risk locations substantially increases the projected impact of AQI installation.**
 Across all efficacy and coverage combinations explored, targeting installation of AQI to the highest-risk locations consistently produced greater reductions in infection incidence compared to scenarios where installation was done randomly (i.e. installed in locations irrespective of transmission risk) (@fig-targeting, panel A).
 For example, at 20% coverage and 80% efficacy, targeting installation to highest-risk locations reduced annual incidence by an average of `r endemic_format(targeting_value("sars_cov_2", 0.8, 0.2, "targeted_riskiness", "incidence_reduction", "mean_value"))`% (5th–95th percentile range `r endemic_format(targeting_value("sars_cov_2", 0.8, 0.2, "targeted_riskiness", "incidence_reduction", "q05"))`%-`r endemic_format(targeting_value("sars_cov_2", 0.8, 0.2, "targeted_riskiness", "incidence_reduction", "q95"))`%) for the SARS-CoV-2 archetype compared with `r endemic_format(targeting_value("sars_cov_2", 0.8, 0.2, "random"))`% under random installation (5th–95th percentile range `r endemic_format(targeting_value("sars_cov_2", 0.8, 0.2, "random", "incidence_reduction", "q05"))`%-`r endemic_format(targeting_value("sars_cov_2", 0.8, 0.2, "random", "incidence_reduction", "q95"))`%), a `r endemic_format(targeting_relative_increase("sars_cov_2", 0.8, 0.2), digits = 0)`% relative increase in impact (@fig-targeting, panel B).
 Similar patterns were observed for the influenza archetype, with targeted deployment achieving a `r endemic_format(targeting_value("flu", 0.8, 0.2, "targeted_riskiness", "incidence_reduction", "mean_value"))`% (5th–95th percentile range `r endemic_format(targeting_value("flu", 0.8, 0.2, "targeted_riskiness", "incidence_reduction", "q05"))`%-`r endemic_format(targeting_value("flu", 0.8, 0.2, "targeted_riskiness", "incidence_reduction", "q95"))`%) reduction compared to the random installation achieving a `r endemic_format(targeting_value("flu", 0.8, 0.2, "random"))`% reduction at equivalent coverage and efficacy, a `r endemic_format(targeting_relative_increase("flu", 0.8, 0.2))`% relative increase in impact (@fig-targeting, panel C).
@@ -386,7 +386,7 @@ This is due to the fact that as coverage increases, there is a greater overlap b
 The absolute difference in percentage reduction between random and targeted allocation strategies followed a similar pattern (@fig-targeting, panels D and G) peaking at mid-range coverage before converging at high coverages (as in these scenarios, most locations received AQIs).
 These results indicate that targeting the highest-risk locations provides the largest proportional advantage when deployment resources are limited.
 
-**AQI installation could also substantially affect pathogen transmission dynamics and infection incidence during future pandemic scenarios.**
+**AQI installation is also projected to substantially affect transmission dynamics and infection incidence in epidemic scenarios.**
 Next, we evaluated the impact of AQIs on infection incidence across two archetypal epidemic scenarios, again approximating influenza and SARS-CoV-2 as archetypes.
 Across both epidemic archetypes, higher efficacy or wider coverage led to reductions in infection incidence across all metrics considered.
 Without intervention, the peak incidence of the influenza archetype was `r epidemic_format(epidemic_baseline_value("flu", "peak_daily_incidence", "mean_value"))` per 1,000 (range `r epidemic_format(epidemic_baseline_value("flu", "peak_daily_incidence", "min_value"))`-`r epidemic_format(epidemic_baseline_value("flu", "peak_daily_incidence", "max_value"))`) with a final epidemic size of `r epidemic_format(epidemic_baseline_value("flu", "epidemic_final_size", "mean_value"), scale = 100)`% of total population (range `r epidemic_format(epidemic_baseline_value("flu", "epidemic_final_size", "min_value"), scale = 100)`%-`r epidemic_format(epidemic_baseline_value("flu", "epidemic_final_size", "max_value"), scale = 100)`%), whereas the SARS-CoV-2 archetype yielded a peak incidence of `r epidemic_format(epidemic_baseline_value("sars_cov_2", "peak_daily_incidence", "mean_value"))` per 1,000 (range `r epidemic_format(epidemic_baseline_value("sars_cov_2", "peak_daily_incidence", "min_value"))`-`r epidemic_format(epidemic_baseline_value("sars_cov_2", "peak_daily_incidence", "max_value"))`) and a final epidemic size of `r epidemic_format(epidemic_baseline_value("sars_cov_2", "epidemic_final_size", "mean_value"), scale = 100)`% of total population (range `r epidemic_format(epidemic_baseline_value("sars_cov_2", "epidemic_final_size", "min_value"), scale = 100)`%-`r epidemic_format(epidemic_baseline_value("sars_cov_2", "epidemic_final_size", "max_value"), scale = 100)`%).
@@ -399,7 +399,7 @@ Random AQI installation at 40% coverage and 60% efficacy reduced the final epide
 #| echo: false
 #| out-width: "100%"
 #| fig-cap: >
-#|   **Impact of AQI installation implementation on infection incidence.**
+#|   **Projected impact of AQI installation on infection incidence.**
 #|   **(A)** The percentage reduction in annual incidence of infection (y-axis) and how this varies with AQI coverage (x-axis), for the SARS-CoV-2-like archetype.
 #|   Coloured lines represent different assumptions about the efficacy of installed AQIs at reducing onward transmission.
 #|   Error bars indicate the range of impact observed across 25 stochastic simulations.
@@ -418,7 +418,7 @@ knitr::include_graphics(here::here("figures", "endemic_scenario", "plot.png"))
 #| echo: false
 #| out-width: "100%"
 #| fig-cap: >
-#|   **Comparison of the impact achieved under random and risk-based AQI installation and deployment strategies.
+#|   **Comparison of the projected impact under random and risk-based AQI installation and deployment strategies.
 #|   (A)** Schematic contrasting random selection of locations with risk-based targeting at a target coverage of 50% of eligible non-household floor area; grey bars indicate locations without AQIs, dark blue bars indicate locations with AQIs installed.
 #|   **(B)** Percentage reduction in annual incidence (y-axis) across increasing coverage (x-axis) for random (grey) versus targeted (blue) implementation, under alternative assumptions about AQI efficacy.
 #|   Bars show the mean; error bars show the range across 25 stochastic simulations.
@@ -437,7 +437,7 @@ knitr::include_graphics(here::here("figures", "endemic_targeting", "plot.png"))
 #| echo: false
 #| out-width: "100%"
 #| fig-cap: >
-#|   **Analyses of the impact of air quality interventions on infection incidence across epidemic scenarios.
+#|   **Projected impact of air quality interventions on infection incidence across epidemic scenarios.
 #|   (A)** Final epidemic size in terms of percentage of the population infected for the SARS-CoV-2 archetype, with point-ranges showing the mean and simulated range across coverage levels for random versus targeted deployment; line and point colors denote intervention efficacy.
 #|   **(B)** Heatmap of percentage reduction in final epidemic size for SARS-CoV-2, providing sensitivity analysis across a wider range of values.
 #|   **(C)** As for **(A)**, but for the peak incidence measured in terms of daily infections per 1,000 population.
