@@ -342,13 +342,14 @@ We define highest-risk locations as those with the largest $\gamma_{j,s}$ values
 ## Disease and AQI scenario modelling
 
 We simulated two pathogen archetypes possessing the epidemiological properties of influenza and SARS-CoV-2, including the natural history (average incubation period of 2 days and an average duration of infectiousness of 4 days for SARS-CoV-2; average incubation period of 1 day, average duration of infectiousness of 2 days for influenza), and reproduction number (approximately ${R}_{0}\approx 1.5$ for influenza and ${R}_{0}\approx 2.5$ for SARS-CoV-2).
-For both pathogen archetypes, we carried out a suite of simulations assuming both endemic transmission (i.e. in which transmission is recurring and individuals are routinely reinfected due to declining immunity level, and which matches the dynamics of SARS-CoV-2 and influenza currently); and an alternative set of scenarios (“epidemic” scenarios) in which a novel pathogen with properties similar to existing influenza and SARS-CoV-2 viruses emerges into the population.
+For both pathogen archetypes, we carried out a suite of simulations assuming both endemic transmission (i.e. in which transmission is recurring and individuals are routinely reinfected due to declining immunity level, and which matches the dynamics of SARS-CoV-2 and influenza currently); and an alternative set of “epidemic” scenarios in which a novel pathogen with properties similar to existing influenza and SARS-CoV-2 viruses emerges into the population.
+
 We simulated both endemic and epidemic scenarios for each pathogen archetype under multiple AQI strategies: no AQI (baseline), random allocation of AQI to locations, and targeted allocation to the highest-risk eligible locations.
 Each scenario was replicated 25 times to account for stochastic variation between model runs.
 For endemic scenarios, we computed annualized disease incidence and average prevalence of active infection over the time-period simulated.
 Simulations were run for 20 years with an assumed mean duration of immunity of 365 days, and interventions were introduced following the end of the 10th year, across indoor settings including workplaces, schools, and leisure venues.
 The period spanning years 5–7 served as the baseline, and years 15–17 as the post-intervention phase for purposes of evaluation.
-For epidemic scenarios, we examined epidemic final size, the time to the peak of the epidemic, and peak infection incidence as metrics to assess AQI impact.
+For epidemic scenarios, we computed epidemic final size and peak infection incidence as metrics to assess AQI impact.
 
 # Results
 
@@ -448,7 +449,7 @@ knitr::include_graphics(here::here("figures", "endemic_targeting", "plot.png"))
 knitr::include_graphics(here::here("figures", "epidemic_scenario", "plot.png"))
 ```
 
-Increasing either efficacy or coverage yielded similar increases in the impact on epidemic peak, timing and final size.
+Increasing either efficacy or coverage yielded similar increases in the impact on epidemic peak and final size.
 For the influenza archetype, expanding randomly allocated coverage from 40% to 60% at 40% efficacy lowered the final epidemic size by `r epidemic_format(epidemic_reduction(0.4, 0.6), scale = 100)`%, approximately matching the `r epidemic_format(epidemic_reduction(0.6, 0.4), scale = 100)`% from instead increasing efficacy from 40% to 60% while holding coverage at 40% (@fig-epidemic, panel E).
 
 As with our endemic scenario results, targeted AQI strategies achieved higher reductions in infection incidence at lower coverage levels than the random strategy.
@@ -474,7 +475,7 @@ For example, coverage of 40% of non-household floor area with AQIs with efficacy
 Crucially, because overall annual infection incidence for our SARS-CoV-2-like pathogen is higher, this still translates into sizeable reductions in absolute burden, even though it remains a (relatively) smaller fraction of total burden.
 In both cases, achieving substantial impact (e.g. \>30% reduction) was contingent on comparatively high levels of coverage and/or efficacy: to achieve 30% reduction at assumed 60% efficacy required approximately 90% and approximately 45% coverage for the SARS-CoV-2-like and influenza-like pathogen, respectively.
 
-In our modeled epidemic scenarios, installed AQIs reduced the final epidemic size and peak incidence, as well as lengthening the time to peak, with more pronounced effects again for the influenza-like archetype than for SARS-CoV-2-like scenarios.
+In our modeled epidemic scenarios, installed AQIs reduced the final epidemic size and peak incidence with more pronounced effects again for the influenza-like archetype than for SARS-CoV-2-like scenarios.
 Our modeled results show that AQIs of modest efficacy and floor-area coverage are unlikely to achieve containment of the most highly transmissible pathogens on their own.
 However, these results also indicate that these measures could still play a role in both reducing and slowing epidemic growth and associated population-level spread, buying time for the development of countermeasures under accelerated (but still delayed relative to epidemic onset) timelines, as with the Coalition for Epidemic Preparedness’ 100 Days Mission.
 Moreover, by lowering baseline transmission in public and community venues, IAQ improvements may also reduce reliance on disruptive measures such as prolonged school or business closures, which carry documented and persistent educational and macroeconomic costs [@oecd2020learning; @haw2022optimizing; @rothwell2024global].
