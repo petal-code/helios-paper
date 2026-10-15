@@ -367,7 +367,8 @@ Methods: “For endemic scenarios we computed…”, also say what you compute f
 
 **Response**
 
-*Response to be added.*
+We have revised this paragraph to clarify the simulation conditions for the endemic and epidemic scenarios, adding details for the latter.
+We have also removed time to peak from the metrics listed in the methods section and two brief references elsewhere in the manuscript, as we do not report this metric numerically.
 
 ::: {.callout-note collapse="true" title="Comment 16"}
 Discussion: avoid the word significant apart from in the statistical sense.
