@@ -128,7 +128,9 @@ A few additional points:
 
 **Response**
 
-*Response to be added.*
+Thank you for this suggestion.
+We have revised the manuscript to specify that the two modelled pathogen archetypes approximate influenza A/B and SARS-CoV-2.
+We introduce this distinction explicitly and thereafter use “influenza A/B” and “SARS-CoV-2” as shorthand for the corresponding archetypes.
 
 ::: {.callout-note collapse="true" title="Comment 9"}
 - Would be interesting to discuss how results might differ under target scenarios based on expected transmission burden or expected preventable infections per unit floor area per setting.
