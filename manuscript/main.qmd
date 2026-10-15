@@ -286,7 +286,7 @@ Further model details are provided below, but see [https://mrc-ide.github.io/hel
 Following the approach of Ferguson et al [@ferguson2005strategies], the force of infection (FOI) experienced by an individual $i$ at time $t$ is decomposed across the location $j$ and setting type $s$ as follows
 $${\lambda }_{i}\left({t}\right)=\sum\limits_{j,s}^{}{\lambda }_{i,j,s}\left({t}\right).$$
 
-With the location and setting type-specific FOI calculated as
+The location and setting type-specific FOI is calculated as
 
 $${\lambda }_{i,j,s}\left({t}\right)=\frac{{\beta }_{j,s}{I}_{j,s}\left({t}\right)}{{N}_{j,s}},$$
 
