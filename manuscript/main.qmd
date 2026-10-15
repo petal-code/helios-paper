@@ -257,7 +257,7 @@ School enrollment sizes (@fig-population, panel C) were sampled from U.S. Nation
 Workplace sizes (@fig-population, panel D) were sampled from a truncated offset power law distribution estimated previously from US-based data [@ferguson2005strategies].
 In the absence of detailed data and information on visit frequency and duration to other settings, we aggregated all other visits into a “leisure” category, with setting capacity (@fig-population, panel E) and visit frequency (@fig-population, panel F) sampled from empirically motivated negative binomial and Poisson distributions respectively.
 
-## Overview of Individual-based modelling framework
+## Overview of individual-based modelling framework
 
 We developed a stochastic, individual-based epidemiological model in which space is explicitly represented by assigning each individual to membership of particular locations and setting types, following the approach of Ferguson et al [@ferguson2005strategies].
 In what follows, we use “setting type” to denote classes of place (e.g., households, schools, workplaces, leisure venues), and “location” to index a specific instance of a given setting type (e.g., a particular household, school, workplace or leisure venue).
