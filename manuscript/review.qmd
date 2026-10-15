@@ -431,7 +431,10 @@ Note on precision - given the archetypal/exploratory nature of this work, the le
 
 **Response**
 
-*Response to be added.*
+We agree that the presentation should avoid implying unwarranted precision.
+We consider one decimal place appropriate for the calculated results, since rounding to whole numbers can obscure differences between scenarios or exaggerate them across rounding boundaries.
+We have therefore standardised the calculated results reported in the manuscript text to one decimal place, including those previously presented to two decimal places.
+This provides a consistent basis for comparison without implying that small differences are substantively meaningful.
 
 ## Comment 15
 
