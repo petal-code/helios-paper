@@ -531,55 +531,48 @@ Realizing this benefit will depend on implementation quality and coverage across
 It will also require practical guidance and workforce capacity to assess and upgrade ventilation, filtration, and air disinfection in priority settings.
 Further research should quantify real-world effectiveness for specific technologies in varied venues, generate comparative- and cost-effectiveness evidence across payer perspectives, and develop measurement systems that resolve venue-level risk in near-real time.
 
-| Parameter | SARS-CoV-2-like | Influenza-like | Source(s) |
-| :---- | :---: | :---: | :---- |
-| Approximate basic reproduction number (${R}_{0}$) | 2.5 | 1.5 | [@liu2020the; @biggerstaff2014estimates] |
-| Mean incubation period (days) | 2 | 1 | Model assumption |
-| Mean infectious period (days) | 4 | 2 | Model assumption |
-| Mean duration of immunity (days) | 365 | 365 | Model assumption |
+```{r}
+#| label: table-pathogen
+#| eval: true
+#| echo: false
+#| results: asis
+
+knitr::kable(
+  gt::extract_body(readRDS(here::here("tables", "pathogen.rds"))),
+  format = "pipe",
+  align = c("l", "c", "c", "l")
+)
+```
 
 : Pathogen archetype natural history parameters {#tbl-pathogen}
 
-| Parameter | Baseline value | Range | Source |
-| :---- | :---: | :---: | :---- |
-| Population structure |  |  |  |
-| Population size | 50,000 | Fixed | Model assumption |
-| Age groups | 3 (child, adult, elderly) | Fixed | Model assumption |
-| Household size distribution | approximately 1-16 members | Sampled: synthetic population | RTI International 2010 [@rineer2025a] |
-| School enrollment distribution | approximately 100-3,000 students | Sampled: empirical data | US NCES 2019-2020 [@deBrey2023Digest] |
-| Workplace size distribution | approximately 1-1,000+ employees | Sampled: truncated offset power-law distribution | [@ferguson2005strategies] |
-| Leisure venue size distribution | approximately 1-300 | Sampled: negative binomial distributed | Model assumption |
-| Transmission dynamics |  |  |  |
-| Household transmission proportion | 30% | Fixed | [@ferretti2024digital; @Fergusonetal2006] |
-| School/Workplace transmission proportion | 30% | Fixed | [@ferretti2024digital] |
-| Leisure transmission proportion | 30% | Fixed | [@ferretti2024digital] |
-| Community transmission proportion | 10% | Fixed | Model assumption (residual transmission) |
-| Between-location heterogeneity | Median 1 with setting-specific standard deviation | Sampled: lognormal distribution | [@corsi22006ozone] |
-| Indoor air quality and ventilation |  |  |  |
-| Pathogen decay constant (${k}_{\mathrm{D}}$, ${h}^{-1}$) | 0.64 | Fixed | [@blatchley2023quantitative] |
-| Viral emissions per person per hour | 27 | Fixed | [@blatchley2023quantitative] |
-| Breathing rate (${m}^{3}{h}^{-1}$) | 0.45 | Fixed | [@blatchley2023quantitative] |
-| Infection probability per virion | 0.0137 | Fixed | [@blatchley2023quantitative; @killingley2022safety] |
-| Room height ($m$) | 2.5 | Fixed | Model assumption |
-| Household occupancy density (per 100${m}^{2}$) | 5 | Fixed | ASHRAE 62.1 [@kelechava2022ventilation] |
-| School occupancy density (per 100${m}^{2}$) | 30 | Fixed | ASHRAE 62.1 [@kelechava2022ventilation] |
-| Workplace occupancy density (per 100${m}^{2}$) | 10 | Fixed | ASHRAE 62.1 [@kelechava2022ventilation] |
-| Leisure occupancy density (per 100${m}^{2}$) | 50 | Fixed | ASHRAE 62.1 [@kelechava2022ventilation] |
-| Air changes per hour (ACH) | Setting-specific | Sampled: Lognormal per setting | [@corsi22006ozone] |
-| Air quality interventions |  |  |  |
-| Settings with AQI | Schools, workplaces, leisure | Fixed | Model assumption |
-| Settings without AQI | Households, community | Fixed | Model assumption |
+```{r}
+#| label: table-model
+#| eval: true
+#| echo: false
+#| results: asis
+
+knitr::kable(
+  gt::extract_body(readRDS(here::here("tables", "model.rds"))),
+  format = "pipe",
+  align = c("l", "c", "c", "l")
+)
+```
 
 : Model parameters {#tbl-model}
 
-| Setting | Values |
-| :---- | :---- |
-| Pathogen archetype | SARS-CoV-2-like; Influenza-like |
-| AQI efficacy | 20%, 40%, 60%, 80%, 100% |
-| AQI coverage | 0%, 20%, 40%, 60%, 80%, 100% |
-| AQI deployment | Random; Risk-targeted |
-| Transmission regime | Endemic; epidemic |
-| Stochastic replicates | 25 |
+```{r}
+#| label: table-simulation
+#| eval: true
+#| echo: false
+#| results: asis
+
+knitr::kable(
+  gt::extract_body(readRDS(here::here("tables", "simulation.rds"))),
+  format = "pipe",
+  align = c("l", "l")
+)
+```
 
 : Simulation parameter settings {#tbl-simulation}
 
