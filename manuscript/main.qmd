@@ -349,7 +349,7 @@ Each scenario was replicated 25 times to account for stochastic variation betwee
 For endemic scenarios, we computed annualized disease incidence and average prevalence of active infection over the time-period simulated.
 Simulations were run for 20 years with an assumed mean duration of immunity of 365 days, and interventions were introduced following the end of the 10th year, across indoor settings including workplaces, schools, and leisure venues.
 The period spanning years 5–7 served as the baseline, and years 15–17 as the post-intervention phase for purposes of evaluation.
-For epidemic scenarios, we examined epidemic final size, the time to the peak of the epidemic, and peak infection incidence as metrics to assess AQI impact.
+For epidemic scenarios, we computed epidemic final size and peak infection incidence as metrics to assess AQI impact.
 
 # Results
 
