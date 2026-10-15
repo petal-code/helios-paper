@@ -419,7 +419,9 @@ Might be an easier strategy to implement than ‘targeted’ control in the sens
 
 **Response**
 
-*Response to be added.*
+We agree that targeting particular settings (such as schools) could offer a practical approach to IAQ intervention implementation.
+Although schools are represented in our model, evaluating setting-specific control strategies falls outside the scope of this study.
+Extending the model to represent settings such as care homes and hospitals, and to capture deaths as an outcome, would make evaluating setting-specific interventions a particularly valuable direction for future work.
 
 ## Comment 14
 
