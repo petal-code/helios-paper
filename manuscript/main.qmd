@@ -276,7 +276,7 @@ This construction lets us (i) control the average contribution of each setting t
 
 To quantify between-location “riskiness”, we use empirically documented variation in ventilation rates across locations belonging to the same setting type, and integrate these with an explicit model of within-room airborne virus concentration and a Wells–Riley dose–response model.
 This connects observed variation in ventilation to differences in transmission risk between locations, allowing us to assess how this heterogeneity affects population transmission and the benefits of targeting higher-risk locations.
-We represent interventions as assumed proportional reductions in location-specific force of infection to compare efficacy, coverage, and allocation strategies; the efficacy achievable with specific ventilation, filtration, or UV technologies must be established separately.
+We represent interventions as assumed proportional reductions in location-specific force of infection to compare efficacy, coverage, and allocation strategies; the efficacy achievable with specific ventilation, filtration, or disinfection must be established separately.
 This framework (described in further detail below) is implemented in R as an open-source package [@helios], built using the *individual* R package; package documentation, vignettes, and source code are publicly available.
 Further model details are provided below, but see [https://mrc-ide.github.io/helios/](https://mrc-ide.github.io/helios/) for full details.
 
