@@ -207,7 +207,7 @@ The probability of infection after dwell time $\tau$ is
 $$
 P_i(\tau) = 1 - \exp({-r B C_{\mathrm{ss}} \tau}),
 $$
-where $B = 0.45\,\mathrm{m}^{3}\mathrm{h}^{-1}$ is the breathing rate and $r = 1.37 \times 10^{-2}$ is the probability of infection per infective-virion inhaled [@killingley2022safety; @blatchley2023quantitative].
+where $B = 0.45\,\mathrm{m}^{3}\mathrm{h}^{-1}$ is the breathing rate and $r = 1.37 \times 10^{-2}$ is the probability of infection per infective virion inhaled [@killingley2022safety; @blatchley2023quantitative].
 We evaluated $P_i$ at the minimum and maximum ACH for each setting type [@corsi22006ozone], using dwell times of $12\,\mathrm{h}$ (households), $8\,\mathrm{h}$ (schools and workplaces), and $2.5\,\mathrm{h}$ (leisure).
 Holding the other exposure parameters fixed, the minimum and maximum ACH gave the upper and lower infection-probability bounds, respectively.
 The ratio of these probabilities (upper divided by lower) defined the setting-specific riskiness ratio $R_s$, ranging from 2.5-fold (households) to 6.35-fold (workplaces).
