@@ -172,16 +172,17 @@ epidemic_format <- function(value, digits = 1, scale = 1) {
 }
 ```
 
-# Abstract
+# Abstract {-}
 
 Respiratory virus transmission occurs in indoor settings where ventilation, occupancy, and dwell time determine exposure levels.
 Improving indoor air quality (IAQ) therefore could help reduce disease burden associated with respiratory viruses, yet its population-level impact remains poorly quantified.
 Here, we develop an individual-based transmission modelling framework that links within-location airborne dynamics to individual infection risk and population-level spread, whilst explicitly incorporating heterogeneity in ventilation and baseline indoor air quality across locations.
-We use this modelling approach to evaluate IAQ-improving interventions (air-quality interventions or AQIs), using hypothetical endemic and pandemic pathogen archetypes with properties similar to SARS-CoV-2 and influenza, and evaluate how effects on key epidemiological metrics (such as annualized incidence and epidemic final size) depend on AQI coverage, efficacy and allocation strategy.
+We use this modelling approach to evaluate IAQ-improving interventions (air-quality interventions or AQIs) under hypothetical intervention efficacies, using endemic and pandemic pathogen archetypes with properties similar to SARS-CoV-2 and influenza, and evaluate how effects on key epidemiological metrics (such as annualized incidence and epidemic final size) depend on AQI coverage, efficacy and allocation strategy.
 At 20% AQI intervention coverage and 80% efficacy, annualized incidence was reduced by approximately `r endemic_format(endemic_value("sars_cov_2", 0.8, 0.2, "mean_incidence_reduction"))`% for an endemic “SARS-CoV-2-like” respiratory virus, and `r endemic_format(endemic_value("flu", 0.8, 0.2, "mean_incidence_reduction"))`% for an endemic “influenza-like” virus; at 60% coverage (80% efficacy) the reductions were `r endemic_format(endemic_value("sars_cov_2", 0.8, 0.6, "mean_incidence_reduction"))`% and `r endemic_format(endemic_value("flu", 0.8, 0.6, "mean_incidence_reduction"))`%, respectively.
 Targeting AQI installation to the highest-risk locations outperformed random allocation: for SARS-CoV-2-like transmission, 20% coverage at 80% efficacy cut absolute incidence by `r endemic_format(targeting_value("sars_cov_2", 0.8, 0.2, "targeted_riskiness", "incidence_reduction", "mean_value"))`% when targeted versus `r endemic_format(targeting_value("sars_cov_2", 0.8, 0.2, "random"))`% when random; for influenza-like transmission, this comparison was `r endemic_format(targeting_value("flu", 0.8, 0.2, "targeted_riskiness", "incidence_reduction", "mean_value"))`% versus `r endemic_format(targeting_value("flu", 0.8, 0.2, "random"))`%.
 In epidemic scenarios, random installation at 40% coverage and 60% efficacy reduced final size by `r epidemic_format(epidemic_value("flu", "epidemic_final_size", "Random", 0.6, 0.4, "mean_pct_reduction"), scale = 100)`% (influenza-like) versus `r epidemic_format(epidemic_value("sars_cov_2", "epidemic_final_size", "Random", 0.6, 0.4, "mean_pct_reduction"), scale = 100)`% (SARS-CoV-2-like).
-These results support treating clean indoor air as core public-health infrastructure and prioritising risk-based deployment of IAQ-improving interventions to maximise population-level benefit within budgetary and operational constraints.
+These results highlight the potential for IAQ interventions to reduce respiratory infection burden, particularly through risk-based deployment.
+Their value as public-health infrastructure will depend on real-world effectiveness, costs, implementation quality, and achievable coverage.
 
 # Background
 

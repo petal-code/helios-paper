@@ -581,7 +581,8 @@ I suggest that these latter qualifications are reflected more clearly in the abs
 
 **Response**
 
-*Response to be added.*
+We agree that the abstract's conclusions require clearer qualification.
+We have revised the abstract to specify that the intervention efficacies are hypothetical, and softened the concluding statement to acknowledge that the value of IAQ interventions as public-health infrastructure depends on practical and economic considerations.
 
 ## Comment 6
 
