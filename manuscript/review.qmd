@@ -84,9 +84,8 @@ The abstract mentions modelling "within-location airborne dynamics" although it 
 
 **Response**
 
-We have clarified that the indoor-air calculations inform between-location transmission heterogeneity and are not dynamically coupled to infection events in the population model.
-
-*Draft response: the corresponding abstract wording remains to be revised.*
+We have revised the abstract to more clearly state that the framework " uses the Wells-Riley equation to inform ventilation-related variation in transmission risk between locations", removing the claim about modelling within-location airborne dynamics.
+In the methods subsection "Indoor air quality motivated variation in riskiness between locations we have also clarified that the indoor-air calculations inform between-location transmission heterogeneity and are not dynamically coupled to infection events in the population model.
 
 ## Assumptions and limitations
 
