@@ -229,7 +229,7 @@ Modelled floor area was calculated as location occupancy multiplied by the setti
 Because whole locations received AQIs, achieved coverage could slightly exceed the nominal target.
 Two allocation strategies were considered: random and targeted.
 Under random allocation, locations were selected uniformly at random from all non-household settings until the cumulative covered floor area met or exceeded the coverage target.
-Under targeted allocation, locations were ranked by their riskiness $\gamma_{j,s}$, with AQIs installed in locations of descending order of riskiness until the cumulative covered floor area met or exceeded the coverage target.
+Under targeted allocation, locations were ranked by their riskiness $\gamma_{j,s}$, with AQIs installed in locations in descending order of riskiness until the cumulative covered floor area met or exceeded the coverage target.
 
 ## Pathogen archetypes {#sec-archetypes}
 
