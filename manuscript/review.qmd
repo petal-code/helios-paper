@@ -252,7 +252,12 @@ How and whether individuals transition between different locations within a sett
 
 **Response**
 
-*Response to be added.*
+We have clarified in the methods subsection "Overview of individual-based modelling framework" that each location is represented as a single aggregate unit, without separate rooms or movement between them.
+We now explicitly state that the duration and sequence of individuals' visits are not represented.
+The dwell times used in the Wells–Riley calculations serve only to parameterise between-location risk heterogeneity and do not specify individual visit durations in the population simulation.
+
+In the discussion, we clarify that the steady-state, well-mixed approximation applies to the indoor-air calculations used for parameterisation.
+We also acknowledge the resulting limitations in representing within-location contact structures, including differences between primary and secondary school schedules, as raised in your next comment.
 
 ::: {.callout-note collapse="true" title="Comment 5"}
 The categorisation of the population (children, adults, older adults) means the model, by construction, cannot accurately capture school structure simultaneously for both elementary and high school students.
