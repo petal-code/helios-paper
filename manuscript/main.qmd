@@ -272,6 +272,7 @@ For each location *j* belonging to setting type s, the force of infection experi
 This proportion is scaled by a setting-type specific transmissibility parameter ${\beta }_{s}$ and a location specific heterogeneity multiplier ${\gamma }_{j,\ s}$.
 The former captures differences in respiratory virus transmission between setting types [@ferretti2024digital], while the latter captures variation in occupancy, ventilation, and mixing across locations of the same setting type and is parameterised using information on ventilation rates.
 This construction lets us (i) control the average contribution of each setting type to transmission at the population level and (ii) represent between-location heterogeneity in transmission risk across the locations belonging to a particular setting type.
+We do not explicitly represent the duration or sequence of individuals’ visits to locations.
 
 To quantify between-location “riskiness”, we use empirically documented variation in ventilation rates across locations belonging to the same setting type, and integrate these with an explicit model of within-room airborne virus concentration and a Wells–Riley dose–response model.
 This connects observed variation in ventilation to differences in transmission risk between locations, allowing us to assess how this heterogeneity affects population transmission and the benefits of targeting higher-risk locations.
@@ -321,6 +322,7 @@ $$P_i(\tau)=1-\exp\left({-rBC_{\mathrm{ss}}\tau}\right),$$
 
 with breathing rate $B=0.45{m}^{3}{h}^{-1}$ and infection probability per virion $r=1.37\times {10}^{-2}$  [@blatchley2023quantitative; @killingley2022safety].
 For each explicitly represented setting type, we evaluated the Wells–Riley infection probability across the ACH range reported in @corsi22006ozone, using dwell times of 12 hours in households, 8 hours in schools and workplaces, and 2.5 hours at leisure venues.
+These dwell times are used only to parameterise between-location risk heterogeneity and do not specify individual visit durations in the population simulation.
 Holding the other exposure parameters fixed, the minimum and maximum ACH gave the upper and lower infection-probability bounds, respectively.
 The ratio of these probabilities (upper divided by lower) defined a setting-specific riskiness ratio $R_s$.
 This ratio determined the bounds $[R_s^{-1/2}, R_s^{1/2}]$ of a median-one truncated lognormal distribution, with setting-specific log-standard deviation $\sigma_{\log,s}$ selected numerically to place approximately 80% of the distribution within $[(R_s/2)^{-1/2}, (R_s/2)^{1/2}]$ and 10% in each tail (see Supplementary Information).
