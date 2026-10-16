@@ -325,6 +325,8 @@ In the subsection “Disease and AQI scenario modelling”, pathogen archetype n
 
 *Response to be added.*
 
+**Charlie: Agreed yes this needs to be referenced. Think if we can't find them probably our best bet to find some supporting literature and cite them, and if they're really far off (suspect this isn't the case), we might have to reparameterise and rerun.**
+
 ::: {.callout-note collapse="true" title="Comment 7"}
 The authors model targeted allocation to the highest-risk eligible locations - but this need to be explained - in particular, how were the ‘highest-risk eligible locations’ determined?
 :::
