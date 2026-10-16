@@ -345,6 +345,8 @@ I would strongly consider reframing the introduction to focus on pathogens consi
 
 *Response to be added.*
 
+**Charlie: Yes, agreed and that's fair enough, we should address this and change the text and associated focus.**
+
 ::: {.callout-note collapse="true" title="Comment 9"}
 An all-too-common error made in many modelling papers is to present an assumption as if it were a result, and the authors should temper their language in the results and throughout.
 For example, the authors assume AQI measures as reducing per-capita forces of infection by a constant factor (1 - efficacy).
@@ -356,6 +358,8 @@ Because of this, instead of writing “AQI installation can achieve substantial 
 We have revised results headings and figure captions to use "projected impact" and related terminology, making clear that the reported gains are model projections conditional on the assumed intervention efficacy.
 
 *Draft note: a more thorough pass through the manuscript could apply this terminology more consistently.*
+
+**Charlie: A bit OTT from them but it is fundamentally a fair enough comment so I think fine to address and I agree a more thorough pass to make sure we've addressed it everywhere seems good to me.**
 
 ::: {.callout-note collapse="true" title="Comment 10"}
 The model github [Individual Based Model for UVC Interventions • helios](https://mrc-ide.github.io/helios/) does not appear directly relevant to this study, focussing specifically on far ultra-violet light emitters rather than generic air quality control measures.
@@ -378,6 +382,8 @@ Can the authors explain Contributions by artificial intelligence (AI) tools and 
 
 *Response to be added.*
 
+**Charlie: Yep, we should apologise for the oversight and add this in in the Methods. Thank them for flagging this!**
+
 ## Minor comments/suggestions
 
 ::: {.callout-note collapse="true" title="Comment 12"}
@@ -390,6 +396,8 @@ Might be an easier strategy to implement than ‘targeted’ control in the sens
 We agree that targeting particular settings (such as schools) could offer a practical approach to IAQ intervention implementation.
 Although schools are represented in our model, evaluating setting-specific control strategies falls outside the scope of this study.
 Extending the model to represent settings such as care homes and hospitals, and to capture deaths as an outcome, would make evaluating setting-specific interventions a particularly valuable direction for future work.
+
+**Charlie: Would consider focussing this text on highlighting and agreeing with the limitation of the current targeting strategy, and noting that we've added a couple of sentences (which we should add) to the Discussion discussing this limitation. I think the stuff on care homes, hospitals and deaths feels a bit unrelated to the comment and would suggest remove.**
 
 ::: {.callout-note collapse="true" title="Comment 13"}
 Note on precision - given the archetypal/exploratory nature of this work, the level of precision in figures presented seems inappropriate - consider showing results to the nearest % instead (e.g. 7% instead of 7.2%)
@@ -411,6 +419,8 @@ Supplementary plots showing how mean values change with \# of simulations may be
 **Response**
 
 *Response to be added.*
+
+**Charlie: Seem my comment above and agree with this reviewer - this is the sensitivity analysis I'm proposing.**
 
 ::: {.callout-note collapse="true" title="Comment 15"}
 Methods: “For endemic scenarios we computed…”, also say what you compute for epidemic scenarios.
@@ -478,6 +488,8 @@ I suggest that the most closely related previous approaches are discussed and th
 
 *Response to be added.*
 
+**Charlie: Similar vibe to reviewer 1 I think we can address this by saying thank you for the feedback and we completely agree that we need to better contextualise and note prior work. And then add text in the Introduction (a new paragraph) addressing this, that cites both these papers and the ones that Reviewer 1 recommended.**
+
 ::: {.callout-note collapse="true" title="2. Clarification of the link between the indoor-air model and the population transmission model"}
 The work would benefit from a much clearer explanation of precisely how information from the indoor-air model enters the individual-based epidemiological model.
 This connection is central to the paper but currently requires some effort to reconstruct.
@@ -501,6 +513,8 @@ The revised text explains more clearly how the indoor-air calculations inform th
 
 *Draft response: the suggested schematic remains to be considered.*
 
+**Charlie: Agreed on both fronts (comment and draft response) Adam.**
+
 ::: {.callout-note collapse="true" title="3. Interpretation of intervention “efficacy”"}
 The manuscript motivates air-quality interventions in terms of increased ventilation, filtration and air disinfection, but these different interventions are ultimately represented through a generic multiplicative reduction in the location-specific force of infection, I understand and support the motivation for keeping this component generic, particularly for an exploratory population-scale study.
 However, the interpretation of the efficacy parameter (E) should be made particularly clear, because values from 20% to 100% are explored and many of the conclusions depend strongly on this parameter.
@@ -514,6 +528,14 @@ I am not suggesting that the authors need to model individual technologies; rath
 **Response**
 
 *Response to be added.*
+
+**Charlie: I think there are three things that we can do here:**
+
+**i) Add in text to the methods stating the distinction more prominently, as the reviewer requests.**
+
+**ii) Use the curves that Geetha has previously generated for delta ACH -\> efficacy to give them a sense of what the efficacy range could plausibly refer to. Put that graph in the SI, and then reference it in a paragraph in the Discussion where we talk about the limitation of not representing ACH directly - we can say the efficacy ranges explored broadly map onto X-Y ACH, which in turn is consistent with what we see for various interventions etc.**
+
+**iii)** **(maybe)** **I think we can also use this comment as an opportunity to also flag that a related point is we don't deal with short/long range transmission distinction - something raised by other reviewers and which we can note we've addressed, and add the text that addresses this point here.**
 
 ::: {.callout-note collapse="true" title="4. Qualification of the abstract conclusions"}
 Also, the abstract concludes quite strongly that the findings support treating clean indoor air as core public-health infrastructure.
@@ -543,6 +565,8 @@ To highlight this, we have qualified the interpretation in the results section a
 
 In the discussion section we retain an explanation that identifying these locations in practice is challenging and that ventilation and other observable proxies capture transmission risk imperfectly.
 
+**Charlie: I think we should also highlight in the Discussion both the *value*** **of doing so, and the *viability/plausibility* of doing so. Geetha will know some references on indoor air monitoring that I think can be helpful with this.**
+
 ## Minor comments
 
 ::: {.callout-note collapse="true" title="6. Computational performance"}
@@ -555,6 +579,8 @@ Given the 20-year endemic simulations, multiple intervention combinations and 25
 
 *Response to be added.*
 
+**Charlie: Unclear how to address this, maybe just add it in? Unclear.**
+
 ::: {.callout-note collapse="true" title="7. Stochastic implementation"}
 The model is described as stochastic and individual based, with individuals progressing through susceptible, exposed, infectious and recovered states.
 The manuscript gives the mean incubation and infectious periods, but I found the precise implementation of the stochastic state transitions less clear.
@@ -565,6 +591,8 @@ Sufficient information in the manuscript itself would improve reproducibility.
 **Response**
 
 *Response to be added.*
+
+**Charlie: We should add this technical detail in. Each individual's time in each state is drawn from a distribution, the mean of which we give (they're gammas, typically). In general, we should beef up the methods/SI to address this.**
 
 ::: {.callout-note collapse="true" title="8. Influenza-like versus SARS-CoV-2-like comparison"}
 The stronger proportional effect of interventions on the influenza-like pathogen is interesting and the explanation in terms of its reproduction number being closer to the epidemic threshold is convincing.
