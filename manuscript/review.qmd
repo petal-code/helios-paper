@@ -17,9 +17,6 @@ format:
     toc: true
   docx:
     toc: true
-editor: 
-  markdown: 
-    wrap: sentence
 ---
 
 {{< pagebreak >}}
@@ -56,7 +53,7 @@ We have revised the Methods to clarify the modelling workflow and the connection
 
 *Draft response: the flowchart, endpoint definitions, and reproduction workflow remain to be addressed.*
 
-**Charlie: Your suggested Draft response sounds good Adam.**
+**Charlie**: Your suggested Draft response sounds good Adam.
 
 ::: {.callout-note collapse="true" title="Comment 2"}
 The results/discussion sections should also showcase and discuss the logN distributions of the riskiness values (as this is a main parameter), as well as any sensitivity analysis to the input values.
@@ -66,13 +63,14 @@ The results/discussion sections should also showcase and discuss the logN distri
 
 *Response to be added.*
 
-**Charlie: I think let's:**
+**Charlie**: I think let's:
 
--   **Add the logN distributions to Figure 1 as an additional panel(s)- it'll get a bit busy, but I think helpful to show that've addressed the "showcase" part of the comment.**
+- Add the logN distributions to Figure 1 as an additional panel(s)- it'll get a bit busy, but I think helpful to show that've addressed the "showcase" part of the comment.
 
--   **Add a sensitivity analysis to the SI where we vary the assumed amount of riskiness variation within setting-types and compare targeted vs random allocation under those different assumptions. E.g. do three scenarios i.e. i) current riskiness variation; ii) reduced riskiness variation and iii) no riskiness variation (i.e. uniform riskiness) and show the differences between targeted and random in each case.**
+- Add a sensitivity analysis to the SI where we vary the assumed amount of riskiness variation within setting-types and compare targeted vs random allocation under those different assumptions.
+  E.g. do three scenarios i.e. i) current riskiness variation; ii) reduced riskiness variation and iii) no riskiness variation (i.e. uniform riskiness) and show the differences between targeted and random in each case.
 
--   **Add a** **few sentences to the Discussion highlighting i) that including explicit consideration of variation in riskiness due to variation in ACH is a core innovation of the modelling framework; but that ii) current paramterisation is based on very limited data; and iii) in general this data isn't routinely available but it would be exceptionally helpful if it was.**
+- Add a few sentences to the Discussion highlighting i) that including explicit consideration of variation in riskiness due to variation in ACH is a core innovation of the modelling framework; but that ii) current paramterisation is based on very limited data; and iii) in general this data isn't routinely available but it would be exceptionally helpful if it was.
 
 ::: {.callout-note collapse="true" title="Comment 3"}
 The approach based on the FOI is appropriate, although being the main independent variable for causality, having a more detailed way to determine the AQIs would be welcomed, as opposed to a percentage-based efficacy and coverage.
@@ -80,34 +78,37 @@ Because the initial parameterisation is based on a dose-response framework (Well
 With the Poisson nature of P(t), the outcome could be different.
 Moreover, I would encourage the authors to see if it is possible to try to include a more realistic approach to the impact of AQIs, even in the realm of steady-state concentrations.
 
--   AQI efficacy is imposed as a predefined reduction in FOI rather than derived from specific changes in ventilation, filtration or UVC disinfection. Not specifying the AQI technologies is not only impacting the cost, it might also impact the dynamics of the model?
+- AQI efficacy is imposed as a predefined reduction in FOI rather than derived from specific changes in ventilation, filtration or UVC disinfection.
+Not specifying the AQI technologies is not only impacting the cost, it might also impact the dynamics of the model?
 :::
 
 **Response**
 
 *Response to be added.*
 
-**Charlie: Slightly more challenging to rebuttal this, as it's a fair point and something we have addressed in subsequent work - I suggest we agree with them and add extensive text to the Discussion acknowledging this both as a limitation and a source of future work.**
+**Charlie**: Slightly more challenging to rebuttal this, as it's a fair point and something we have addressed in subsequent work - I suggest we agree with them and add extensive text to the Discussion acknowledging this both as a limitation and a source of future work.
 
-**My suggestion would be us to say that we appreciate this feedback, flag these as very valid criticisms, and say that we agree that this represents an important avenue for future extension to the model (which is ongoing). However, we can also note the challenges surrounding parameterisation of this, especially given the paucity of ACH data that is currently available and the other related challenges around calibrating the model given this lack of data (i.e. we'll say here all the reasons that make it challenging to do this, and use that as an excuse for not doing that here). We'll then say we agree this is important for the future though, and also a key limitation of this framework and so have added text to the Discussion reflect this (and we can add a new para to the Discussion for this).**
+My suggestion would be us to say that we appreciate this feedback, flag these as very valid criticisms, and say that we agree that this represents an important avenue for future extension to the model (which is ongoing).
+However, we can also note the challenges surrounding parameterisation of this, especially given the paucity of ACH data that is currently available and the other related challenges around calibrating the model given this lack of data (i.e. we'll say here all the reasons that make it challenging to do this, and use that as an excuse for not doing that here).
+We'll then say we agree this is important for the future though, and also a key limitation of this framework and so have added text to the Discussion reflect this (and we can add a new para to the Discussion for this).
 
 ::: {.callout-note collapse="true" title="Comment 4"}
 The Wells–Riley equation and the steady-state C(t) is only used to define the limits of ACH to create the logN distributions, not dynamically coupled to the infection events.
 The abstract mentions modelling "within-location airborne dynamics" although it is acknowledged as a limitation in the discussion - I would not include in the abstract if it is not used.
 
--   The IBM is used to parameterise between-location heterogeneity rather than being dynamically coupled to individual exposure and infection events.
+- The IBM is used to parameterise between-location heterogeneity rather than being dynamically coupled to individual exposure and infection events.
 :::
 
 **Response**
 
-We have revised the abstract to more clearly state that the framework " uses the Wells-Riley equation to inform ventilation-related variation in transmission risk between locations", removing the claim about modelling within-location airborne dynamics.
-In the methods subsection "Indoor air quality motivated variation in riskiness between locations we have also clarified that the indoor-air calculations inform between-location transmission heterogeneity and are not dynamically coupled to infection events in the population model.
+We have revised the abstract to more clearly state that the framework "uses the Wells-Riley equation to inform ventilation-related variation in transmission risk between locations", removing the claim about modelling within-location airborne dynamics.
+In the methods subsection "Indoor air quality motivated variation in riskiness between locations" we have also clarified that the indoor-air calculations inform between-location transmission heterogeneity and are not dynamically coupled to infection events in the population model.
 
-**Charlie: Response is good; the only addition being what I mentioned this morning about including the text changes you've made in here as quotes e.g.**
+**Charlie**: Response is good; the only addition being what I mentioned this morning about including the text changes you've made in here as quotes e.g.
 
-> **Discussion Line X:** ***"text of the addition that has been made**"*
+> Discussion Line X: *"text of the addition that has been made"*
 
-**Additional thought - given this is the other "main comment" and we haven't done much with the biggest one, we might consider adding some more here (e.g. add some more Discussion point about this as a limitation).**
+Additional thought - given this is the other "main comment" and we haven't done much with the biggest one, we might consider adding some more here (e.g. add some more Discussion point about this as a limitation).
 
 ## Assumptions and limitations
 
@@ -115,45 +116,50 @@ In the methods subsection "Indoor air quality motivated variation in riskiness b
 There are several assumptions and limitations that could be acknowledged and reviewed (if authors deem necessary).
 I list a few:
 
--   The authors acknowledge the model does not explicitly distinguish short-range airborne exposure from longer-range well-mixed room exposure. But this could influence the estimated incidence and intervention effects, particularly in schools, workplaces and leisure settings where repeated or prolonged close-proximity interactions may occur?
+- The authors acknowledge the model does not explicitly distinguish short-range airborne exposure from longer-range well-mixed room exposure.
+But this could influence the estimated incidence and intervention effects, particularly in schools, workplaces and leisure settings where repeated or prolonged close-proximity interactions may occur?
 :::
 
 **Response**
 
 *Response to be added.*
 
-**Charlie: I think we should agree with them and add more text to the Discussion to reflect this.**
+**Charlie**: I think we should agree with them and add more text to the Discussion to reflect this.
 
 ::: {.callout-note collapse="true" title="Comment 6"}
--   The minimum and maximum ACH values used to derive the Wells–Riley risk ratios are taken from a single reference. Could the authors comment on the sensitivity of the results to these assumptions?
+- The minimum and maximum ACH values used to derive the Wells–Riley risk ratios are taken from a single reference.
+Could the authors comment on the sensitivity of the results to these assumptions?
 :::
 
 **Response**
 
 *Response to be added.*
 
-**Charlie: We should agree that that's a fair point and another limitation - we can then reference the sensitivity analysis that I suggested above in this comment as well.**
+**Charlie**: We should agree that that's a fair point and another limitation - we can then reference the sensitivity analysis that I suggested above in this comment as well.
 
 ::: {.callout-note collapse="true" title="Comment 7"}
--   The values used for the Wells–Riley probability of infection (k, r) are pathogen-specific but the same values are used for Influenza and SARS-CoV-2.
+- The values used for the Wells–Riley probability of infection (k, r) are pathogen-specific but the same values are used for Influenza and SARS-CoV-2.
 :::
 
 **Response**
 
 *Response to be added.*
 
-**Charlie: Not entirely clear how to rebut this tbh. Pretty fair point from them. I'd potentially be inclined to re-run with pathogen specific parameters if it's not much of a faff. If it is, then options could be:**
+**Charlie**: Not entirely clear how to rebut this tbh.
+Pretty fair point from them.
+I'd potentially be inclined to re-run with pathogen specific parameters if it's not much of a faff.
+If it is, then options could be:
 
-**i) Claiming (rightly) that they are pathogen specific but very hard to identify and that our aim here is to provide a general sense (for pathogen "archetypes", not the actual pathogens) what the impact of indoor air quality interventions could be, rather than precise numbers; and then say we recognise this is a very important point however, and so have added a bunch of text in the Discussion to reflect this as a key limitation.**
+i) Claiming (rightly) that they are pathogen specific but very hard to identify and that our aim here is to provide a general sense (for pathogen "archetypes", not the actual pathogens) what the impact of indoor air quality interventions could be, rather than precise numbers; and then say we recognise this is a very important point however, and so have added a bunch of text in the Discussion to reflect this as a key limitation.
 
-**ii) OR we run a sensitivity analysis where we vary either r or k (or both) as a heatmap and show (I suspect) it doesn't make a huge difference (because we're assuming fixed efficacy) in the results, and stick that in the SI.**
+ii) OR we run a sensitivity analysis where we vary either r or k (or both) as a heatmap and show (I suspect) it doesn't make a huge difference (because we're assuming fixed efficacy) in the results, and stick that in the SI.
 
 ## Additional points
 
 ::: {.callout-note collapse="true" title="Comment 8"}
 A few additional points:
 
--   Suggestion: In the manuscript either you describe the pathogens as influenza-like and coronavirus-like archetypes or Influenza A/B and SARS-CoV-2 type pathogens
+- Suggestion: In the manuscript either you describe the pathogens as influenza-like and coronavirus-like archetypes or Influenza A/B and SARS-CoV-2 type pathogens
 :::
 
 **Response**
@@ -162,55 +168,59 @@ Thank you for this suggestion.
 We have revised the manuscript to specify that the two modelled pathogen archetypes approximate influenza A/B and SARS-CoV-2.
 We introduce this distinction explicitly and thereafter use “influenza A/B” and “SARS-CoV-2” as shorthand for the corresponding archetypes.
 
-**Charlie: Yes, good!**
+**Charlie**: Yes, good!
 
 ::: {.callout-note collapse="true" title="Comment 9"}
--   Would be interesting to discuss how results might differ under target scenarios based on expected transmission burden or expected preventable infections per unit floor area per setting.
+- Would be interesting to discuss how results might differ under target scenarios based on expected transmission burden or expected preventable infections per unit floor area per setting.
 :::
 
 **Response**
 
 *Response to be added.*
 
-**Charlie: I think we can add a couple of sentences to the Discussion highlighting agreeing with them and highlighting this as a good strand of future work.**
+**Charlie**: I think we can add a couple of sentences to the Discussion highlighting agreeing with them and highlighting this as a good strand of future work.
 
 ::: {.callout-note collapse="true" title="Comment 10"}
--   Add additional references to justify the assumptions / inputs chosen - a few are lacking citations in the methods
+- Add additional references to justify the assumptions / inputs chosen - a few are lacking citations in the methods
 :::
 
 **Response**
 
 *Response to be added.*
 
-**Charlie: This is vague but let's find a couple of examples of this and just address them to show we're taking this seriously (if there are any, this is fair comment).**
+**Charlie**: This is vague but let's find a couple of examples of this and just address them to show we're taking this seriously (if there are any, this is fair comment).
 
 ::: {.callout-note collapse="true" title="Comment 11"}
--   In the background it is said that "…we lack a coherent framework to quantify the impact of IAQ interventions in airborne transmission dynamics". There are actually several models available on this:
-    -   https://www.tandfonline.com/doi/full/10.1080/15459620590918466
-    -   http://dx.doi.org/10.1098/rsif.2009.0305.focus
-    -   https://royalsocietypublishing.org/rsfs/article/12/2/20210076/121714/Modelling-airborne-transmission-of-SARS-CoV-2
-    -   https://royalsocietypublishing.org/rsif/article/22/223/20240740/90689/An-integrated-airborne-transmission-risk
-    -   https://doi.org/10.1017/ash.2025.10147
+- In the background it is said that "…we lack a coherent framework to quantify the impact of IAQ interventions in airborne transmission dynamics".
+There are actually several models available on this:
+  - https://www.tandfonline.com/doi/full/10.1080/15459620590918466
+  - http://dx.doi.org/10.1098/rsif.2009.0305.focus
+  - https://royalsocietypublishing.org/rsfs/article/12/2/20210076/121714/Modelling-airborne-transmission-of-SARS-CoV-2
+  - https://royalsocietypublishing.org/rsif/article/22/223/20240740/90689/An-integrated-airborne-transmission-risk
+  - https://doi.org/10.1017/ash.2025.10147
 :::
 
 **Response**
 
 *Response to be added.*
 
-**Charlie: We should add these all into the Background, cite them and highlight them but also what's missing from them (i.e. the gap our work fills).**
+**Charlie**: We should add these all into the Background, cite them and highlight them but also what's missing from them (i.e. the gap our work fills).
 
 ::: {.callout-note collapse="true" title="Comment 12"}
--   A sample size of 25 seems relatively low. Any reason for it not being larger ? Was there a sensitivity assessment made say with 10 or 100x larger ?
+- A sample size of 25 seems relatively low.
+Any reason for it not being larger ?
+Was there a sensitivity assessment made say with 10 or 100x larger ?
 :::
 
 **Response**
 
 *Response to be added.*
 
-**Charlie: I think we can just do a set of runs with 10, 25, 50 and 100 and show that the mean and error bars are pretty similar from 25 onwards, or something like that. Basically some very small analysis to show it's not a big issue.**
+**Charlie**: I think we can just do a set of runs with 10, 25, 50 and 100 and show that the mean and error bars are pretty similar from 25 onwards, or something like that.
+Basically some very small analysis to show it's not a big issue.
 
 ::: {.callout-note collapse="true" title="Comment 13"}
--   The definition of "high-risk settings" (i.e. list of locations) should be stated explicitly in the main manuscript .
+- The definition of "high-risk settings" (i.e. list of locations) should be stated explicitly in the main manuscript .
 :::
 
 **Response**
@@ -218,7 +228,7 @@ We introduce this distinction explicitly and thereafter use “influenza A/B” 
 We have added an explicit definition of highest-risk locations to the Methods subsection “Modelling the impact of air quality interventions”.
 We have also changed the wording to consistently refer to highest-risk locations (rather than settings).
 
-**Charlie: Yep sounds good**
+**Charlie**: Yep sounds good
 
 {{< pagebreak >}}
 
@@ -273,7 +283,10 @@ I suggest, at a minimum, considering sensitivity analysis exploring the impact o
 
 *Response to be added.*
 
-**Charlie: We should do this part –\> *"I suggest, at a minimum, considering sensitivity analysis exploring the impact of results varying the transmission proportion attributed to close contact vs airborne transmission."* We can basically say we agree with them and highlight it as a source of deep uncertainty in the model, but also note that estimates of the comparative amount of long range/short range or close contact transmission are very uncertain. And from there, we can add some more text to the Discussion and then also add a sensitivity analysis where we model efficacy assuming only X% of transmission is targetable (e.g. set efficacy to 50% in the model and just call that "100% efficacy but only 50% of transmission is targetable). And just show that we get proportional reduction etc.**
+**Charlie**: We should do this part –\> *"I suggest, at a minimum, considering sensitivity analysis exploring the impact of results varying the transmission proportion attributed to close contact vs airborne transmission."*
+We can basically say we agree with them and highlight it as a source of deep uncertainty in the model, but also note that estimates of the comparative amount of long range/short range or close contact transmission are very uncertain.
+And from there, we can add some more text to the Discussion and then also add a sensitivity analysis where we model efficacy assuming only X% of transmission is targetable (e.g. set efficacy to 50% in the model and just call that "100% efficacy but only 50% of transmission is targetable).
+And just show that we get proportional reduction etc.
 
 ## Major comments
 
@@ -286,7 +299,7 @@ This prior work needs to be highlighted in the introduction, and the novelty of 
 
 *Response to be added.*
 
-**Charlie: I think that we should address this and add in some of the key references; we can also highlight the addition of some of the papers that Reviewer 1 recommended.**
+**Charlie**: I think that we should address this and add in some of the key references; we can also highlight the addition of some of the papers that Reviewer 1 recommended.
 
 ::: {.callout-note collapse="true" title="Comment 4"}
 The implementation of locations within settings is currently not explained in the main paper or the supplement.
@@ -325,7 +338,8 @@ In the subsection “Disease and AQI scenario modelling”, pathogen archetype n
 
 *Response to be added.*
 
-**Charlie: Agreed yes this needs to be referenced. Think if we can't find them probably our best bet to find some supporting literature and cite them, and if they're really far off (suspect this isn't the case), we might have to reparameterise and rerun.**
+**Charlie**: Agreed yes this needs to be referenced.
+Think if we can't find them probably our best bet to find some supporting literature and cite them, and if they're really far off (suspect this isn't the case), we might have to reparameterise and rerun.
 
 ::: {.callout-note collapse="true" title="Comment 7"}
 The authors model targeted allocation to the highest-risk eligible locations - but this need to be explained - in particular, how were the ‘highest-risk eligible locations’ determined?
@@ -345,7 +359,7 @@ I would strongly consider reframing the introduction to focus on pathogens consi
 
 *Response to be added.*
 
-**Charlie: Yes, agreed and that's fair enough, we should address this and change the text and associated focus.**
+**Charlie**: Yes, agreed and that's fair enough, we should address this and change the text and associated focus.
 
 ::: {.callout-note collapse="true" title="Comment 9"}
 An all-too-common error made in many modelling papers is to present an assumption as if it were a result, and the authors should temper their language in the results and throughout.
@@ -359,7 +373,7 @@ We have revised results headings and figure captions to use "projected impact" a
 
 *Draft note: a more thorough pass through the manuscript could apply this terminology more consistently.*
 
-**Charlie: A bit OTT from them but it is fundamentally a fair enough comment so I think fine to address and I agree a more thorough pass to make sure we've addressed it everywhere seems good to me.**
+**Charlie**: A bit OTT from them but it is fundamentally a fair enough comment so I think fine to address and I agree a more thorough pass to make sure we've addressed it everywhere seems good to me.
 
 ::: {.callout-note collapse="true" title="Comment 10"}
 The model github [Individual Based Model for UVC Interventions • helios](https://mrc-ide.github.io/helios/) does not appear directly relevant to this study, focussing specifically on far ultra-violet light emitters rather than generic air quality control measures.
@@ -382,7 +396,8 @@ Can the authors explain Contributions by artificial intelligence (AI) tools and 
 
 *Response to be added.*
 
-**Charlie: Yep, we should apologise for the oversight and add this in in the Methods. Thank them for flagging this!**
+**Charlie**: Yep, we should apologise for the oversight and add this in in the Methods.
+Thank them for flagging this!
 
 ## Minor comments/suggestions
 
@@ -397,7 +412,8 @@ We agree that targeting particular settings (such as schools) could offer a prac
 Although schools are represented in our model, evaluating setting-specific control strategies falls outside the scope of this study.
 Extending the model to represent settings such as care homes and hospitals, and to capture deaths as an outcome, would make evaluating setting-specific interventions a particularly valuable direction for future work.
 
-**Charlie: Would consider focussing this text on highlighting and agreeing with the limitation of the current targeting strategy, and noting that we've added a couple of sentences (which we should add) to the Discussion discussing this limitation. I think the stuff on care homes, hospitals and deaths feels a bit unrelated to the comment and would suggest remove.**
+**Charlie**: Would consider focussing this text on highlighting and agreeing with the limitation of the current targeting strategy, and noting that we've added a couple of sentences (which we should add) to the Discussion discussing this limitation.
+I think the stuff on care homes, hospitals and deaths feels a bit unrelated to the comment and would suggest remove.
 
 ::: {.callout-note collapse="true" title="Comment 13"}
 Note on precision - given the archetypal/exploratory nature of this work, the level of precision in figures presented seems inappropriate - consider showing results to the nearest % instead (e.g. 7% instead of 7.2%)
@@ -413,14 +429,14 @@ This provides a consistent basis for comparison without implying that small diff
 ::: {.callout-note collapse="true" title="Comment 14"}
 Why is the model only run 25 times?
 How confident are you that this captures stochastic variation appropriately?
-Supplementary plots showing how mean values change with \# of simulations may be useful to demonstrate 25 runs is sufficient
+Supplementary plots showing how mean values change with # of simulations may be useful to demonstrate 25 runs is sufficient
 :::
 
 **Response**
 
 *Response to be added.*
 
-**Charlie: Seem my comment above and agree with this reviewer - this is the sensitivity analysis I'm proposing.**
+**Charlie**: Seem my comment above and agree with this reviewer - this is the sensitivity analysis I'm proposing.
 
 ::: {.callout-note collapse="true" title="Comment 15"}
 Methods: “For endemic scenarios we computed…”, also say what you compute for epidemic scenarios.
@@ -488,7 +504,8 @@ I suggest that the most closely related previous approaches are discussed and th
 
 *Response to be added.*
 
-**Charlie: Similar vibe to reviewer 1 I think we can address this by saying thank you for the feedback and we completely agree that we need to better contextualise and note prior work. And then add text in the Introduction (a new paragraph) addressing this, that cites both these papers and the ones that Reviewer 1 recommended.**
+**Charlie**: Similar vibe to reviewer 1 I think we can address this by saying thank you for the feedback and we completely agree that we need to better contextualise and note prior work.
+And then add text in the Introduction (a new paragraph) addressing this, that cites both these papers and the ones that Reviewer 1 recommended.
 
 ::: {.callout-note collapse="true" title="2. Clarification of the link between the indoor-air model and the population transmission model"}
 The work would benefit from a much clearer explanation of precisely how information from the indoor-air model enters the individual-based epidemiological model.
@@ -498,11 +515,12 @@ Variation between individual locations within a setting type is then introduced 
 The distribution of the multiplier is informed by variation in infection probabilities obtained using the ventilation/Wells–Riley calculation.
 If this interpretation is correct, it would be useful for the manuscript to distinguish explicitly between:
 
--   the aspects of transmission that are determined through epidemiological calibration, and
--   the aspects of transmission heterogeneity that are generated from the indoor-air model.
+- the aspects of transmission that are determined through epidemiological calibration, and
+- the aspects of transmission heterogeneity that are generated from the indoor-air model.
 
 A schematic showing this information flow could be particularly helpful.
-For example: ventilation/ACH → airborne concentration and infection-risk range → distribution of location-specific risk multipliers → individual force of infection → population transmission.
+For example:
+ventilation/ACH → airborne concentration and infection-risk range → distribution of location-specific risk multipliers → individual force of infection → population transmission.
 This would make the multiscale nature of the model much easier to understand and clearer and would also clarify exactly what information the indoor-air component contributes to the population simulations.
 :::
 
@@ -513,10 +531,11 @@ The revised text explains more clearly how the indoor-air calculations inform th
 
 *Draft response: the suggested schematic remains to be considered.*
 
-**Charlie: Agreed on both fronts (comment and draft response) Adam.**
+**Charlie**: Agreed on both fronts (comment and draft response) Adam.
 
 ::: {.callout-note collapse="true" title="3. Interpretation of intervention “efficacy”"}
-The manuscript motivates air-quality interventions in terms of increased ventilation, filtration and air disinfection, but these different interventions are ultimately represented through a generic multiplicative reduction in the location-specific force of infection, I understand and support the motivation for keeping this component generic, particularly for an exploratory population-scale study.
+The manuscript motivates air-quality interventions in terms of increased ventilation, filtration and air disinfection, but these different interventions are ultimately represented through a generic multiplicative reduction in the location-specific force of infection,
+I understand and support the motivation for keeping this component generic, particularly for an exploratory population-scale study.
 However, the interpretation of the efficacy parameter (E) should be made particularly clear, because values from 20% to 100% are explored and many of the conclusions depend strongly on this parameter.
 For example, an intervention with “80% efficacy” in the model represents an 80% reduction in the force of infection in that location.
 How does this translated in real-life terms This is not the same as an 80% improvement in ventilation, an 80% increase in clean-air delivery, or necessarily an 80% reduction in airborne pathogen concentration.
@@ -529,13 +548,14 @@ I am not suggesting that the authors need to model individual technologies; rath
 
 *Response to be added.*
 
-**Charlie: I think there are three things that we can do here:**
+**Charlie**: I think there are three things that we can do here:
 
-**i) Add in text to the methods stating the distinction more prominently, as the reviewer requests.**
+i) Add in text to the methods stating the distinction more prominently, as the reviewer requests.
 
-**ii) Use the curves that Geetha has previously generated for delta ACH -\> efficacy to give them a sense of what the efficacy range could plausibly refer to. Put that graph in the SI, and then reference it in a paragraph in the Discussion where we talk about the limitation of not representing ACH directly - we can say the efficacy ranges explored broadly map onto X-Y ACH, which in turn is consistent with what we see for various interventions etc.**
+ii) Use the curves that Geetha has previously generated for delta ACH -\> efficacy to give them a sense of what the efficacy range could plausibly refer to.
+Put that graph in the SI, and then reference it in a paragraph in the Discussion where we talk about the limitation of not representing ACH directly - we can say the efficacy ranges explored broadly map onto X-Y ACH, which in turn is consistent with what we see for various interventions etc.
 
-**iii)** **(maybe)** **I think we can also use this comment as an opportunity to also flag that a related point is we don't deal with short/long range transmission distinction - something raised by other reviewers and which we can note we've addressed, and add the text that addresses this point here.**
+iii) (maybe) I think we can also use this comment as an opportunity to also flag that a related point is we don't deal with short/long range transmission distinction - something raised by other reviewers and which we can note we've addressed, and add the text that addresses this point here.
 
 ::: {.callout-note collapse="true" title="4. Qualification of the abstract conclusions"}
 Also, the abstract concludes quite strongly that the findings support treating clean indoor air as core public-health infrastructure.
@@ -565,7 +585,8 @@ To highlight this, we have qualified the interpretation in the results section a
 
 In the discussion section we retain an explanation that identifying these locations in practice is challenging and that ventilation and other observable proxies capture transmission risk imperfectly.
 
-**Charlie: I think we should also highlight in the Discussion both the *value*** **of doing so, and the *viability/plausibility* of doing so. Geetha will know some references on indoor air monitoring that I think can be helpful with this.**
+**Charlie**: I think we should also highlight in the Discussion both the *value* of doing so, and the *viability/plausibility* of doing so.
+Geetha will know some references on indoor air monitoring that I think can be helpful with this.
 
 ## Minor comments
 
@@ -579,7 +600,8 @@ Given the 20-year endemic simulations, multiple intervention combinations and 25
 
 *Response to be added.*
 
-**Charlie: Unclear how to address this, maybe just add it in? Unclear.**
+**Charlie**: Unclear how to address this, maybe just add it in?
+Unclear.
 
 ::: {.callout-note collapse="true" title="7. Stochastic implementation"}
 The model is described as stochastic and individual based, with individuals progressing through susceptible, exposed, infectious and recovered states.
@@ -592,7 +614,9 @@ Sufficient information in the manuscript itself would improve reproducibility.
 
 *Response to be added.*
 
-**Charlie: We should add this technical detail in. Each individual's time in each state is drawn from a distribution, the mean of which we give (they're gammas, typically). In general, we should beef up the methods/SI to address this.**
+**Charlie**: We should add this technical detail in.
+Each individual's time in each state is drawn from a distribution, the mean of which we give (they're gammas, typically).
+In general, we should beef up the methods/SI to address this.
 
 ::: {.callout-note collapse="true" title="8. Influenza-like versus SARS-CoV-2-like comparison"}
 The stronger proportional effect of interventions on the influenza-like pathogen is interesting and the explanation in terms of its reproduction number being closer to the epidemic threshold is convincing.
