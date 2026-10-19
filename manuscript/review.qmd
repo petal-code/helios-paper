@@ -556,7 +556,7 @@ Thank you for your thoughtful review and constructive feedback.
 
 ## Questions and revisions
 
-::: {.callout-note collapse="true" title="1. Positioning of the work relative to previous indoor-to-population transmission models"}
+::: {.callout-note collapse="true" title="Comment 1"}
 One of the aspects of this study claimed to be novel is the coupling of indoor airborne-transmission modelling and population-scale epidemic dynamics.
 However, I think the novelty needs to be positioned more carefully relative to previous work.
 For example, Gao et al. (2016), Building Ventilation as an Effective Disease Intervention Strategy in a Dense Indoor Contact Network in an Ideal City (PLOS ONE 11), integrated an indoor contact model for a large urban population with an SEIR model and a Wells–Riley model in order to investigate ventilation as a population-level disease intervention.
@@ -573,7 +573,7 @@ I suggest that the most closely related previous approaches are discussed and th
 **Charlie**: Similar vibe to reviewer 1 I think we can address this by saying thank you for the feedback and we completely agree that we need to better contextualise and note prior work.
 And then add text in the Introduction (a new paragraph) addressing this, that cites both these papers and the ones that Reviewer 1 recommended.
 
-::: {.callout-note collapse="true" title="2. Clarification of the link between the indoor-air model and the population transmission model"}
+::: {.callout-note collapse="true" title="Comment 2"}
 The work would benefit from a much clearer explanation of precisely how information from the indoor-air model enters the individual-based epidemiological model.
 This connection is central to the paper but currently requires some effort to reconstruct.
 As I understand, the setting-specific transmission parameters are parametrised to reproduce the assumed relative contributions of households, schools/workplaces, leisure and community transmission and are subsequently scaled to generate the desired pathogen-specific reproduction number.
@@ -608,7 +608,7 @@ The revised text explains more clearly how the indoor-air calculations inform th
 
 **Charlie**: Agreed on both fronts (comment and draft response) Adam.
 
-::: {.callout-note collapse="true" title="3. Interpretation of intervention “efficacy”"}
+::: {.callout-note collapse="true" title="Comment 3"}
 The manuscript motivates air-quality interventions in terms of increased ventilation, filtration and air disinfection, but these different interventions are ultimately represented through a generic multiplicative reduction in the location-specific force of infection,
 I understand and support the motivation for keeping this component generic, particularly for an exploratory population-scale study.
 However, the interpretation of the efficacy parameter (E) should be made particularly clear, because values from 20% to 100% are explored and many of the conclusions depend strongly on this parameter.
@@ -632,7 +632,7 @@ Put that graph in the SI, and then reference it in a paragraph in the Discussion
 
 iii) (maybe) I think we can also use this comment as an opportunity to also flag that a related point is we don't deal with short/long range transmission distinction - something raised by other reviewers and which we can note we've addressed, and add the text that addresses this point here.
 
-::: {.callout-note collapse="true" title="4. Qualification of the abstract conclusions"}
+::: {.callout-note collapse="true" title="Comment 4"}
 Also, the abstract concludes quite strongly that the findings support treating clean indoor air as core public-health infrastructure.
 The Discussion, however, is appropriately more cautious and acknowledges uncertainties in real-world effectiveness, costs, implementation and achievable coverage.
 I suggest that these latter qualifications are reflected more clearly in the abstract, particularly since the intervention efficacies considered here are hypothetical rather than estimates for specific technologies.
@@ -648,7 +648,7 @@ We have revised the abstract to specify that the intervention efficacies are hyp
 > Line X: “These results highlight the potential for IAQ interventions to reduce respiratory infection burden, particularly through risk-based deployment.
 > Their value as public-health infrastructure will depend on real-world effectiveness, costs, implementation quality, and achievable coverage.”
 
-::: {.callout-note collapse="true" title="5. Interpretation of risk-targeted deployment"}
+::: {.callout-note collapse="true" title="Comment 5"}
 The result that risk-targeted deployment outperforms random deployment is interesting (albeit perhaps expected), and particularly the finding that the advantage is greatest when intervention coverage is limited.
 The manuscript also appropriately discusses the practical difficulty of identifying the highest-risk locations and notes that ventilation is only one component of transmission risk.
 I think it would nevertheless help to state explicitly that the risk-targeted scenarios represent an idealised situation in which someone can identify and preferentially intervene in the highest-risk eligible locations.
@@ -670,7 +670,7 @@ Geetha will know some references on indoor air monitoring that I think can be he
 
 ## Minor comments
 
-::: {.callout-note collapse="true" title="6. Computational performance"}
+::: {.callout-note collapse="true" title="Comment 6"}
 The manuscript states that simplifications in the representation of indoor space were made partly for computational tractability.
 It would therefore be very useful to report approximate computational performance: for example, the runtime of a typical simulation, the population size used for the main analyses, and the hardware on which the simulations were performed.
 Given the 20-year endemic simulations, multiple intervention combinations and 25 stochastic replicates per scenario, this information would also help readers assess the scalability and practical usefulness of the framework.
@@ -683,7 +683,7 @@ Given the 20-year endemic simulations, multiple intervention combinations and 25
 **Charlie**: Unclear how to address this, maybe just add it in?
 Unclear.
 
-::: {.callout-note collapse="true" title="7. Stochastic implementation"}
+::: {.callout-note collapse="true" title="Comment 7"}
 The model is described as stochastic and individual based, with individuals progressing through susceptible, exposed, infectious and recovered states.
 The manuscript gives the mean incubation and infectious periods, but I found the precise implementation of the stochastic state transitions less clear.
 It would be useful to state explicitly the simulation time step and how infection events and progression through the disease states are sampled, even if the underlying implementation is described in the package documentation.
@@ -698,7 +698,7 @@ Sufficient information in the manuscript itself would improve reproducibility.
 Each individual's time in each state is drawn from a distribution, the mean of which we give (they're gammas, typically).
 In general, we should beef up the methods/SI to address this.
 
-::: {.callout-note collapse="true" title="8. Influenza-like versus SARS-CoV-2-like comparison"}
+::: {.callout-note collapse="true" title="Comment 8"}
 The stronger proportional effect of interventions on the influenza-like pathogen is interesting and the explanation in terms of its reproduction number being closer to the epidemic threshold is convincing.
 However, the Results refer to both lower (R_0) and shorter generation time as explanations.
 Since these parameters differ simultaneously between the two pathogens, the simulations do not appear to isolate their individual contributions.
@@ -711,7 +711,7 @@ We have added a sentence to the discussion:
 
 > Line X: “As $R_0$ and the generation interval varied simultaneously between our two pathogen archetypes, we did not disentangle their respective contributions to the observed difference in intervention impact.”
 
-::: {.callout-note collapse="true" title="9. Terminology around “coverage”"}
+::: {.callout-note collapse="true" title="Comment 9"}
 Coverage is defined in terms of the proportion of eligible non-household floor area receiving an intervention.
 Since readers might otherwise interpret, for example, “20% coverage” as 20% of buildings or 20% of the population, please clarify this definition when first presenting the results (and in figure captions).
 :::
