@@ -387,6 +387,10 @@ The authors model targeted allocation to the highest-risk eligible locations - b
 We have added an explicit definition of highest-risk locations to the Methods subsection “Modelling the impact of air quality interventions”.
 We have also changed the wording to consistently refer to highest-risk locations (rather than settings).
 
+> Line X: “AQIs were eligible for installation in schools, workplaces, and leisure venues; households and background community transmission were excluded.
+> Under targeted allocation, eligible locations were ranked by their location-specific riskiness multiplier $\gamma_{j,s}$, with AQIs installed in descending order until the cumulative covered floor area met or exceeded the coverage target.
+> We define highest-risk locations as those with the largest $\gamma_{j,s}$ values across these three setting types.”
+
 ::: {.callout-note collapse="true" title="Comment 8"}
 There is a disconnect between framing and analysis - first paragraph is all about ‘common’ infections (RSV, rhinovirus, etc) - whereas the presented analysis concerns COVID-19 and flu.
 I would strongly consider reframing the introduction to focus on pathogens considered.
