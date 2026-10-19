@@ -110,14 +110,15 @@ The abstract mentions modelling "within-location airborne dynamics" although it 
 
 **Response**
 
-We have revised the abstract to more clearly state that the framework "uses the Wells-Riley equation to inform ventilation-related variation in transmission risk between locations", removing the claim about modelling within-location airborne dynamics.
+We have revised the abstract to remove the claim about modelling within-location airborne dynamics:
+
+> Line X: “Here, we develop an individual-based transmission modelling framework that uses the Wells–Riley equation to inform ventilation-related variation in transmission risk between locations.”
+
 In the methods subsection "Indoor air quality motivated variation in riskiness between locations" we have also clarified that the indoor-air calculations inform between-location transmission heterogeneity and are not dynamically coupled to infection events in the population model.
 
-**Charlie**: Response is good; the only addition being what I mentioned this morning about including the text changes you've made in here as quotes e.g.
+> Line X: “Each location was assigned a fixed multiplier $\gamma_{j,s}$ drawn from this distribution, with changes in infection risk during the simulation driven by infectious occupancy through $I_{j,s}(t)/N_{j,s}$ rather than recalculated airborne concentrations or Wells–Riley probabilities.”
 
-> Discussion Line X: *"text of the addition that has been made"*
-
-Additional thought - given this is the other "main comment" and we haven't done much with the biggest one, we might consider adding some more here (e.g. add some more Discussion point about this as a limitation).
+<!-- Charlie: Additional thought - given this is the other "main comment" and we haven't done much with the biggest one, we might consider adding some more here (e.g. add some more Discussion point about this as a limitation). -->
 
 ## Assumptions and limitations
 
