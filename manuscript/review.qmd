@@ -412,6 +412,16 @@ Because of this, instead of writing “AQI installation can achieve substantial 
 
 We have revised results headings and figure captions to use "projected impact" and related terminology, making clear that the reported gains are model projections conditional on the assumed intervention efficacy.
 
+The revised results headings include:
+
+> Line X: “Specifically targeting the highest-risk locations substantially increases the projected impact of AQI installation.”
+
+> Line X: “AQI installation is also projected to substantially affect transmission dynamics and infection incidence in epidemic scenarios.”
+
+The caption comparing allocation strategies likewise describes:
+
+> Line X: “Comparison of the projected impact under random and risk-based AQI installation and deployment strategies.”
+
 *Draft note: a more thorough pass through the manuscript could apply this terminology more consistently.*
 
 **Charlie**: A bit OTT from them but it is fundamentally a fair enough comment so I think fine to address and I agree a more thorough pass to make sure we've addressed it everywhere seems good to me.
