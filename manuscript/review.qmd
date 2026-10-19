@@ -477,6 +477,10 @@ We consider one decimal place appropriate for the calculated results, since roun
 We have therefore standardised the calculated results reported in the manuscript text to one decimal place, including those previously presented to two decimal places.
 This provides a consistent basis for comparison without implying that small differences are substantively meaningful.
 
+For example, peak daily incidence values previously reported as 7.06 and 6.30 per 1,000 are now reported to one decimal place:
+
+> Line X: “For the influenza A/B archetype at 60% efficacy, the random strategy required 60% coverage to reach an average peak daily incidence of 7.1 per 1,000, while the targeted strategy achieved lower results with only 40% coverage, producing an average peak daily incidence of 6.3 per 1,000”
+
 ::: {.callout-note collapse="true" title="Comment 14"}
 Why is the model only run 25 times?
 How confident are you that this captures stochastic variation appropriately?
