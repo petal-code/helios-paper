@@ -279,7 +279,14 @@ Can the authors ensure that this is explained in full in the main text, as it is
 **Response**
 
 We have revised the Methods to clarify how the Wells–Riley calculations inform location-specific transmission risk and how this enters the population model.
+
+> Line X: “The ratio of these probabilities (upper divided by lower) defined a setting-specific riskiness ratio $R_s$.
+> This ratio determined the bounds $[R_s^{-1/2}, R_s^{1/2}]$ of a median-one truncated lognormal distribution, with setting-specific log-standard deviation $\sigma_{\log,s}$ selected numerically to place approximately 80% of the distribution within $[(R_s/2)^{-1/2}, (R_s/2)^{1/2}]$ and 10% in each tail (see Supplementary Information).
+> Each location was assigned a fixed multiplier $\gamma_{j,s}$ drawn from this distribution, with changes in infection risk during the simulation driven by infectious occupancy through $I_{j,s}(t)/N_{j,s}$ rather than recalculated airborne concentrations or Wells–Riley probabilities.”
+
 We have also clarified the distinction between this parameterisation and the assumed intervention effects.
+
+> Line X: “We represent interventions as assumed proportional reductions in location-specific force of infection to compare efficacy, coverage, and allocation strategies; the efficacy achievable with specific ventilation, filtration, or disinfection must be established separately.”
 
 ::: {.callout-note collapse="true" title="Comment 2"}
 This is a conceptual issue.
