@@ -50,10 +50,19 @@ In addition, it is necessary to reconstruct parts of the modelling workflow for 
 **Response**
 
 We have revised the Methods to clarify the modelling workflow and the connection between the indoor-air calculations and population transmission.
+In the subsection “Transmission dynamics and calculation of individual force of infection”, we distinguish setting-specific transmission from location-specific heterogeneity:
+
+> Line X: “The setting-specific transmissibility $\beta_s$ was parameterised to reflect empirical estimates of how influenza and SARS-CoV-2 transmission is apportioned between setting types.
+> The location-specific multiplier $\gamma_{j,s}$ captures heterogeneity in transmission risk between locations of the same setting type, informed by variation in ventilation rates and occupancy density.”
+
+In the subsection “Indoor air quality motivated variation in riskiness between locations”, we clarify how the resulting multipliers enter the population simulation:
+
+> Line X: “Each location was assigned a fixed multiplier $\gamma_{j,s}$ drawn from this distribution, with changes in infection risk during the simulation driven by infectious occupancy through $I_{j,s}(t)/N_{j,s}$ rather than recalculated airborne concentrations or Wells–Riley probabilities.”
 
 *Draft response: the flowchart, endpoint definitions, and reproduction workflow remain to be addressed.*
 
-**Charlie**: Your suggested Draft response sounds good Adam.
+<!-- Charlie: Your suggested Draft response sounds good Adam. -->
+<!-- Adam: Need to clarify what Charlie means by this. -->
 
 ::: {.callout-note collapse="true" title="Comment 2"}
 The results/discussion sections should also showcase and discuss the logN distributions of the riskiness values (as this is a main parameter), as well as any sensitivity analysis to the input values.
@@ -101,14 +110,15 @@ The abstract mentions modelling "within-location airborne dynamics" although it 
 
 **Response**
 
-We have revised the abstract to more clearly state that the framework "uses the Wells-Riley equation to inform ventilation-related variation in transmission risk between locations", removing the claim about modelling within-location airborne dynamics.
+We have revised the abstract to remove the claim about modelling within-location airborne dynamics:
+
+> Line X: “Here, we develop an individual-based transmission modelling framework that uses the Wells–Riley equation to inform ventilation-related variation in transmission risk between locations.”
+
 In the methods subsection "Indoor air quality motivated variation in riskiness between locations" we have also clarified that the indoor-air calculations inform between-location transmission heterogeneity and are not dynamically coupled to infection events in the population model.
 
-**Charlie**: Response is good; the only addition being what I mentioned this morning about including the text changes you've made in here as quotes e.g.
+> Line X: “Each location was assigned a fixed multiplier $\gamma_{j,s}$ drawn from this distribution, with changes in infection risk during the simulation driven by infectious occupancy through $I_{j,s}(t)/N_{j,s}$ rather than recalculated airborne concentrations or Wells–Riley probabilities.”
 
-> Discussion Line X: *"text of the addition that has been made"*
-
-Additional thought - given this is the other "main comment" and we haven't done much with the biggest one, we might consider adding some more here (e.g. add some more Discussion point about this as a limitation).
+<!-- Charlie: Additional thought - given this is the other "main comment" and we haven't done much with the biggest one, we might consider adding some more here (e.g. add some more Discussion point about this as a limitation). -->
 
 ## Assumptions and limitations
 
@@ -168,7 +178,7 @@ Thank you for this suggestion.
 We have revised the manuscript to specify that the two modelled pathogen archetypes approximate influenza A/B and SARS-CoV-2.
 We introduce this distinction explicitly and thereafter use “influenza A/B” and “SARS-CoV-2” as shorthand for the corresponding archetypes.
 
-**Charlie**: Yes, good!
+> Line X: “Using pathogen archetypes approximating SARS-CoV-2 and influenza A/B (hereafter referred to as SARS-CoV-2 and influenza A/B) as case studies, we simulate a range of indoor-air interventions...”
 
 ::: {.callout-note collapse="true" title="Comment 9"}
 - Would be interesting to discuss how results might differ under target scenarios based on expected transmission burden or expected preventable infections per unit floor area per setting.
@@ -228,7 +238,9 @@ Basically some very small analysis to show it's not a big issue.
 We have added an explicit definition of highest-risk locations to the Methods subsection “Modelling the impact of air quality interventions”.
 We have also changed the wording to consistently refer to highest-risk locations (rather than settings).
 
-**Charlie**: Yep sounds good
+> Line X: “AQIs were eligible for installation in schools, workplaces, and leisure venues; households and background community transmission were excluded.
+> Under targeted allocation, eligible locations were ranked by their location-specific riskiness multiplier $\gamma_{j,s}$, with AQIs installed in descending order until the cumulative covered floor area met or exceeded the coverage target.
+> We define highest-risk locations as those with the largest $\gamma_{j,s}$ values across these three setting types.”
 
 {{< pagebreak >}}
 
@@ -267,7 +279,14 @@ Can the authors ensure that this is explained in full in the main text, as it is
 **Response**
 
 We have revised the Methods to clarify how the Wells–Riley calculations inform location-specific transmission risk and how this enters the population model.
+
+> Line X: “The ratio of these probabilities (upper divided by lower) defined a setting-specific riskiness ratio $R_s$.
+> This ratio determined the bounds $[R_s^{-1/2}, R_s^{1/2}]$ of a median-one truncated lognormal distribution, with setting-specific log-standard deviation $\sigma_{\log,s}$ selected numerically to place approximately 80% of the distribution within $[(R_s/2)^{-1/2}, (R_s/2)^{1/2}]$ and 10% in each tail (see Supplementary Information).
+> Each location was assigned a fixed multiplier $\gamma_{j,s}$ drawn from this distribution, with changes in infection risk during the simulation driven by infectious occupancy through $I_{j,s}(t)/N_{j,s}$ rather than recalculated airborne concentrations or Wells–Riley probabilities.”
+
 We have also clarified the distinction between this parameterisation and the assumed intervention effects.
+
+> Line X: “We represent interventions as assumed proportional reductions in location-specific force of infection to compare efficacy, coverage, and allocation strategies; the efficacy achievable with specific ventilation, filtration, or disinfection must be established separately.”
 
 ::: {.callout-note collapse="true" title="Comment 2"}
 This is a conceptual issue.
@@ -310,12 +329,26 @@ How and whether individuals transition between different locations within a sett
 
 **Response**
 
-We have clarified in the methods subsection "Overview of individual-based modelling framework" that each location is represented as a single aggregate unit, without separate rooms or movement between them.
+We have clarified in the methods subsection "Overview of individual-based modelling framework" that each location is represented as a single aggregate unit.
+
+> Line X: “Each location is represented as a single aggregate unit (i.e. without rooms within locations).”
+
 We now explicitly state that the duration and sequence of individuals' visits are not represented.
+
+> Line X: “We do not explicitly represent the duration or sequence of individuals’ visits to locations.”
+
 The dwell times used in the Wells–Riley calculations serve only to parameterise between-location risk heterogeneity and do not specify individual visit durations in the population simulation.
 
+> Line X: “These dwell times are used only to parameterise between-location risk heterogeneity and do not specify individual visit durations in the population simulation.”
+
 In the discussion, we clarify that the steady-state, well-mixed approximation applies to the indoor-air calculations used for parameterisation.
+
+> Line X: “We also neglect inter-room airflows and building-scale transport, representing between-location variation through stochastic heterogeneity in overall transmission risk rather than explicitly coupling that altered risk to changes or differences in airflow.”
+
 We also acknowledge the resulting limitations in representing within-location contact structures, including differences between primary and secondary school schedules, as raised in your next comment.
+
+> Line X: “We therefore do not capture the contact structures that arise from realistic daily schedules, differences in dwell times, and repeated encounters within and between rooms.
+> For example, children are represented as a single age group, and we do not distinguish primary school pupils remaining in one classroom from secondary school pupils moving between classrooms and mixing with different classmates.”
 
 ::: {.callout-note collapse="true" title="Comment 5"}
 The categorisation of the population (children, adults, older adults) means the model, by construction, cannot accurately capture school structure simultaneously for both elementary and high school students.
@@ -329,6 +362,10 @@ We agree that primary and secondary schools differ in their contact structures a
 This reflects a broader limitation of our model: each location is represented as a single unit, without separate rooms or movement between rooms.
 Children are also represented as a single age group.
 We have expanded the discussion section to acknowledge this limitation.
+
+> Line X: “We therefore do not capture the contact structures that arise from realistic daily schedules, differences in dwell times, and repeated encounters within and between rooms.
+> For example, children are represented as a single age group, and we do not distinguish primary school pupils remaining in one classroom from secondary school pupils moving between classrooms and mixing with different classmates.
+> Future extensions could represent individual rooms and distinguish more age groups.”
 
 ::: {.callout-note collapse="true" title="Comment 6"}
 In the subsection “Disease and AQI scenario modelling”, pathogen archetype natural history features appear without reference, and need to be appropriately referenced.
@@ -350,6 +387,10 @@ The authors model targeted allocation to the highest-risk eligible locations - b
 We have added an explicit definition of highest-risk locations to the Methods subsection “Modelling the impact of air quality interventions”.
 We have also changed the wording to consistently refer to highest-risk locations (rather than settings).
 
+> Line X: “AQIs were eligible for installation in schools, workplaces, and leisure venues; households and background community transmission were excluded.
+> Under targeted allocation, eligible locations were ranked by their location-specific riskiness multiplier $\gamma_{j,s}$, with AQIs installed in descending order until the cumulative covered floor area met or exceeded the coverage target.
+> We define highest-risk locations as those with the largest $\gamma_{j,s}$ values across these three setting types.”
+
 ::: {.callout-note collapse="true" title="Comment 8"}
 There is a disconnect between framing and analysis - first paragraph is all about ‘common’ infections (RSV, rhinovirus, etc) - whereas the presented analysis concerns COVID-19 and flu.
 I would strongly consider reframing the introduction to focus on pathogens considered.
@@ -370,6 +411,16 @@ Because of this, instead of writing “AQI installation can achieve substantial 
 **Response**
 
 We have revised results headings and figure captions to use "projected impact" and related terminology, making clear that the reported gains are model projections conditional on the assumed intervention efficacy.
+
+The revised results headings include:
+
+> Line X: “Specifically targeting the highest-risk locations substantially increases the projected impact of AQI installation.”
+
+> Line X: “AQI installation is also projected to substantially affect transmission dynamics and infection incidence in epidemic scenarios.”
+
+The caption comparing allocation strategies likewise describes:
+
+> Line X: “Comparison of the projected impact under random and risk-based AQI installation and deployment strategies.”
 
 *Draft note: a more thorough pass through the manuscript could apply this terminology more consistently.*
 
@@ -426,6 +477,10 @@ We consider one decimal place appropriate for the calculated results, since roun
 We have therefore standardised the calculated results reported in the manuscript text to one decimal place, including those previously presented to two decimal places.
 This provides a consistent basis for comparison without implying that small differences are substantively meaningful.
 
+For example, peak daily incidence values previously reported as 7.06 and 6.30 per 1,000 are now reported to one decimal place:
+
+> Line X: “For the influenza A/B archetype at 60% efficacy, the random strategy required 60% coverage to reach an average peak daily incidence of 7.1 per 1,000, while the targeted strategy achieved lower results with only 40% coverage, producing an average peak daily incidence of 6.3 per 1,000”
+
 ::: {.callout-note collapse="true" title="Comment 14"}
 Why is the model only run 25 times?
 How confident are you that this captures stochastic variation appropriately?
@@ -447,6 +502,9 @@ Methods: “For endemic scenarios we computed…”, also say what you compute f
 We have revised this paragraph to clarify the simulation conditions for the endemic and epidemic scenarios, adding details for the latter.
 We have also removed time to peak from the metrics listed in the methods section and two brief references elsewhere in the manuscript, as we do not report this metric numerically.
 
+> Line X: “For epidemic scenarios, we computed epidemic final size and peak infection incidence as metrics to assess AQI impact.
+> Epidemic simulations were run for 4 years, with interventions introduced at the start of the simulation.”
+
 ::: {.callout-note collapse="true" title="Comment 16"}
 Discussion: avoid the word significant apart from in the statistical sense.
 :::
@@ -454,6 +512,14 @@ Discussion: avoid the word significant apart from in the statistical sense.
 **Response**
 
 We have replaced uses of “significant” and “significantly” in the results and discussion sections to avoid implying statistical significance.
+
+For example, “significantly increased reductions” is now “larger reductions” in the results:
+
+> Line X: “Increasing coverage or efficacy both led to larger reductions in infection incidence”
+
+In the discussion, “significant reductions” is now “substantial reductions”:
+
+> Line X: “Across the pathogen archetypes explored here, we highlight the potential for widespread introduction of AQIs to yield substantial reductions in endemic disease burden as coverage and efficacy increase, with larger gains when interventions are targeted to higher-risk locations rather than distributed at random.”
 
 ::: {.callout-note collapse="true" title="Comment 17"}
 Can the authors provide line numbers on the next draft, so it is easier to reference specific sections of the text.
@@ -527,7 +593,16 @@ This would make the multiscale nature of the model much easier to understand and
 **Response**
 
 We have revised the Methods to distinguish epidemiologically parameterised transmission from ventilation-informed heterogeneity between locations.
+
+> Line X: “The setting-specific transmissibility $\beta_s$ was parameterised to reflect empirical estimates of how influenza and SARS-CoV-2 transmission is apportioned between setting types.
+> The location-specific multiplier $\gamma_{j,s}$ captures heterogeneity in transmission risk between locations of the same setting type, informed by variation in ventilation rates and occupancy density.
+> These multipliers were drawn from a truncated lognormal distribution with log-mean zero and log-standard deviation $\sigma_{\log,s}$.”
+
 The revised text explains more clearly how the indoor-air calculations inform the population model.
+
+> Line X: “The ratio of these probabilities (upper divided by lower) defined a setting-specific riskiness ratio $R_s$.
+> This ratio determined the bounds $[R_s^{-1/2}, R_s^{1/2}]$ of a median-one truncated lognormal distribution, with setting-specific log-standard deviation $\sigma_{\log,s}$ selected numerically to place approximately 80% of the distribution within $[(R_s/2)^{-1/2}, (R_s/2)^{1/2}]$ and 10% in each tail (see Supplementary Information).
+> Each location was assigned a fixed multiplier $\gamma_{j,s}$ drawn from this distribution, with changes in infection risk during the simulation driven by infectious occupancy through $I_{j,s}(t)/N_{j,s}$ rather than recalculated airborne concentrations or Wells–Riley probabilities.”
 
 *Draft response: the suggested schematic remains to be considered.*
 
@@ -568,6 +643,11 @@ I suggest that these latter qualifications are reflected more clearly in the abs
 We agree that the abstract's conclusions require clearer qualification.
 We have revised the abstract to specify that the intervention efficacies are hypothetical, and softened the concluding statement to acknowledge that the value of IAQ interventions as public-health infrastructure depends on practical and economic considerations.
 
+> Line X: “We use this modelling approach to evaluate IAQ-improving interventions (air-quality interventions or AQIs) under hypothetical intervention efficacies, using endemic and pandemic pathogen archetypes with properties similar to SARS-CoV-2 and influenza A/B, and evaluate how effects on key epidemiological metrics (such as annualized incidence and epidemic final size) depend on AQI coverage, efficacy and allocation strategy.”
+
+> Line X: “These results highlight the potential for IAQ interventions to reduce respiratory infection burden, particularly through risk-based deployment.
+> Their value as public-health infrastructure will depend on real-world effectiveness, costs, implementation quality, and achievable coverage.”
+
 ::: {.callout-note collapse="true" title="5. Interpretation of risk-targeted deployment"}
 The result that risk-targeted deployment outperforms random deployment is interesting (albeit perhaps expected), and particularly the finding that the advantage is greatest when intervention coverage is limited.
 The manuscript also appropriately discusses the practical difficulty of identifying the highest-risk locations and notes that ventilation is only one component of transmission risk.
@@ -581,7 +661,7 @@ I do not think an additional imperfect-targeting simulation is essential for the
 We agree that the gains from risk-targeted deployment depend on an idealised assumption.
 To highlight this, we have qualified the interpretation in the results section as follows:
 
-> “These results indicate that, if the highest-risk locations can be accurately identified, targeting them can reduce the coverage required for equivalent population-level impact and substantially improve the efficiency of AQI deployment.”
+> Line X: “These results indicate that, if the highest-risk locations can be accurately identified, targeting them can reduce the coverage required for equivalent population-level impact and substantially improve the efficiency of AQI deployment.”
 
 In the discussion section we retain an explanation that identifying these locations in practice is challenging and that ventilation and other observable proxies capture transmission risk imperfectly.
 
@@ -629,7 +709,7 @@ I suggest slightly qualifying this statement unless separate analyses demonstrat
 
 We have added a sentence to the discussion:
 
-> As $R_0$ and the generation interval varied simultaneously between our two pathogen archetypes, we did not disentangle their respective contributions to the observed difference in intervention impact.
+> Line X: “As $R_0$ and the generation interval varied simultaneously between our two pathogen archetypes, we did not disentangle their respective contributions to the observed difference in intervention impact.”
 
 ::: {.callout-note collapse="true" title="9. Terminology around “coverage”"}
 Coverage is defined in terms of the proportion of eligible non-household floor area receiving an intervention.
@@ -640,6 +720,15 @@ Since readers might otherwise interpret, for example, “20% coverage” as 20% 
 
 Thank you for pointing out this discrepancy.
 We have clarified coverage as proportion of non-household floor area in the results, figure captions, and in the discussion.
+
+When first presenting the results, coverage is now explicitly “defined as the target proportion of non-household floor area receiving AQI installation” (Line X).
+The figure captions state:
+
+> Line X: “Coverage denotes the target proportion of non-household floor area receiving AQIs.”
+
+The discussion likewise refers to floor-area coverage:
+
+> Line X: “Despite these promising results, an important limitation of the analyses presented here is that sizeable and reliable reductions in disease burden arise most clearly at high coverage (typically >30% of eligible non-household floor area).”
 
 ## Overall assessment
 

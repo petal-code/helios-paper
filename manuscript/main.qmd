@@ -348,9 +348,10 @@ For both pathogen archetypes, we carried out a suite of simulations assuming bot
 We simulated both endemic and epidemic scenarios for each pathogen archetype under multiple AQI strategies: no AQI (baseline), random allocation of AQI to locations, and targeted allocation to the highest-risk eligible locations.
 Each scenario was replicated 25 times to account for stochastic variation between model runs.
 For endemic scenarios, we computed annualized disease incidence and average prevalence of active infection over the time-period simulated.
-Simulations were run for 20 years with an assumed mean duration of immunity of 365 days, and interventions were introduced following the end of the 10th year, across indoor settings including workplaces, schools, and leisure venues.
+Endemic simulations were run for 20 years with an assumed mean duration of immunity of 365 days, and interventions were introduced following the end of the 10th year, across indoor settings including workplaces, schools, and leisure venues.
 The period spanning years 5–7 served as the baseline, and years 15–17 as the post-intervention phase for purposes of evaluation.
 For epidemic scenarios, we computed epidemic final size and peak infection incidence as metrics to assess AQI impact.
+Epidemic simulations were run for 4 years, with interventions introduced at the start of the simulation.
 
 # Results
 
