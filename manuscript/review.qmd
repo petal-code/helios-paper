@@ -238,7 +238,9 @@ Basically some very small analysis to show it's not a big issue.
 We have added an explicit definition of highest-risk locations to the Methods subsection “Modelling the impact of air quality interventions”.
 We have also changed the wording to consistently refer to highest-risk locations (rather than settings).
 
-**Charlie**: Yep sounds good
+> Line X: “AQIs were eligible for installation in schools, workplaces, and leisure venues; households and background community transmission were excluded.
+> Under targeted allocation, eligible locations were ranked by their location-specific riskiness multiplier $\gamma_{j,s}$, with AQIs installed in descending order until the cumulative covered floor area met or exceeded the coverage target.
+> We define highest-risk locations as those with the largest $\gamma_{j,s}$ values across these three setting types.”
 
 {{< pagebreak >}}
 
