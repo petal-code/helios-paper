@@ -502,6 +502,9 @@ Methods: “For endemic scenarios we computed…”, also say what you compute f
 We have revised this paragraph to clarify the simulation conditions for the endemic and epidemic scenarios, adding details for the latter.
 We have also removed time to peak from the metrics listed in the methods section and two brief references elsewhere in the manuscript, as we do not report this metric numerically.
 
+> Line X: “For epidemic scenarios, we computed epidemic final size and peak infection incidence as metrics to assess AQI impact.
+> Epidemic simulations were run for 4 years, with interventions introduced at the start of the simulation.”
+
 ::: {.callout-note collapse="true" title="Comment 16"}
 Discussion: avoid the word significant apart from in the statistical sense.
 :::
