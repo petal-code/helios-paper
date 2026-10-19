@@ -50,10 +50,19 @@ In addition, it is necessary to reconstruct parts of the modelling workflow for 
 **Response**
 
 We have revised the Methods to clarify the modelling workflow and the connection between the indoor-air calculations and population transmission.
+In the subsection “Transmission dynamics and calculation of individual force of infection”, we distinguish setting-specific transmission from location-specific heterogeneity:
+
+> Line X: “The setting-specific transmissibility $\beta_s$ was parameterised to reflect empirical estimates of how influenza and SARS-CoV-2 transmission is apportioned between setting types.
+> The location-specific multiplier $\gamma_{j,s}$ captures heterogeneity in transmission risk between locations of the same setting type, informed by variation in ventilation rates and occupancy density.”
+
+In the subsection “Indoor air quality motivated variation in riskiness between locations”, we clarify how the resulting multipliers enter the population simulation:
+
+> Line X: “Each location was assigned a fixed multiplier $\gamma_{j,s}$ drawn from this distribution, with changes in infection risk during the simulation driven by infectious occupancy through $I_{j,s}(t)/N_{j,s}$ rather than recalculated airborne concentrations or Wells–Riley probabilities.”
 
 *Draft response: the flowchart, endpoint definitions, and reproduction workflow remain to be addressed.*
 
-**Charlie**: Your suggested Draft response sounds good Adam.
+<!-- Charlie: Your suggested Draft response sounds good Adam. -->
+<!-- Adam: Need to clarify what Charlie means by this. -->
 
 ::: {.callout-note collapse="true" title="Comment 2"}
 The results/discussion sections should also showcase and discuss the logN distributions of the riskiness values (as this is a main parameter), as well as any sensitivity analysis to the input values.
