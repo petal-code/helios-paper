@@ -721,6 +721,15 @@ Since readers might otherwise interpret, for example, “20% coverage” as 20% 
 Thank you for pointing out this discrepancy.
 We have clarified coverage as proportion of non-household floor area in the results, figure captions, and in the discussion.
 
+When first presenting the results, coverage is now explicitly “defined as the target proportion of non-household floor area receiving AQI installation” (Line X).
+The figure captions state:
+
+> Line X: “Coverage denotes the target proportion of non-household floor area receiving AQIs.”
+
+The discussion likewise refers to floor-area coverage:
+
+> Line X: “Despite these promising results, an important limitation of the analyses presented here is that sizeable and reliable reductions in disease burden arise most clearly at high coverage (typically >30% of eligible non-household floor area).”
+
 ## Overall assessment
 
 **Reviewer comment**
