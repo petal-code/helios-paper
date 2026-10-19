@@ -661,7 +661,7 @@ I do not think an additional imperfect-targeting simulation is essential for the
 We agree that the gains from risk-targeted deployment depend on an idealised assumption.
 To highlight this, we have qualified the interpretation in the results section as follows:
 
-> “These results indicate that, if the highest-risk locations can be accurately identified, targeting them can reduce the coverage required for equivalent population-level impact and substantially improve the efficiency of AQI deployment.”
+> Line X: “These results indicate that, if the highest-risk locations can be accurately identified, targeting them can reduce the coverage required for equivalent population-level impact and substantially improve the efficiency of AQI deployment.”
 
 In the discussion section we retain an explanation that identifying these locations in practice is challenging and that ventilation and other observable proxies capture transmission risk imperfectly.
 
