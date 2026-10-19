@@ -593,7 +593,16 @@ This would make the multiscale nature of the model much easier to understand and
 **Response**
 
 We have revised the Methods to distinguish epidemiologically parameterised transmission from ventilation-informed heterogeneity between locations.
+
+> Line X: “The setting-specific transmissibility $\beta_s$ was parameterised to reflect empirical estimates of how influenza and SARS-CoV-2 transmission is apportioned between setting types.
+> The location-specific multiplier $\gamma_{j,s}$ captures heterogeneity in transmission risk between locations of the same setting type, informed by variation in ventilation rates and occupancy density.
+> These multipliers were drawn from a truncated lognormal distribution with log-mean zero and log-standard deviation $\sigma_{\log,s}$.”
+
 The revised text explains more clearly how the indoor-air calculations inform the population model.
+
+> Line X: “The ratio of these probabilities (upper divided by lower) defined a setting-specific riskiness ratio $R_s$.
+> This ratio determined the bounds $[R_s^{-1/2}, R_s^{1/2}]$ of a median-one truncated lognormal distribution, with setting-specific log-standard deviation $\sigma_{\log,s}$ selected numerically to place approximately 80% of the distribution within $[(R_s/2)^{-1/2}, (R_s/2)^{1/2}]$ and 10% in each tail (see Supplementary Information).
+> Each location was assigned a fixed multiplier $\gamma_{j,s}$ drawn from this distribution, with changes in infection risk during the simulation driven by infectious occupancy through $I_{j,s}(t)/N_{j,s}$ rather than recalculated airborne concentrations or Wells–Riley probabilities.”
 
 *Draft response: the suggested schematic remains to be considered.*
 
