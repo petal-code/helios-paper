@@ -513,6 +513,14 @@ Discussion: avoid the word significant apart from in the statistical sense.
 
 We have replaced uses of “significant” and “significantly” in the results and discussion sections to avoid implying statistical significance.
 
+For example, “significantly increased reductions” is now “larger reductions” in the results:
+
+> Line X: “Increasing coverage or efficacy both led to larger reductions in infection incidence”
+
+In the discussion, “significant reductions” is now “substantial reductions”:
+
+> Line X: “Across the pathogen archetypes explored here, we highlight the potential for widespread introduction of AQIs to yield substantial reductions in endemic disease burden as coverage and efficacy increase, with larger gains when interventions are targeted to higher-risk locations rather than distributed at random.”
+
 ::: {.callout-note collapse="true" title="Comment 17"}
 Can the authors provide line numbers on the next draft, so it is easier to reference specific sections of the text.
 :::
