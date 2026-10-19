@@ -363,6 +363,10 @@ This reflects a broader limitation of our model: each location is represented as
 Children are also represented as a single age group.
 We have expanded the discussion section to acknowledge this limitation.
 
+> Line X: “We therefore do not capture the contact structures that arise from realistic daily schedules, differences in dwell times, and repeated encounters within and between rooms.
+> For example, children are represented as a single age group, and we do not distinguish primary school pupils remaining in one classroom from secondary school pupils moving between classrooms and mixing with different classmates.
+> Future extensions could represent individual rooms and distinguish more age groups.”
+
 ::: {.callout-note collapse="true" title="Comment 6"}
 In the subsection “Disease and AQI scenario modelling”, pathogen archetype natural history features appear without reference, and need to be appropriately referenced.
 :::
