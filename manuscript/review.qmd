@@ -709,7 +709,7 @@ I suggest slightly qualifying this statement unless separate analyses demonstrat
 
 We have added a sentence to the discussion:
 
-> As $R_0$ and the generation interval varied simultaneously between our two pathogen archetypes, we did not disentangle their respective contributions to the observed difference in intervention impact.
+> Line X: “As $R_0$ and the generation interval varied simultaneously between our two pathogen archetypes, we did not disentangle their respective contributions to the observed difference in intervention impact.”
 
 ::: {.callout-note collapse="true" title="9. Terminology around “coverage”"}
 Coverage is defined in terms of the proportion of eligible non-household floor area receiving an intervention.
