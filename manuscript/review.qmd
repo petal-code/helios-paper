@@ -643,6 +643,11 @@ I suggest that these latter qualifications are reflected more clearly in the abs
 We agree that the abstract's conclusions require clearer qualification.
 We have revised the abstract to specify that the intervention efficacies are hypothetical, and softened the concluding statement to acknowledge that the value of IAQ interventions as public-health infrastructure depends on practical and economic considerations.
 
+> Line X: “We use this modelling approach to evaluate IAQ-improving interventions (air-quality interventions or AQIs) under hypothetical intervention efficacies, using endemic and pandemic pathogen archetypes with properties similar to SARS-CoV-2 and influenza A/B, and evaluate how effects on key epidemiological metrics (such as annualized incidence and epidemic final size) depend on AQI coverage, efficacy and allocation strategy.”
+
+> Line X: “These results highlight the potential for IAQ interventions to reduce respiratory infection burden, particularly through risk-based deployment.
+> Their value as public-health infrastructure will depend on real-world effectiveness, costs, implementation quality, and achievable coverage.”
+
 ::: {.callout-note collapse="true" title="5. Interpretation of risk-targeted deployment"}
 The result that risk-targeted deployment outperforms random deployment is interesting (albeit perhaps expected), and particularly the finding that the advantage is greatest when intervention coverage is limited.
 The manuscript also appropriately discusses the practical difficulty of identifying the highest-risk locations and notes that ventilation is only one component of transmission risk.
