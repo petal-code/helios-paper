@@ -410,9 +410,15 @@ Because of this, instead of writing “AQI installation can achieve substantial 
 
 **Response**
 
-We have revised results headings and figure captions to use "projected impact" and related terminology, making clear that the reported gains are model projections conditional on the assumed intervention efficacy.
+We have revised wording throughout the abstract, Results and Discussion to distinguish the assumed local reduction in force of infection from its projected population-level consequences. In particular, we now explicitly describe efficacy as an assumed reduction in force of infection in the abstract, use “projected impact” and related terminology in results headings and figure captions, and qualify broader statements about potential real-world benefits.
+
+The abstract now introduces the quantitative results as:
+
+> Line X: “In model projections at 20% AQI intervention coverage and an assumed 80% reduction in location-specific force of infection, annualized incidence was reduced…”
 
 The revised results headings include:
+
+> Line X: “AQI installation is projected to substantially reduce endemic respiratory virus infection incidence, depending on coverage and assumed efficacy.”
 
 > Line X: “Specifically targeting the highest-risk locations substantially increases the projected impact of AQI installation.”
 
@@ -422,9 +428,15 @@ The caption comparing allocation strategies likewise describes:
 
 > Line X: “Comparison of the projected impact under random and risk-based AQI installation and deployment strategies.”
 
-*Draft note: a more thorough pass through the manuscript could apply this terminology more consistently.*
+In the Discussion, we have qualified the implications for epidemic preparedness:
 
-**Charlie**: A bit OTT from them but it is fundamentally a fair enough comment so I think fine to address and I agree a more thorough pass to make sure we've addressed it everywhere seems good to me.
+> Line X: “However, widespread presence of AQIs with the assumed efficacies could i) slow epidemic progression and spread…”
+
+We have also revised the concluding paragraph to make the conditional nature of the findings explicit:
+
+> Line X: “Despite these limitations, our work projects substantial potential burden reductions from improving indoor air quality at scale, across both endemic and epidemic contexts, conditional on the assumed intervention efficacies.”
+
+> Line X: “Realizing these benefits will depend on real-world effectiveness, implementation quality and coverage across diverse building stocks, sustained operation and maintenance, and alignment with performance-based standards that specify equivalent clean air delivery and infection-risk management modes.”
 
 ::: {.callout-note collapse="true" title="Comment 10"}
 The model github [Individual Based Model for UVC Interventions • helios](https://mrc-ide.github.io/helios/) does not appear directly relevant to this study, focussing specifically on far ultra-violet light emitters rather than generic air quality control measures.
