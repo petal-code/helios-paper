@@ -240,7 +240,7 @@ plot_population <- plot_age +
 ggsave(
   here::here("figures", "model_schematic", "plot.png"),
   plot = plot_population,
-  h = 8,
-  w = 7,
+  h = 7,
+  w = 6.5,
   dpi = 600
 )
