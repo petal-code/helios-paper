@@ -230,20 +230,20 @@ This framework integrates time-use, occupancy, and airflows with pathogen emissi
 Using pathogen archetypes approximating SARS-CoV-2 and influenza A/B (hereafter referred to as SARS-CoV-2 and influenza A/B) as case studies, we simulate a range of indoor-air interventions, varying efficacy, coverage, and targeting across setting types under both endemic and pandemic scenarios to estimate effects on transmission, epidemic trajectories, and health burden.
 Our model projections suggest substantial potential public-health benefits from improving indoor air quality, supporting further evaluation of “clean indoor air” as public-health infrastructure alongside vaccines and therapeutics.
 
-
 ```{r}
 #| label: fig-population
 #| eval: true
 #| echo: false
 #| out-width: "100%"
 #| fig-cap: >
-#|   **Example realised demographic and social contact setting distributions obtained for one stochastic model simulation with an illustrative population size of 200,000.**
+#|   **Example realised demographic and social contact setting distributions for an illustrative population of 200,000, and setting-specific riskiness distributions.**
+#|   Demographic, size, and attendance panels show realised distributions from one simulated population, while riskiness panels show the theoretical sampling densities used to generate location-specific multipliers.
 #|   **(A)** Age distribution across age classes (child, adult, and elderly).
-#|   **(B)** Household size distribution showing frequency of households with 1-16 members.
-#|   **(C)** School size distribution on a logarithmic scale, ranging from approximately 100 to 3,000 students.
-#|   **(D)** Workplace size distribution on a logarithmic scale, ranging from 1 to over 1,000 employees.
-#|   **(E)** Leisure venue size distribution showing capacity of venues attended.
-#|   **(F)** Distribution of the number of leisure venues attended per week per individual.
+#|   **(B)** Distribution of the number of leisure venues attended per week per individual.
+#|   **(C, E, G, I)** Leisure venue, household, school, and workplace size distributions, respectively.
+#|   School and workplace sizes are shown on logarithmic scales.
+#|   **(D, F, H, J)** Truncated lognormal probability densities of the location-specific riskiness multipliers for the corresponding settings, using the setting-specific simulation parameters (see Supplementary Information).
+#|   Dashed lines mark the median multiplier of one, and each density integrates to one over its setting-specific truncation bounds.
 knitr::include_graphics(here::here("figures", "model_schematic", "plot.png"))
 ```
 
@@ -252,10 +252,10 @@ knitr::include_graphics(here::here("figures", "model_schematic", "plot.png"))
 ## Population structure and data sources
 
 We simulated a population of individuals stratified into three age groups: children, adults, and elderly (@fig-population, panel A).
-Household sizes (@fig-population, panel B) and age composition were sampled from a 2010 San Francisco-based synthetic population produced by RTI International [@rineer2025a].
-School enrollment sizes (@fig-population, panel C) were sampled from U.S. National Center for Education Statistics 2019–2020 data [@deBrey2023Digest].
-Workplace sizes (@fig-population, panel D) were sampled from a truncated offset power law distribution estimated previously from US-based data [@ferguson2005strategies].
-In the absence of detailed data and information on visit frequency and duration to other settings, we aggregated all other visits into a “leisure” category, with setting capacity (@fig-population, panel E) and visit frequency (@fig-population, panel F) sampled from empirically motivated negative binomial and Poisson distributions respectively.
+Household sizes (@fig-population, panel E) and age composition were sampled from a 2010 San Francisco-based synthetic population produced by RTI International [@rineer2025a].
+School enrollment sizes (@fig-population, panel G) were sampled from U.S. National Center for Education Statistics 2019–2020 data [@deBrey2023Digest].
+Workplace sizes (@fig-population, panel I) were sampled from a truncated offset power law distribution estimated previously from US-based data [@ferguson2005strategies].
+In the absence of detailed data and information on visit frequency and duration to other settings, we aggregated all other visits into a “leisure” category, with setting capacity (@fig-population, panel C) and visit frequency (@fig-population, panel B) sampled from empirically motivated negative binomial and Poisson distributions respectively.
 
 ## Overview of individual-based modelling framework
 
@@ -292,7 +292,7 @@ $${\lambda }_{i,j,s}\left({t}\right)=\frac{{\beta }_{j,s}{I}_{j,s}\left({t}\righ
 where ${I}_{j,s}\left({t}\right)$ is the number of infectious individuals in location $j$ belonging to setting type $s$, ${N}_{j,s}$ is the occupancy in that particular location, and ${\beta }_{j,s}={\gamma }_{j,s}{\beta }_{s}$ is a transmissibility parameter.
 The setting-specific transmissibility $\beta_s$ was parameterised to reflect empirical estimates of how influenza and SARS-CoV-2 transmission is apportioned between setting types.
 The location-specific multiplier $\gamma_{j,s}$ captures heterogeneity in transmission risk between locations of the same setting type, informed by variation in ventilation rates and occupancy density.
-These multipliers were drawn from a truncated lognormal distribution with log-mean zero and log-standard deviation $\sigma_{\log,s}$.
+These multipliers were drawn from a truncated lognormal distribution with log-mean zero and log-standard deviation $\sigma_{\log,s}$ (@fig-population, panels D, F, H, and J).
 The ventilation-informed parameterisation of this distribution is described in @sec-location-riskiness.
 
 We set between-setting transmission rate ratios based on estimates from prior work about how overall transmission is apportioned between settings [@ferretti2024digital; @Fergusonetal2006]
