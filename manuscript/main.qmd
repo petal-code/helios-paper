@@ -577,14 +577,14 @@ knitr::kable(
 
 : Simulation parameter settings {#tbl-simulation}
 
-::: {.content-visible unless-format="pdf"}
-
 # Acknowledgements
 
 ## Use of AI tools
 
 The authors used AI tools (Claude, Codex) to assist with development of `helios`, preparation of analysis and reporting scripts, code review, and revising manuscript text.
 The authors reviewed and, where necessary, revised the outputs and take full responsibility for correctness of the code, analysis, and manuscript content.
+
+::: {.content-visible unless-format="pdf"}
 
 # References {.unnumbered}
 
