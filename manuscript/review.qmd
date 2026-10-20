@@ -70,7 +70,10 @@ The results/discussion sections should also showcase and discuss the logN distri
 
 **Response**
 
-*Response to be added.*
+We have expanded [Figure 1](`r here::here("figures", "model_schematic", "plot.png")`) to show the setting-specific truncated lognormal distributions used to generate location-specific riskiness multipliers.
+Each riskiness distribution is displayed alongside the corresponding setting-size distribution, with a dashed line marking the median multiplier of one.
+
+*Draft response: the sensitivity analysis and additional Discussion text remain to be addressed.*
 
 **Charlie**: I think let's:
 
