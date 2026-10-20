@@ -38,7 +38,7 @@ plot_age <- data.frame(age_classes, age_class_counts) |>
   ggplot(aes(x = age_classes, y = prop)) +
   geom_col(col = "black", fill = "white") +
   scale_y_continuous(labels = scales::percent_format()) +
-  labs(x = "Age class", y = "")
+  labs(x = "Age class", y = "Proportion")
 
 plot_schools <- data.frame(
   "school_sizes" = parameters_list$setting_sizes$school
@@ -51,7 +51,7 @@ plot_schools <- data.frame(
   ) +
   scale_x_log10() +
   scale_y_continuous(labels = scales::percent_format()) +
-  labs(x = "School size (log scale)", y = "")
+  labs(x = "School size (log scale)", y = "Proportion")
 
 plot_workplaces <- data.frame(
   "workplace_sizes" = parameters_list$setting_sizes$workplace
@@ -64,7 +64,7 @@ plot_workplaces <- data.frame(
   ) +
   scale_x_log10() +
   scale_y_continuous(labels = scales::percent_format()) +
-  labs(x = "Workplace size (log scale)", y = "")
+  labs(x = "Workplace size (log scale)", y = "Proportion")
 
 households <- variables_list$household$get_categories()
 
@@ -81,7 +81,7 @@ plot_households <- table(
   ggplot(aes(x = household_sizes, y = prop)) +
   geom_col(col = "black", fill = "white") +
   scale_y_continuous(labels = scales::percent_format()) +
-  labs(x = "Household size", y = "")
+  labs(x = "Household size", y = "Proportion")
 
 household_df <- purrr::map_df(households, function(x) {
   indices <- variables_list$household$get_index_of(values = x)$to_vector()
@@ -123,7 +123,7 @@ plot_leisure_visits <- table(number_leisure_places) |>
   ggplot(aes(x = number_leisure_places, y = prop)) +
   geom_col(col = "black", fill = "white") +
   scale_y_continuous(labels = scales::percent_format()) +
-  labs(x = "Leisure venues attended per week", y = "")
+  labs(x = "Leisure venues attended per week", y = "Proportion")
 
 plot_leisure <- data.frame(
   "leisure_sizes" = parameters_list$setting_sizes$leisure
@@ -135,70 +135,112 @@ plot_leisure <- data.frame(
     fill = "white"
   ) +
   scale_y_continuous(labels = scales::percent_format()) +
-  labs(x = "Leisure venue size", y = "")
+  labs(x = "Leisure venue size", y = "Proportion")
 
-timesteps <- round(parameters_list$simulation_time / parameters_list$dt)
+# timesteps <- round(parameters_list$simulation_time / parameters_list$dt)
+# 
+# renderer <- individual::Render$new(timesteps)
+# 
+# parameters_list <- variables_list_full$parameters_list
+# 
+# events_list <- create_events(
+#   variables_list = variables_list,
+#   parameters_list = parameters_list
+# )
+# 
+# timesteps <- round(parameters_list$simulation_time / parameters_list$dt)
+# renderer <- individual::Render$new(timesteps)
+# 
+# processes_list <- create_processes(
+#   variables_list = variables_list,
+#   events_list = events_list,
+#   parameters_list = parameters_list,
+#   renderer = renderer
+# )
+# 
+# individual::simulation_loop(
+#   variables = variables_list,
+#   events = unlist(events_list),
+#   processes = processes_list,
+#   timesteps = timesteps,
+# )
+# 
+# states <- renderer$to_dataframe()
+# 
+# plot_epidemic <- states |>
+#   tidyr::pivot_longer(
+#     cols = ends_with("count"),
+#     names_to = "compartment",
+#     values_to = "value",
+#     names_pattern = "(.*)_count"
+#   ) |>
+#   mutate(
+#     compartment = forcats::fct_relevel(compartment, "S", "E", "I", "R"),
+#     prop = value / parameters_list$human_population
+#   ) |>
+#   ggplot(aes(x = timestep, y = prop, col = compartment)) +
+#   geom_line() +
+#   scale_y_continuous(labels = scales::percent_format()) +
+#   scale_color_manual(
+#     values = c("royalblue3", "firebrick3", "darkorchid3", "orange2")
+#   ) +
+#   labs(x = "Time-step", y = "", col = "")
 
-renderer <- individual::Render$new(timesteps)
+riskiness_parameters <- set_riskiness(get_parameters(list()))
+riskiness_settings <- c("household", "school", "workplace", "leisure")
 
-parameters_list <- variables_list_full$parameters_list
+riskiness_plots <- purrr::map(riskiness_settings, function(setting) {
+  prefix <- paste0("setting_specific_riskiness_", setting)
+  meanlog <- riskiness_parameters[[paste0(prefix, "_meanlog")]]
+  sdlog <- riskiness_parameters[[paste0(prefix, "_sdlog")]]
+  lower <- riskiness_parameters[[paste0(prefix, "_min")]]
+  upper <- riskiness_parameters[[paste0(prefix, "_max")]]
+  
+  normalising_mass <- plnorm(upper, meanlog, sdlog) - plnorm(lower, meanlog, sdlog)
+  
+  riskiness <- seq(lower, upper, length.out = 1000)
 
-events_list <- create_events(
-  variables_list = variables_list,
-  parameters_list = parameters_list
-)
-
-timesteps <- round(parameters_list$simulation_time / parameters_list$dt)
-renderer <- individual::Render$new(timesteps)
-
-processes_list <- create_processes(
-  variables_list = variables_list,
-  events_list = events_list,
-  parameters_list = parameters_list,
-  renderer = renderer
-)
-
-individual::simulation_loop(
-  variables = variables_list,
-  events = unlist(events_list),
-  processes = processes_list,
-  timesteps = timesteps,
-)
-
-states <- renderer$to_dataframe()
-
-plot_epidemic <- states |>
-  tidyr::pivot_longer(
-    cols = ends_with("count"),
-    names_to = "compartment",
-    values_to = "value",
-    names_pattern = "(.*)_count"
+  data.frame(
+    riskiness = riskiness,
+    density = dlnorm(riskiness, meanlog, sdlog) / normalising_mass
   ) |>
-  mutate(
-    compartment = forcats::fct_relevel(compartment, "S", "E", "I", "R"),
-    prop = value / parameters_list$human_population
-  ) |>
-  ggplot(aes(x = timestep, y = prop, col = compartment)) +
-  geom_line() +
-  scale_y_continuous(labels = scales::percent_format()) +
-  scale_color_manual(
-    values = c("royalblue3", "firebrick3", "darkorchid3", "orange2")
-  ) +
-  labs(x = "Time-step", y = "", col = "")
+    ggplot(aes(x = riskiness, y = density)) +
+    geom_area(fill = "white") +
+    geom_vline(xintercept = 1, linetype = "dashed", colour = "grey70") +
+    geom_line() +
+    scale_x_continuous(limits = c(0, 2.6), breaks = c(0, 1, 2)) +
+    labs(
+      x = paste(stringr::str_to_title(setting), "riskiness multiplier"),
+      y = "Density"
+    )
+})
 
 design <- "
   12
   34
   56
+  78
+  9A
 "
 
 plot_population <- plot_age +
-  plot_households +
-  plot_schools +
-  plot_workplaces +
-  plot_leisure +
   plot_leisure_visits +
+  plot_leisure +
+  riskiness_plots[[4]] +
+  plot_households +
+  riskiness_plots[[1]] +
+  plot_schools +
+  riskiness_plots[[2]] +
+  plot_workplaces +
+  riskiness_plots[[3]] +
   plot_annotation(tag_levels = "A") +
-  plot_layout(design = design, tag_level = "keep")
+  plot_layout(design = design, tag_level = "keep") &
+  theme(plot.margin = margin(2, 2, 2, 2))
 
-ggsave("plot.png", plot = plot_population, h = 5.5, w = 7, dpi = 600)
+ggsave(
+  here::here("figures", "model_schematic", "plot.png"),
+  plot = plot_population,
+  h = 8,
+  w = 7,
+  dpi = 600
+)
