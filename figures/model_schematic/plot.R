@@ -138,35 +138,35 @@ plot_leisure <- data.frame(
   labs(x = "Leisure venue size", y = "Proportion")
 
 # timesteps <- round(parameters_list$simulation_time / parameters_list$dt)
-# 
+#
 # renderer <- individual::Render$new(timesteps)
-# 
+#
 # parameters_list <- variables_list_full$parameters_list
-# 
+#
 # events_list <- create_events(
 #   variables_list = variables_list,
 #   parameters_list = parameters_list
 # )
-# 
+#
 # timesteps <- round(parameters_list$simulation_time / parameters_list$dt)
 # renderer <- individual::Render$new(timesteps)
-# 
+#
 # processes_list <- create_processes(
 #   variables_list = variables_list,
 #   events_list = events_list,
 #   parameters_list = parameters_list,
 #   renderer = renderer
 # )
-# 
+#
 # individual::simulation_loop(
 #   variables = variables_list,
 #   events = unlist(events_list),
 #   processes = processes_list,
 #   timesteps = timesteps,
 # )
-# 
+#
 # states <- renderer$to_dataframe()
-# 
+#
 # plot_epidemic <- states |>
 #   tidyr::pivot_longer(
 #     cols = ends_with("count"),
@@ -195,9 +195,10 @@ riskiness_plots <- purrr::map(riskiness_settings, function(setting) {
   sdlog <- riskiness_parameters[[paste0(prefix, "_sdlog")]]
   lower <- riskiness_parameters[[paste0(prefix, "_min")]]
   upper <- riskiness_parameters[[paste0(prefix, "_max")]]
-  
-  normalising_mass <- plnorm(upper, meanlog, sdlog) - plnorm(lower, meanlog, sdlog)
-  
+
+  normalising_mass <- plnorm(upper, meanlog, sdlog) -
+    plnorm(lower, meanlog, sdlog)
+
   riskiness <- seq(lower, upper, length.out = 1000)
 
   data.frame(
