@@ -759,3 +759,13 @@ Addressing these points would, in my view, considerably strengthen the manuscrip
 **Response**
 
 Thank you for your thoughtful review and constructive feedback.
+
+
+{{< pagebreak >}}
+
+# Additional changes identified by the authors
+
+## Numerical results changes
+
+As part of the revision, we migrated the manuscript to Quarto in order to obtain numerical results directly from analysis outputs.
+During this process, we identified and corrected errors in the calculation of some numerical summaries as follows.
