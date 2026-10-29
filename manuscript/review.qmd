@@ -768,11 +768,11 @@ Thank you for your thoughtful review and constructive feedback.
 
 During revision, we moved the manuscript to Quarto so that it reads numerical results directly from the analysis outputs.
 This revealed several differences from the original text.
-We have updated the values and clarified how they are calculated, as described below.
+We have updated the values and clarified the calculations, as described below.
 
 ### Updated endemic results, Figure 2
 
-| Result | Coverage | Efficacy | Original | Revised | Explanation |
+| Result | Coverage | Efficacy | Original | Revised | Cause |
 |:---------|:--|:--|:--|:--|:--|
 | Influenza A/B incidence reduction | 20% | 80% | 17.0% | 16.9% | 1 |
 | SARS-CoV-2 prevalence reduction | 20% | 80% | 6.8% | 7.2% | 1 |
@@ -785,18 +785,24 @@ We have updated the values and clarified how they are calculated, as described b
 The revised values come directly from the Figure 2 analysis.
 We calculate the percentage reduction from baseline within each simulation, then average these reductions, rounding only at the end.
 
+_Verification: Rounding the influenza incidence reduction to a whole percentage reproduces the original 17.0%. Calculations to obtain the original prevalence reductions of 6.8% and 18.8% remain undetermined._
+
 2. **Updating the upper end of the range.**
 The largest incidence reduction across the 25 simulations is 29.7%.
 This replaces the original upper endpoint of 30.0%.
+
+_Verification: Rounding the maximum reduction of 29.6557% to a whole percentage reproduces the original 30.0%._
 
 3. **Comparing pathogens at matched coverage and efficacy.**
 We divide the mean reduction for influenza A/B by the mean reduction for SARS-CoV-2 at each of the nine coverage–efficacy combinations listed in the table.
 We then report the smallest and largest ratios.
 
+_Verification: Rounding the incidence reductions to whole percentages before dividing reproduces the original 1.9–2.8 range. A calculation to obtain the prevalence range of 2.0–2.3 remains undetermined._
+
 ### Updated endemic results, Figure 3
 
-| Result | Coverage | Efficacy | Original | Revised | Explanation |
-|:---------|:--|:--|:--|:--|:--|
+| Result | Coverage | Efficacy | Original | Revised | Cause |
+|:-------|:--|:--|:--|:--|:--|
 | SARS-CoV-2 incidence reduction, random allocation | 20% | 80% | 7.2% (range 5.0%–9.2%) | 7.3% (range 4.4%–10.3%) | 1, 2 |
 | Influenza A/B incidence reduction, random allocation | 20% | 80% | 17.0% | 16.9% | 1 |
 | SARS-CoV-2 incidence reduction, targeted allocation | 20% | 80% | 10.8% (range 9.2%–13.2%) | 10.8% (range 8.5%–13.4%) | 2 |
@@ -813,20 +819,29 @@ Both the random and targeted estimates now come directly from the Figure 3 analy
 The original SARS-CoV-2 random estimate matched Figure 2.
 These analyses represent the same intervention scenario and should give similar results.
 
+_Verification: The Figure 2 analysis reproduces the original SARS-CoV-2 estimate of 7.2% and range of 5.0%–9.2%. Averaging baseline and post-intervention incidence before calculating the reduction reproduces the original influenza estimate of 17.0% using Figure 3 data._
+
 2. **Reporting the full range.**
 The Figure 3 plotting code used percentile intervals, which were not consistent with the original text.
 We have changed the error bars and accompanying text to use the minimum and maximum instead.
 This changes the targeted incidence ranges without changing their means.
 
+_Verification: The 5th–95th percentiles reproduce the original targeted incidence intervals of 9.2%–13.2% for SARS-CoV-2 and 21.8%–34.0% for influenza A/B. Calculations to obtain the original relative-extra-impact intervals remain undetermined._
+
 3. **Recalculating relative gains from the mean reductions.**
 We subtract the random mean reduction from the targeted mean reduction, then divide by the random mean reduction.
 Using the Figure 3 estimates and rounding only at the end gives relative gains of 48.9% for SARS-CoV-2 and 70.6% for influenza A/B.
 
+_Verification: Calculating relative gains from the rounded values reproduces both originals: (10.8 - 7.2) / 7.2 gives 50%, and (28.9 - 16.9) / 16.9 gives 71.0%. The influenza calculation uses 16.9%, rather than the 17.0% printed in the original text._
+
 4. **Updating the summaries of simulation pairs.**
 These results calculate relative extra impact separately for each retained pair, then report its mean and range.
-This differs from comparing the two means in explanation 3.
 The revised values use 60% efficacy at both coverage levels.
+
+_Verification: Calculations to obtain the original paired-summary means and ranges remain undetermined._
 
 ### Consistent rounding of epidemic results (Figure 4)
 
 We now report results to one decimal place, as discussed in response to Reviewer 2 Comment 13.
+
+_Verification: Rounding to one decimal place reproduces both changes: 7.06 becomes 7.1, and 6.30 becomes 6.3._
