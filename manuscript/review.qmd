@@ -460,10 +460,8 @@ Can the authors explain Contributions by artificial intelligence (AI) tools and 
 
 **Response**
 
-*Response to be added.*
-
-**Charlie**: Yep, we should apologise for the oversight and add this in in the Methods.
-Thank them for flagging this!
+Thank you for flagging this omission, we apologise for the oversight.
+We have added a dedicated "Use of AI tools" section to the Acknowledgements section, as described in the journal guidelines.
 
 ## Minor comments/suggestions
 
