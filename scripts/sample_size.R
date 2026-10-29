@@ -40,3 +40,35 @@ parameter_lists <- purrr::pmap(
   expand_parameters,
   config = config
 )
+
+slug <- ids::adjective_animal()
+time <- format(Sys.time(), "%Y%m%d_%H%M%S")
+name1 <- paste("simulation_settings", slug, time, sep = "-")
+name2 <- paste("parameter_lists", slug, time, sep = "-")
+
+data_dir <- here::here("scripts", "sample_size")
+dir.create(data_dir, recursive = TRUE, showWarnings = FALSE)
+
+saveRDS(
+  simulation_settings,
+  file.path(data_dir, paste0(name1, ".rds"))
+)
+
+saveRDS(
+  parameter_lists,
+  file.path(data_dir, paste0(name2, ".rds"))
+)
+
+# Run all parameter lists and save each result
+output_dir <- file.path(data_dir, paste("outputs", slug, time, sep = "-"))
+dir.create(output_dir, recursive = TRUE, showWarnings = FALSE)
+
+purrr::walk(
+  parameter_lists,
+  \(parameters) run_simulation_hipercow(
+    parameters,
+    file_save = TRUE,
+    directory = paste0(output_dir, "/")
+  ),
+  .progress = "Running simulations"
+)
