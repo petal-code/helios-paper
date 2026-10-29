@@ -811,8 +811,8 @@ _Verification: Rounding the incidence reductions to whole percentages before div
 | Influenza A/B relative gain from targeting, comparing mean reductions | 20% | 80% | 71.0% | 70.6% | 3 |
 | SARS-CoV-2 relative extra impact, comparing simulation pairs | 20% | 60% | Range 22.1%–49.3% | Range -25.4%–68.8% | 2, 4 |
 | Influenza A/B relative extra impact, comparing simulation pairs | 20% | 60% | Range 53.1%–88.6% | Range 24.8%–97.3% | 2, 4 |
-| SARS-CoV-2 relative extra impact, comparing simulation pairs | 80% | 60% | Mean 19.7%, range 17.0%–22.4% | Mean 19.2%, range 1.4%–40.0% | 2, 4 |
-| Influenza A/B relative extra impact, comparing simulation pairs | 80% | 60% | Mean 18.8%, range 15.2%–22.5% | Mean 19.9%, range 5.8%–29.5% | 2, 4 |
+| SARS-CoV-2 relative extra impact, comparing simulation pairs | 80% | 60% | Mean 19.7%, range 17.0%–22.4% | Mean 19.2%, range 1.4%–40.0% | 2, 4, 5 |
+| Influenza A/B relative extra impact, comparing simulation pairs | 80% | 60% | Mean 18.8%, range 15.2%–22.5% | Mean 19.9%, range 5.8%–29.5% | 2, 4, 5 |
 
 1. **Using the Figure 3 analysis consistently.**
 Both the random and targeted estimates now come directly from the Figure 3 analysis.
@@ -838,7 +838,12 @@ _Verification: Calculating relative gains from the rounded values reproduces bot
 These results calculate relative extra impact separately for each retained pair, then report its mean and range.
 The revised values use 60% efficacy at both coverage levels.
 
-_Verification: Calculations to obtain the original paired-summary means and ranges remain undetermined._
+_Verification: The original relative-extra-impact intervals remain unexplained. The high-coverage central estimates can be reproduced by comparing mean reductions and swapping pathogen labels, as described in cause 5._
+
+5. **Possible swapped pathogen labels.**
+At 80% coverage and 60% efficacy, comparing the targeted and random mean reductions gives 18.8% for SARS-CoV-2 and 19.7% for influenza A/B.
+The original text assigns these values to the opposite pathogens.
+This calculation differs from averaging gains across simulation pairs, which gives the revised values of 19.2% and 19.9% in the table.
 
 ### Consistent rounding of epidemic results (Figure 4)
 
