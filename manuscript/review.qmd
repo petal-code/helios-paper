@@ -837,6 +837,7 @@ _Verification: Calculating relative gains from the rounded values reproduces bot
 4. **Updating the summaries of simulation pairs.**
 These results calculate relative extra impact separately for each retained pair, then report its mean and range.
 The revised values use 60% efficacy at both coverage levels.
+We have also changed the high-coverage sentence from “at 80% coverage” to “at 80% coverage and 60% efficacy” to make the efficacy assumption explicit.
 
 _Verification: The original relative-extra-impact intervals remain unexplained. The high-coverage central estimates can be reproduced by comparing mean reductions and swapping pathogen labels, as described in cause 5._
 
