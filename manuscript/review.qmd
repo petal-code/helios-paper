@@ -489,12 +489,12 @@ Might be an easier strategy to implement than ‘targeted’ control in the sens
 
 **Response**
 
-We agree that targeting particular settings (such as schools) could offer a practical approach to IAQ intervention implementation.
-Although schools are represented in our model, evaluating setting-specific control strategies falls outside the scope of this study.
-Extending the model to represent settings such as care homes and hospitals, and to capture deaths as an outcome, would make evaluating setting-specific interventions a particularly valuable direction for future work.
+We agree that our targeting strategy requires identification of the highest risk locations, which is a limitation.
+Targeting particular settings, such as schools, could be simpler to implement.
+We have added two sentences to the Discussion highlighting this alternative and its evaluation as a direction for future work.
 
-**Charlie**: Would consider focussing this text on highlighting and agreeing with the limitation of the current targeting strategy, and noting that we've added a couple of sentences (which we should add) to the Discussion discussing this limitation.
-I think the stuff on care homes, hospitals and deaths feels a bit unrelated to the comment and would suggest remove.
+> Line X: “One practical alternative to identifying the highest-risk individual locations is to prioritise particular setting types, such as schools, which are known to be high-risk locations for transmission.
+Comparing the population-level impact and practical feasibility of targeting based on ventilation-informed risk, transmission burden, expected infections prevented per unit floor area, or setting type would be a valuable direction for future work.”
 
 ::: {.callout-note collapse="true" title="Comment 13"}
 Note on precision - given the archetypal/exploratory nature of this work, the level of precision in figures presented seems inappropriate - consider showing results to the nearest % instead (e.g. 7% instead of 7.2%)
