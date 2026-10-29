@@ -489,7 +489,7 @@ We agree that our targeting strategy requires identification of the highest risk
 Targeting particular settings, such as schools, could be simpler to implement.
 We have added two sentences to the Discussion highlighting this alternative and its evaluation as a direction for future work.
 
-> Line X: “One practical alternative to identifying the highest-risk individual locations is to prioritise particular setting types, such as schools, which are known to be high-risk locations for transmission.
+> Line X: “One practical alternative to identifying the highest-risk individual locations is to prioritise particular setting types, such as schools.
 Comparing the population-level impact and practical feasibility of targeting based on ventilation-informed risk, transmission burden, expected infections prevented per unit floor area, or setting type would be a valuable direction for future work.”
 
 ::: {.callout-note collapse="true" title="Comment 13"}

@@ -501,7 +501,7 @@ These strategies would require estimates of transmission burden at individual lo
 The exact location in which infection occurs is not typically observed and is difficult to identify via traditional contact-tracing based methods, especially in the context of asymptomatic or pre-symptomatic transmission (as for COVID-19 [@he2020temporal; @johansson2021sarscov]) and constraints on the resourcing of contact tracing infrastructure [@lash2021covid].
 Previous work has highlighted the promise of digital contact tracing as a way to provide time-stamped proximity records that strengthen case–context linkage when recall is incomplete and exposure windows span multiple venues [@kendall2023epidemiological].
 Similarly, previous work has highlighted that aggregated mobile network data can quantify venue-level person-time and crowding from anonymized device movements to estimate setting-specific exposure and risk [@chang2021mobility].
-One practical alternative to identifying the highest-risk individual locations is to prioritise particular setting types, such as schools, which are known to be high-risk locations for transmission.
+One practical alternative to identifying the highest-risk individual locations is to prioritise particular setting types, such as schools.
 Comparing the population-level impact and practical feasibility of targeting based on ventilation-informed risk, transmission burden, expected infections prevented per unit floor area, or setting type would be a valuable direction for future work.
 
 A major limitation of this work is the simplified representation of the physical spaces that individuals visit and the contact structures they form within them.
