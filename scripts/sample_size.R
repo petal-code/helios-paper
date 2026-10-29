@@ -65,10 +65,12 @@ dir.create(output_dir, recursive = TRUE, showWarnings = FALSE)
 
 purrr::walk(
   parameter_lists,
-  \(parameters) run_simulation_hipercow(
-    parameters,
-    file_save = TRUE,
-    directory = paste0(output_dir, "/")
-  ),
+  \(parameters) {
+    run_simulation_hipercow(
+      parameters,
+      file_save = TRUE,
+      directory = paste0(output_dir, "/")
+    )
+  },
   .progress = "Running simulations"
 )
