@@ -204,10 +204,6 @@ The exact location in which infection occurs is not typically observed and is di
 Previous work has highlighted the promise of digital contact tracing as a way to provide time-stamped proximity records that strengthen case–context linkage when recall is incomplete and exposure windows span multiple venues [@kendall2023epidemiological].
 Similarly, previous work has highlighted that aggregated mobile network data can quantify venue-level person-time and crowding from anonymized device movements to estimate setting-specific exposure and risk [@chang2021mobility].”
 
-*Response to be added.*
-
-**Charlie**: I think we can add a couple of sentences to the Discussion highlighting agreeing with them and highlighting this as a good strand of future work.
-
 ::: {.callout-note collapse="true" title="Comment 10"}
 - Add additional references to justify the assumptions / inputs chosen - a few are lacking citations in the methods
 :::
