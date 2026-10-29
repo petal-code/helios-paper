@@ -497,7 +497,8 @@ This approach has the practical advantage that ventilation can be assessed witho
 Scalable sensing systems, such as CO$_2$ monitoring, could therefore help identify poorly ventilated locations for prioritisation [@peng2021exhaled; @rudnick2003risk].
 However, transmission requires infectious people to be present, and the resulting risk depends on their number as well as ventilation, occupancy, duration of co-presence, vocalization, and activity intensity [@wang2021airborne; @qian2021indoor].
 Alternative strategies could aim to more directly prioritise locations based on transmission burden or expected infections prevented per unit floor area.
-These strategies would require estimates of transmission burden at individual locations.
+For example, a moderately ventilated location could take priority over a poorly ventilated one if differences in attendance and exposure were expected to produce a greater number of infections.
+These strategies would require estimates of transmission burden at individual locations, or proxies for it.
 The exact location in which infection occurs is not typically observed and is difficult to identify via traditional contact-tracing based methods, especially in the context of asymptomatic or pre-symptomatic transmission (as for COVID-19 [@he2020temporal; @johansson2021sarscov]) and constraints on the resourcing of contact tracing infrastructure [@lash2021covid].
 Previous work has highlighted the promise of digital contact tracing as a way to provide time-stamped proximity records that strengthen case–context linkage when recall is incomplete and exposure windows span multiple venues [@kendall2023epidemiological].
 Similarly, previous work has highlighted that aggregated mobile network data can quantify venue-level person-time and crowding from anonymized device movements to estimate setting-specific exposure and risk [@chang2021mobility].
