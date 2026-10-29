@@ -189,9 +189,21 @@ We introduce this distinction explicitly and thereafter use “influenza A/B” 
 
 **Response**
 
-*Response to be added.*
+Thank you for this suggestion.
+We agree that this would be an interesting direction for future work.
+We have revised the targeting discussion to more directly discuss alternative strategies.
 
-**Charlie**: I think we can add a couple of sentences to the Discussion highlighting agreeing with them and highlighting this as a good strand of future work.
+> Line X: “Targeted allocation of IAQ interventions to the highest-risk locations could increase their impact at lower coverage, but identifying these locations in practice is difficult.
+In this work, we used ventilation as a proxy for risk.
+This approach has the practical advantage that ventilation can be assessed without knowing how many infectious people attend each location.
+Scalable sensing systems, such as CO$_2$ monitoring, could therefore help identify poorly ventilated locations for prioritisation [@peng2021exhaled; @rudnick2003risk].
+However, transmission requires infectious people to be present, and the resulting risk depends on their number as well as ventilation, occupancy, duration of co-presence, vocalization, and activity intensity [@wang2021airborne; @qian2021indoor].
+Alternative strategies could aim to more directly prioritise locations based on transmission burden or expected infections prevented per unit floor area.
+For example, a moderately ventilated location could take priority over a poorly ventilated one if differences in attendance and exposure were expected to produce a greater number of infections.
+These strategies would require estimates of transmission burden at individual locations, or proxies for it.
+The exact location in which infection occurs is not typically observed and is difficult to identify via traditional contact-tracing based methods, especially in the context of asymptomatic or pre-symptomatic transmission (as for COVID-19 [@he2020temporal; @johansson2021sarscov]) and constraints on the resourcing of contact tracing infrastructure [@lash2021covid].
+Previous work has highlighted the promise of digital contact tracing as a way to provide time-stamped proximity records that strengthen case–context linkage when recall is incomplete and exposure windows span multiple venues [@kendall2023epidemiological].
+Similarly, previous work has highlighted that aggregated mobile network data can quantify venue-level person-time and crowding from anonymized device movements to estimate setting-specific exposure and risk [@chang2021mobility].”
 
 ::: {.callout-note collapse="true" title="Comment 10"}
 - Add additional references to justify the assumptions / inputs chosen - a few are lacking citations in the methods
@@ -474,12 +486,12 @@ Might be an easier strategy to implement than ‘targeted’ control in the sens
 
 **Response**
 
-We agree that targeting particular settings (such as schools) could offer a practical approach to IAQ intervention implementation.
-Although schools are represented in our model, evaluating setting-specific control strategies falls outside the scope of this study.
-Extending the model to represent settings such as care homes and hospitals, and to capture deaths as an outcome, would make evaluating setting-specific interventions a particularly valuable direction for future work.
+We agree that our targeting strategy requires identification of the highest risk locations, which is a limitation.
+Targeting particular settings, such as schools, could be simpler to implement.
+We have added two sentences to the Discussion highlighting this alternative and its evaluation as a direction for future work.
 
-**Charlie**: Would consider focussing this text on highlighting and agreeing with the limitation of the current targeting strategy, and noting that we've added a couple of sentences (which we should add) to the Discussion discussing this limitation.
-I think the stuff on care homes, hospitals and deaths feels a bit unrelated to the comment and would suggest remove.
+> Line X: “One practical alternative to identifying the highest-risk individual locations is to prioritise particular setting types, such as schools.
+Comparing the population-level impact and practical feasibility of targeting based on ventilation-informed risk, transmission burden, expected infections prevented per unit floor area, or setting type would be a valuable direction for future work.”
 
 ::: {.callout-note collapse="true" title="Comment 13"}
 Note on precision - given the archetypal/exploratory nature of this work, the level of precision in figures presented seems inappropriate - consider showing results to the nearest % instead (e.g. 7% instead of 7.2%)
