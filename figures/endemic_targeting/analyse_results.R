@@ -266,8 +266,8 @@ panel_b_summary <- reductions |>
   group_by(efficacy, coverage, coverage_type) |>
   summarise(
     mean_reduction = mean(pct_reduction_incidence, na.rm = TRUE),
-    low = quantile(pct_reduction_incidence, 0.05, na.rm = TRUE),
-    hi = quantile(pct_reduction_incidence, 0.95, na.rm = TRUE),
+    low = min(pct_reduction_incidence, na.rm = TRUE),
+    hi = max(pct_reduction_incidence, na.rm = TRUE),
     .groups = "drop"
   ) |>
   mutate(
@@ -349,8 +349,8 @@ panel_c_summary <- reductions_paired |>
   group_by(coverage, efficacy) |>
   summarise(
     mean_rel_impact = mean(rel_extra_impact, na.rm = TRUE),
-    low = quantile(rel_extra_impact, 0.25, na.rm = TRUE),
-    high = quantile(rel_extra_impact, 0.75, na.rm = TRUE),
+    low = min(rel_extra_impact, na.rm = TRUE),
+    high = max(rel_extra_impact, na.rm = TRUE),
     .groups = "drop"
   ) |>
   mutate(
@@ -382,8 +382,7 @@ panel_c <- ggplot(
   ) +
   scale_y_continuous(
     breaks = seq(0, 0.8, 0.2),
-    labels = scales::percent_format(accuracy = 1),
-    limits = c(0, 0.9)
+    labels = scales::percent_format(accuracy = 1)
   ) +
   labs(
     x = "AQI Coverage",
@@ -412,8 +411,8 @@ panel_d_summary <- reductions_paired |>
   group_by(coverage, efficacy) |>
   summarise(
     mean_diff = mean(diff_inc, na.rm = TRUE),
-    low = quantile(diff_inc, 0.25, na.rm = TRUE),
-    high = quantile(diff_inc, 0.75, na.rm = TRUE),
+    low = min(diff_inc, na.rm = TRUE),
+    high = max(diff_inc, na.rm = TRUE),
     .groups = "drop"
   ) |>
   mutate(
@@ -468,8 +467,8 @@ panel_e_summary <- reductions |>
   group_by(efficacy, coverage, coverage_type) |>
   summarise(
     mean_reduction = mean(pct_reduction_incidence, na.rm = TRUE),
-    low = quantile(pct_reduction_incidence, 0.05, na.rm = TRUE),
-    hi = quantile(pct_reduction_incidence, 0.95, na.rm = TRUE),
+    low = min(pct_reduction_incidence, na.rm = TRUE),
+    hi = max(pct_reduction_incidence, na.rm = TRUE),
     .groups = "drop"
   ) |>
   mutate(
@@ -549,8 +548,8 @@ panel_f_summary <- reductions_paired |>
   group_by(coverage, efficacy) |>
   summarise(
     mean_rel_impact = mean(rel_extra_impact, na.rm = TRUE),
-    low = quantile(rel_extra_impact, 0.25, na.rm = TRUE),
-    high = quantile(rel_extra_impact, 0.75, na.rm = TRUE),
+    low = min(rel_extra_impact, na.rm = TRUE),
+    high = max(rel_extra_impact, na.rm = TRUE),
     .groups = "drop"
   ) |>
   mutate(
@@ -582,8 +581,7 @@ panel_f <- ggplot(
   ) +
   scale_y_continuous(
     breaks = seq(0, 0.8, 0.2),
-    labels = scales::percent_format(accuracy = 1),
-    limits = c(0, 0.9)
+    labels = scales::percent_format(accuracy = 1)
   ) +
   labs(
     x = "AQI Coverage",
@@ -610,8 +608,8 @@ panel_g_summary <- reductions_paired |>
   group_by(coverage, efficacy) |>
   summarise(
     mean_diff = mean(diff_inc, na.rm = TRUE),
-    low = quantile(diff_inc, 0.25, na.rm = TRUE),
-    high = quantile(diff_inc, 0.75, na.rm = TRUE),
+    low = min(diff_inc, na.rm = TRUE),
+    high = max(diff_inc, na.rm = TRUE),
     .groups = "drop"
   ) |>
   mutate(
