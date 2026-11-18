@@ -8,17 +8,14 @@ years_to_simulate <- 20
 simulation_time_days <- (365 * years_to_simulate)
 human_population <- 50000
 duration_of_immunity <- 365
+external_infection_probability <- 1 / human_population
 riskiness <- "setting_specific_riskiness"
+dt <- 0.5
 
 size_per_individual_workplace <- 10
 size_per_individual_school <- 3.33
 size_per_individual_leisure <- 2
 size_per_individual_household <- 20
-
-# Turn hospitalisation functionality off:
-prob_hosp_child <- 0
-prob_hosp_adult <- 0
-prob_hosp_elderly <- 0
 
 # Initial conditions for SARS-CoV-2:
 initial_S_SC2 <- round(0.4 * human_population)
@@ -50,11 +47,16 @@ simulations_to_run <- rbind(
   )
 )
 
+# Seed by archetype and iteration only, so that every coverage, efficacy and
+# allocation strategy within a replicate shares a seed. Runs in the same
+# replicate are then identical until the intervention switches on, and
+# random and targeted runs can be compared as pairs. Figure 2 uses the same
+# seeds, so its random allocation runs match those here.
 simulations_to_run <- simulations_to_run |>
   dplyr::mutate(
     scenario = "endemic",
     ID = 1:n(),
-    seed = 1000 + ID
+    seed = 1000 * match(archetype, archetypes) + iteration
   ) |>
   dplyr::arrange(
     archetype,
@@ -77,11 +79,9 @@ for (i in 1:nrow(simulations_to_run)) {
         number_initial_I = initial_I_SC2,
         number_initial_R = initial_R_SC2,
         endemic_or_epidemic = "endemic",
+        dt = dt,
         duration_immune = duration_of_immunity,
         prob_inf_external = external_infection_probability,
-        prob_hosp_child = prob_hosp_child,
-        prob_hosp_adult = prob_hosp_adult,
-        prob_hosp_elderly = prob_hosp_elderly,
         simulation_time = simulation_time_days,
         seed = simulations_to_run$seed[i],
         size_per_individual_workplace = size_per_individual_workplace,
@@ -100,11 +100,9 @@ for (i in 1:nrow(simulations_to_run)) {
         number_initial_I = initial_I_flu,
         number_initial_R = initial_R_flu,
         endemic_or_epidemic = "endemic",
+        dt = dt,
         duration_immune = duration_of_immunity,
         prob_inf_external = external_infection_probability,
-        prob_hosp_child = prob_hosp_child,
-        prob_hosp_adult = prob_hosp_adult,
-        prob_hosp_elderly = prob_hosp_elderly,
         simulation_time = simulation_time_days,
         seed = simulations_to_run$seed[i],
         size_per_individual_workplace = size_per_individual_workplace,

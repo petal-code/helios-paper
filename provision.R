@@ -11,8 +11,8 @@ install.packages("tictoc")
 install.packages("EnvStats")
 install.packages("dqrng")
 
-# Install a specific branch of the individual package:
-remotes::install_github('mrc-ide/individual@feat/logi_size')
+# Install a specific release of the individual package:
+remotes::install_github('mrc-ide/individual@v0.1.19')
 
-# Install helios:
-remotes::install_github('mrc-ide/helios')
+# Install the version of helios used for the paper:
+remotes::install_github('petal-code/helios@helios-v1.0')

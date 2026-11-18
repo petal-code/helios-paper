@@ -125,7 +125,7 @@ panel_a <- ggplot(
 panel_a
 
 # Targeting results
-dir_sim <- here::here("figures", "endemic_targeting", "2026-06-04_tom_figure_3")
+dir_sim <- here::here("figures", "endemic_targeting", "outputs")
 files <- list.files(path = dir_sim, pattern = "\\.rds$", full.names = TRUE)
 
 if (length(files) == 0L) {
@@ -145,9 +145,10 @@ read_simulation <- function(filepath) {
       archetype = sim$parameters$archetype_label,
       coverage = round(sim$parameters$coverage, 10),
       efficacy = round(sim$parameters$efficacy, 10),
-      coverage_type = sim$parameters$far_uvc_joint_coverage_type
+      coverage_type = sim$parameters$far_uvc_joint_coverage_type,
+      iteration = sim$parameters$iteration
     ) |>
-    group_by(year, filename, archetype, coverage, efficacy, coverage_type) |>
+    group_by(year, filename, archetype, coverage, efficacy, coverage_type, iteration) |>
     summarise(
       annualized_incidence = sum(E_new, na.rm = TRUE) / N,
       .groups = "drop"
@@ -165,7 +166,7 @@ metrics <- all_sims |>
     )
   ) |>
   filter(!is.na(window)) |>
-  group_by(filename, archetype, coverage, efficacy, coverage_type, window) |>
+  group_by(filename, archetype, coverage, efficacy, coverage_type, iteration, window) |>
   summarise(
     mean_annualized_incidence = mean(annualized_incidence, na.rm = TRUE),
     .groups = "drop"
@@ -190,12 +191,12 @@ reductions <- metrics |>
       mean_annualized_incidence_baseline
   )
 
-# Pairing targeted and random indv runs
+# Pairing targeted and random runs: runs in the same archetype and iteration
+# share a seed, so each random run is paired with the targeted run from the
+# same iteration
 reductions_paired <- reductions |>
-  group_by(archetype, coverage, efficacy, coverage_type) |>
-  mutate(run_id = row_number()) |>
   pivot_wider(
-    id_cols = c(archetype, coverage, efficacy, run_id),
+    id_cols = c(archetype, coverage, efficacy, iteration),
     names_from = coverage_type,
     values_from = pct_reduction_incidence
   ) |>
@@ -204,11 +205,6 @@ reductions_paired <- reductions |>
     diff_inc = targeted_riskiness - random,
     ratio_inc = targeted_riskiness / pmax(random, 1e-9),
     rel_extra_impact = (targeted_riskiness - random) / pmax(random, 1e-9)
-  ) |>
-  filter(
-    random > 0.01,
-    rel_extra_impact > -50,
-    rel_extra_impact < 1
   )
 
 

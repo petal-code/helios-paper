@@ -15,11 +15,6 @@ size_per_individual_school <- 3.33
 size_per_individual_leisure <- 2
 size_per_individual_household <- 20
 
-# Turn hospitalisation functionality off:
-prob_hosp_child <- 0
-prob_hosp_adult <- 0
-prob_hosp_elderly <- 0
-
 # Initial conditions for SARS-CoV-2:
 initial_S_SC2 <- round(0.4 * human_population)
 initial_E_SC2 <- round(0.01 * human_population)
@@ -50,11 +45,14 @@ simulations_to_run <- rbind(
   )
 )
 
+# Seed by archetype and iteration only, so that every coverage and efficacy
+# within a replicate shares a seed. Figure 3 uses the same seeds, so the random
+# allocation runs that appear in both figures are identical.
 simulations_to_run <- simulations_to_run |>
   mutate(
     scenario = "endemic",
     ID = 1:n(),
-    seed = 1000 + ID
+    seed = 1000 * match(archetype, archetypes) + iteration
   ) |>
   arrange(
     archetype,
@@ -63,10 +61,6 @@ simulations_to_run <- simulations_to_run |>
     efficacy,
     iteration
   )
-
-# TODO: Remove when issue fixed
-# Fix a bad seed:
-simulations_to_run[514, ]$seed <- 16591
 
 parameter_lists <- list()
 
@@ -88,9 +82,6 @@ for (i in 1:nrow(simulations_to_run)) {
         size_per_individual_household = size_per_individual_household,
         duration_immune = duration_of_immunity,
         prob_inf_external = external_infection_probability,
-        prob_hosp_child = prob_hosp_child,
-        prob_hosp_adult = prob_hosp_adult,
-        prob_hosp_elderly = prob_hosp_elderly,
         simulation_time = simulation_time_days,
         seed = simulations_to_run$seed[i]
       )
@@ -112,9 +103,6 @@ for (i in 1:nrow(simulations_to_run)) {
         size_per_individual_household = size_per_individual_household,
         duration_immune = duration_of_immunity,
         prob_inf_external = external_infection_probability,
-        prob_hosp_child = prob_hosp_child,
-        prob_hosp_adult = prob_hosp_adult,
-        prob_hosp_elderly = prob_hosp_elderly,
         simulation_time = simulation_time_days,
         seed = simulations_to_run$seed[i]
       )
@@ -170,7 +158,7 @@ for (i in 1:nrow(simulations_to_run)) {
 
 for (i in 1:length(parameter_lists)) {
   parameter_lists[[i]]$id <- simulations_to_run$ID[i]
-  parameter_lists[[i]]$iteration_number <- simulations_to_run$iteration[i]
+  parameter_lists[[i]]$iteration <- simulations_to_run$iteration[i]
   parameter_lists[[i]]$archetype_label <- simulations_to_run$archetype[i]
   parameter_lists[[i]]$coverage <- simulations_to_run$coverage[i]
   parameter_lists[[i]]$efficacy <- simulations_to_run$efficacy[i]

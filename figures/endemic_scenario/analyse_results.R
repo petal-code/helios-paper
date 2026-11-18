@@ -1,6 +1,6 @@
 source(here::here("packages.R"))
 
-dir_sim <- here::here("figures", "endemic_scenario", "2026-06-04_tom_figure_2")
+dir_sim <- here::here("figures", "endemic_scenario", "outputs")
 
 files <- list.files(
   path = dir_sim,
@@ -20,12 +20,12 @@ read_simulation <- function(filepath) {
   simulation_file$simulation$result |>
     mutate(
       days = timestep * dt,
-      year = floor(days / 365),
+      year = floor(days / 365) + 1, # Year 1 is the first year simulated
       filename = basename(filepath),
       archetype = simulation_file$parameters$archetype_label,
       coverage = round(simulation_file$parameters$coverage, 10),
       efficacy = round(simulation_file$parameters$efficacy, 10),
-      active_infected = E_count + I_mild_count + I_hosp_count,
+      active_infected = E_count + I_count,
       prevalence = (active_infected / pop_size) * 100
     ) |>
     group_by(year, filename, archetype, coverage, efficacy) |>
